@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="源于网上资料 COW技术初窥： Copy-on-write (sometimes referred to as “COW”) is an optimization strategy used in computer programming. The fundamental idea is that if multiple callers ask for resources which are in">
-<meta name="keywords" content="Linux">
+<meta name="description" content="孤单而灿烂">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux写时拷贝技术(copy-on-write)">
-<meta property="og:url" content="https://justxzm.github.io/2017/03/23/Linux写时拷贝技术-copy-on-write/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://justxzm.github.io/2018/04/02/test/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="源于网上资料 COW技术初窥： Copy-on-write (sometimes referred to as “COW”) is an optimization strategy used in computer programming. The fundamental idea is that if multiple callers ask for resources which are in">
-<meta property="og:updated_time" content="2017-03-23T14:51:56.087Z">
+<meta property="og:description" content="孤单而灿烂">
+<meta property="og:updated_time" content="2018-04-02T09:03:48.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux写时拷贝技术(copy-on-write)">
-<meta name="twitter:description" content="源于网上资料 COW技术初窥： Copy-on-write (sometimes referred to as “COW”) is an optimization strategy used in computer programming. The fundamental idea is that if multiple callers ask for resources which are in">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="孤单而灿烂">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2017/03/23/Linux写时拷贝技术-copy-on-write/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/04/02/test/"/>
 
 
 
 
 
-  <title> Linux写时拷贝技术(copy-on-write) | JUST DO IT </title>
+  <title> test | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/23/Linux写时拷贝技术-copy-on-write/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/04/02/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -291,7 +291,7 @@
             
             
               
-                Linux写时拷贝技术(copy-on-write)
+                test
               
             
           </h1>
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T22:48:44+08:00">
-                2017-03-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T17:03:48+08:00">
+                2018-04-02
               </time>
             
 
@@ -317,28 +317,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -347,8 +325,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/23/Linux写时拷贝技术-copy-on-write/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/Linux写时拷贝技术-copy-on-write/" itemprop="commentCount"></span>
+                <a href="/2018/04/02/test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/02/test/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,17 +357,7 @@
       
 
       
-        <p>源于网上资料</p>
-<p><strong>COW技术初窥：</strong></p>
-<p><strong>Copy-on-write</strong> (sometimes referred to as “COW”) is an optimization strategy used in computer programming. The fundamental idea is that if multiple callers ask for resources which are initially indistinguishable, they can all be given pointers to the same resource. This function can be maintained until a caller tries to modify its “copy” of the resource, at which point a true private copy is created to prevent the changes becoming visible to everyone else. All of this happens transparently to the callers. The primary advantage is that if a caller never makes any modifications, no private copy need ever be created.</p>
-<p>意思上就是：在复制一个对象的时候并不是真正的把原先的对象复制到内存的另外一个位置上，而是在新对象的内存映射表中设置一个指针，指向源对象的位置，并把那块内存的Copy-On-Write位设置为1.</p>
-<p>这样，在对新的对象执行读操作的时候，内存数据不发生任何变动，直接执行读操作；而在对新的对象执行写操作时，将真正的对象复制到新的内存地址中，并修改新对象的内存映射表指向这个新的位置，并在新的内存位置上执行写操作。</p>
-<p>这个技术需要跟虚拟内存和分页同时使用，好处就是在执行复制操作时因为不是真正的内存复制，而只是建立了一个指针，因而大大提高效率。但这不是一直成立的，如果在复制新对象之后，大部分对象都还需要继续进行写操作会产生大量的分页错误，得不偿失。所以COW高效的情况只是在复制新对象之后，在一小部分的内存分页上进行写操作。</p>
-<p>在Linux程序中，fork（）会产生一个和父进程完全相同的子进程，但子进程在此后多会exec系统调用，出于效率考虑，linux中引入了“写时复制“技术，也就是只有进程空间的各段的内容要发生变化时，才会将父进程的内容复制一份给子进程。</p>
-<p>那么子进程的物理空间没有代码，怎么去取指令执行exec系统调用呢？</p>
-<p> 在fork之后exec之前两个进程用的是<br><em>相同的物理空间（内存区），子进程的代码段、数据段、堆栈都是指向父进程的物理空间</em>，也就是说，两者的虚拟空间不同，但其对应的物理空间是同一个。当父子进程中有更改相应段的行为发生时，再为子进程相应的段分配物理空间，如果不是因为exec，内核会给子进程的数据段、堆栈段分配相应的物理空间（至此两者有各自的进程空间，互不影响），而代码段继续共享父进程的物理空间（两者的代码完全相同）。而如果是因为exec，由于两者执行的代码不同，子进程的代码段也会分配单独的物理空间。</p>
-<p>在网上看到还有个细节问题就是，fork之后内核会通过将子进程放在队列的前面，以让子进程先执行，以免父进程执行导致写时复制，而后子进程执行exec系统调用，因无意义的复制而造成效率的下降。</p>
-
+        
       
     </div>
 
@@ -410,12 +378,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-        </div>
-      
 
       
         
@@ -425,18 +387,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/26/HashMap-And-HashTable/" rel="next" title="HashMap And HashTable">
-                <i class="fa fa-chevron-left"></i> HashMap And HashTable
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/23/Linux系统模拟Httpp请求/" rel="prev" title="Linux系统模拟Httpp请求">
-                Linux系统模拟Httpp请求 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/04/Java-Volatile/" rel="prev" title="Java Volatile">
+                Java Volatile <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,8 +421,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/23/Linux写时拷贝技术-copy-on-write/"
-           data-title="Linux写时拷贝技术(copy-on-write)" data-url="https://justxzm.github.io/2017/03/23/Linux写时拷贝技术-copy-on-write/">
+      <div class="ds-thread" data-thread-key="2018/04/02/test/"
+           data-title="test" data-url="https://justxzm.github.io/2018/04/02/test/">
       </div>
     
   </div>

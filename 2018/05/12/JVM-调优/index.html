@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="孤单而灿烂">
-<meta name="keywords">
+<meta name="description" content="JDK配置 1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME 1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxP">
+<meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM 调优">
 <meta property="og:url" content="https://justxzm.github.io/2018/05/12/JVM-调优/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="孤单而灿烂">
-<meta property="og:updated_time" content="2018-05-12T04:45:13.825Z">
+<meta property="og:description" content="JDK配置 1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME 1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxP">
+<meta property="og:image" content="https://justxzm.github.io/images/Java/2018051201.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Java/2018051202.png">
+<meta property="og:updated_time" content="2018-05-12T06:15:36.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM 调优">
-<meta name="twitter:description" content="孤单而灿烂">
+<meta name="twitter:description" content="JDK配置 1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME 1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxP">
+<meta name="twitter:image" content="https://justxzm.github.io/images/Java/2018051201.png">
 
 
 
@@ -317,6 +320,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -357,7 +382,93 @@
       
 
       
-        
+        <h3 id="JDK配置"><a href="#JDK配置" class="headerlink" title="JDK配置"></a>JDK配置</h3><p><img src="/images/Java/2018051201.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-Xms512m JVM初始分配的堆内存</div><div class="line">-Xmx1024m JVM最大允许分配的堆内存，按需分配</div><div class="line">-XX:PermSize=256M JVM初始分配的非堆内存</div><div class="line">-XX:MaxPermSize=512M JVM最大允许分配的非堆内存，按需分配</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>默认值</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Xms</td>
+<td>初始堆大小</td>
+<td>物理内存的1/64(&lt;1GB)</td>
+<td style="text-align:left">默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制。</td>
+</tr>
+<tr>
+<td>-Xmx</td>
+<td>最大堆大小</td>
+<td>物理内存的1/4(&lt;1GB)</td>
+<td style="text-align:left">默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。</td>
+</tr>
+<tr>
+<td>-Xmn</td>
+<td>年轻代大小(1.4or lator)</td>
+<td></td>
+<td style="text-align:left"><strong>注意</strong>：此处的大小是（eden+ 2 survivor space)，与jmap -heap中显示的New gen是不同的。整个堆大小=年轻代大小 + 年老代大小 + 持久代大小。增大年轻代后，将会减小年老代大小，此值对系统性能影响较大，Sun官方推荐配置为整个堆的3/8。</td>
+</tr>
+<tr>
+<td>-XX:NewSize</td>
+<td>设置年轻代大小(for 1.3/1.4)</td>
+<td></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>-XX:MaxNewSize</td>
+<td>年轻代最大值(for 1.3/1.4)</td>
+<td></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>-XX:PermSize</td>
+<td>设置持久代(perm gen)初始值</td>
+<td>物理内存的1/64</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td>-XX:MaxPermSize</td>
+<td>设置持久代最大值</td>
+<td>物理内存的1/4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h3><p>编辑TOMCAT_HOME/bin/catalina.bat，在第二行中插入如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set JAVA_OPTS=-server -Xms1024m -Xmx1024m -XX:PermSize=64M -XX:MaxNewSize=512m -XX:MaxPermSize=128m</div></pre></td></tr></table></figure>
+<p>一般设置-Xms、-Xmx 相等以避免在每次GC 后调整堆的大小。</p>
+<p><img src="/images/Java/2018051202.png" alt=""></p>
+<h3 id="Eclipse配置"><a href="#Eclipse配置" class="headerlink" title="Eclipse配置"></a>Eclipse配置</h3><p>编辑eclipse安装目录下eclipse.ini配置文件，最后添加如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-Dosgi.requiredJavaVersion=1.7</div><div class="line">-Xms1024m</div><div class="line">-Xmx2048m</div><div class="line">-Xmn384m</div><div class="line">-XX:PermSize=128m</div><div class="line">-XX:MaxPermSize=512M</div><div class="line">-XX:+UseParallelGC</div><div class="line">-XX:+DisableExplicitGC</div><div class="line"># 编辑器语言配置项</div><div class="line">-nl zh</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-XX:+UseParallelGC</td>
+<td>Full GC采用parallel MSC</td>
+<td>默认不启用，-server时启用</td>
+<td>新生代使用并行清除，年老代使用单线程Mark-Sweep-Compact清除的垃圾收集器。</td>
+</tr>
+<tr>
+<td>-XX:+DisableExplicitGC</td>
+<td>禁止代码中显示调用GC</td>
+<td>默认不启用</td>
+<td>如果加上了这个JVM启动参数，那么代码中调用System.gc()没有任何效果，相当于是没有这行代码一样。</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
 
@@ -377,6 +488,12 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
       
 
       
@@ -446,8 +563,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -484,7 +610,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -529,6 +655,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK配置"><span class="nav-number">1.</span> <span class="nav-text">JDK配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat配置"><span class="nav-number">2.</span> <span class="nav-text">Tomcat配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eclipse配置"><span class="nav-number">3.</span> <span class="nav-text">Eclipse配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

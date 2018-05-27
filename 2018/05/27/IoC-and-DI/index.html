@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="集合类," />
+  <meta name="keywords" content="IoC and DI," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
-<meta name="keywords" content="集合类">
+<meta name="description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
+<meta name="keywords" content="IoC and DI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Iterator And Enumeration">
-<meta property="og:url" content="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/index.html">
+<meta property="og:title" content="IoC and DI">
+<meta property="og:url" content="https://justxzm.github.io/2018/05/27/IoC-and-DI/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
-<meta property="og:updated_time" content="2017-03-26T07:28:14.559Z">
+<meta property="og:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
+<meta property="og:updated_time" content="2018-05-27T13:49:56.614Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Iterator And Enumeration">
-<meta name="twitter:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
+<meta name="twitter:title" content="IoC and DI">
+<meta name="twitter:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/05/27/IoC-and-DI/"/>
 
 
 
 
 
-  <title> Iterator And Enumeration | JUST DO IT </title>
+  <title> IoC and DI | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/05/27/IoC-and-DI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -291,7 +291,7 @@
             
             
               
-                Iterator And Enumeration
+                IoC and DI
               
             
           </h1>
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T15:18:47+08:00">
-                2017-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T20:57:24+08:00">
+                2018-05-27
               </time>
             
 
@@ -347,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/26/Iterator-And-Enumeration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Iterator-And-Enumeration/" itemprop="commentCount"></span>
+                <a href="/2018/05/27/IoC-and-DI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/27/IoC-and-DI/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,15 +379,30 @@
       
 
       
-        <p>在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。</p>
-<p>Enumeration是一个接口，它的源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Enumeration&lt;E&gt; &#123;</div><div class="line">    boolean hasMoreElements();</div><div class="line">    E nextElement();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Iterator也是一个接口，它的源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Iterator&lt;E&gt; &#123;</div><div class="line">    boolean hasNext();</div><div class="line">    E next();</div><div class="line">    void remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>效率比较</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * 测试分别通过 Iterator 和 Enumeration 去遍历Hashtable</div><div class="line"> */</div><div class="line">public class IteratorEnumeration &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int val;</div><div class="line">        Random r = new Random();</div><div class="line">        Hashtable table = new Hashtable();</div><div class="line">        for (int i=0; i&lt;100000; i++) &#123;</div><div class="line">            // 随机获取一个[0,100)之间的数字</div><div class="line">            val = r.nextInt(100);</div><div class="line">            table.put(String.valueOf(i), val);</div><div class="line">        &#125;</div><div class="line">        // 通过Iterator遍历Hashtable</div><div class="line">        iterateHashtable(table) ;</div><div class="line">        // 通过Enumeration遍历Hashtable</div><div class="line">        enumHashtable(table);</div><div class="line">    &#125;</div><div class="line">    /*</div><div class="line">     * 通过Iterator遍历Hashtable</div><div class="line">     */</div><div class="line">    private static void iterateHashtable(Hashtable table) &#123;</div><div class="line">        long startTime = System.currentTimeMillis();</div><div class="line">        Iterator iter = table.entrySet().iterator();</div><div class="line">        while(iter.hasNext()) &#123;</div><div class="line">            //System.out.println(&quot;iter:&quot;+iter.next());</div><div class="line">            iter.next();</div><div class="line">        &#125;</div><div class="line">        long endTime = System.currentTimeMillis();</div><div class="line">        countTime(startTime, endTime);</div><div class="line">    &#125;</div><div class="line">    /*</div><div class="line">     * 通过Enumeration遍历Hashtable</div><div class="line">     */</div><div class="line">    private static void enumHashtable(Hashtable table) &#123;</div><div class="line">        long startTime = System.currentTimeMillis();</div><div class="line">        Enumeration enu = table.elements();</div><div class="line">        while(enu.hasMoreElements()) &#123;</div><div class="line">            //System.out.println(&quot;enu:&quot;+enu.nextElement());</div><div class="line">            enu.nextElement();</div><div class="line">        &#125;</div><div class="line">        long endTime = System.currentTimeMillis();</div><div class="line">        countTime(startTime, endTime);</div><div class="line">    &#125;</div><div class="line">    private static void countTime(long start, long end) &#123;</div><div class="line">        System.out.println(&quot;time: &quot;+(end-start)+&quot;ms&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果如下：</p>
-<pre><code>time: 9ms
-time: 5ms
-</code></pre><p>从中，我们可以看出。Enumeration 比 Iterator 的遍历速度更快。为什么呢？<br>这是因为，Hashtable中Iterator是通过Enumeration去实现的，而且Iterator添加了对fail-fast机制的支持；所以，执行的操作自然要多一些。</p>
-<p><strong>关于fail-fast机制</strong><br>fail-fast 机制是java集合(Collection)中的一种错误机制。当多个线程对同一个集合的内容进行操作时，就可能会产生fail-fast事件。<br>例如：当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。 </p>
+<p>使用IoC范式编程时，程序逻辑的流程通常是由一个功能中心来控制的。而使用IoC，这个“中心控制”的设计原则会被反转过来。调用者的代码处理程序的执行顺序，而程序逻辑则被封装在接受调用的子流程中。通过一个例子来理解IoC：</p>
+<blockquote>
+<p>在GUI应用中，GUI框架负责控制调用事件处理器，而不是应用逻辑。当用户点击了一个动作，比如“向前”，GUI框架会自动调用 对应的事件处理器，而应用逻辑可以把重点放在处理动作上。程序的控制被反转了，将控制权由应用逻辑转移到了GUI框架。</p>
+</blockquote>
+<p>IoC也被称为好莱坞原则：会有另一段代码拥有最初的控制线程，并且由它来调用你的代码，而不是由你的代码调用它。（<code>不要给我们打电话，我们会打给你。——好莱坞原则</code>）</p>
+<p>IoC有多种不同的实现，包括工厂模式、服务器定位模式，当然还有依赖注入。<strong>需要注意的是，DI并不等于IoC，DI只是IoC的一种实现方式，IoC是一种机制。</strong></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们首先编写传统的代码，然后使用工厂模式解耦，进而再使用DI来改进代码，通过这个过程，你将了解到DI的精妙之处。这些改进都基于同一个关键技术，即面向接口编程。</p>
+<p>假设你想找到所有对Java可开发人员比较友善的好莱坞经纪人。首先，我们有了一个AgentFinder接口，及其两个实现类SpreadSheetAgentFinder和WebServiceAgentFinder。AgentFinder接口如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface AgentFinder &#123;</div><div class="line">    public List&lt;Agent&gt; findAllAgents();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="传统方式"><a href="#传统方式" class="headerlink" title="传统方式"></a>传统方式</h4><p>为了找到经纪人，项目中有个默认的HollywoodService类，它会从SpreadSheetAgentFinder里得到一个经纪人列表，并且过滤出友善的经纪人，最终返回该列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class HollywoodService &#123;</div><div class="line">    public static List&lt;Agent&gt; getFriendlyAgents() &#123;</div><div class="line">        AgentFinder finder = new SpreadsheetAgentFinder();</div><div class="line">        List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">        List&lt;Agent&gt; friendlyAgents = filterAgents(agents,&quot;Java Developers&quot;);</div><div class="line"> </div><div class="line">        return friendlyAgents;</div><div class="line">    &#125;</div><div class="line">    //filterAgents</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是最传统的编码方式，显然，HollywoodService被SpreadsheetAgentFinder这个AgentFinder的具体实现死死的绑定住了。</p>
+<p>为了改进这个问题，通常我们会想到一个常用的设计模式——工厂模式。工厂模式可以一定程度上解耦程序，它也是IoC的一种实现方式。</p>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>利用工厂模式（其实这里用到的是一个简单工厂）重新编写上面的代码，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public List&lt;Agent&gt; getFriendlyAgents(String agentFinderType) &#123;</div><div class="line">    AgentFinderFactory factory = AgentFinderFactory.getInstance();</div><div class="line">    AgentFinder finder = factory.getAgentFinder(agentFinderType);</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    return filterAgents(agents, &quot;Java Developers&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如你所见，这里不再有具体的实现来黏住你，而是通过注入agentFinderType的方式让你选择想要的AgentFinder。但这里仍然还有问题：</p>
+<ol>
+<li>代码注入的仅仅是一个引用凭据（agentFinderType），而不是真正实现AgentFinder的对象。</li>
+<li>方法getFriendlyAgents中还有获取其依赖的代码，达不到只关注自身智能的理想状态，我们需要通过DI来达成这两个目标。</li>
+</ol>
+<h4 id="手工实现DI"><a href="#手工实现DI" class="headerlink" title="手工实现DI"></a>手工实现DI</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static List&lt;Agent&gt; getFriendlyAgents(AgentFinder finder)&#123;</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    return filterAgents(agents,&quot;Java Developers&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码是一个纯手工打造的DI方案，AgentFinder被直接注入到getFriendlyAgents方法中。现在这个getFriendlyAgents方法干净利落，只专注于纯业务逻辑。</p>
+<p>但是，这种手工方式的DI显然存在问题，如何配置AgentFinder具体实现的问题并没有解决，原本AgentFinderFactory要做的工作还是要找一个地方去做。解决这个问题的方式是借助DI框架，而DI框架就是把你的代码打包起来的运行时环境，在你需要的时候注入依赖项。</p>
 
       
     </div>
@@ -411,7 +426,7 @@ time: 5ms
       
         <div class="post-tags">
           
-            <a href="/tags/集合类/" rel="tag"># 集合类</a>
+            <a href="/tags/IoC-and-DI/" rel="tag"># IoC and DI</a>
           
         </div>
       
@@ -424,8 +439,8 @@ time: 5ms
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/26/HashSet-And-TreeSet/" rel="next" title="HashSet And TreeSet">
-                <i class="fa fa-chevron-left"></i> HashSet And TreeSet
+              <a href="/2018/05/27/Java8-默认方法和多继承/" rel="next" title="Java8 默认方法和多继承">
+                <i class="fa fa-chevron-left"></i> Java8 默认方法和多继承
               </a>
             
           </div>
@@ -434,8 +449,8 @@ time: 5ms
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/HashMap-And-HashTable/" rel="prev" title="HashMap And HashTable">
-                HashMap And HashTable <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/12/JVM-调优/" rel="prev" title="JVM 调优">
+                JVM 调优 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,8 +477,8 @@ time: 5ms
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/26/Iterator-And-Enumeration/"
-           data-title="Iterator And Enumeration" data-url="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/">
+      <div class="ds-thread" data-thread-key="2018/05/27/IoC-and-DI/"
+           data-title="IoC and DI" data-url="https://justxzm.github.io/2018/05/27/IoC-and-DI/">
       </div>
     
   </div>
@@ -487,8 +502,17 @@ time: 5ms
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -570,6 +594,22 @@ time: 5ms
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统方式"><span class="nav-number">2.1.</span> <span class="nav-text">传统方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手工实现DI"><span class="nav-number">2.3.</span> <span class="nav-text">手工实现DI</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

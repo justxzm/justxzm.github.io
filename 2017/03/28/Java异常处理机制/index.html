@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="异常处理机制," />
+  <meta name="keywords" content="异常处理," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 <meta name="description" content="思考try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。12345678910111213141516171">
-<meta name="keywords" content="异常处理机制">
+<meta name="keywords" content="异常处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java异常处理机制">
 <meta property="og:url" content="https://justxzm.github.io/2017/03/28/Java异常处理机制/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="思考try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。12345678910111213141516171">
-<meta property="og:image" content="https://raw.githubusercontent.com/scalad/Note/master/image/java_exception.jpg">
-<meta property="og:updated_time" content="2017-03-29T15:55:23.223Z">
+<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061201.jpg">
+<meta property="og:updated_time" content="2018-06-12T15:30:12.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java异常处理机制">
 <meta name="twitter:description" content="思考try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。12345678910111213141516171">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/scalad/Note/master/image/java_exception.jpg">
+<meta name="twitter:image" content="https://justxzm.github.io/images/Java/2018061201.jpg">
 
 
 
@@ -399,10 +399,10 @@ testEx2, finally; return value=false
 testEx1, finally; return value=false
 testEx, finally; return value=false
 </code></pre><p>注意说明：</p>
-<p>finally语句块不应该出现 应该出现return。上面的return ret最好是其他语句来处理相关逻辑。</p>
+<p>finally语句块不应该出现return。上面的return ret最好是其他语句来处理相关逻辑。</p>
 <h3 id="Java异常"><a href="#Java异常" class="headerlink" title="Java异常"></a>Java异常</h3><p>异常指不期而至的各种状况，如：文件找不到、网络连接失败、非法参数等。异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程。Java通 过API中Throwable类的众多子类描述各种不同的异常。因而，Java异常都是对象，是Throwable子类的实例，描述了出现在一段编码中的 错误条件。当条件生成时，错误将引发异常。</p>
 <p>Java异常类层次结构图：</p>
-<p><img src="https://raw.githubusercontent.com/scalad/Note/master/image/java_exception.jpg" alt=""></p>
+<p><img src="/images/Java/2018061201.jpg" alt=""></p>
 <p>在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出）。Throwable 指定代码中可用异常传播机制通过 Java 应用程序传输的任何问题的共性。</p>
 <p><strong>Throwable</strong>： 有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。</p>
 <p> <strong>Error（错误）</strong>:是程序无法处理的错误，表示运行应用程序中较严重问题。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题。例如，Java虚拟机运行错误（Virtual MachineError），当 JVM 不再有继续执行操作所需的内存资源时，将出现 OutOfMemoryError。这些异常发生时，Java虚拟机（JVM）一般会选择线程终止。</p>
@@ -446,7 +446,7 @@ testEx, finally; return value=false
       
         <div class="post-tags">
           
-            <a href="/tags/异常处理机制/" rel="tag"># 异常处理机制</a>
+            <a href="/tags/异常处理/" rel="tag"># 异常处理</a>
           
         </div>
       
@@ -547,7 +547,7 @@ testEx, finally; return value=false
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -558,7 +558,7 @@ testEx, finally; return value=false
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -569,7 +569,7 @@ testEx, finally; return value=false
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

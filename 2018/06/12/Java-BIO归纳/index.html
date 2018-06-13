@@ -90,13 +90,13 @@
 <meta name="description" content="java.io.File类用于表示文件（目录） File类只用于表示文件（目录）的信息（名称、大小等），不能用于文件内容的访问 IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类 字节流1）InputStream、OutputStream 12InputStream抽象了应用程序读取数据的方式OutputStream抽象了应用程序写出数据的方式 2）EOF = End">
 <meta name="keywords" content="Java IO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java BIO">
-<meta property="og:url" content="https://justxzm.github.io/2018/06/12/Java-BIO/index.html">
+<meta property="og:title" content="Java BIO归纳">
+<meta property="og:url" content="https://justxzm.github.io/2018/06/12/Java-BIO归纳/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="java.io.File类用于表示文件（目录） File类只用于表示文件（目录）的信息（名称、大小等），不能用于文件内容的访问 IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类 字节流1）InputStream、OutputStream 12InputStream抽象了应用程序读取数据的方式OutputStream抽象了应用程序写出数据的方式 2）EOF = End">
-<meta property="og:updated_time" content="2018-06-12T16:32:02.576Z">
+<meta property="og:updated_time" content="2018-06-13T15:29:14.279Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java BIO">
+<meta name="twitter:title" content="Java BIO归纳">
 <meta name="twitter:description" content="java.io.File类用于表示文件（目录） File类只用于表示文件（目录）的信息（名称、大小等），不能用于文件内容的访问 IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类 字节流1）InputStream、OutputStream 12InputStream抽象了应用程序读取数据的方式OutputStream抽象了应用程序写出数据的方式 2）EOF = End">
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/06/12/Java-BIO/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/06/12/Java-BIO归纳/"/>
 
 
 
 
 
-  <title> Java BIO | JUST DO IT </title>
+  <title> Java BIO归纳 | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/06/12/Java-BIO/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/06/12/Java-BIO归纳/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -291,7 +291,7 @@
             
             
               
-                Java BIO
+                Java BIO归纳
               
             
           </h1>
@@ -347,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/12/Java-BIO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/06/12/Java-BIO/" itemprop="commentCount"></span>
+                <a href="/2018/06/12/Java-BIO归纳/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/06/12/Java-BIO归纳/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">java的文本(char)是16位无符号整数，是字符的unicode编码（双字节编码)</div><div class="line">文件是byte byte byte ...的数据序列</div><div class="line">文本文件是文本(char)序列按照某种编码方案(utf-8,utf-16be,gbk)序列化为byte的存储结果</div></pre></td></tr></table></figure>
 <p>3）字符流(Reader Writer)—-&gt;操作的是文本文本文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">字符的处理，一次处理一个字符</div><div class="line">字符的底层任然是基本的字节序列</div><div class="line">字符流的基本实现</div><div class="line">   InputStreamReader   完成byte流解析为char流,按照编码解析</div><div class="line">   OutputStreamWriter  提供char流到byte流，按照编码处理  </div><div class="line">   FileReader/FileWriter</div><div class="line">   </div><div class="line">字符流的过滤器</div><div class="line">   BufferedReader   ----&gt;readLine 一次读一行</div><div class="line">   BufferedWriter/PrintWriter     ---&gt;写一行</div></pre></td></tr></table></figure>
-<h3 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h3><p>1）对象序列化，就是将Object转换成byte序列，反之叫对象的反序列化 </p>
+<h3 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h3><h4 id="基本类型序列化"><a href="#基本类型序列化" class="headerlink" title="基本类型序列化"></a>基本类型序列化</h4><p>1）将类型int 转换成4byte或将其他数据类型转换成byte的过程叫序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">数据----&gt;n byte</div></pre></td></tr></table></figure>
+<p>2）反序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">将n个byte 转换成一个数据的过程</div><div class="line">nbyte ---&gt; 数据</div></pre></td></tr></table></figure>
+<p>3）RandomAccessFile</p>
+<p>提供基本类型的读写方法，可以将基本类型数据序列化到文件或者将文件内容反序列化为数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">提供的对文件内容的访问，既可以读文件，也可以写文件。</div><div class="line"></div><div class="line">支持随机访问文件，可以访问文件的任意位置</div><div class="line"></div><div class="line">1）java文件模型</div><div class="line">在硬盘上的文件是byte byte byte存储的,是数据的集合</div><div class="line"></div><div class="line">2）打开文件</div><div class="line">有两种模式&quot;rw&quot;(读写)  &quot;r&quot;（只读)</div><div class="line">RandomAccessFile raf = new RandomeAccessFile(file,&quot;rw&quot;)</div><div class="line">文件指针，打开文件时指针在开头 pointer = 0;</div><div class="line"></div><div class="line">3）写方法</div><div class="line">raf.write(int)---&gt;只写一个字节（后8位),同时指针指向下一个位置，准备再次写入</div><div class="line"></div><div class="line">4）读方法</div><div class="line">int b = raf.read()---&gt;读一个字节</div><div class="line"></div><div class="line">5）文件读写完成以后一定要关闭（Oracle官方说明）</div></pre></td></tr></table></figure>
+<h4 id="对象序列化"><a href="#对象序列化" class="headerlink" title="对象序列化"></a>对象序列化</h4><p>1）对象序列化，就是将Object转换成byte序列，反之叫对象的反序列化 </p>
 <p>2）序列化流是过滤流</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">序列化流(ObjectOutputStream)，----writeObject</div><div class="line">反序列化流(ObjectInputStream)---readObject</div></pre></td></tr></table></figure>
 <p>3）序列化接口(Serializable)</p>
@@ -408,23 +415,6 @@
 <p>4）transient关键字</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">private void writeObject(java.io.ObjectOutputStream s)</div><div class="line">	throws java.io.IOException</div><div class="line">private void readObject(java.io.ObjectInputStream s)</div><div class="line">	throws java.io.IOException, ClassNotFoundException</div><div class="line">		        </div><div class="line">分析ArrayList源码中序列化和反序列化的问题</div></pre></td></tr></table></figure>
 <p>5）序列化中子类和父类构造函数的调用问题</p>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="序列化与基本类型序列化"><a href="#序列化与基本类型序列化" class="headerlink" title="序列化与基本类型序列化"></a>序列化与基本类型序列化</h4><p>1）将类型int 转换成4byte或将其他数据类型转换成byte的过程叫序列化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">数据----&gt;n byte</div></pre></td></tr></table></figure>
-<p>2）反序列化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">将n个byte 转换成一个数据的过程</div><div class="line">nbyte ---&gt; 数据</div></pre></td></tr></table></figure>
-<p>3）RandomAccessFile</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">提供基本类型的读写方法，可以将基本类型数据</div><div class="line">序列化到文件或者将文件内容反序列化为数据</div></pre></td></tr></table></figure>
-<h4 id="RandomAccessFile"><a href="#RandomAccessFile" class="headerlink" title="RandomAccessFile"></a>RandomAccessFile</h4><p>RandomAccessFile.java提供的对文件内容的访问，既可以读文件，也可以写文件。</p>
-<p>RandomAccessFile支持随机访问文件，可以访问文件的任意位置</p>
-<p>1）java文件模型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在硬盘上的文件是byte byte byte存储的,是数据的集合</div></pre></td></tr></table></figure>
-<p>2）打开文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">有两种模式&quot;rw&quot;(读写)  &quot;r&quot;（只读)</div><div class="line">RandomAccessFile raf = new RandomeAccessFile(file,&quot;rw&quot;)</div><div class="line">文件指针，打开文件时指针在开头 pointer = 0;</div></pre></td></tr></table></figure>
-<p>3）写方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raf.write(int)---&gt;只写一个字节（后8位),同时指针指向下一个位置，准备再次写入</div></pre></td></tr></table></figure>
-<p>4）读方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int b = raf.read()---&gt;读一个字节</div></pre></td></tr></table></figure>
-<p>5）文件读写完成以后一定要关闭（Oracle官方说明）</p>
 
       
     </div>
@@ -461,6 +451,10 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/13/Java-BIO实例/" rel="next" title="Java BIO实例">
+                <i class="fa fa-chevron-left"></i> Java BIO实例
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -495,8 +489,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/06/12/Java-BIO/"
-           data-title="Java BIO" data-url="https://justxzm.github.io/2018/06/12/Java-BIO/">
+      <div class="ds-thread" data-thread-key="2018/06/12/Java-BIO归纳/"
+           data-title="Java BIO归纳" data-url="https://justxzm.github.io/2018/06/12/Java-BIO归纳/">
       </div>
     
   </div>
@@ -545,7 +539,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节流"><span class="nav-number">1.</span> <span class="nav-text">字节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流"><span class="nav-number">2.</span> <span class="nav-text">字符流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化流"><span class="nav-number">3.</span> <span class="nav-text">序列化流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">4.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#序列化与基本类型序列化"><span class="nav-number">4.1.</span> <span class="nav-text">序列化与基本类型序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RandomAccessFile"><span class="nav-number">4.2.</span> <span class="nav-text">RandomAccessFile</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节流"><span class="nav-number">1.</span> <span class="nav-text">字节流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流"><span class="nav-number">2.</span> <span class="nav-text">字符流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化流"><span class="nav-number">3.</span> <span class="nav-text">序列化流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本类型序列化"><span class="nav-number">3.1.</span> <span class="nav-text">基本类型序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象序列化"><span class="nav-number">3.2.</span> <span class="nav-text">对象序列化</span></a></li></ol></li></ol></div>
             
 
           </div>

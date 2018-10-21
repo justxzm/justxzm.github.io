@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Oracle," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="12345678910111213141516sqlplus /nologconn / as sysdbadrop user prj312 cascade;drop tablespace prj312 including contents;create tablespace prj312 datafile &amp;apos;D:oracle/prj312.DBF&amp;apos; size 100m auto">
-<meta name="keywords" content="Oracle">
+<meta name="description" content="在公共服务器下创建一个空仓库 1).创建一个文件夹，如public.git 1mkdir public.git 2).进入该文件夹，建立裸仓库 1git  --bare init  设置网络访问权限 1).设置 public.git 为共享文件夹 2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到 1注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle 常用命令">
-<meta property="og:url" content="https://justxzm.github.io/2018/04/19/Oracle-常用命令/index.html">
+<meta property="og:title" content="Windows局域网内建立Git远程仓库">
+<meta property="og:url" content="https://justxzm.github.io/2018/10/21/局域网内建立Git远程仓库/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="12345678910111213141516sqlplus /nologconn / as sysdbadrop user prj312 cascade;drop tablespace prj312 including contents;create tablespace prj312 datafile &amp;apos;D:oracle/prj312.DBF&amp;apos; size 100m auto">
-<meta property="og:updated_time" content="2018-04-19T12:33:42.345Z">
+<meta property="og:description" content="在公共服务器下创建一个空仓库 1).创建一个文件夹，如public.git 1mkdir public.git 2).进入该文件夹，建立裸仓库 1git  --bare init  设置网络访问权限 1).设置 public.git 为共享文件夹 2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到 1注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使">
+<meta property="og:updated_time" content="2018-10-21T12:24:53.874Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle 常用命令">
-<meta name="twitter:description" content="12345678910111213141516sqlplus /nologconn / as sysdbadrop user prj312 cascade;drop tablespace prj312 including contents;create tablespace prj312 datafile &amp;apos;D:oracle/prj312.DBF&amp;apos; size 100m auto">
+<meta name="twitter:title" content="Windows局域网内建立Git远程仓库">
+<meta name="twitter:description" content="在公共服务器下创建一个空仓库 1).创建一个文件夹，如public.git 1mkdir public.git 2).进入该文件夹，建立裸仓库 1git  --bare init  设置网络访问权限 1).设置 public.git 为共享文件夹 2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到 1注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/04/19/Oracle-常用命令/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/10/21/局域网内建立Git远程仓库/"/>
 
 
 
 
 
-  <title> Oracle 常用命令 | JUST DO IT </title>
+  <title> Windows局域网内建立Git远程仓库 | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/04/19/Oracle-常用命令/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/局域网内建立Git远程仓库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -291,7 +291,7 @@
             
             
               
-                Oracle 常用命令
+                Windows局域网内建立Git远程仓库
               
             
           </h1>
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T20:30:54+08:00">
-                2018-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T20:10:10+08:00">
+                2018-10-21
               </time>
             
 
@@ -329,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
                   </a>
                 </span>
 
@@ -347,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/19/Oracle-常用命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/19/Oracle-常用命令/" itemprop="commentCount"></span>
+                <a href="/2018/10/21/局域网内建立Git远程仓库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/21/局域网内建立Git远程仓库/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +374,27 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">sqlplus /nolog</div><div class="line">conn / as sysdba</div><div class="line"></div><div class="line">drop user prj312 cascade;</div><div class="line">drop tablespace prj312 including contents;</div><div class="line"></div><div class="line">create tablespace prj312 datafile &apos;D:oracle/prj312.DBF&apos; size 100m autoextend on next 20m maxsize 4096m extent management local;</div><div class="line">create user prj312 identified by prj312 default tablespace prj312;</div><div class="line">grant connect,resource,dba to prj312;</div><div class="line">quit</div><div class="line"></div><div class="line">exp prj312/prj312 file=D:\JavaWeb\DBData\prj312.dmp</div><div class="line">imp prj312/prj312 file=D:\JavaWeb\DBData\prj312.dmp  full=y ignore=y;</div><div class="line"></div><div class="line">exp prj312/prj312@192.168.8.172:1522/ibms file=D:\JavaWeb\DBData\prj312.dmp</div><div class="line">imp prj312/prj312@192.168.8.180:1521/orcl file=D:\JavaWeb\DBData\prj312.dmp full=y ignore=y;</div></pre></td></tr></table></figure>
+        <ol>
+<li><p>在公共服务器下创建一个空仓库</p>
+<p>1).创建一个文件夹，如public.git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir public.git</div></pre></td></tr></table></figure>
+<p>2).进入该文件夹，建立裸仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git  --bare init</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置网络访问权限</p>
+<p>1).设置 public.git 为共享文件夹</p>
+<p>2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使用右斜杠 /</div></pre></td></tr></table></figure>
+</li>
+<li><p>在本机设置远程库 </p>
+<p>1).git remote add [name] //IP地址/共享文件夹名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[name] 可以任意起名 如 origin</div><div class="line">利用 git remote 查看一下设置远程库是否成功，一般不会有什么问题</div></pre></td></tr></table></figure>
+<p>2).进入本地库，将本地代码push到远程公共库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --set-upstream [name] master</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>项目组其他成员在自己的机器上，参照步骤3设置远程库，大家就可以协助工作了。 </p>
+<p>转载自：<a href="https://blog.csdn.net/cnbizz/article/details/80233410" target="_blank" rel="external">https://blog.csdn.net/cnbizz/article/details/80233410</a></p>
 
       
     </div>
@@ -398,7 +418,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle/" rel="tag"># Oracle</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
         </div>
       
@@ -411,18 +431,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/12/JVM-调优/" rel="next" title="JVM 调优">
-                <i class="fa fa-chevron-left"></i> JVM 调优
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/19/Git-补丁使用/" rel="prev" title="Git 补丁使用">
-                Git 补丁使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/21/Oracle-常用命令/" rel="prev" title="Oracle 常用操作">
+                Oracle 常用操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -449,8 +465,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/04/19/Oracle-常用命令/"
-           data-title="Oracle 常用命令" data-url="https://justxzm.github.io/2018/04/19/Oracle-常用命令/">
+      <div class="ds-thread" data-thread-key="2018/10/21/局域网内建立Git远程仓库/"
+           data-title="Windows局域网内建立Git远程仓库" data-url="https://justxzm.github.io/2018/10/21/局域网内建立Git远程仓库/">
       </div>
     
   </div>
@@ -490,7 +506,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

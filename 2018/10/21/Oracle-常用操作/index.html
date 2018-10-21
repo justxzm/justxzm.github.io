@@ -91,10 +91,10 @@
 <meta name="keywords" content="Oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle 常用操作">
-<meta property="og:url" content="https://justxzm.github.io/2018/10/21/Oracle-常用命令/index.html">
+<meta property="og:url" content="https://justxzm.github.io/2018/10/21/Oracle-常用操作/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="登录12sqlplus /nologconn / as sysdba 创建123456789create tablespace PMS805 datafile &amp;apos;E:/805PMS/tablespace/PMS805.DBF&amp;apos; size 100m autoextend on next 20m maxsize 4096m extent management local;creat">
-<meta property="og:updated_time" content="2018-10-21T13:23:43.928Z">
+<meta property="og:updated_time" content="2018-10-21T13:36:25.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 常用操作">
 <meta name="twitter:description" content="登录12sqlplus /nologconn / as sysdba 创建123456789create tablespace PMS805 datafile &amp;apos;E:/805PMS/tablespace/PMS805.DBF&amp;apos; size 100m autoextend on next 20m maxsize 4096m extent management local;creat">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/10/21/Oracle-常用命令/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/10/21/Oracle-常用操作/"/>
 
 
 
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/Oracle-常用命令/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/Oracle-常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -347,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/21/Oracle-常用命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/21/Oracle-常用命令/" itemprop="commentCount"></span>
+                <a href="/2018/10/21/Oracle-常用操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/21/Oracle-常用操作/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,6 +380,8 @@
 <h3 id="导出导入"><a href="#导出导入" class="headerlink" title="导出导入"></a>导出导入</h3><h4 id="exp-imp"><a href="#exp-imp" class="headerlink" title="exp/imp"></a>exp/imp</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">exp PMS805/PMS805 file=E:805PMS_20181021.dmp;</div><div class="line">imp PMS805/PMS805 file=E:805PMS_20181021.dmp full=y ignore=y;</div><div class="line">exp PMS805/PMS805@192.168.8.169:1521/orcl file=E:805PMS_20181021.dmp;</div><div class="line">imp PMS805/PMS805@192.168.8.169:1521/orcl file=E:805PMS_20181021.dmp full=y ignore=y;</div></pre></td></tr></table></figure>
 <h4 id="expdp-impdp"><a href="#expdp-impdp" class="headerlink" title="expdp/impdp"></a>expdp/impdp</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">create directory expdp_dir as &apos;E:\oracle\temp_expdp&apos;;</div><div class="line">grant read,write on directory expdp_dir to PMS805;</div><div class="line">expdp PMS805/PMS805@orcl schemas=PMS805 directory=expdp_dir dumpfile=805PMS_20181021.dmp;</div><div class="line">create directory impdp_dir as &apos;E:\oracle\temp_impdp&apos;;</div><div class="line">impdp PMS805/PMS805@orcl schemas=PMS805 directory=impdp_dir dumpfile=805PMS_20181021.dmp;</div></pre></td></tr></table></figure>
 <h3 id="赋权相关"><a href="#赋权相关" class="headerlink" title="赋权相关"></a>赋权相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">create user PMS805PSD identified by PMS805PSD;</div><div class="line">grant create session to PMS805PSD; 赋予数据库连接权限</div><div class="line">grant insert,update,select,delete on PMS805.W_PSDDOCUMENT to PMS805;</div><div class="line">conn PMS805PSD/PMS805PSD;</div><div class="line">select * from PMS805.W_PSDDOCUMENT;</div></pre></td></tr></table></figure>
+<h3 id="ORA-12516错误"><a href="#ORA-12516错误" class="headerlink" title="ORA-12516错误"></a>ORA-12516错误</h3><p>错误代码含义：TNS监听程序找不到符合协议堆栈要求的可用处理器<br>原因及解决方法：修改连接数的限制 –session数不够</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a.已sysdba 登录PL/SQL 或者Worksheet</div><div class="line">b.查询目前连接数</div><div class="line">	show parameter processes;</div><div class="line">c.更改系统连接数</div><div class="line">	alter system set processes=1000 scope=spfile;//默认的连接数为150</div><div class="line">d.创建pfile</div><div class="line">	create pfile from spfile;</div><div class="line">e.重启Oracle服务，或重启Oracle服务器；//reboot</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -454,8 +456,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/10/21/Oracle-常用命令/"
-           data-title="Oracle 常用操作" data-url="https://justxzm.github.io/2018/10/21/Oracle-常用命令/">
+      <div class="ds-thread" data-thread-key="2018/10/21/Oracle-常用操作/"
+           data-title="Oracle 常用操作" data-url="https://justxzm.github.io/2018/10/21/Oracle-常用操作/">
       </div>
     
   </div>
@@ -581,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录"><span class="nav-number">1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换库"><span class="nav-number">3.</span> <span class="nav-text">换库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出导入"><span class="nav-number">4.</span> <span class="nav-text">导出导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp-imp"><span class="nav-number">4.1.</span> <span class="nav-text">exp/imp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expdp-impdp"><span class="nav-number">4.2.</span> <span class="nav-text">expdp/impdp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋权相关"><span class="nav-number">5.</span> <span class="nav-text">赋权相关</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录"><span class="nav-number">1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换库"><span class="nav-number">3.</span> <span class="nav-text">换库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出导入"><span class="nav-number">4.</span> <span class="nav-text">导出导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp-imp"><span class="nav-number">4.1.</span> <span class="nav-text">exp/imp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expdp-impdp"><span class="nav-number">4.2.</span> <span class="nav-text">expdp/impdp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋权相关"><span class="nav-number">5.</span> <span class="nav-text">赋权相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORA-12516错误"><span class="nav-number">6.</span> <span class="nav-text">ORA-12516错误</span></a></li></ol></div>
             
 
           </div>

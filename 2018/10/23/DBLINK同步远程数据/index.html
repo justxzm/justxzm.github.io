@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="创建DBLINKcreate database link PMS805LINK connect to PMS805 identified by PMS805 using &amp;apos; (DESCRIPTION =     (ADDRESS_LIST =       (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2018102301.png">
-<meta property="og:updated_time" content="2018-10-23T11:25:59.367Z">
+<meta property="og:updated_time" content="2018-10-23T11:37:38.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DBLINK同步远程数据">
 <meta name="twitter:description" content="创建DBLINKcreate database link PMS805LINK connect to PMS805 identified by PMS805 using &amp;apos; (DESCRIPTION =     (ADDRESS_LIST =       (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))">
@@ -390,7 +390,7 @@ select * from all_db_links;
 select * from LINKTEST01@PMS805LINK;
 select * from LINKTEST01@PMS805LINK.REGRESS.RDBMS.DEV.US.ORACLE.COM;
 drop database link  PMS805LINK;
-</code></pre><h3 id="创建表结构"><a href="#创建表结构" class="headerlink" title="创建表结构"></a>创建表结构</h3><pre><code>create table LINKTEST02 as select * from LINKTEST01@PMS805LINK where 1=2;
+</code></pre><h3 id="创建表-视图-结构"><a href="#创建表-视图-结构" class="headerlink" title="创建表(视图)结构"></a>创建表(视图)结构</h3><pre><code>create table(view) LINKTEST02 as select * from LINKTEST01@PMS805LINK where 1=2;
 </code></pre><h3 id="准备sync-sql文件"><a href="#准备sync-sql文件" class="headerlink" title="准备sync.sql文件"></a>准备sync.sql文件</h3><h4 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h4><pre><code>//适用表字段少的情况
 delete from LINKTEST02 b where b.ID not in (select c.ID from LINKTEST02 c inner join LINKTEST01@PMS805LINK d on c.ID=d.ID);
 
@@ -603,7 +603,7 @@ commit;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建DBLINK"><span class="nav-number">1.</span> <span class="nav-text">创建DBLINK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表结构"><span class="nav-number">2.</span> <span class="nav-text">创建表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备sync-sql文件"><span class="nav-number">3.</span> <span class="nav-text">准备sync.sql文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一："><span class="nav-number">3.1.</span> <span class="nav-text">方式一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二："><span class="nav-number">3.2.</span> <span class="nav-text">方式二：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建bat执行脚本"><span class="nav-number">4.</span> <span class="nav-text">创建bat执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建定时任务"><span class="nav-number">5.</span> <span class="nav-text">创建定时任务</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建DBLINK"><span class="nav-number">1.</span> <span class="nav-text">创建DBLINK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表-视图-结构"><span class="nav-number">2.</span> <span class="nav-text">创建表(视图)结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备sync-sql文件"><span class="nav-number">3.</span> <span class="nav-text">准备sync.sql文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一："><span class="nav-number">3.1.</span> <span class="nav-text">方式一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二："><span class="nav-number">3.2.</span> <span class="nav-text">方式二：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建bat执行脚本"><span class="nav-number">4.</span> <span class="nav-text">创建bat执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建定时任务"><span class="nav-number">5.</span> <span class="nav-text">创建定时任务</span></a></li></ol></div>
             
 
           </div>

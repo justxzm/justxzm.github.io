@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/05/27/IoC-and-DI/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
-<meta property="og:updated_time" content="2018-06-12T09:08:09.500Z">
+<meta property="og:updated_time" content="2019-03-14T10:28:25.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IoC and DI">
 <meta name="twitter:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
@@ -383,19 +383,19 @@
 <p>IoC有多种不同的实现，包括工厂模式、服务器定位模式，当然还有依赖注入。<strong>需要注意的是，DI并不等于IoC，DI只是IoC的一种实现方式，IoC是一种机制。</strong></p>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们首先编写传统的代码，然后使用工厂模式解耦，进而再使用DI来改进代码，通过这个过程，你将了解到DI的精妙之处。这些改进都基于同一个关键技术，即面向接口编程。</p>
 <p>假设你想找到所有对Java可开发人员比较友善的好莱坞经纪人。首先，我们有了一个AgentFinder接口，及其两个实现类SpreadSheetAgentFinder和WebServiceAgentFinder。AgentFinder接口如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface AgentFinder &#123;</div><div class="line">    public List&lt;Agent&gt; findAllAgents();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AgentFinder</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Agent&gt; <span class="title">findAllAgents</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="传统方式"><a href="#传统方式" class="headerlink" title="传统方式"></a>传统方式</h4><p>为了找到经纪人，项目中有个默认的HollywoodService类，它会从SpreadSheetAgentFinder里得到一个经纪人列表，并且过滤出友善的经纪人，最终返回该列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class HollywoodService &#123;</div><div class="line">    public static List&lt;Agent&gt; getFriendlyAgents() &#123;</div><div class="line">        AgentFinder finder = new SpreadsheetAgentFinder();</div><div class="line">        List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">        List&lt;Agent&gt; friendlyAgents = filterAgents(agents,&quot;Java Developers&quot;);</div><div class="line"> </div><div class="line">        return friendlyAgents;</div><div class="line">    &#125;</div><div class="line">    //filterAgents</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HollywoodService</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Agent&gt; <span class="title">getFriendlyAgents</span><span class="params">()</span> </span>&#123;</div><div class="line">        AgentFinder finder = <span class="keyword">new</span> SpreadsheetAgentFinder();</div><div class="line">        List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">        List&lt;Agent&gt; friendlyAgents = filterAgents(agents,<span class="string">"Java Developers"</span>);</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> friendlyAgents;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//filterAgents</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是最传统的编码方式，显然，HollywoodService被SpreadsheetAgentFinder这个AgentFinder的具体实现死死的绑定住了。</p>
 <p>为了改进这个问题，通常我们会想到一个常用的设计模式——工厂模式。工厂模式可以一定程度上解耦程序，它也是IoC的一种实现方式。</p>
 <h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>利用工厂模式（其实这里用到的是一个简单工厂）重新编写上面的代码，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public List&lt;Agent&gt; getFriendlyAgents(String agentFinderType) &#123;</div><div class="line">    AgentFinderFactory factory = AgentFinderFactory.getInstance();</div><div class="line">    AgentFinder finder = factory.getAgentFinder(agentFinderType);</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    return filterAgents(agents, &quot;Java Developers&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Agent&gt; <span class="title">getFriendlyAgents</span><span class="params">(String agentFinderType)</span> </span>&#123;</div><div class="line">    AgentFinderFactory factory = AgentFinderFactory.getInstance();</div><div class="line">    AgentFinder finder = factory.getAgentFinder(agentFinderType);</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    <span class="keyword">return</span> filterAgents(agents, <span class="string">"Java Developers"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如你所见，这里不再有具体的实现来黏住你，而是通过注入agentFinderType的方式让你选择想要的AgentFinder。但这里仍然还有问题：</p>
 <ol>
 <li>代码注入的仅仅是一个引用凭据（agentFinderType），而不是真正实现AgentFinder的对象。</li>
 <li>方法getFriendlyAgents中还有获取其依赖的代码，达不到只关注自身智能的理想状态，我们需要通过DI来达成这两个目标。</li>
 </ol>
-<h4 id="手工实现DI"><a href="#手工实现DI" class="headerlink" title="手工实现DI"></a>手工实现DI</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static List&lt;Agent&gt; getFriendlyAgents(AgentFinder finder)&#123;</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    return filterAgents(agents,&quot;Java Developers&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="手工实现DI"><a href="#手工实现DI" class="headerlink" title="手工实现DI"></a>手工实现DI</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Agent&gt; <span class="title">getFriendlyAgents</span><span class="params">(AgentFinder finder)</span></span>&#123;</div><div class="line">    List&lt;Agent&gt; agents = finder.findAllAgents();</div><div class="line">    <span class="keyword">return</span> filterAgents(agents,<span class="string">"Java Developers"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的代码是一个纯手工打造的DI方案，AgentFinder被直接注入到getFriendlyAgents方法中。现在这个getFriendlyAgents方法干净利落，只专注于纯业务逻辑。</p>
 <p>但是，这种手工方式的DI显然存在问题，如何配置AgentFinder具体实现的问题并没有解决，原本AgentFinderFactory要做的工作还是要找一个地方去做。解决这个问题的方式是借助DI框架，而DI框架就是把你的代码打包起来的运行时环境，在你需要的时候注入依赖项。</p>
 
@@ -522,7 +522,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -533,7 +533,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -544,7 +544,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

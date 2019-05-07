@@ -1,0 +1,1864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="软件开发常用词汇," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="C   序号 单词 音标 注释     1 cache [kæʃ] n.缓存   2 calculate [‘kælkjʊleɪt] v.计算   3 call [kɔ:l] v.调用   4 callback [ˈkɔ:lbæk] n.回调   5 caller [ˈkɔ:lə] n.调用者   6 call stack [kɔ:l stæk] n.调用栈   7 cancel [ˈkænsl]">
+<meta name="keywords" content="软件开发常用词汇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件开发常用词汇(Start With C)">
+<meta property="og:url" content="https://justxzm.github.io/2019/05/04/软件开发常用词汇(Start-With-C)/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="C   序号 单词 音标 注释     1 cache [kæʃ] n.缓存   2 calculate [‘kælkjʊleɪt] v.计算   3 call [kɔ:l] v.调用   4 callback [ˈkɔ:lbæk] n.回调   5 caller [ˈkɔ:lə] n.调用者   6 call stack [kɔ:l stæk] n.调用栈   7 cancel [ˈkænsl]">
+<meta property="og:updated_time" content="2019-05-04T06:38:05.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件开发常用词汇(Start With C)">
+<meta name="twitter:description" content="C   序号 单词 音标 注释     1 cache [kæʃ] n.缓存   2 calculate [‘kælkjʊleɪt] v.计算   3 call [kɔ:l] v.调用   4 callback [ˈkɔ:lbæk] n.回调   5 caller [ˈkɔ:lə] n.调用者   6 call stack [kɔ:l stæk] n.调用栈   7 cancel [ˈkænsl]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2019/05/04/软件开发常用词汇(Start-With-C)/"/>
+
+
+
+
+
+  <title> 软件开发常用词汇(Start With C) | JUST DO IT </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/05/04/软件开发常用词汇(Start-With-C)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                软件开发常用词汇(Start With C)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T12:34:33+08:00">
+                2019-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/04/软件开发常用词汇(Start-With-C)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/05/04/软件开发常用词汇(Start-With-C)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>单词</th>
+<th>音标</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>cache</td>
+<td>[kæʃ]</td>
+<td>n.缓存</td>
+</tr>
+<tr>
+<td>2</td>
+<td>calculate</td>
+<td>[‘kælkjʊleɪt]</td>
+<td>v.计算</td>
+</tr>
+<tr>
+<td>3</td>
+<td>call</td>
+<td>[kɔ:l]</td>
+<td>v.调用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>callback</td>
+<td>[ˈkɔ:lbæk]</td>
+<td>n.回调</td>
+</tr>
+<tr>
+<td>5</td>
+<td>caller</td>
+<td>[ˈkɔ:lə]</td>
+<td>n.调用者</td>
+</tr>
+<tr>
+<td>6</td>
+<td>call stack</td>
+<td>[kɔ:l stæk]</td>
+<td>n.调用栈</td>
+</tr>
+<tr>
+<td>7</td>
+<td>cancel</td>
+<td>[ˈkænsl]</td>
+<td>v.取消</td>
+</tr>
+<tr>
+<td>8</td>
+<td>canonical</td>
+<td>[kəˈnɒnɪkl]</td>
+<td>adj.规范的</td>
+</tr>
+<tr>
+<td>9</td>
+<td>capability</td>
+<td>[ˌkeɪpə’bɪlətɪ]</td>
+<td>n.功能</td>
+</tr>
+<tr>
+<td>10</td>
+<td>capable</td>
+<td>[ˈkeɪpəbl]</td>
+<td>adj.能干的</td>
+</tr>
+<tr>
+<td>11</td>
+<td>be capable of</td>
+<td></td>
+<td>有…能力</td>
+</tr>
+<tr>
+<td>12</td>
+<td>capacity</td>
+<td>[kə’pæsətɪ]</td>
+<td>n.容量</td>
+</tr>
+<tr>
+<td>13</td>
+<td>capture</td>
+<td></td>
+<td>v.捕获</td>
+</tr>
+<tr>
+<td>14</td>
+<td>captured</td>
+<td></td>
+<td>adj.已捕获的</td>
+</tr>
+<tr>
+<td>15</td>
+<td>carriage return</td>
+<td>[ˈkærɪdʒ rɪˈtɜːn]</td>
+<td>n.回车</td>
+</tr>
+<tr>
+<td>16</td>
+<td>cascade</td>
+<td>[kæ’skeɪd]</td>
+<td>n.级联</td>
+</tr>
+<tr>
+<td>17</td>
+<td>cascade to…</td>
+<td></td>
+<td>与…级联</td>
+</tr>
+<tr>
+<td>18</td>
+<td>case</td>
+<td>[keɪs]</td>
+<td>n.情形，大小写</td>
+</tr>
+<tr>
+<td>19</td>
+<td>cast</td>
+<td>[kɑ:st]</td>
+<td>n.强制转换</td>
+</tr>
+<tr>
+<td>20</td>
+<td>cause</td>
+<td>[kɔ:z]</td>
+<td>v.导致</td>
+</tr>
+<tr>
+<td>21</td>
+<td>caution</td>
+<td>[‘kɔ:ʃn]</td>
+<td>n.谨慎</td>
+</tr>
+<tr>
+<td>22</td>
+<td>ceil</td>
+<td>[si:l]</td>
+<td>v.向上取整</td>
+</tr>
+<tr>
+<td>23</td>
+<td>center</td>
+<td>[ˈsentə]</td>
+<td>n.圆心</td>
+</tr>
+<tr>
+<td>24</td>
+<td>certificate</td>
+<td>[səˈtɪfɪkeɪt]</td>
+<td>n.证书</td>
+</tr>
+<tr>
+<td>25</td>
+<td>change</td>
+<td>[tʃeɪndʒ]</td>
+<td>v.更改</td>
+</tr>
+<tr>
+<td>26</td>
+<td>chain</td>
+<td>[tʃeɪn]</td>
+<td>n.链</td>
+</tr>
+<tr>
+<td>27</td>
+<td>chapter</td>
+<td>[ˈtʃæptə]</td>
+<td>n.章</td>
+</tr>
+<tr>
+<td>28</td>
+<td>char</td>
+<td>[tʃɑ:]</td>
+<td>n.字符(character 的缩写)</td>
+</tr>
+<tr>
+<td>29</td>
+<td>charset</td>
+<td></td>
+<td>n.字符集(character set的缩写)</td>
+</tr>
+<tr>
+<td>30</td>
+<td>checkbox</td>
+<td>[ˈtʃekbɔks]</td>
+<td>n.复选框</td>
+</tr>
+<tr>
+<td>31</td>
+<td>checked</td>
+<td>[tʃekt]</td>
+<td>adj.已检查过的</td>
+</tr>
+<tr>
+<td>32</td>
+<td>chick</td>
+<td>[tʃɪk]</td>
+<td>n.小鸡</td>
+</tr>
+<tr>
+<td>33</td>
+<td>choose</td>
+<td>[tʃu:z]</td>
+<td>v.选择</td>
+</tr>
+<tr>
+<td>34</td>
+<td>chore</td>
+<td>[tʃɔ:]</td>
+<td>n.杂务</td>
+</tr>
+<tr>
+<td>35</td>
+<td>chunk</td>
+<td>[tʃʌŋk]</td>
+<td>n.块</td>
+</tr>
+<tr>
+<td>36</td>
+<td>chunked encoding</td>
+<td></td>
+<td>块编码</td>
+</tr>
+<tr>
+<td>37</td>
+<td>circle</td>
+<td>[ˈsə:kl]</td>
+<td>n.圆</td>
+</tr>
+<tr>
+<td>38</td>
+<td>circumference</td>
+<td>[səˈkʌmfərəns]</td>
+<td>n.周长</td>
+</tr>
+<tr>
+<td>39</td>
+<td>circumstance</td>
+<td>[ˈsə:kəmstəns]</td>
+<td>n.情况</td>
+</tr>
+<tr>
+<td>40</td>
+<td>class</td>
+<td>[klɑ:s]</td>
+<td>n.类</td>
+</tr>
+<tr>
+<td>41</td>
+<td>class body</td>
+<td></td>
+<td>n.类体</td>
+</tr>
+<tr>
+<td>42</td>
+<td>clean up…</td>
+<td></td>
+<td>v.清理</td>
+</tr>
+<tr>
+<td>43</td>
+<td>cleanly</td>
+<td>[ˈklenli:]</td>
+<td>adj.利落的</td>
+</tr>
+<tr>
+<td>44</td>
+<td>clear</td>
+<td>[klɪə]</td>
+<td>v.清除</td>
+</tr>
+<tr>
+<td>45</td>
+<td>clearly</td>
+<td>[ˈklɪəlɪ]</td>
+<td>adv.明确地</td>
+</tr>
+<tr>
+<td>46</td>
+<td>client</td>
+<td>[ˈklaɪənt]</td>
+<td>n.客户端</td>
+</tr>
+<tr>
+<td>47</td>
+<td>clone</td>
+<td>[kləun]</td>
+<td>v.克隆</td>
+</tr>
+<tr>
+<td>48</td>
+<td>close to…</td>
+<td></td>
+<td>与…接近的</td>
+</tr>
+<tr>
+<td>49</td>
+<td>close</td>
+<td>[kləuz]</td>
+<td>v.关闭 adj.紧密的</td>
+</tr>
+<tr>
+<td>50</td>
+<td>closed</td>
+<td>[kləʊzd]</td>
+<td>adj.已关闭的</td>
+</tr>
+<tr>
+<td>51</td>
+<td>closest</td>
+<td>[k’ləʊsɪst]</td>
+<td>adj.最接近的</td>
+</tr>
+<tr>
+<td>52</td>
+<td>closing</td>
+<td>[ˈkləuziŋ]</td>
+<td>n.关闭</td>
+</tr>
+<tr>
+<td>53</td>
+<td>clause</td>
+<td>[klɔ:z]</td>
+<td>n.子句</td>
+</tr>
+<tr>
+<td>54</td>
+<td>cock</td>
+<td>[kɔk]</td>
+<td>n.公鸡</td>
+</tr>
+<tr>
+<td>55</td>
+<td>code</td>
+<td>[kəud]</td>
+<td>n.代码</td>
+</tr>
+<tr>
+<td>56</td>
+<td>coerce</td>
+<td>[kəʊ’ɜ:s]</td>
+<td>v.强制</td>
+</tr>
+<tr>
+<td>57</td>
+<td>coercion</td>
+<td>[kəʊ’ɜ:ʃn]</td>
+<td>n.强制</td>
+</tr>
+<tr>
+<td>58</td>
+<td>collapse</td>
+<td>[kə’læps]</td>
+<td>v.折叠</td>
+</tr>
+<tr>
+<td>59</td>
+<td>collection</td>
+<td>[kəˈlekʃn]</td>
+<td>n.回收，集合</td>
+</tr>
+<tr>
+<td>60</td>
+<td>collectively</td>
+<td>[kə’lektɪvlɪ]</td>
+<td>adv.统一地</td>
+</tr>
+<tr>
+<td>61</td>
+<td>collision</td>
+<td>[kəˈlɪʒn]</td>
+<td>n.冲突</td>
+</tr>
+<tr>
+<td>62</td>
+<td>colon</td>
+<td>[‘kəʊlən]</td>
+<td>n.冒号</td>
+</tr>
+<tr>
+<td>63</td>
+<td>color</td>
+<td>[ˈkʌlə]</td>
+<td>n.颜色</td>
+</tr>
+<tr>
+<td>64</td>
+<td>column</td>
+<td>[ˈkɔləm]</td>
+<td>n.列</td>
+</tr>
+<tr>
+<td>65</td>
+<td>comma</td>
+<td>[‘kɒmə]</td>
+<td>n.逗号</td>
+</tr>
+<tr>
+<td>66</td>
+<td>command</td>
+<td>[kəˈmɑ:nd]</td>
+<td>n.命令</td>
+</tr>
+<tr>
+<td>67</td>
+<td>comment</td>
+<td>[ˈkɔment]</td>
+<td>n.注释</td>
+</tr>
+<tr>
+<td>68</td>
+<td>commit</td>
+<td>[kə’mɪt]</td>
+<td>v.提交</td>
+</tr>
+<tr>
+<td>69</td>
+<td>common</td>
+<td>[ˈkɔmən]</td>
+<td>adj.公共的</td>
+</tr>
+<tr>
+<td>70</td>
+<td>commonly</td>
+<td>[ˈkɒmənli]</td>
+<td>adv.通常</td>
+</tr>
+<tr>
+<td>71</td>
+<td>communicate</td>
+<td>[kə’mju:nɪkeɪt]</td>
+<td>v.沟通</td>
+</tr>
+<tr>
+<td>72</td>
+<td>communication</td>
+<td>[kəˌmju:nɪ’keɪʃn]</td>
+<td>n.通信</td>
+</tr>
+<tr>
+<td>73</td>
+<td>compact</td>
+<td>[‘kɒmpækt]</td>
+<td>adj.紧凑的</td>
+</tr>
+<tr>
+<td>74</td>
+<td>companion</td>
+<td>[kəmˈpæniən]</td>
+<td>n.同伴</td>
+</tr>
+<tr>
+<td>75</td>
+<td>comparable</td>
+<td>[ˈkɔmpərəbl]</td>
+<td>adj.可比较的</td>
+</tr>
+<tr>
+<td>76</td>
+<td>comparator</td>
+<td>[‘kɒmpəreɪtə]</td>
+<td>n.比较器</td>
+</tr>
+<tr>
+<td>77</td>
+<td>compare</td>
+<td>[kəm’peə]</td>
+<td>v.比较</td>
+</tr>
+<tr>
+<td>78</td>
+<td>compare …against</td>
+<td></td>
+<td>与…比较</td>
+</tr>
+<tr>
+<td>79</td>
+<td>compare…to…</td>
+<td></td>
+<td>将…与…比较</td>
+</tr>
+<tr>
+<td>80</td>
+<td>comparison</td>
+<td>[kəmˈpærɪsn]</td>
+<td>n.比较</td>
+</tr>
+<tr>
+<td>81</td>
+<td>compatibility</td>
+<td>[kəmˌpætə’bɪlətɪ]</td>
+<td>n.兼容性</td>
+</tr>
+<tr>
+<td>82</td>
+<td>compatible</td>
+<td>[kəm’pætəbl]</td>
+<td>adj.兼容的</td>
+</tr>
+<tr>
+<td>83</td>
+<td>compatible with…</td>
+<td></td>
+<td>与…兼容</td>
+</tr>
+<tr>
+<td>84</td>
+<td>compete</td>
+<td>[kəm’pi:t]</td>
+<td>v.竞争</td>
+</tr>
+<tr>
+<td>85</td>
+<td>compilation</td>
+<td>[ˌkɔmpɪˈleɪʃn]</td>
+<td>n.编译</td>
+</tr>
+<tr>
+<td>86</td>
+<td>compile</td>
+<td>[kəmˈpaɪl]</td>
+<td>v.编译</td>
+</tr>
+<tr>
+<td>87</td>
+<td>compiled</td>
+<td>[kəm’paɪld]</td>
+<td>adj.编译的</td>
+</tr>
+<tr>
+<td>88</td>
+<td>compiler</td>
+<td>[kəm’paɪlə]</td>
+<td>n.编译器</td>
+</tr>
+<tr>
+<td>89</td>
+<td>complete</td>
+<td>[kəmˈpli:t]</td>
+<td>v.完成 adj.完整的</td>
+</tr>
+<tr>
+<td>90</td>
+<td>completed</td>
+<td>[kəm’pli:tɪd]</td>
+<td>adj.完成的</td>
+</tr>
+<tr>
+<td>91</td>
+<td>completely</td>
+<td>[kəmˈpli:tli]</td>
+<td>adv.彻底</td>
+</tr>
+<tr>
+<td>92</td>
+<td>completion</td>
+<td>[kəmˈpli:ʃn]</td>
+<td>n.完成</td>
+</tr>
+<tr>
+<td>93</td>
+<td>complexity</td>
+<td>[kəm’pleksətɪ]</td>
+<td>n.复杂度</td>
+</tr>
+<tr>
+<td>94</td>
+<td>compliance</td>
+<td>[kəmˈplaɪəns]</td>
+<td>n.承诺</td>
+</tr>
+<tr>
+<td>95</td>
+<td>comply</td>
+<td>[kəm’plaɪ]</td>
+<td>v.遵从</td>
+</tr>
+<tr>
+<td>96</td>
+<td>component</td>
+<td>[kəmˈpəʊnənt]</td>
+<td>n.元素，组件</td>
+</tr>
+<tr>
+<td>97</td>
+<td>compose</td>
+<td>[kəmˈpəʊz]</td>
+<td>v.包含</td>
+</tr>
+<tr>
+<td>98</td>
+<td>compound</td>
+<td>[ˈkɔmpaund]</td>
+<td>adj.混合的</td>
+</tr>
+<tr>
+<td>99</td>
+<td>compression</td>
+<td>[kəm’preʃn]</td>
+<td>n.压缩</td>
+</tr>
+<tr>
+<td>100</td>
+<td>compromise</td>
+<td>[ˈkɒmprəmaɪz]</td>
+<td>v.妥协</td>
+</tr>
+<tr>
+<td>101</td>
+<td>compute</td>
+<td>[kəm’pju:t]</td>
+<td>v.计算</td>
+</tr>
+<tr>
+<td>102</td>
+<td>concatenate</td>
+<td>[kɒn’kætɪneɪt]</td>
+<td>v.连接</td>
+</tr>
+<tr>
+<td>103</td>
+<td>concatenation</td>
+<td>[kənˌkætəˈneɪʃn]</td>
+<td>n.连接</td>
+</tr>
+<tr>
+<td>104</td>
+<td>concept</td>
+<td>[‘kɒnsept]</td>
+<td>n.概念</td>
+</tr>
+<tr>
+<td>105</td>
+<td>concerning</td>
+<td>[kənˈsɜ:nɪŋ]</td>
+<td>prep.关于</td>
+</tr>
+<tr>
+<td>106</td>
+<td>concise</td>
+<td>[kənˈsaɪs]</td>
+<td>adj.简洁的</td>
+</tr>
+<tr>
+<td>107</td>
+<td>concrete</td>
+<td>[‘kɒŋkri:t]</td>
+<td>adj.具体的 v.使凝固</td>
+</tr>
+<tr>
+<td>108</td>
+<td>concurrent</td>
+<td>[kən’kʌrənt]</td>
+<td>adj.并发的</td>
+</tr>
+<tr>
+<td>109</td>
+<td>concurrently</td>
+<td>[kən’kʌrəntlɪ]</td>
+<td>adv.同时地</td>
+</tr>
+<tr>
+<td>110</td>
+<td>condition</td>
+<td>[kənˈdɪʃn]</td>
+<td>n.条件</td>
+</tr>
+<tr>
+<td>111</td>
+<td>conditional</td>
+<td>[kənˈdɪʃənl]</td>
+<td>adj.有条件的</td>
+</tr>
+<tr>
+<td>112</td>
+<td>configure</td>
+<td>[kənˈfɪgə]</td>
+<td>v.配置 缩写config</td>
+</tr>
+<tr>
+<td>113</td>
+<td>configuration</td>
+<td>[kənˌfɪgəˈreɪʃn]</td>
+<td>n.配置</td>
+</tr>
+<tr>
+<td>114</td>
+<td>confirm</td>
+<td>[kənˈfɜ:m]</td>
+<td>v.确认</td>
+</tr>
+<tr>
+<td>115</td>
+<td>confirmation</td>
+<td>[ˌkɒnfəˈmeɪʃn]</td>
+<td>n.确认</td>
+</tr>
+<tr>
+<td>116</td>
+<td>conflict</td>
+<td>[ˈkɔnflɪkt]</td>
+<td>n.冲突</td>
+</tr>
+<tr>
+<td>117</td>
+<td>conform</td>
+<td>[kən’fɔ:m]</td>
+<td>v.遵守</td>
+</tr>
+<tr>
+<td>118</td>
+<td>confuse</td>
+<td>[kən’fju:z]</td>
+<td>v.混淆</td>
+</tr>
+<tr>
+<td>119</td>
+<td>connect</td>
+<td>[kə’nekt]</td>
+<td>v.连接</td>
+</tr>
+<tr>
+<td>120</td>
+<td>connection</td>
+<td>[kəˈnekʃn]</td>
+<td>n.连接</td>
+</tr>
+<tr>
+<td>121</td>
+<td>connection with…</td>
+<td></td>
+<td>与…的连接</td>
+</tr>
+<tr>
+<td>122</td>
+<td>connection to…</td>
+<td></td>
+<td>到…的连接</td>
+</tr>
+<tr>
+<td>123</td>
+<td>consecutive</td>
+<td>[kənˈsekjətɪv]</td>
+<td>adj.连续的</td>
+</tr>
+<tr>
+<td>124</td>
+<td>consider</td>
+<td>[kən’sɪdə]</td>
+<td>v.认为，考虑</td>
+</tr>
+<tr>
+<td>125</td>
+<td>consideration</td>
+<td>[kənˌsɪdəˈreɪʃn]</td>
+<td>n.考虑</td>
+</tr>
+<tr>
+<td>126</td>
+<td>consist of…</td>
+<td>[kənˈsɪst]</td>
+<td>由…组成</td>
+</tr>
+<tr>
+<td>127</td>
+<td>consistent</td>
+<td>[kənˈsɪstənt]</td>
+<td>adj.一致的</td>
+</tr>
+<tr>
+<td>128</td>
+<td>console</td>
+<td>[kənˈsəʊl]</td>
+<td>n.控制台</td>
+</tr>
+<tr>
+<td>129</td>
+<td>constant</td>
+<td>[ˈkɔnstənt]</td>
+<td>n.常量 adj.固定的</td>
+</tr>
+<tr>
+<td>130</td>
+<td>constitute</td>
+<td>[‘kɒnstɪtju:t]</td>
+<td>v.构成</td>
+</tr>
+<tr>
+<td>131</td>
+<td>constraint</td>
+<td>[kənˈstreɪnt]</td>
+<td>n.约束</td>
+</tr>
+<tr>
+<td>132</td>
+<td>construct</td>
+<td>[kənˈstrʌkt]</td>
+<td>v.构造 n.结构</td>
+</tr>
+<tr>
+<td>133</td>
+<td>constructor</td>
+<td>[kənˈstrʌktə]</td>
+<td>n.构造方法</td>
+</tr>
+<tr>
+<td>134</td>
+<td>construe</td>
+<td>[kən’stru:]</td>
+<td>v.解释</td>
+</tr>
+<tr>
+<td>135</td>
+<td>consult</td>
+<td>[kənˈsʌlt]</td>
+<td>v.翻阅</td>
+</tr>
+<tr>
+<td>136</td>
+<td>contain</td>
+<td>[kənˈteɪn]</td>
+<td>v.包含</td>
+</tr>
+<tr>
+<td>137</td>
+<td>contained</td>
+<td>[kən’teɪnd]</td>
+<td>adj.包含的</td>
+</tr>
+<tr>
+<td>138</td>
+<td>container</td>
+<td>[kənˈteɪnə]</td>
+<td>n.容器</td>
+</tr>
+<tr>
+<td>139</td>
+<td>content</td>
+<td>[ˈkɔntent]</td>
+<td>n.内容</td>
+</tr>
+<tr>
+<td>140</td>
+<td>contention</td>
+<td>[kənˈtenʃn]</td>
+<td>n.争执</td>
+</tr>
+<tr>
+<td>141</td>
+<td>context</td>
+<td>[ˈkɒntekst]</td>
+<td>n.上下文</td>
+</tr>
+<tr>
+<td>142</td>
+<td>continue to…</td>
+<td></td>
+<td>不断…</td>
+</tr>
+<tr>
+<td>143</td>
+<td>contract</td>
+<td>[‘kɒntrækt]</td>
+<td>n.协议，合同</td>
+</tr>
+<tr>
+<td>144</td>
+<td>contrary</td>
+<td>[‘kɒntrərɪ]</td>
+<td>adj.违反的</td>
+</tr>
+<tr>
+<td>145</td>
+<td>control</td>
+<td>[kənˈtrəʊl]</td>
+<td>v.控制</td>
+</tr>
+<tr>
+<td>146</td>
+<td>controller</td>
+<td>[kənˈtrəʊlə]</td>
+<td>n.控制器</td>
+</tr>
+<tr>
+<td>147</td>
+<td>connection</td>
+<td>[kəˈnekʃn]</td>
+<td>n.关系</td>
+</tr>
+<tr>
+<td>148</td>
+<td>connectivity</td>
+<td>[ˌkɒnekˈtɪvɪti]</td>
+<td>n.连接</td>
+</tr>
+<tr>
+<td>149</td>
+<td>convenience</td>
+<td>[kənˈvi:niəns]</td>
+<td>n.便捷</td>
+</tr>
+<tr>
+<td>150</td>
+<td>convenient</td>
+<td>[kənˈvi:niənt]</td>
+<td>adj.方便的</td>
+</tr>
+<tr>
+<td>151</td>
+<td>convention</td>
+<td>[kənˈvenʃn]</td>
+<td>n.约定</td>
+</tr>
+<tr>
+<td>152</td>
+<td>conversion</td>
+<td>[kən’vɜ:ʃn]</td>
+<td>n.转换</td>
+</tr>
+<tr>
+<td>153</td>
+<td>convert</td>
+<td>[kənˈvɜ:t]</td>
+<td>v.转换</td>
+</tr>
+<tr>
+<td>154</td>
+<td>convert into…</td>
+<td></td>
+<td>转换为…</td>
+</tr>
+<tr>
+<td>155</td>
+<td>converter</td>
+<td>[kənˈvɜ:tə]</td>
+<td>n.转换器</td>
+</tr>
+<tr>
+<td>156</td>
+<td>cookie</td>
+<td>[ˈkʊki]</td>
+<td>一种客户端存储信息的技术</td>
+</tr>
+<tr>
+<td>157</td>
+<td>copy</td>
+<td>[ˈkɔpi]</td>
+<td>v.复制</td>
+</tr>
+<tr>
+<td>158</td>
+<td>correct</td>
+<td>[kəˈrekt]</td>
+<td>adj.正确的</td>
+</tr>
+<tr>
+<td>159</td>
+<td>correctness</td>
+<td>[kə’rektnəs]</td>
+<td>n.正确性</td>
+</tr>
+<tr>
+<td>160</td>
+<td>correspond</td>
+<td>[ˌkɔrisˈpɔnd]</td>
+<td>v.符合</td>
+</tr>
+<tr>
+<td>161</td>
+<td>corresponding</td>
+<td>[ˌkɒrəˈspɒndɪŋ]</td>
+<td>adj.对应的</td>
+</tr>
+<tr>
+<td>162</td>
+<td>correspond to</td>
+<td></td>
+<td>与……相关，与…对应</td>
+</tr>
+<tr>
+<td>163</td>
+<td>cost</td>
+<td>[kɔst]</td>
+<td>n.开销</td>
+</tr>
+<tr>
+<td>164</td>
+<td>costly</td>
+<td>[‘kɒstlɪ]</td>
+<td>adj.高开销的</td>
+</tr>
+<tr>
+<td>165</td>
+<td>count</td>
+<td>[kaʊnt]</td>
+<td>v.计数 n.总数</td>
+</tr>
+<tr>
+<td>166</td>
+<td>counter</td>
+<td>[ˈkaʊntə]</td>
+<td>n.计数器 adj.相反的 v.反驳</td>
+</tr>
+<tr>
+<td>167</td>
+<td>counterpart</td>
+<td>[ˈkaʊntəpɑ:t]</td>
+<td>n.副本</td>
+</tr>
+<tr>
+<td>168</td>
+<td>course of action</td>
+<td></td>
+<td>n.做法，行动方针</td>
+</tr>
+<tr>
+<td>169</td>
+<td>coverage</td>
+<td>[ˈkʌvərɪdʒ]</td>
+<td>n.覆盖</td>
+</tr>
+<tr>
+<td>170</td>
+<td>create</td>
+<td>[kriˈeɪt]</td>
+<td>v.创造</td>
+</tr>
+<tr>
+<td>171</td>
+<td>credit</td>
+<td>[‘kredɪt]</td>
+<td>n.信用</td>
+</tr>
+<tr>
+<td>172</td>
+<td>criteria</td>
+<td>[kraɪˈtɪərɪə]</td>
+<td>n.标准</td>
+</tr>
+<tr>
+<td>173</td>
+<td>currency</td>
+<td>[‘kʌrənsɪ]</td>
+<td>n.货币</td>
+</tr>
+<tr>
+<td>174</td>
+<td>current</td>
+<td>[ˈkʌrənt]</td>
+<td>adj.当前的</td>
+</tr>
+<tr>
+<td>175</td>
+<td>currently</td>
+<td>[ˈkʌrəntli]</td>
+<td>adv.目前</td>
+</tr>
+<tr>
+<td>176</td>
+<td>cursor</td>
+<td>[ˈkɜ:sə]</td>
+<td>n.光标，指针</td>
+</tr>
+<tr>
+<td>177</td>
+<td>custom</td>
+<td>[ˈkʌstəm]</td>
+<td>adj.自定义的</td>
+</tr>
+<tr>
+<td>178</td>
+<td>customize</td>
+<td>[‘kʌstəmaɪz]</td>
+<td>v.定制</td>
+</tr>
+<tr>
+<td>179</td>
+<td>customized</td>
+<td></td>
+<td>adj.自定义的</td>
+</tr>
+<tr>
+<td>180</td>
+<td>cut</td>
+<td>[kʌt]</td>
+<td>v.剪切</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件开发常用词汇/" rel="tag"># 软件开发常用词汇</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/Spring5：(二)标签的解析注册/" rel="next" title="Spring5：(二)标签的解析注册">
+                <i class="fa fa-chevron-left"></i> Spring5：(二)标签的解析注册
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/24/软件开发常用词汇(Start-With-B)/" rel="prev" title="软件开发常用词汇(Start With B)">
+                软件开发常用词汇(Start With B) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/05/04/软件开发常用词汇(Start-With-C)/"
+           data-title="软件开发常用词汇(Start With C)" data-url="https://justxzm.github.io/2019/05/04/软件开发常用词汇(Start-With-C)/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Try.Catch" />
+          <p class="site-author-name" itemprop="name">Try.Catch</p>
+           
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客友链
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"justxzm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

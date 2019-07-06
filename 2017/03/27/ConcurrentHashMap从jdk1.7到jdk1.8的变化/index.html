@@ -87,20 +87,20 @@
 
 
 
-<meta name="description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计​先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，">
+<meta name="description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，依">
 <meta name="keywords" content="集合类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ConcurrentHashMap从jdk1.7到jdk1.8的变化">
 <meta property="og:url" content="https://justxzm.github.io/2017/03/27/ConcurrentHashMap从jdk1.7到jdk1.8的变化/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计​先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，">
+<meta property="og:description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，依">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018061202.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018061203.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018061204.png">
-<meta property="og:updated_time" content="2018-06-12T15:34:40.519Z">
+<meta property="og:updated_time" content="2019-07-06T05:41:06.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ConcurrentHashMap从jdk1.7到jdk1.8的变化">
-<meta name="twitter:description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计​先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，">
+<meta name="twitter:description" content="(转自知秋) 一、简单回顾ConcurrentHashMap在jdk1.7中的设计先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：  每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&amp;gt;next为节点1，之后为节点2，依">
 <meta name="twitter:image" content="https://justxzm.github.io/images/Java/2018061202.png">
 
 
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Java深入/" itemprop="url" rel="index">
+                    <span itemprop="name">Java深入</span>
                   </a>
                 </span>
 
@@ -379,7 +379,7 @@
 
       
         <p>(转自<a href="https://github.com/muyinchen/woker/blob/master/JAVA8/ConcurrentHashMap%E4%BB%8Ejdk1.7%E5%88%B0jdk1.8%E7%9A%84%E5%8F%98%E5%8C%96.md" target="_blank" rel="external">知秋</a>)</p>
-<h3 id="一、简单回顾ConcurrentHashMap在jdk1-7中的设计"><a href="#一、简单回顾ConcurrentHashMap在jdk1-7中的设计" class="headerlink" title="一、简单回顾ConcurrentHashMap在jdk1.7中的设计"></a><strong>一、简单回顾ConcurrentHashMap在jdk1.7中的设计</strong></h3><p>​先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：</p>
+<h3 id="一、简单回顾ConcurrentHashMap在jdk1-7中的设计"><a href="#一、简单回顾ConcurrentHashMap在jdk1-7中的设计" class="headerlink" title="一、简单回顾ConcurrentHashMap在jdk1.7中的设计"></a><strong>一、简单回顾ConcurrentHashMap在jdk1.7中的设计</strong></h3><p>先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：</p>
 <p><img src="/images/Java/2018061202.png" alt="img"></p>
 <p>每一个segment都是一个HashEntry<k,v>[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&gt;next为节点1，之后为节点2，依次类推。</k,v></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentHashMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt;</span></div><div class="line">        <span class="keyword">implements</span> <span class="title">ConcurrentMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt;, <span class="title">Serializable</span> &#123;</div><div class="line">    <span class="comment">// 将整个hashmap分成几个小的map，每个segment都是一个锁；与hashtable相比，这么设计的目的是对于put, remove等操作，可以减少并发冲突，对</span></div><div class="line">    <span class="comment">// 不属于同一个片段的节点可以并发操作，大大提高了性能</span></div><div class="line">    <span class="keyword">final</span> Segment&lt;K,V&gt;[] segments;</div><div class="line">    <span class="comment">// 本质上Segment类就是一个小的hashmap，里面table数组存储了各个节点的数据，继承了ReentrantLock, 可以作为互拆锁使用</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Segment</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">ReentrantLock</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">        <span class="keyword">transient</span> <span class="keyword">volatile</span> HashEntry&lt;K,V&gt;[] table;</div><div class="line">        <span class="keyword">transient</span> <span class="keyword">int</span> count;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 基本节点，存储Key， Value值</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HashEntry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> hash;</div><div class="line">        <span class="keyword">final</span> K key;</div><div class="line">        <span class="keyword">volatile</span> V value;</div><div class="line">        <span class="keyword">volatile</span> HashEntry&lt;K,V&gt; next;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -519,7 +519,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -530,7 +530,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -541,7 +541,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

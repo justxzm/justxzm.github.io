@@ -270,6 +270,176 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/局域网内建立Git远程仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/21/局域网内建立Git远程仓库/" itemprop="url">
+                  Windows局域网内建立Git远程仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T20:10:10+08:00">
+                2018-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/21/局域网内建立Git远程仓库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/21/局域网内建立Git远程仓库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+在公共服务器下创建一个空仓库
+1).创建一个文件夹，如public.git
+1mkdir public.git
+2).进入该文件夹，建立裸仓库
+1git  --bare init
+
+设置网络访问权限
+1).设置 public.git 为共享文件夹
+2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到
+1注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使用右斜杠 /
+
+在本机设置远程库 
+1).git remote add [name] //IP地址/共享文件夹名称
+12[name] 可以任意起名 如 origin利用 git remote 查看一下
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/21/局域网内建立Git远程仓库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/Oracle运维常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -380,7 +550,7 @@
         
           
           登录12345sqlplus /nologconn /as sysdba附：shut immediate; 关机startup; 启动
-创建123456789create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 100m autoextend on next 20m maxsize
+创建123456789create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 100m autoextend on next 20m maxsize 4096m extent management local;create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAle
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -537,7 +707,7 @@
         
           
           本文实例以文件操作、字节流、字符流、序列化流模块进行归纳，输入输出流同理部分缺省。
-文件操作java.io.File123456789101112131415161718192021222324252627282930313233343536public class FileDemo &#123;	public static void main(String[] args) &#123;		Fil
+文件操作java.io.File123456789101112131415161718192021222324252627282930313233343536public class FileDemo &#123;	public static void main(String[] args) &#123;		File file = new File("E:\\javaio");		//System.out.println(file.exists());		if(!file.exists())｛			file.m
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -698,7 +868,9 @@ File类只用于表示文件（目录）的信息（名称、大小等），不�
 IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类
 字节流1）InputStream、OutputStream
 12InputStream抽象了应用程序读取数据的方式OutputStream抽象了应用程序写出数据的方式
-2）EOF = End  
+2）EOF = End   读到-1就读到结尾
+3）输入流基本方法
+123int  b = in.read();读取一个字节无符号填充到int低八位.-1是 EOFin.read(byte[] buf) in.read(byt
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -860,7 +1032,7 @@ IO流可以划分为输入流、输出流两类，也可以划分为字节流、
     Exception//可以通过调试来处理的
         runtime//运行时才会发生的
         check//错不错误都要进行异常捕获的
-异常处理要点12345678910111213 throws 声明异常，让别人去捕获，谁调用这个放谁就要去捕获或者继续扔给下一个方法调用者 throw 手动抛出
+异常处理要点12345678910111213 throws 声明异常，让别人去捕获，谁调用这个放谁就要去捕获或者继续扔给下一个方法调用者 throw 手动抛出异常//最常用的显示异常的方法e.printStackTrace();//显示的内容比较针对的System.out.println(e.getMessage());//分类获取，多重try catch
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1018,168 +1190,12 @@ IO流可以划分为输入流、输出流两类，也可以划分为字节流、
           
           配置IP、主机名映射1vi /etc/hosts
 123192.168.33.101	node-01192.168.33.102	node-02192.168.33.103	node-03
-配置SSH免密登录12345# 生成ssh免登录密钥ssh-keygen -t rsa（四个回车）# 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）# 将公钥拷贝到要免密登录的目标机
+配置SSH免密登录12345# 生成ssh免登录密钥ssh-keygen -t rsa（四个回车）# 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）# 将公钥拷贝到要免密登录的目标机器上ssh-copy-id node-02
+配置防火墙1234567891011关闭命令：service iptables stop永久关闭防火墙：chkconfig iptables off# 两个
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/12/SSH免密登录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/05/27/Java8-默认方法和多继承/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JUST DO IT">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/05/27/Java8-默认方法和多继承/" itemprop="url">
-                  Java8 默认方法和多继承
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T22:03:24+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java深入/" itemprop="url" rel="index">
-                    <span itemprop="name">Java深入</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/27/Java8-默认方法和多继承/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/27/Java8-默认方法和多继承/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          以前经常谈论的Java对比C++的一个优势是Java中没有多继承的问题。因为Java中子类只能继承(extends)单个父类， 尽管可以实现(implements)多个接口，但是接口中只有抽象方法，方法体是空的，没有具体的方法实现，不会有方法冲突的问题。
-但Java 8发布后，接口中也可以定义方法了(default method)。之所以打破以前的设计在接口中增加具体的方法， 是为了既有的成千上万
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/Java8-默认方法和多继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1262,7 +1278,7 @@ IO流可以划分为输入流、输出流两类，也可以划分为字节流、
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

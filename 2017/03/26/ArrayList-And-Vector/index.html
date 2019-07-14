@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2017/03/26/ArrayList-And-Vector/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="List,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。 List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：  Vector是多线程安全的，而ArrayLi">
-<meta property="og:updated_time" content="2019-07-06T05:38:13.981Z">
+<meta property="og:updated_time" content="2019-07-14T07:13:07.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArrayList And Vector">
 <meta name="twitter:description" content="List,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。 List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：  Vector是多线程安全的，而ArrayLi">
@@ -377,9 +377,13 @@
         <p>List,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。</p>
 <p>List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：</p>
 <ol>
-<li>Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，这样就导致了Vector在效率上无法与ArrayList相比；</li>
-<li>两个都是采用的线性连续空间存储元素，但是当空间不足的时候，两个类的增加方式是不同的，很多网友说Vector增加原来空间的一倍，ArrayList增加原来空间的50%，其实也差不多是这个意思，不过还有一点点问题可以从源码中看出，一会儿从源码中分析。</li>
-<li>Vector可以设置增长因子，而ArrayList不可以，最开始看这个的时候，我没理解什么是增量因子，不过通过对比一下两个源码理解了这个，先看看两个类的构造方法： ArrayList有三个构造方法：分别是</li>
+<li><p>Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，这样就导致了Vector在效率上无法与ArrayList相比；</p>
+</li>
+<li><p>两个都是采用的线性连续空间存储元素，但是当空间不足的时候，两个类的增加方式是不同的，很多网友说Vector增加原来空间的一倍，ArrayList增加原来空间的50%，其实也差不多是这个意思，不过还有一点点问题可以从源码中看出，一会儿从源码中分析。</p>
+</li>
+<li><p>Vector可以设置增长因子，而ArrayList不可以，最开始看这个的时候，我没理解什么是增量因子，不过通过对比一下两个源码理解了这个，先看看两个类的构造方法： ArrayList有三个构造方法：分别是</p>
+<a id="more"></a>
+</li>
 </ol>
 <h3 id="构造器比较"><a href="#构造器比较" class="headerlink" title="构造器比较"></a>构造器比较</h3><p>ArrayList有三个构造方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span><span class="comment">//构造一个具有指定初始容量的空列表。  </span></span></div><div class="line"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span><span class="comment">//构造一个初始容量为10的空列表。  </span></div><div class="line"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span><span class="comment">//构造一个包含指定 collection 的元素的列表</span></div></pre></td></tr></table></figure>

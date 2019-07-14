@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/05/27/IoC-and-DI/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
-<meta property="og:updated_time" content="2019-07-06T05:39:08.764Z">
+<meta property="og:updated_time" content="2019-07-14T07:12:34.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IoC and DI">
 <meta name="twitter:description" content="概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。  使">
@@ -381,6 +381,7 @@
 </blockquote>
 <p>IoC也被称为好莱坞原则：会有另一段代码拥有最初的控制线程，并且由它来调用你的代码，而不是由你的代码调用它。（<code>不要给我们打电话，我们会打给你。——好莱坞原则</code>）</p>
 <p>IoC有多种不同的实现，包括工厂模式、服务器定位模式，当然还有依赖注入。<strong>需要注意的是，DI并不等于IoC，DI只是IoC的一种实现方式，IoC是一种机制。</strong></p>
+<a id="more"></a>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们首先编写传统的代码，然后使用工厂模式解耦，进而再使用DI来改进代码，通过这个过程，你将了解到DI的精妙之处。这些改进都基于同一个关键技术，即面向接口编程。</p>
 <p>假设你想找到所有对Java可开发人员比较友善的好莱坞经纪人。首先，我们有了一个AgentFinder接口，及其两个实现类SpreadSheetAgentFinder和WebServiceAgentFinder。AgentFinder接口如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AgentFinder</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Agent&gt; <span class="title">findAllAgents</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>

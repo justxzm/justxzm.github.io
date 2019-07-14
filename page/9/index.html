@@ -378,12 +378,10 @@
 
       
         
-          
-          在分布式开发中，锁是线程控制的重要途径。Java为此也提供了2种锁机制，synchronized和lock。做为Java爱好者，自然少不了对比一下这2种机制，也能从中学到些分布式开发需要注意的地方。
-我们先从最简单的入手，逐步分析这2种的区别。
-一、synchronized和lock的用法区别
-synchronized：在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象。123456789101112131415161718192021222324252627public SaleStore extends Thread &#1
-          ...
+          <p>在分布式开发中，锁是线程控制的重要途径。Java为此也提供了2种锁机制，synchronized和lock。做为Java爱好者，自然少不了对比一下这2种机制，也能从中学到些分布式开发需要注意的地方。</p>
+<p>我们先从最简单的入手，逐步分析这2种的区别。</p>
+<p><strong>一、synchronized和lock的用法区别</strong></p>
+<p>synchronized：在需要同步的对象中加入此控制，synchronized可以加在方法上，也可以加在特定代码块中，括号中表示需要锁的对象。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/19/Synchronize-And-Lock/#more" rel="contents">
@@ -537,12 +535,10 @@ synchronized：在需要同步的对象中加入此控制，synchronized可以�
 
       
         
-          
-          
-ArrayList
-
-12345678910111213141516ArrayList list=new ArrayList();	User zhangsan=new User("张三",1);	list.add(zhangsan);	Dog dog=new Dog();	dog.setName("哈哈");	dog.setAge(1);	list.add(dog);	for (Object object : list) &#123;		if(object instanceof User)&#123;			User user=(User)object;			System.out.printl
-          ...
+          <blockquote>
+<p>ArrayList</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">ArrayList list=<span class="keyword">new</span> ArrayList();	</div><div class="line">User zhangsan=<span class="keyword">new</span> User(<span class="string">"张三"</span>,<span class="number">1</span>);	</div><div class="line">list.add(zhangsan);	</div><div class="line">Dog dog=<span class="keyword">new</span> Dog();	</div><div class="line">dog.setName(<span class="string">"哈哈"</span>);	</div><div class="line">dog.setAge(<span class="number">1</span>);	</div><div class="line">list.add(dog);	</div><div class="line"><span class="keyword">for</span> (Object object : list) &#123;	</div><div class="line">	<span class="keyword">if</span>(object <span class="keyword">instanceof</span> User)&#123;	</div><div class="line">		User user=(User)object;	</div><div class="line">		System.out.println(user.getName());	</div><div class="line">	&#125;<span class="keyword">else</span>&#123;	</div><div class="line">		Dog user=(Dog)object;	</div><div class="line">		System.out.println(user.getName());		</div><div class="line">	&#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/19/常用集合类操作/#more" rel="contents">
@@ -696,23 +692,30 @@ ArrayList
 
       
         
-          
-          
-Collection接口
-
-
-List接口（允许有重复元素）：ArrayList、LinkedList、Vector、Stack
-Set接口（不允许有重复元素，可用于去重操作）：HashSet、TreeSet
-
-
-对于Collection需要掌握的七点内容
-
-
-Collection的创建：即构造器，掌握在构造器方法中Collection的实现类做了一些什么
-往Collection中添加对象：即add(E)方法–&gt;类的实现方式决定了此方法的性能
-删除Collection中的对象：即remove(E)方法–&gt;类的实现方式决定了此方法的性能
-获取Collection中的单个对象：即ge
-          ...
+          <blockquote>
+<p>Collection接口</p>
+</blockquote>
+<ul>
+<li>List接口（允许有重复元素）：ArrayList、LinkedList、Vector、Stack</li>
+<li>Set接口（不允许有重复元素，可用于去重操作）：HashSet、TreeSet</li>
+</ul>
+<blockquote>
+<p>对于Collection需要掌握的七点内容</p>
+</blockquote>
+<ul>
+<li><p>Collection的创建：即构造器，掌握在构造器方法中Collection的实现类做了一些什么</p>
+</li>
+<li><p>往Collection中添加对象：即add(E)方法–&gt;类的实现方式决定了此方法的性能</p>
+</li>
+<li><p>删除Collection中的对象：即remove(E)方法–&gt;类的实现方式决定了此方法的性能</p>
+</li>
+<li><p>获取Collection中的单个对象：即get(int index)方法–&gt;类的实现方式决定了此方法的性能</p>
+</li>
+<li><p>遍历Collection中的对象：即iterator，在实际中更常用的是增强型的for循环去做遍历</p>
+</li>
+<li><p>判断对象是否存在于Collection中：contain(E)–&gt;类的实现方式决定了此方法的性能</p>
+</li>
+<li><p>Collection中对象的排序：主要取决于所采取的排序算法</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/19/常用集合类/#more" rel="contents">

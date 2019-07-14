@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/06/12/SSH免密登录/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="配置IP、主机名映射1vi /etc/hosts 123192.168.33.101	node-01192.168.33.102	node-02192.168.33.103	node-03 配置SSH免密登录12345# 生成ssh免登录密钥ssh-keygen -t rsa（四个回车）# 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）# 将公钥拷贝到要免密登录的目标机">
-<meta property="og:updated_time" content="2018-06-12T09:07:09.790Z">
+<meta property="og:updated_time" content="2019-07-14T07:20:17.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH免密登录">
 <meta name="twitter:description" content="配置IP、主机名映射1vi /etc/hosts 123192.168.33.101	node-01192.168.33.102	node-02192.168.33.103	node-03 配置SSH免密登录12345# 生成ssh免登录密钥ssh-keygen -t rsa（四个回车）# 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）# 将公钥拷贝到要免密登录的目标机">
@@ -377,6 +377,7 @@
         <h3 id="配置IP、主机名映射"><a href="#配置IP、主机名映射" class="headerlink" title="配置IP、主机名映射"></a>配置IP、主机名映射</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/hosts</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">192.168.33.101	node-01</div><div class="line">192.168.33.102	node-02</div><div class="line">192.168.33.103	node-03</div></pre></td></tr></table></figure>
 <h3 id="配置SSH免密登录"><a href="#配置SSH免密登录" class="headerlink" title="配置SSH免密登录"></a>配置SSH免密登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 生成ssh免登录密钥</div><div class="line">ssh-keygen -t rsa（四个回车）</div><div class="line"># 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）</div><div class="line"># 将公钥拷贝到要免密登录的目标机器上</div><div class="line">ssh-copy-id node-02</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">关闭命令：service iptables stop</div><div class="line">永久关闭防火墙：chkconfig iptables off</div><div class="line"># 两个命令同时运行，运行完成后查看防火墙关闭状态</div><div class="line">service iptables status</div><div class="line"></div><div class="line">关闭防火墙-----service iptables stop </div><div class="line">启动防火墙-----service iptables start </div><div class="line">重启防火墙-----service iptables restart </div><div class="line">查看防火墙状态--service iptables status </div><div class="line">永久关闭防火墙--chkconfig iptables off </div><div class="line">永久关闭后启用--chkconfig iptables on</div></pre></td></tr></table></figure>
       
     </div>

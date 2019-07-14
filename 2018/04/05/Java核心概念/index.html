@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040507.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040508.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040509.png">
-<meta property="og:updated_time" content="2019-07-06T05:41:20.369Z">
+<meta property="og:updated_time" content="2019-07-14T07:09:12.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java核心概念">
 <meta name="twitter:description" content="当JVM运行起来的时候就会给内存划分空间，那么这块空间称之为运行时数据区。 12# 当一个Java源程序编译成class字节码文件之后，字节码文件里存放的都是二进制的汇编命令，  当程序运行的时候，JVM会将这个二进制的命令逐行解释，交给CPU去执行 运行时数据区将划分为以下几块内容： 栈 每一个线程运行起来的时候就会对应一个栈（线程栈），栈当中存放的数据是被当前线程所独有的。而栈当中存放的是栈帧">
@@ -388,7 +388,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 当一个Java源程序编译成class字节码文件之后，字节码文件里存放的都是二进制的汇编命令，</div><div class="line">  当程序运行的时候，JVM会将这个二进制的命令逐行解释，交给CPU去执行</div></pre></td></tr></table></figure>
 <p>运行时数据区将划分为以下几块内容：</p>
 <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ul>
-<li>每一个线程运行起来的时候就会对应一个栈（线程栈），栈当中存放的数据是被当前线程所独有的。而栈当中存放的是栈帧，当线程调用一个方法的时候，就会形成一个栈帧，并将这个栈帧进行压栈操作，当方法执行完之后就会将这个栈帧进行出栈操作。这个栈帧里面包括（局部变量、操作数栈、指向当前方法对应类的常量池引用、方法的返回地址等信息）。</li>
+<li><p>每一个线程运行起来的时候就会对应一个栈（线程栈），栈当中存放的数据是被当前线程所独有的。而栈当中存放的是栈帧，当线程调用一个方法的时候，就会形成一个栈帧，并将这个栈帧进行压栈操作，当方法执行完之后就会将这个栈帧进行出栈操作。这个栈帧里面包括（局部变量、操作数栈、指向当前方法对应类的常量池引用、方法的返回地址等信息）。</p>
+<a id="more"></a>
+</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 由于局部变量都是存放在栈中，而每一个线程都对应自己的线程栈，因此局部变量是线程安全</div><div class="line">  的，不会才产生资源共享的情况</div></pre></td></tr></table></figure>
 <p><img src="/images/Java/2018040501.png" alt=""></p>

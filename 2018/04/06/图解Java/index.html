@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。 如果两个对象的哈希值">
+<meta name="description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。  如果两个对象的哈希">
 <meta name="keywords" content="Java核心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解Java">
 <meta property="og:url" content="https://justxzm.github.io/2018/04/06/图解Java/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。 如果两个对象的哈希值">
+<meta property="og:description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。  如果两个对象的哈希">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040601.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040602.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040603.png">
@@ -102,10 +102,10 @@
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040606.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040607.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018040608.png">
-<meta property="og:updated_time" content="2019-07-06T05:41:13.774Z">
+<meta property="og:updated_time" content="2019-07-14T07:09:38.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解Java">
-<meta name="twitter:description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。 如果两个对象的哈希值">
+<meta name="twitter:description" content="字符串不变性下面这张图展示了这段代码做了什么 12String s = &amp;quot;abcd&amp;quot;;s = s.concat(&amp;quot;ef&amp;quot;);  equals()方法、hashCode()方法的区别HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：  如果两个对象相等(equal)，那么他们一定有相同的哈希值。  如果两个对象的哈希">
 <meta name="twitter:image" content="https://justxzm.github.io/images/Java/2018040601.png">
 
 
@@ -388,8 +388,11 @@
 <p><img src="/images/Java/2018040601.png" alt=""></p>
 <h3 id="equals-方法、hashCode-方法的区别"><a href="#equals-方法、hashCode-方法的区别" class="headerlink" title="equals()方法、hashCode()方法的区别"></a>equals()方法、hashCode()方法的区别</h3><p>HashCode被设计用来提高性能。equals()方法与hashCode()方法的区别在于：</p>
 <ol>
-<li>如果两个对象相等(equal)，那么他们一定有相同的哈希值。</li>
-<li>如果两个对象的哈希值相同，但他们未必相等(equal)。</li>
+<li><p>如果两个对象相等(equal)，那么他们一定有相同的哈希值。</p>
+</li>
+<li><p>如果两个对象的哈希值相同，但他们未必相等(equal)。</p>
+<a id="more"></a>
+</li>
 </ol>
 <p><img src="/images/Java/2018040602.png" alt=""></p>
 <h3 id="Java异常类的层次结构"><a href="#Java异常类的层次结构" class="headerlink" title="Java异常类的层次结构"></a>Java异常类的层次结构</h3><p>图中红色部分为受检查异常。它们必须被捕获，或者在函数中声明为抛出该异常。</p>

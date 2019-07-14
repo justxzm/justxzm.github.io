@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://justxzm.github.io/images/Git/2018041906.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Git/2018041907.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Git/2018041908.png">
-<meta property="og:updated_time" content="2018-05-12T04:46:33.001Z">
+<meta property="og:updated_time" content="2019-07-14T07:20:22.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 补丁使用">
 <meta name="twitter:description" content="补丁说明使用补丁场景：可以只更新自己关心的功能；（对功能的选择性更新，但因为应用补丁的环境不同，可能会发生冲突） 补丁后缀说明： .patch结尾文件 补丁生成1git format-patch -1 [commit ID] 在Git中，每个commit ID的信息（如cc127537978af35e2f502da7e8d22e340ed810e5）就是一个SHA-1 Hash值，它是对那个com">
@@ -387,6 +387,7 @@
 <h4 id="补丁后缀说明："><a href="#补丁后缀说明：" class="headerlink" title="补丁后缀说明："></a>补丁后缀说明：</h4><p> .patch结尾文件</p>
 <h3 id="补丁生成"><a href="#补丁生成" class="headerlink" title="补丁生成"></a>补丁生成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git format-patch -1 [commit ID]</div></pre></td></tr></table></figure>
 <p>在Git中，每个commit ID的信息（如cc127537978af35e2f502da7e8d22e340ed810e5）就是一个SHA-1 Hash值，它是对那个commit是Git仓库中内容和头信息（Header）的一个校验和（checksum）。它可以保证，在很多年后，你重新checkout某个commit时，一定是它多年前的当时的状态。Git中，根据commit的SHA-1值（40个十六进制数字）进行了简单的划分目录，以前2位数字作为目录名，其下面是剩余38位数字组成的一个文件名。</p>
+<a id="more"></a>
 <h3 id="补丁应用"><a href="#补丁应用" class="headerlink" title="补丁应用"></a>补丁应用</h3><p>1）使用文本编辑器打开补丁；</p>
 <p>2）使用ctrl + a 全选补丁内容；</p>
 <p>3）ctrl + c 复制选择的内容；</p>

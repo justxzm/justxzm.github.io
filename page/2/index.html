@@ -378,19 +378,24 @@
 
       
         
-          
-          
-在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。
-
-介绍意图：为其他对象提供一种代理以控制对这个对象的访问。
-主要解决：在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。
-何时使用：想在访问一个类时做一些控制。
-如何实现：增加中间层，实现与被代理类组合。
-应用实例： 
-
-Windows 里面的快捷方式。 
-猪八戒去找高翠兰结果是孙悟空变的，可以这样理解：把高翠
-          ...
+          <blockquote>
+<p>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
+</blockquote>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><strong>意图：</strong>为其他对象提供一种代理以控制对这个对象的访问。</p>
+<p><strong>主要解决：</strong>在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。</p>
+<p><strong>何时使用：</strong>想在访问一个类时做一些控制。</p>
+<p><strong>如何实现：</strong>增加中间层，实现与被代理类组合。</p>
+<p><strong>应用实例：</strong> </p>
+<ul>
+<li><p>Windows 里面的快捷方式。 </p>
+</li>
+<li><p>猪八戒去找高翠兰结果是孙悟空变的，可以这样理解：把高翠兰的外貌抽象出来，高翠兰本人和孙悟空都实现了这个接口，猪八戒访问高翠兰的时候看不出来这个是孙悟空，所以说孙悟空是高翠兰代理类。 </p>
+</li>
+<li><p>买火车票不一定在火车站买，也可以去代售点。 </p>
+</li>
+<li><p>一张支票或银行存单是账户中资金的代理。支票在市场交易中用来代替现金，并提供对签发人账号上资金的控制。</p>
+</li>
+<li><p>spring aop。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/23/代理模式/#more" rel="contents">
@@ -544,13 +549,11 @@ Windows 里面的快捷方式。
 
       
         
-          
-          Demo1
-在委托模式中，有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理。
-委托模式使得我们可以用聚合来替代继承。
-
-123456789101112131415161718class RealPrinter &#123; // the "delegate"	void print() &#123; 		System.out.print("something"); 	&#125;&#125;class Printer &#123; // the "delegator"	RealPrinter p = new RealPrinter(); // create the del
-          ...
+          <h3 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h3><ul>
+<li>在委托模式中，有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理。</li>
+<li>委托模式使得我们可以用聚合来替代继承。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RealPrinter</span> </span>&#123; <span class="comment">// the "delegate"</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; </div><div class="line">		System.out.print(<span class="string">"something"</span>); </div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Printer</span> </span>&#123; <span class="comment">// the "delegator"</span></div><div class="line">	RealPrinter p = <span class="keyword">new</span> RealPrinter(); <span class="comment">// create the delegate </span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; </div><div class="line">		p.print(); <span class="comment">// delegation</span></div><div class="line">	&#125; </div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">	<span class="comment">// to the outside world it looks like Printer actually prints.</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Printer printer = <span class="keyword">new</span> Printer();</div><div class="line">		printer.print();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/22/委托模式/#more" rel="contents">
@@ -704,11 +707,8 @@ Windows 里面的快捷方式。
 
       
         
-          
-          容器基本用法bean是Spring 中最核心的东西，Spring就像是个大水桶，而bean就像是容器中的水。
-bean定义12345678910111213public class MyTestBean &#123;	private String testStr = "testStr";		public String getTestStr () &#123;		return testStr ;	&#125;		public void setTestStr(String testStr) &#123;		this.testStr = testStr ;	&#125;	&#125;
-bean配置1
-          ...
+          <h2 id="容器基本用法"><a href="#容器基本用法" class="headerlink" title="容器基本用法"></a>容器基本用法</h2><p><strong>bean是Spring 中最核心的东西，Spring就像是个大水桶，而bean就像是容器中的水。</strong></p>
+<h3 id="bean定义"><a href="#bean定义" class="headerlink" title="bean定义"></a>bean定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTestBean</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String testStr = <span class="string">"testStr"</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getTestStr</span> <span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> testStr ;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTestStr</span><span class="params">(String testStr)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.testStr = testStr ;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/13/Spring5：容器的基本实现/#more" rel="contents">
@@ -862,13 +862,10 @@ bean配置1
 
       
         
-          
-          设置IP、子网、网关vi /etc/sysconfig/network-scripts/ifcfg-eth0
-1234567##删除UUID和MAC地址 ONBOOT=yes BOOTPROTO=static IPADDR=192.168.9.101 NETMASK=255.255.255.0 GATEWAY=192.168.9.2 DNS1=1921.68.9.2
-重启网络服务和网卡service network restart
-配置主机名vi /etc/sysconfig/network
-配置hosts12vi /etc/hosts   ##LINUXc:/windows/system32
-          ...
+          <h3 id="设置IP、子网、网关"><a href="#设置IP、子网、网关" class="headerlink" title="设置IP、子网、网关"></a>设置IP、子网、网关</h3><p><strong>vi /etc/sysconfig/network-scripts/ifcfg-eth0</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">##删除UUID和MAC地址 </div><div class="line">ONBOOT=yes </div><div class="line">BOOTPROTO=static </div><div class="line">IPADDR=192.168.9.101 </div><div class="line">NETMASK=255.255.255.0 </div><div class="line">GATEWAY=192.168.9.2 </div><div class="line">DNS1=1921.68.9.2</div></pre></td></tr></table></figure>
+<h3 id="重启网络服务和网卡"><a href="#重启网络服务和网卡" class="headerlink" title="重启网络服务和网卡"></a>重启网络服务和网卡</h3><p><strong>service network restart</strong></p>
+<h3 id="配置主机名"><a href="#配置主机名" class="headerlink" title="配置主机名"></a>配置主机名</h3><p><strong>vi /etc/sysconfig/network</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/01/10/Linux基础网络配置/#more" rel="contents">
@@ -1022,9 +1019,7 @@ bean配置1
 
       
         
-          
-          创建存储过程123456789101112131415161718192021222324252627282930CREATE OR REPLACEPROCEDURE SYNFINANCIALDATAASCOUNTT NUMBER;BEGIN-----------------------1.TESTTABLE01数据同步------------------------BEGINSELECT COUNT(*) INTO COUNTT FROM TABS WHERE TABLE_NAME=&apos;TESTTABLE01&apos; || TO_CHAR(SYSDATE,&apos;YYYY&a
-          ...
+          <h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">CREATE OR REPLACE</div><div class="line">PROCEDURE SYNFINANCIALDATA</div><div class="line">AS</div><div class="line">COUNTT NUMBER;</div><div class="line">BEGIN</div><div class="line"></div><div class="line">-----------------------1.TESTTABLE01数据同步------------------------</div><div class="line">BEGIN</div><div class="line">SELECT COUNT(*) INTO COUNTT FROM TABS WHERE TABLE_NAME=&apos;TESTTABLE01&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;);</div><div class="line">IF(COUNTT=0) THEN</div><div class="line">EXECUTE IMMEDIATE &apos;CREATE TABLE TESTTABLE01&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;) || &apos; AS SELECT * FROM TESTTABLE WHERE 1=2&apos;;</div><div class="line">END IF;</div><div class="line">EXECUTE IMMEDIATE &apos;DELETE FROM TESTTABLE01&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;);</div><div class="line">COMMIT;</div><div class="line">EXECUTE IMMEDIATE &apos;MERGE INTO TESTTABLE01&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;) .....</div><div class="line">COMMIT;</div><div class="line">END;</div><div class="line">-----------------------1.TESTTABLE02数据同步------------------------</div><div class="line">BEGIN</div><div class="line">SELECT COUNT(*) INTO COUNTT FROM TABS WHERE TABLE_NAME=&apos;TESTTABLE02&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;);</div><div class="line">IF(COUNTT=0) THEN</div><div class="line">EXECUTE IMMEDIATE &apos;CREATE TABLE TESTTABLE02&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;) || &apos; AS SELECT * FROM TESTTABLE WHERE 1=2&apos;;</div><div class="line">END IF;</div><div class="line">EXECUTE IMMEDIATE &apos;DELETE FROM TESTTABLE02&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;);</div><div class="line">COMMIT;</div><div class="line">EXECUTE IMMEDIATE &apos;MERGE INTO TESTTABLE02&apos; || TO_CHAR(SYSDATE,&apos;YYYY&apos;) .....</div><div class="line">COMMIT;</div><div class="line">END;</div><div class="line"></div><div class="line">END;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/01/08/使用存储过程动态同步表数据/#more" rel="contents">
@@ -1178,18 +1173,14 @@ bean配置1
 
       
         
-          
-          精简自Ealge的博客
-ORA-12514 TNS问题描述
-监听程序当前无法识别连接描述符中请求服务
-
-解决方法
-通过重启服务的方式启动数据库，再次连接仍无法连接服务器。
-第一种方法不能解决问题，就第二种方法，listener.ora、tnsnames.ora中添加或修改监听。
-
-监听配置文件位置在oracle服务器Oracle安装目录（每个人的不一样，根据自己的情况查找）network/admin目录下找到listener.ora、tnsnames.ora，我的默认安装路径如下所示：
-修改或添加listener.ora中LISTENER以及tnsnames.ora中ORCL部分。window
-          ...
+          <p>精简自<a href="http://blog.sina.com.cn/s/blog_5007d1b10100oqo8.html">Ealge的博客</a></p>
+<h3 id="ORA-12514-TNS"><a href="#ORA-12514-TNS" class="headerlink" title="ORA-12514 TNS"></a>ORA-12514 TNS</h3><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ul>
+<li>监听程序当前无法识别连接描述符中请求服务</li>
+</ul>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ol>
+<li><p>通过重启服务的方式启动数据库，再次连接仍无法连接服务器。</p>
+</li>
+<li><p>第一种方法不能解决问题，就第二种方法，<strong>listener.ora</strong>、<strong>tnsnames.ora</strong>中添加或修改监听。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/25/连接虚拟机中Oracle问题解决/#more" rel="contents">

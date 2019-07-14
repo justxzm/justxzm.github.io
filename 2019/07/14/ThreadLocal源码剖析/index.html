@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。   我们来看一下ThreadLocal类是如何为每个线程创建一个变量的副本的。 先看下get方法的实现：  第一句是取">
+<meta name="description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。">
 <meta name="keywords" content="并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ThreadLocal源码剖析">
 <meta property="og:url" content="https://justxzm.github.io/2019/07/14/ThreadLocal源码剖析/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。   我们来看一下ThreadLocal类是如何为每个线程创建一个变量的副本的。 先看下get方法的实现：  第一句是取">
+<meta property="og:description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071401.jpg">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071402.jpg">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071403.jpg">
@@ -101,10 +101,10 @@
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071405.jpg">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071406.jpg">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019071407.jpg">
-<meta property="og:updated_time" content="2019-07-14T06:19:30.733Z">
+<meta property="og:updated_time" content="2019-07-14T07:04:54.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ThreadLocal源码剖析">
-<meta name="twitter:description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。   我们来看一下ThreadLocal类是如何为每个线程创建一个变量的副本的。 先看下get方法的实现：  第一句是取">
+<meta name="twitter:description" content="常用方法  get()方法用来获取ThreadLocal在当前线程中保存副本变量。 set()用来设置当前线程中副本变量。 remove()用来移除当前线程中副本变量。 initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。">
 <meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019071401.jpg">
 
 
@@ -389,6 +389,7 @@
 <li>remove()用来移除当前线程中副本变量。</li>
 <li>initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。</li>
 </ul>
+<a id="more"></a>
 <p><img src="/images/并发编程/2019071401.jpg" alt=""></p>
 <p>我们来看一下ThreadLocal类是如何为每个线程创建一个变量的副本的。</p>
 <p>先看下get方法的实现：</p>

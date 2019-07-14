@@ -378,8 +378,7 @@
 
       
         
-          
-          创建DBLINKcreate database link PMS805LINK connect to PMS805 identified by PMS805 using &apos;
+          <h3 id="创建DBLINK"><a href="#创建DBLINK" class="headerlink" title="创建DBLINK"></a>创建DBLINK</h3><pre><code>create database link PMS805LINK connect to PMS805 identified by PMS805 using &apos;
 (DESCRIPTION =
     (ADDRESS_LIST =
       (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))
@@ -390,8 +389,11 @@
 )&apos;;
 
 select * from all_db_links;
-selec
-          ...
+select * from LINKTEST01@PMS805LINK;
+select * from LINKTEST01@PMS805LINK.REGRESS.RDBMS.DEV.US.ORACLE.COM;
+drop database link  PMS805LINK;
+</code></pre><h3 id="创建表-视图-结构"><a href="#创建表-视图-结构" class="headerlink" title="创建表(视图)结构"></a>创建表(视图)结构</h3><pre><code>create table(view) LINKTEST02 as select * from LINKTEST01@PMS805LINK where 1=2;
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/23/DBLINK同步远程数据/#more" rel="contents">
@@ -545,23 +547,19 @@ selec
 
       
         
-          
-          
-在公共服务器下创建一个空仓库
-1).创建一个文件夹，如public.git
-1mkdir public.git
-2).进入该文件夹，建立裸仓库
-1git  --bare init
-
-设置网络访问权限
-1).设置 public.git 为共享文件夹
-2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到
-1注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使用右斜杠 /
-
-在本机设置远程库 
-1).git remote add [name] //IP地址/共享文件夹名称
-12[name] 可以任意起名 如 origin利用 git remote 查看一下
-          ...
+          <ol>
+<li><p>在公共服务器下创建一个空仓库</p>
+<p>1).创建一个文件夹，如public.git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir public.git</div></pre></td></tr></table></figure>
+<p>2).进入该文件夹，建立裸仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git  --bare init</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置网络访问权限</p>
+<p>1).设置 public.git 为共享文件夹</p>
+<p>2).确认在本机文件管理器中通过“ \IP地址\共享文件夹名称 ”的形式可以访问到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意： 共享文件夹名称可以与文件夹名称不同，git访问时，应该使用右斜杠 /</div></pre></td></tr></table></figure>
+</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/21/局域网内建立Git远程仓库/#more" rel="contents">
@@ -715,10 +713,8 @@ selec
 
       
         
-          
-          登录12345sqlplus /nologconn /as sysdba附：shut immediate; 关机startup; 启动
-创建123456789create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 100m autoextend on next 20m maxsize 4096m extent management local;create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAle
-          ...
+          <h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlplus /nolog</div><div class="line">conn /as sysdba</div><div class="line">附：</div><div class="line">shut immediate; 关机</div><div class="line">startup; 启动</div></pre></td></tr></table></figure>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 100m autoextend on next 20m maxsize 4096m extent management local;</div><div class="line">create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 500m autoextend on next 50m maxsize unlimited;</div><div class="line">create user PMSAlex identified by PMSAlex default tablespace PMSAlex; 新建用户</div><div class="line">grant connect,resource,dba to PMSAlex;</div><div class="line">quit;</div><div class="line">附：</div><div class="line">drop tablespace PMSAlex including contents and datafiles; 删除表空间</div><div class="line">alter tablespace PRJAlex rename to PMSAlex; 重命名表空间</div><div class="line">alter user PMSAlex identified by u0MWVwS5; 修改连接的用户名和密码</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/21/Oracle运维常用操作/#more" rel="contents">
@@ -872,10 +868,7 @@ selec
 
       
         
-          
-          本文实例以文件操作、字节流、字符流、序列化流模块进行归纳，输入输出流同理部分缺省。
-文件操作java.io.File123456789101112131415161718192021222324252627282930313233343536public class FileDemo &#123;	public static void main(String[] args) &#123;		File file = new File("E:\\javaio");		//System.out.println(file.exists());		if(!file.exists())｛			file.m
-          ...
+          <p>本文实例以文件操作、字节流、字符流、序列化流模块进行归纳，输入输出流同理部分缺省。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/13/Java-BIO实例/#more" rel="contents">
@@ -1029,16 +1022,9 @@ selec
 
       
         
-          
-          java.io.File类用于表示文件（目录）
-File类只用于表示文件（目录）的信息（名称、大小等），不能用于文件内容的访问
-IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类
-字节流1）InputStream、OutputStream
-12InputStream抽象了应用程序读取数据的方式OutputStream抽象了应用程序写出数据的方式
-2）EOF = End   读到-1就读到结尾
-3）输入流基本方法
-123int  b = in.read();读取一个字节无符号填充到int低八位.-1是 EOFin.read(byte[] buf) in.read(byt
-          ...
+          <p>java.io.File类用于表示文件（目录）</p>
+<p>File类只用于表示文件（目录）的信息（名称、大小等），不能用于文件内容的访问</p>
+<p>IO流可以划分为输入流、输出流两类，也可以划分为字节流、字符流、序列化流三类</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/12/Java-BIO归纳/#more" rel="contents">
@@ -1192,15 +1178,13 @@ IO流可以划分为输入流、输出流两类，也可以划分为字节流、
 
       
         
-          
-          错误、异常结构Throwable
+          <h3 id="错误、异常结构"><a href="#错误、异常结构" class="headerlink" title="错误、异常结构"></a>错误、异常结构</h3><pre><code>Throwable
     error//无法通过程序弥补的
 
     Exception//可以通过调试来处理的
         runtime//运行时才会发生的
         check//错不错误都要进行异常捕获的
-异常处理要点12345678910111213 throws 声明异常，让别人去捕获，谁调用这个放谁就要去捕获或者继续扔给下一个方法调用者 throw 手动抛出异常//最常用的显示异常的方法e.printStackTrace();//显示的内容比较针对的System.out.println(e.getMessage());//分类获取，多重try catch
-          ...
+</code></pre><h3 id="异常处理要点"><a href="#异常处理要点" class="headerlink" title="异常处理要点"></a>异常处理要点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> throws 声明异常，让别人去捕获，谁调用这个放谁就要去捕获或者继续扔给下一个方法调用者</div><div class="line"> throw 手动抛出异常</div><div class="line"></div><div class="line">//最常用的显示异常的方法</div><div class="line">e.printStackTrace();</div><div class="line">//显示的内容比较针对的</div><div class="line">System.out.println(e.getMessage());</div><div class="line">//分类获取，多重try catch </div><div class="line">//多重try catch在使用时要注意异常的范围问题</div><div class="line">//范围小的放前面，级别相同就无所谓了</div><div class="line"></div><div class="line">执行了return语句，finally子语句仍然会被执行</div><div class="line">执行了System.exit(0)，finally子语句和其后所有语句将不执行</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/12/Java自定义异常处理/#more" rel="contents">

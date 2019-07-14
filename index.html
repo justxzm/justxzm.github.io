@@ -378,22 +378,13 @@
 
       
         
-          
-          常用方法
-
-get()方法用来获取ThreadLocal在当前线程中保存副本变量。
-set()用来设置当前线程中副本变量。
-remove()用来移除当前线程中副本变量。
-initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。
-
-
-我们来看一下ThreadLocal类是如何为每个线程创建一个变量的副本的。
-先看下get方法的实现：
-
-第一句是取得当前线程。再看一下getMap方法中做了什么：
-
-在getMap中，是调用当期线程t，返回当前线程t中的一个成员变量threadLocals，继续去Thread类中的成员变量threadLocals
-          ...
+          <p><strong>常用方法</strong></p>
+<ul>
+<li>get()方法用来获取ThreadLocal在当前线程中保存副本变量。</li>
+<li>set()用来设置当前线程中副本变量。</li>
+<li>remove()用来移除当前线程中副本变量。</li>
+<li>initialValue()是一个protected方法，一般是用来在使用时进行重写的，它是一个延迟加载方法。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/14/ThreadLocal源码剖析/#more" rel="contents">
@@ -547,10 +538,8 @@ initialValue()是一个protected方法，一般是用来在使用时进行重写
 
       
         
-          
-          问题复现官方说明：simple beautiful strong immutable thread-safe。
-12345678910111213141516171819202122232425262728293031323334public class SimpleDateFormatTest &#123;	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    public static String formatDate(Date date) throws Pa
-          ...
+          <h3 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h3><p>官方说明：simple beautiful strong immutable thread-safe。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatTest</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">formatDate</span><span class="params">(Date date)</span> <span class="keyword">throws</span> ParseException </span>&#123;</div><div class="line">        <span class="keyword">return</span> sdf.format(date);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Date <span class="title">parse</span><span class="params">(String strDate)</span> <span class="keyword">throws</span> ParseException </span>&#123;</div><div class="line">        <span class="keyword">return</span> sdf.parse(strDate);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ParseException </span>&#123;</div><div class="line">    	 ExecutorService service = Executors.newFixedThreadPool(<span class="number">100</span>);</div><div class="line">    	    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</div><div class="line">    	        service.execute(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">					</div><div class="line">					<span class="meta">@Override</span></div><div class="line">					<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">						<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">						 <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</div><div class="line">		    	                <span class="keyword">try</span> &#123;</div><div class="line">		    	                    System.out.println(parse(<span class="string">"2018-01-02 09:45:59"</span>));</div><div class="line">		    	                &#125; <span class="keyword">catch</span> (ParseException e) &#123;</div><div class="line">		    	                    e.printStackTrace();</div><div class="line">		    	                &#125;</div><div class="line">		    	            &#125;</div><div class="line">					&#125;</div><div class="line">				&#125;);</div><div class="line">    	    &#125;</div><div class="line">    	    <span class="comment">// 等待上述的线程执行完</span></div><div class="line">    	    service.shutdown();</div><div class="line">    	    service.awaitTermination(<span class="number">1</span>, TimeUnit.DAYS);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/12/SimpleDateFormat线程安全问题/#more" rel="contents">
@@ -704,9 +693,8 @@ initialValue()是一个protected方法，一般是用来在使用时进行重写
 
       
         
-          
-          容量和扩容1234567891011121314/*** The default initial capacity ‐ MUST be a power of two.*/static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16/*** The maximum capacity, used if a higher value is implicitly specified* by either of the constructors with arguments.* MUST be a power of two &lt
-          ...
+          <h3 id="容量和扩容"><a href="#容量和扩容" class="headerlink" title="容量和扩容"></a>容量和扩容</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</div><div class="line">* The default initial capacity ‐ MUST be a power of two.</div><div class="line">*/</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></div><div class="line"><span class="comment">/**</div><div class="line">* The maximum capacity, used if a higher value is implicitly specified</div><div class="line">* by either of the constructors with arguments.</div><div class="line">* MUST be a power of two &lt;= 1&lt;&lt;30.</div><div class="line">*/</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</div><div class="line"><span class="comment">/**</div><div class="line">* The load factor used when none specified in constructor.</div><div class="line">*/</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</div></pre></td></tr></table></figure>
+<p>我们这里能看到，和 HashTable 一样有 Capacity 和 Factor 的设定，这里面我们的默认值也是 16 和 0.75 的值。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/06/HashMap源码解析/#more" rel="contents">
@@ -860,16 +848,13 @@ initialValue()是一个protected方法，一般是用来在使用时进行重写
 
       
         
-          
-          关于敏捷开发一般敏捷开发以两周为一个周期，称为一个迭代。在一个迭代中快速完成预估的工作量。敏捷开发的步骤如下：
-
-需求澄清会：搞清楚用户需求。
-迭代会：提炼出核心需求，把每个工作分解，并估算完成点数（人数×天数），开完会后录入Jira中管理。
-站会：每天早上开一个短会，每个人讲一下昨天做了什么、今天要做什么、遇到了什么困难。根据站会的内容，同步Jira中对应任务的进度。
-回顾会：让领导对这个迭代内做的产品进行评估，提出问题，同时每个人说一下这个迭代收获或者需要改进的地方。
-
-
-          
+          <h3 id="关于敏捷开发"><a href="#关于敏捷开发" class="headerlink" title="关于敏捷开发"></a>关于敏捷开发</h3><p>一般敏捷开发以两周为一个周期，称为一个迭代。在一个迭代中快速完成预估的工作量。敏捷开发的步骤如下：</p>
+<ol>
+<li>需求澄清会：搞清楚用户需求。</li>
+<li>迭代会：提炼出核心需求，把每个工作分解，并估算完成点数（人数×天数），开完会后录入Jira中管理。</li>
+<li>站会：每天早上开一个短会，每个人讲一下昨天做了什么、今天要做什么、遇到了什么困难。根据站会的内容，同步Jira中对应任务的进度。</li>
+<li>回顾会：让领导对这个迭代内做的产品进行评估，提出问题，同时每个人说一下这个迭代收获或者需要改进的地方。</li>
+</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/05/敏捷开发/#more" rel="contents">
@@ -1023,12 +1008,9 @@ initialValue()是一个protected方法，一般是用来在使用时进行重写
 
       
         
-          
-          软件开发常用词汇(一)（点击预览pdf）
-软件开发常用词汇(二)（点击预览pdf）
-软件开发常用词汇(三)（点击下载word）
-
-          
+          <p><a href="https://github.com/justxzm/Note/blob/master/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E8%AF%8D%E6%B1%871.pdf">软件开发常用词汇(一)</a>（点击预览pdf）</p>
+<p><a href="https://github.com/justxzm/Note/blob/master/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E8%AF%8D%E6%B1%872.pdf">软件开发常用词汇(二)</a>（点击预览pdf）</p>
+<p><a href="https://github.com/justxzm/Note/blob/master/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E8%AF%8D%E6%B1%873.docx">软件开发常用词汇(三)</a>（点击下载word）</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/16/软件开发常用词汇/#more" rel="contents">
@@ -1182,20 +1164,20 @@ initialValue()是一个protected方法，一般是用来在使用时进行重写
 
       
         
-          
-          
-在模板模式中，一个抽象类公开定义了执行它的方法的方式/模板。
-它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。
-
-介绍意图：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
-主要解决：一些方法通用，却在每一个子类都重新写了这一方法。
-如何解决：将这些通用算法抽象出来，在抽象类实现，其他步骤在子类实现。
-应用实例： 
-
-在造房子的时候，地基、走线、水管都一样，只有在建筑的后期才有加壁橱加栅栏等差异。
-西游记里面菩萨定好的81难，这就是一个顶层的逻辑骨架。
-spring 中对Hibernate的支持，
-          ...
+          <blockquote>
+<p>在模板模式中，一个抽象类公开定义了执行它的方法的方式/模板。</p>
+<p>它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。</p>
+</blockquote>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><strong>意图：</strong>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<p><strong>主要解决：</strong>一些方法通用，却在每一个子类都重新写了这一方法。</p>
+<p><strong>如何解决：</strong>将这些通用算法抽象出来，在抽象类实现，其他步骤在子类实现。</p>
+<p><strong>应用实例：</strong> </p>
+<ul>
+<li><p>在造房子的时候，地基、走线、水管都一样，只有在建筑的后期才有加壁橱加栅栏等差异。</p>
+</li>
+<li><p>西游记里面菩萨定好的81难，这就是一个顶层的逻辑骨架。</p>
+</li>
+<li><p>spring 中对Hibernate的支持，将一些已经定好的方法封装起来，比如开启事务、获取 Session、关闭 Session 等，程序员不重复写那些已经规范好的代码，直接丢一个实体就可以保存。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/23/模板模式/#more" rel="contents">

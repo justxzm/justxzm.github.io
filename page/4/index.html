@@ -378,12 +378,9 @@
 
       
         
-          
-          配置IP、主机名映射1vi /etc/hosts
-123192.168.33.101	node-01192.168.33.102	node-02192.168.33.103	node-03
-配置SSH免密登录12345# 生成ssh免登录密钥ssh-keygen -t rsa（四个回车）# 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）# 将公钥拷贝到要免密登录的目标机器上ssh-copy-id node-02
-配置防火墙1234567891011关闭命令：service iptables stop永久关闭防火墙：chkconfig iptables off# 两个
-          ...
+          <h3 id="配置IP、主机名映射"><a href="#配置IP、主机名映射" class="headerlink" title="配置IP、主机名映射"></a>配置IP、主机名映射</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/hosts</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">192.168.33.101	node-01</div><div class="line">192.168.33.102	node-02</div><div class="line">192.168.33.103	node-03</div></pre></td></tr></table></figure>
+<h3 id="配置SSH免密登录"><a href="#配置SSH免密登录" class="headerlink" title="配置SSH免密登录"></a>配置SSH免密登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 生成ssh免登录密钥</div><div class="line">ssh-keygen -t rsa（四个回车）</div><div class="line"># 执行完这个命令后，会生成id_rsa（私钥）、id_rsa.pub（公钥）</div><div class="line"># 将公钥拷贝到要免密登录的目标机器上</div><div class="line">ssh-copy-id node-02</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/12/SSH免密登录/#more" rel="contents">
@@ -537,10 +534,9 @@
 
       
         
-          
-          以前经常谈论的Java对比C++的一个优势是Java中没有多继承的问题。因为Java中子类只能继承(extends)单个父类， 尽管可以实现(implements)多个接口，但是接口中只有抽象方法，方法体是空的，没有具体的方法实现，不会有方法冲突的问题。
-但Java 8发布后，接口中也可以定义方法了(default method)。之所以打破以前的设计在接口中增加具体的方法， 是为了既有的成千上万的Java类库的类增加新的功能，而不必对这些类重新进行设计。比如，只需在Collection接口中增加default Stream stream()，相应的Set和List接口以及它们的子类就都包含此
-          ...
+          <p>以前经常谈论的Java对比C++的一个优势是Java中没有多继承的问题。因为Java中子类只能继承(extends)单个父类， 尽管可以实现(implements)多个接口，但是接口中只有抽象方法，方法体是空的，没有具体的方法实现，不会有方法冲突的问题。</p>
+<p>但Java 8发布后，接口中也可以定义方法了(default method)。之所以打破以前的设计在接口中增加具体的方法， 是为了既有的成千上万的Java类库的类增加新的功能，而不必对这些类重新进行设计。比如，只需在Collection接口中增加default Stream<E> stream()，相应的Set和List接口以及它们的子类就都包含此的方法，不必为每个子类都重新copy这个方法。</p>
+<p>这是一个折衷的设计，带来的问题就是为Java引入了多继承的问题。我们知道，接口可以继承接口，类可以继承类和实现接口。 一旦继承的类和实现的接口中有相同签名的方法， 会出现什么样的状况呢？ 本文将探讨各种情况的多继承，以便能清楚的理解Java多继承的规则。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/27/Java8-默认方法和多继承/#more" rel="contents">
@@ -694,10 +690,13 @@
 
       
         
-          
-          概念DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。 
-使用IoC范式编程时，程序逻辑的流程通常是由一个功能中心来控制的。而使用IoC，这个“中心控制”的设计原则会被反转过来。调用者的代码处理程序的执行顺序，而程序逻辑则被封装在接受调用的子流程中。通过一个例
-          ...
+          <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。 </p>
+<p>使用IoC范式编程时，程序逻辑的流程通常是由一个功能中心来控制的。而使用IoC，这个“中心控制”的设计原则会被反转过来。调用者的代码处理程序的执行顺序，而程序逻辑则被封装在接受调用的子流程中。通过一个例子来理解IoC：</p>
+<blockquote>
+<p>在GUI应用中，GUI框架负责控制调用事件处理器，而不是应用逻辑。当用户点击了一个动作，比如“向前”，GUI框架会自动调用 对应的事件处理器，而应用逻辑可以把重点放在处理动作上。程序的控制被反转了，将控制权由应用逻辑转移到了GUI框架。</p>
+</blockquote>
+<p>IoC也被称为好莱坞原则：会有另一段代码拥有最初的控制线程，并且由它来调用你的代码，而不是由你的代码调用它。（<code>不要给我们打电话，我们会打给你。——好莱坞原则</code>）</p>
+<p>IoC有多种不同的实现，包括工厂模式、服务器定位模式，当然还有依赖注入。<strong>需要注意的是，DI并不等于IoC，DI只是IoC的一种实现方式，IoC是一种机制。</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/27/IoC-and-DI/#more" rel="contents">
@@ -851,26 +850,9 @@
 
       
         
-          
-          JDK配置
-1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME
-1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxPermSize=512M JVM最大允许分配的非堆内存，按需分配
-
-
-
-参数名
-含义
-默认值
-备注
-
-
-
-
--Xms
-初始堆大小
-物理内存的1/64(&lt;1GB)
-默认(MinHeapFreeRa
-          ...
+          <h3 id="JDK配置"><a href="#JDK配置" class="headerlink" title="JDK配置"></a>JDK配置</h3><p><img src="/images/Java/2018051201.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-Xms512m JVM初始分配的堆内存</div><div class="line">-Xmx1024m JVM最大允许分配的堆内存，按需分配</div><div class="line">-XX:PermSize=256M JVM初始分配的非堆内存</div><div class="line">-XX:MaxPermSize=512M JVM最大允许分配的非堆内存，按需分配</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/12/JVM-调优/#more" rel="contents">
@@ -1024,12 +1006,10 @@
 
       
         
-          
-          补丁说明使用补丁场景：可以只更新自己关心的功能；（对功能的选择性更新，但因为应用补丁的环境不同，可能会发生冲突）
-补丁后缀说明： .patch结尾文件
-补丁生成1git format-patch -1 [commit ID]
-在Git中，每个commit ID的信息（如cc127537978af35e2f502da7e8d22e340ed810e5）就是一个SHA-1 Hash值，它是对那个commit是Git仓库中内容和头信息（Header）的一个校验和（checksum）。它可以保证，在很多年后，你重新checkout某个commit时，一定是它多年前的当时的状态。Git中，根据commi
-          ...
+          <h3 id="补丁说明"><a href="#补丁说明" class="headerlink" title="补丁说明"></a>补丁说明</h3><h4 id="使用补丁场景："><a href="#使用补丁场景：" class="headerlink" title="使用补丁场景："></a>使用补丁场景：</h4><p>可以只更新自己关心的功能；（对功能的选择性更新，但因为应用补丁的环境不同，可能会发生冲突）</p>
+<h4 id="补丁后缀说明："><a href="#补丁后缀说明：" class="headerlink" title="补丁后缀说明："></a>补丁后缀说明：</h4><p> .patch结尾文件</p>
+<h3 id="补丁生成"><a href="#补丁生成" class="headerlink" title="补丁生成"></a>补丁生成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git format-patch -1 [commit ID]</div></pre></td></tr></table></figure>
+<p>在Git中，每个commit ID的信息（如cc127537978af35e2f502da7e8d22e340ed810e5）就是一个SHA-1 Hash值，它是对那个commit是Git仓库中内容和头信息（Header）的一个校验和（checksum）。它可以保证，在很多年后，你重新checkout某个commit时，一定是它多年前的当时的状态。Git中，根据commit的SHA-1值（40个十六进制数字）进行了简单的划分目录，以前2位数字作为目录名，其下面是剩余38位数字组成的一个文件名。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/19/Git-补丁使用/#more" rel="contents">
@@ -1183,9 +1163,7 @@
 
       
         
-          
-          用户管理（user）useradd 注：添加用户adduser 注：添加用户passwd 注：为用户设置密码usermod 注：修改用户命令，可以通过usermod 来修改登录名、用户的家目录等等；pwcov 注：同步用户从/etc/passwd 到/etc/shadowpwck 注：pwck是校验用户配置文件/etc/passwd 和/etc/shadow 文件内容是否合法或完整；pwunconv 注：是pwcov 的立逆向操作，是从/etc/shadow和 /etc/passwd 创建/etc/passwd ，然后会删除/etc/shadow 文件；finger 注：查看用户信息工具id 
-          ...
+          <h3 id="用户管理（user）"><a href="#用户管理（user）" class="headerlink" title="用户管理（user）"></a>用户管理（user）</h3><p><code>useradd</code> 注：添加用户<br><code>adduser</code> 注：添加用户<br><code>passwd</code> 注：为用户设置密码<br><code>usermod</code> 注：修改用户命令，可以通过usermod 来修改登录名、用户的家目录等等；<br><code>pwcov</code> 注：同步用户从/etc/passwd 到/etc/shadow<br><code>pwck</code> 注：pwck是校验用户配置文件/etc/passwd 和/etc/shadow 文件内容是否合法或完整；<br><code>pwunconv</code> 注：是pwcov 的立逆向操作，是从/etc/shadow和 /etc/passwd 创建/etc/passwd ，然后会删除/etc/shadow 文件；<br><code>finger</code> 注：查看用户信息工具<br><code>id</code> 注：查看用户的UID、GID及所归属的用户组<br><code>chfn</code> 注：更改用户信息工具<br><code>su</code> 注：用户切换工具<br><code>sudo</code> 注：sudo 是通过另一个用户来执行命令（execute a command as another user），su 是用来切换用户，然后通过切换到的用户来完成相应的任务，但sudo 能后面直接执行命令，比如sudo 不需要root 密码就可以执行root 赋与的执行只有root才能执行相应的命令；但得通过visudo 来编辑/etc/sudoers来实现；<br><code>visudo</code> 注：visodo 是编辑 /etc/sudoers 的命令；也可以不用这个命令，直接用vi 来编辑 /etc/sudoers 的效果是一样的；<br><code>sudoedit</code> 注：和sudo 功能差不多； </p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/06/Linux用户管理常用命令/#more" rel="contents">

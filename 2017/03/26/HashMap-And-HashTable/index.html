@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。 一、继承的父类不同Ha">
+<meta name="description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。">
 <meta name="keywords" content="集合类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HashMap And HashTable">
 <meta property="og:url" content="https://justxzm.github.io/2017/03/26/HashMap-And-HashTable/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。 一、继承的父类不同Ha">
-<meta property="og:updated_time" content="2019-07-06T05:37:23.931Z">
+<meta property="og:description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。">
+<meta property="og:updated_time" content="2019-07-14T07:15:31.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap And HashTable">
-<meta name="twitter:description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。 一、继承的父类不同Ha">
+<meta name="twitter:description" content="HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；HashSet则实现了Set接口，性质类似于集合。Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。">
 
 
 
@@ -375,6 +375,7 @@
 
       
         <p>HashMap和Hashtable两个类都实现了Map接口，二者保存K-V对（key-value对）；<br>HashSet则实现了Set接口，性质类似于集合。<br>Hashtable的应用非常广泛，HashMap是新框架中用来代替Hashtable的类，也就是说建议使用HashMap，不要使用Hashtable。<br>可能你觉得Hashtable很好用，为什么不用呢？这里简单分析他们的区别。</p>
+<a id="more"></a>
 <h3 id="一、继承的父类不同"><a href="#一、继承的父类不同" class="headerlink" title="一、继承的父类不同"></a>一、继承的父类不同</h3><p>Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类，HashMap是Java1.2引进的Map interface 的一个实现。但二者都实现了Map接口。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hashtable</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Dictionary</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span> </span>&#123;</div></pre></td></tr></table></figure>
 <h3 id="二、线程安全性不同"><a href="#二、线程安全性不同" class="headerlink" title="二、线程安全性不同"></a>二、线程安全性不同</h3><p>Hashtable 中的方法是Synchronize的，而HashMap中的方法在缺省情况下是非Synchronize的。在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步，但使用HashMap时就必须要自己增加同步处理。</p>

@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="创建DBLINKcreate database link PMS805LINK connect to PMS805 identified by PMS805 using &amp;apos; (DESCRIPTION =     (ADDRESS_LIST =       (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2018102301.png">
-<meta property="og:updated_time" content="2018-10-23T11:37:38.090Z">
+<meta property="og:updated_time" content="2019-07-14T07:19:34.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DBLINK同步远程数据">
 <meta name="twitter:description" content="创建DBLINKcreate database link PMS805LINK connect to PMS805 identified by PMS805 using &amp;apos; (DESCRIPTION =     (ADDRESS_LIST =       (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))">
@@ -391,7 +391,8 @@ select * from LINKTEST01@PMS805LINK;
 select * from LINKTEST01@PMS805LINK.REGRESS.RDBMS.DEV.US.ORACLE.COM;
 drop database link  PMS805LINK;
 </code></pre><h3 id="创建表-视图-结构"><a href="#创建表-视图-结构" class="headerlink" title="创建表(视图)结构"></a>创建表(视图)结构</h3><pre><code>create table(view) LINKTEST02 as select * from LINKTEST01@PMS805LINK where 1=2;
-</code></pre><h3 id="准备sync-sql文件"><a href="#准备sync-sql文件" class="headerlink" title="准备sync.sql文件"></a>准备sync.sql文件</h3><h4 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h4><pre><code>//适用表字段少的情况
+</code></pre><a id="more"></a>
+<h3 id="准备sync-sql文件"><a href="#准备sync-sql文件" class="headerlink" title="准备sync.sql文件"></a>准备sync.sql文件</h3><h4 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h4><pre><code>//适用表字段少的情况
 delete from LINKTEST02 b where b.ID not in (select c.ID from LINKTEST02 c inner join LINKTEST01@PMS805LINK d on c.ID=d.ID);
 
 merge into LINKTEST02 b using LINKTEST01@PMS805LINK k on (b.ID=k.ID) 

@@ -378,9 +378,7 @@
 
       
         
-          
-          思考try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263public cl
-          ...
+          <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/28/Java异常处理机制/#more" rel="contents">
@@ -534,13 +532,9 @@
 
       
         
-          
-          排序算法概述所谓排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。排序算法，就是如何使得记录按照要求排列的方法。排序算法在很多领域得到相当地重视，尤其是在大量数据的处理方面。
-稳定性：一个排序算法是稳定的，就是当有两个相等记录的关键字R和S，且在原本的列表中R出现在S之前，在排序过的列表中R也将会是在S之前。
-如果算法是稳定的有什么好处呢？排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位相同的元素其顺序再高位也相同时是不会改变的。
-
-排序算法根据是否
-          ...
+          <h3 id="排序算法概述"><a href="#排序算法概述" class="headerlink" title="排序算法概述"></a>排序算法概述</h3><p>所谓排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。排序算法，就是如何使得记录按照要求排列的方法。排序算法在很多领域得到相当地重视，尤其是在大量数据的处理方面。</p>
+<p><strong>稳定性</strong>：一个排序算法是稳定的，就是当有两个相等记录的关键字R和S，且在原本的列表中R出现在S之前，在排序过的列表中R也将会是在S之前。</p>
+<p>如果算法是稳定的有什么好处呢？排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位相同的元素其顺序再高位也相同时是不会改变的。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/28/Java冒泡排序/#more" rel="contents">
@@ -694,13 +688,10 @@
 
       
         
-          
-          (转自知秋)
-一、简单回顾ConcurrentHashMap在jdk1.7中的设计先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：
-
-每一个segment都是一个HashEntry[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&gt;next为节点1，之后为节点2，依次类推。
-123456789101112131415161718public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K,
-          ...
+          <p>(转自<a href="https://github.com/muyinchen/woker/blob/master/JAVA8/ConcurrentHashMap%E4%BB%8Ejdk1.7%E5%88%B0jdk1.8%E7%9A%84%E5%8F%98%E5%8C%96.md">知秋</a>)</p>
+<h3 id="一、简单回顾ConcurrentHashMap在jdk1-7中的设计"><a href="#一、简单回顾ConcurrentHashMap在jdk1-7中的设计" class="headerlink" title="一、简单回顾ConcurrentHashMap在jdk1.7中的设计"></a><strong>一、简单回顾ConcurrentHashMap在jdk1.7中的设计</strong></h3><p>先简单看下ConcurrentHashMap类在jdk1.7中的设计，其基本结构如图所示：</p>
+<p><img src="/images/Java/2018061202.png" alt="img"></p>
+<p>每一个segment都是一个HashEntry<K,V>[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&gt;next为节点1，之后为节点2，依次类推。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/27/ConcurrentHashMap从jdk1.7到jdk1.8的变化/#more" rel="contents">
@@ -854,13 +845,14 @@
 
       
         
-          
-          List,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。
-List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：
-
-Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，这样就导致了Vector在效率上无法与ArrayList相比；
-两个都是采用的线性连续空间存储元素，但是当
-          ...
+          <p>List,是元素的有序列表。当我们讨论List时，将其与Set作对比是一个很好的办法,Set集合中的元素是无序且唯一的。</p>
+<p>List接口下一共实现了三个类：ArrayList，Vector，LinkedList。LinkedList就不多说了，它一般主要用在保持数据的插入顺序的时候。ArrayList和Vector都是用数组实现的，主要有这么三个区别：</p>
+<ol>
+<li><p>Vector是多线程安全的，而ArrayList不是，这个可以从源码中看出，Vector类中的方法很多有synchronized进行修饰，这样就导致了Vector在效率上无法与ArrayList相比；</p>
+</li>
+<li><p>两个都是采用的线性连续空间存储元素，但是当空间不足的时候，两个类的增加方式是不同的，很多网友说Vector增加原来空间的一倍，ArrayList增加原来空间的50%，其实也差不多是这个意思，不过还有一点点问题可以从源码中看出，一会儿从源码中分析。</p>
+</li>
+<li><p>Vector可以设置增长因子，而ArrayList不可以，最开始看这个的时候，我没理解什么是增量因子，不过通过对比一下两个源码理解了这个，先看看两个类的构造方法： ArrayList有三个构造方法：分别是</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/26/ArrayList-And-Vector/#more" rel="contents">
@@ -1014,12 +1006,11 @@ Vector是多线程安全的，而ArrayList不是，这个可以从源码中看�
 
       
         
-          
-          Set接口Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。Set判断两个对象相同不是使用==运算符，而是根据equals方法。也就是说，只要两个对象用equals方法比较返回true，Set就不会接受这两个对象,并且最多包含一个 null元素。HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子接口SortedSet的实现类。Set接口及其子接口、实现类的结构如下所示：
-         |——SortedSet接口——TreeSet实现类
+          <h3 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h3><p>Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。<br>Set判断两个对象相同不是使用==运算符，而是根据equals方法。也就是说，只要两个对象用equals方法比较返回true，Set就不会接受这两个对象,并且最多包含一个 null元素。<br>HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子接口SortedSet的实现类。Set接口及其子接口、实现类的结构如下所示：</p>
+<pre><code>         |——SortedSet接口——TreeSet实现类
 Set接口——|——HashSet实现类
-            |——
-          ...
+            |——LinkedHashSet实现类
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/26/HashSet-And-TreeSet/#more" rel="contents">
@@ -1173,11 +1164,9 @@ Set接口——|——HashSet实现类
 
       
         
-          
-          在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。
-Enumeration是一个接口，它的源码如下：1234public interface Enumeration&lt;E&gt; &#123;    boolean hasMoreElements();    E nextElement();&#125;
-Iterator也是一个接口，它的源码如下：12345public interface Iterator&lt;E&gt
-          ...
+          <p>在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。</p>
+<p>Enumeration是一个接口，它的源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Enumeration</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">E <span class="title">nextElement</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Iterator也是一个接口，它的源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/26/Iterator-And-Enumeration/#more" rel="contents">

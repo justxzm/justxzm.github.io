@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2019/04/23/模板模式/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="在模板模式中，一个抽象类公开定义了执行它的方法的方式/模板。 它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。  介绍意图：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。 主要解决：一些方法通用，却在每一个子类都重新写了这一方法。 如何解决：将这些通用算法抽象出来，在抽象类实现，其他步骤在子类实现。">
-<meta property="og:updated_time" content="2019-04-23T12:59:35.068Z">
+<meta property="og:updated_time" content="2019-07-14T07:17:45.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板模式">
 <meta name="twitter:description" content="在模板模式中，一个抽象类公开定义了执行它的方法的方式/模板。 它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。  介绍意图：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。 主要解决：一些方法通用，却在每一个子类都重新写了这一方法。 如何解决：将这些通用算法抽象出来，在抽象类实现，其他步骤在子类实现。">
@@ -383,9 +383,13 @@
 <p><strong>如何解决：</strong>将这些通用算法抽象出来，在抽象类实现，其他步骤在子类实现。</p>
 <p><strong>应用实例：</strong> </p>
 <ul>
-<li>在造房子的时候，地基、走线、水管都一样，只有在建筑的后期才有加壁橱加栅栏等差异。</li>
-<li>西游记里面菩萨定好的81难，这就是一个顶层的逻辑骨架。</li>
-<li>spring 中对Hibernate的支持，将一些已经定好的方法封装起来，比如开启事务、获取 Session、关闭 Session 等，程序员不重复写那些已经规范好的代码，直接丢一个实体就可以保存。</li>
+<li><p>在造房子的时候，地基、走线、水管都一样，只有在建筑的后期才有加壁橱加栅栏等差异。</p>
+</li>
+<li><p>西游记里面菩萨定好的81难，这就是一个顶层的逻辑骨架。</p>
+</li>
+<li><p>spring 中对Hibernate的支持，将一些已经定好的方法封装起来，比如开启事务、获取 Session、关闭 Session 等，程序员不重复写那些已经规范好的代码，直接丢一个实体就可以保存。</p>
+<a id="more"></a>
+</li>
 </ul>
 <p><strong>优点：</strong> </p>
 <ul>

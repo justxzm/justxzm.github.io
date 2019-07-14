@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="Java Volatile关键字在java线程并发处理中，有一个关键字volatile的使用目前存在很大的混淆，以为使用这个关键字，在进行多线程并发处理的时候就可以万事大吉。 Java语言是支持多线程的，为了解决线程并发的问题，在语言内部引入了 同步块 和 volatile 关键字机制。 锁提供了两种主要特性：互斥（mutual exclusion） 和可见性（visibility）。互斥即一次只">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2019031401.jpg">
-<meta property="og:updated_time" content="2019-07-14T05:09:31.903Z">
+<meta property="og:updated_time" content="2019-07-14T07:12:59.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Volatile">
 <meta name="twitter:description" content="Java Volatile关键字在java线程并发处理中，有一个关键字volatile的使用目前存在很大的混淆，以为使用这个关键字，在进行多线程并发处理的时候就可以万事大吉。 Java语言是支持多线程的，为了解决线程并发的问题，在语言内部引入了 同步块 和 volatile 关键字机制。 锁提供了两种主要特性：互斥（mutual exclusion） 和可见性（visibility）。互斥即一次只">
@@ -379,6 +379,7 @@
         <h3 id="Java-Volatile关键字"><a href="#Java-Volatile关键字" class="headerlink" title="Java Volatile关键字"></a>Java Volatile关键字</h3><p>在java线程并发处理中，有一个关键字volatile的使用目前存在很大的混淆，以为使用这个关键字，在进行多线程并发处理的时候就可以万事大吉。</p>
 <p>Java语言是支持多线程的，为了解决线程并发的问题，在语言内部引入了 同步块 和 volatile 关键字机制。</p>
 <p>锁提供了两种主要特性：互斥（mutual exclusion） 和可见性（visibility）。互斥即一次只允许一个线程持有某个特定的锁，因此可使用该特性实现对共享数据的协调访问协议，这样，一次就只有一个线程能够使用该共享数据。可见性要更加复杂一些，它必须确保释放锁之前对共享数据做出的更改对于随后获得该锁的另一个线程是可见的 —— 如果没有同步机制提供的这种可见性保证，线程看到的共享变量可能是修改前的值或不一致的值，这将引发许多严重问题。</p>
+<a id="more"></a>
 <h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a><strong>synchronized</strong></h4><p>同步块大家都比较熟悉，通过 synchronized 关键字来实现，所有加上synchronized 和 块语句，在多线程访问的时候，同一时刻只能有一个线程能够用。</p>
 <p>synchronized 修饰的方法或者代码块。</p>
 <h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a><strong>volatile</strong></h4><p>用volatile修饰的变量，线程在每次使用变量的时候，都会读取变量修改后的最的值。volatile很容易被误用，用来进行原子性操作。volatile 变量可以被看作是一种 “程度较轻的 synchronized”；与synchronized 块相比，volatile 变量所需的编码较少，并且运行时开销也较少，但是它所能实现的功能也仅是 synchronized 的一部分。</p>

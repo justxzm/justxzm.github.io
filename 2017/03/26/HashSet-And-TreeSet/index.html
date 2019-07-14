@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2017/03/26/HashSet-And-TreeSet/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="Set接口Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。Set判断两个对象相同不是使用==运算符，而是根据equals方法。也就是说，只要两个对象用equals方法比较返回true，Set就不会接受这两个对象,并且最多包含一个 null元素。HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子接口SortedSet">
-<meta property="og:updated_time" content="2019-07-06T05:37:32.410Z">
+<meta property="og:updated_time" content="2019-07-14T07:15:20.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashSet And TreeSet">
 <meta name="twitter:description" content="Set接口Set不允许包含相同的元素，如果试图把两个相同元素加入同一个集合中，add方法返回false。Set判断两个对象相同不是使用==运算符，而是根据equals方法。也就是说，只要两个对象用equals方法比较返回true，Set就不会接受这两个对象,并且最多包含一个 null元素。HashSet与TreeSet都是基于Set接口的实现类。其中TreeSet是Set的子接口SortedSet">
@@ -378,7 +378,8 @@
 <pre><code>         |——SortedSet接口——TreeSet实现类
 Set接口——|——HashSet实现类
             |——LinkedHashSet实现类
-</code></pre><h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
+</code></pre><a id="more"></a>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
 <li>不能保证元素的排列顺序，顺序有可能发生变化</li>
 <li>不是同步的</li>
 <li>集合元素可以是null,但只能放入一个null</li>

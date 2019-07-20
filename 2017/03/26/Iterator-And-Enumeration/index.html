@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
-<meta property="og:updated_time" content="2019-07-14T07:15:26.429Z">
+<meta property="og:updated_time" content="2019-07-20T03:07:05.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Iterator And Enumeration">
 <meta name="twitter:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
@@ -384,7 +384,10 @@
 <pre><code>time: 9ms
 time: 5ms
 </code></pre><p>从中，我们可以看出。Enumeration 比 Iterator 的遍历速度更快。为什么呢？<br>这是因为，Hashtable中Iterator是通过Enumeration去实现的，而且Iterator添加了对fail-fast机制的支持；所以，执行的操作自然要多一些。</p>
-<p><strong>关于fail-fast机制</strong><br>fail-fast 机制是java集合(Collection)中的一种错误机制。当多个线程对同一个集合的内容进行操作时，就可能会产生fail-fast事件。<br>例如：当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
+<p><strong>关于fail-fast机制</strong></p>
+<p>fail-fast，即快速失败，它是Java集合的一种错误检测机制。当多个线程对集合（非fail-safe的集合类）进行结构上的改变的操作时，有可能会产生fail-fast机制，这个时候就会抛出ConcurrentModificationException（当方法检测到对象的并发修改，但不允许这种修改时就抛出该异常）。</p>
+<p>例如：当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
+<p>同时需要注意的是，即使不是多线程环境，如果单线程违反了规则，同样也有可能会抛出改异常。</p>
 
       
     </div>

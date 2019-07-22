@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/22/数据治理/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/22/Oracle数据治理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -292,8 +292,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/07/22/数据治理/" itemprop="url">
-                  数据治理
+                <a class="post-title-link" href="/2019/07/22/Oracle数据治理/" itemprop="url">
+                  Oracle数据治理
                 </a>
               
             
@@ -350,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/22/数据治理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/07/22/数据治理/" itemprop="commentCount"></span>
+                <a href="/2019/07/22/Oracle数据治理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/07/22/Oracle数据治理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,7 +382,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">t1.SYSTEM_NAME 系统名,</div><div class="line">t1.OBJECT_NAME 表名,</div><div class="line">t1.OBJECT_TYPE 表类型,</div><div class="line">t2.num_rows 记录数,</div><div class="line">t2.ISNULLTB 是否空表,</div><div class="line">t3.COMMENTS 表说明</div><div class="line"><span class="keyword">FROM</span></div><div class="line">(<span class="keyword">SELECT</span></div><div class="line"><span class="string">'Alex'</span> SYSTEM_NAME,</div><div class="line">OBJECT_NAME,</div><div class="line">OBJECT_TYPE</div><div class="line"><span class="keyword">FROM</span> USER_OBJECTS <span class="keyword">WHERE</span> OBJECT_TYPE=<span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> OBJECT_TYPE,OBJECT_NAME) t1</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span></div><div class="line">(<span class="keyword">SELECT</span></div><div class="line">TABLE_NAME,</div><div class="line">num_rows,</div><div class="line">(<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) ISNULLTB</div><div class="line"><span class="keyword">FROM</span> user_tables) t2</div><div class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t2.TABLE_NAME</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> USER_TAB_COMMENTS t3</div><div class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t3.TABLE_NAME;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/22/数据治理/#more" rel="contents">
+            <a class="btn" href="/2019/07/22/Oracle数据治理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

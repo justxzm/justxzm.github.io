@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="《Java并发编程的艺术》总结," />
+  <meta name="keywords" content="Java并发系列," />
 
 
 
@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是，过多地使用volatile是不必要的，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多">
-<meta name="keywords" content="《Java并发编程的艺术》总结">
+<meta name="description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
+<meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Java并发编程的艺术》总结·并发基础(二)">
-<meta property="og:url" content="https://justxzm.github.io/2019/09/17/《Java并发编程的艺术》总结·并发基础二/index.html">
+<meta property="og:title" content="Java并发总结-并发基础(二)">
+<meta property="og:url" content="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是，过多地使用volatile是不必要的，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多">
+<meta property="og:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
-<meta property="og:updated_time" content="2019-09-17T12:42:15.447Z">
+<meta property="og:updated_time" content="2019-09-17T13:13:26.186Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Java并发编程的艺术》总结·并发基础(二)">
-<meta name="twitter:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是，过多地使用volatile是不必要的，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多">
+<meta name="twitter:title" content="Java并发总结-并发基础(二)">
+<meta name="twitter:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
 <meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/09/17/《Java并发编程的艺术》总结·并发基础二/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/"/>
 
 
 
 
 
-  <title> 《Java并发编程的艺术》总结·并发基础(二) | JUST DO IT </title>
+  <title> Java并发总结-并发基础(二) | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/《Java并发编程的艺术》总结·并发基础二/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -293,7 +293,7 @@
             
             
               
-                《Java并发编程的艺术》总结·并发基础(二)
+                Java并发总结-并发基础(二)
               
             
           </h1>
@@ -349,8 +349,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/17/《Java并发编程的艺术》总结·并发基础二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/《Java并发编程的艺术》总结·并发基础二/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/Java并发总结-并发基础二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-并发基础二/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,12 +377,12 @@
 
       
         <h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><h3 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h3><p><strong>volatile</strong>和<strong>synchronized</strong></p>
-<p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是，过多地使用volatile是不必要的，因为它会<strong>降低程序执行的效率</strong>。</p>
+<p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是不必过多使用<strong>volatile</strong>，因为它会<strong>降低程序执行的效率</strong>。</p>
 <p>关键字<strong>synchronized</strong>可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，只能有一个线程处于方法或者同步块中，它保证了线程对变量访问的<strong>可见性</strong>和<strong>排他性</strong>。</p>
 <p>如下使用了同步块和同步方法，通过使用<strong>javap</strong>工具查看生成的<strong>class</strong>文件信息来分析<strong>synchronized</strong>关键字的实现细节：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Synchronized</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 对Synchronized Class对象进行加锁</span></div><div class="line">		<span class="keyword">synchronized</span> (Synchronized.class) &#123;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 静态同步方法，对Synchronized Class对象进行加锁</span></div><div class="line">		m();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>在<strong>Synchronized.class</strong>同级目录执行<strong>javap –v Synchronized.class</strong>，部分相关输出如下所示：</p>
+<p>在<strong>Synchronized.class</strong>同级目录执行<strong>javap –v Synchronized.class</strong>，部分相关输出如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public static void main(java.lang.String[]);</div><div class="line">	// 方法修饰符，表示：public staticflags: ACC_PUBLIC, ACC_STATIC</div><div class="line">	Code:</div><div class="line">	stack=2, locals=1, args_size=1</div><div class="line">	0: ldc #1　　// class com/murdock/books/multithread/book/Synchronized</div><div class="line">	2: dup</div><div class="line">	3: monitorenter　　// monitorenter：监视器进入，获取锁</div><div class="line">	4: monitorexit　　 // monitorexit：监视器退出，释放锁</div><div class="line">	5: invokestatic　　#16 // Method m:()V</div><div class="line">	8: return</div><div class="line">public static synchronized void m();</div><div class="line">	// 方法修饰符，表示： public static synchronized</div><div class="line">	flags: ACC_PUBLIC, ACC_STATIC, ACC_SYNCHRONIZED</div><div class="line">	Code:</div><div class="line">	stack=0, locals=0, args_size=0</div><div class="line">	0: return</div></pre></td></tr></table></figure>
 <p>上面<strong>class</strong>信息中，对于同步块的实现使用了<strong>monitorenter</strong>和<strong>monitorexit</strong>指令，而同步方法则是依靠方法修饰符上的<strong>ACC_SYNCHRONIZED</strong>来完成的。无论采用哪种方式，其本质是对一个对象的监视器（<strong>monitor</strong>）进行获取，而这个<strong>获取过程是排他的</strong>，也就是同一时刻只能有一个线程获取到由<strong>synchronized</strong>所保护对象的监视器。</p>
 <p>任意一个<strong>对象都拥有自己的监视器</strong>，当这个对象由同步块或者这个对象的同步方法调用时，执行方法的线程必须先<strong>获取到该对象的监视器</strong>才能进入同步块或者同步方法，而没有获取到监视器（执行该方法）的线程将会<strong>被阻塞</strong>在同步块和同步方法的入口处，进入<strong>BLOCKED状态</strong>。</p>
@@ -413,7 +413,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/《Java并发编程的艺术》总结/" rel="tag"># 《Java并发编程的艺术》总结</a>
+            <a href="/tags/Java并发系列/" rel="tag"># Java并发系列</a>
           
         </div>
       
@@ -432,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/15/《Java并发编程的艺术》总结·并发基础一/" rel="prev" title="《Java并发编程的艺术》总结·并发基础(一)">
-                《Java并发编程的艺术》总结·并发基础(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/15/Java并发总结-并发基础一/" rel="prev" title="Java并发总结-并发基础(一)">
+                Java并发总结-并发基础(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -460,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2019/09/17/《Java并发编程的艺术》总结·并发基础二/"
-           data-title="《Java并发编程的艺术》总结·并发基础(二)" data-url="https://justxzm.github.io/2019/09/17/《Java并发编程的艺术》总结·并发基础二/">
+      <div class="ds-thread" data-thread-key="2019/09/17/Java并发总结-并发基础二/"
+           data-title="Java并发总结-并发基础(二)" data-url="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
       </div>
     
   </div>
@@ -532,7 +532,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

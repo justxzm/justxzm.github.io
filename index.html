@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/《Java并发编程的艺术》总结·并发基础二/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -292,8 +292,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/09/17/《Java并发编程的艺术》总结·并发基础二/" itemprop="url">
-                  《Java并发编程的艺术》总结·并发基础(二)
+                <a class="post-title-link" href="/2019/09/17/Java并发总结-并发基础二/" itemprop="url">
+                  Java并发总结-并发基础(二)
                 </a>
               
             
@@ -350,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/17/《Java并发编程的艺术》总结·并发基础二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/《Java并发编程的艺术》总结·并发基础二/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/Java并发总结-并发基础二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-并发基础二/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,13 +379,13 @@
       
         
           <h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><h3 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h3><p><strong>volatile</strong>和<strong>synchronized</strong></p>
-<p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是，过多地使用volatile是不必要的，因为它会<strong>降低程序执行的效率</strong>。</p>
+<p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是不必过多使用<strong>volatile</strong>，因为它会<strong>降低程序执行的效率</strong>。</p>
 <p>关键字<strong>synchronized</strong>可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，只能有一个线程处于方法或者同步块中，它保证了线程对变量访问的<strong>可见性</strong>和<strong>排他性</strong>。</p>
 <p>如下使用了同步块和同步方法，通过使用<strong>javap</strong>工具查看生成的<strong>class</strong>文件信息来分析<strong>synchronized</strong>关键字的实现细节：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Synchronized</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 对Synchronized Class对象进行加锁</span></div><div class="line">		<span class="keyword">synchronized</span> (Synchronized.class) &#123;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 静态同步方法，对Synchronized Class对象进行加锁</span></div><div class="line">		m();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/17/《Java并发编程的艺术》总结·并发基础二/#more" rel="contents">
+            <a class="btn" href="/2019/09/17/Java并发总结-并发基础二/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -428,7 +428,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/《Java并发编程的艺术》总结·并发基础一/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/Java并发总结-并发基础一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -450,8 +450,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/09/15/《Java并发编程的艺术》总结·并发基础一/" itemprop="url">
-                  《Java并发编程的艺术》总结·并发基础(一)
+                <a class="post-title-link" href="/2019/09/15/Java并发总结-并发基础一/" itemprop="url">
+                  Java并发总结-并发基础(一)
                 </a>
               
             
@@ -508,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/15/《Java并发编程的艺术》总结·并发基础一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/15/《Java并发编程的艺术》总结·并发基础一/" itemprop="commentCount"></span>
+                <a href="/2019/09/15/Java并发总结-并发基础一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/15/Java并发总结-并发基础一/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -541,7 +541,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[5] Attach Listener //提供一种jvm进程间通信的能力，能让一个进程传命令给另外一个进程，并让它执行内部的一些操作</div><div class="line">[4] Signal Dispatcher //分发处理发送给JVM信号的线程</div><div class="line">[3] Finalizer //调用对象finalize方法的线程</div><div class="line">[2] Reference Handler //清除Reference的线程</div><div class="line">[1] main //main线程，用户程序入口</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/15/《Java并发编程的艺术》总结·并发基础一/#more" rel="contents">
+            <a class="btn" href="/2019/09/15/Java并发总结-并发基础一/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -584,7 +584,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/08/31/《Java并发编程的艺术》总结·底层原理/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/08/31/Java并发总结-底层原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -606,8 +606,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/08/31/《Java并发编程的艺术》总结·底层原理/" itemprop="url">
-                  《Java并发编程的艺术》总结·底层原理
+                <a class="post-title-link" href="/2019/08/31/Java并发总结-底层原理/" itemprop="url">
+                  Java并发总结-底层原理
                 </a>
               
             
@@ -664,8 +664,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/08/31/《Java并发编程的艺术》总结·底层原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/08/31/《Java并发编程的艺术》总结·底层原理/" itemprop="commentCount"></span>
+                <a href="/2019/08/31/Java并发总结-底层原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/08/31/Java并发总结-底层原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -703,7 +703,7 @@
 <li><p><strong>协程</strong>。在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/31/《Java并发编程的艺术》总结·底层原理/#more" rel="contents">
+            <a class="btn" href="/2019/08/31/Java并发总结-底层原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1601,7 +1601,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

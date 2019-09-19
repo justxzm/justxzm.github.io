@@ -90,14 +90,16 @@
 <meta name="description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
 <meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发总结-并发基础(二)">
-<meta property="og:url" content="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/index.html">
+<meta property="og:title" content="Java并发总结-线程间通信">
+<meta property="og:url" content="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
-<meta property="og:updated_time" content="2019-09-17T13:13:26.186Z">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091901.png">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091902.png">
+<meta property="og:updated_time" content="2019-09-19T00:48:16.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java并发总结-并发基础(二)">
+<meta name="twitter:title" content="Java并发总结-线程间通信">
 <meta name="twitter:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
 <meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/"/>
 
 
 
 
 
-  <title> Java并发总结-并发基础(二) | JUST DO IT </title>
+  <title> Java并发总结-线程间通信 | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -293,7 +295,7 @@
             
             
               
-                Java并发总结-并发基础(二)
+                Java并发总结-线程间通信
               
             
           </h1>
@@ -349,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/17/Java并发总结-并发基础二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-并发基础二/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/Java并发总结-线程间通信/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-线程间通信/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,7 +391,39 @@
 <p>下图描述了对象、对象的监视器、同步队列和执行线程之间的关系。</p>
 <p><img src="/images/并发编程/2019091701.png" alt=""></p>
 <p>从上图可以看到，任意线程对Object（Object由synchronized保护）的访问，首先要<strong>获得Object的监视器</strong>。如果获取失败，线程<strong>进入同步队列</strong>，线程<strong>状态变为BLOCKED</strong>。当访问Object的前驱（获得了锁的线程）释放了锁，则<strong>该释放操作唤醒阻塞在同步队列中的线程</strong>，使其<strong>重新尝试对监视器的获取</strong>。</p>
-<h3 id="等待-通知机制"><a href="#等待-通知机制" class="headerlink" title="等待/通知机制"></a>等待/通知机制</h3><p>待续。</p>
+<h3 id="等待-通知机制"><a href="#等待-通知机制" class="headerlink" title="等待/通知机制"></a>等待/通知机制</h3><p>一个线程修改了一个对象的值，而另一个线程感知到了变化，然后进行相应的操作，整个过程开始于一个线程，而最终执行又是另一个线程。</p>
+<p>前者是<strong>生产者</strong>，后者就是<strong>消费者</strong>，这种模式隔离了<strong>“做什么”（what）</strong>和<strong>“怎么做”（How）</strong>，在功能层面上实现了解耦，体系结构上具备了良好的伸缩性，但是在Java语言中如何实现类似的功能呢？</p>
+<p>简单的办法是让消费者线程不断地<strong>循环检查</strong>变量<strong>是否符合预期</strong>，如下代码所示，在while循环中设置不满足的条件，如果条件满足则退出while循环，从而完成消费者的工作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (value != desire) &#123;</div><div class="line">	Thread.sleep(<span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line">doSomething();</div></pre></td></tr></table></figure>
+<p>上面这段伪代码在条件不满足时就睡眠一段时间，这样做的目的是防止过快的“无效”尝试，这种方式看似能够解实现所需的功能，但是却存在如下问题：</p>
+<ol>
+<li><strong>难以确保及时性</strong>。在睡眠时，基本不消耗处理器资源，但是如果睡得过久，就不能及时发现条件已经变化，也就是及时性难以保证。</li>
+<li><strong>难以降低开销</strong>。如果降低睡眠的时间，比如休眠1毫秒，这样消费者能更加迅速地发现条件变化，但是却可能消耗更多的处理器资源，造成了无端的浪费。</li>
+</ol>
+<p>以上两个问题，看似矛盾难以调和，但是Java通过内置的<strong>等待/通知机制</strong>能够很好地解决这个矛盾并实现所需的功能。</p>
+<p><strong>等待/通知</strong>的相关方法是<strong>任意Java对象都具备</strong>的，因为这些方法被定义在所有对象的<strong>超类java.lang.Object</strong>上，方法和描述如下图：</p>
+<p><img src="/images/并发编程/2019091901.png" alt=""></p>
+<p><strong>等待/通知机制</strong>，是指一个线程A调用了<strong>对象O的wait()方法</strong>进入<strong>等待状态</strong>，而另一个线程B调用了<strong>对象O</strong>的<strong>notify()</strong>或者<strong>notifyAll()</strong>方法，线程A收到通知后从<strong>对象O的wait()</strong>方法返回，进而执行后续操作。</p>
+<p>上述两个线程通过<strong>对象O</strong>来完成交互，而对象上的<strong>wait()</strong>和<strong>notify/notifyAll()</strong>的关系就如同开关信号一样，用来完成等待方和通知方之间的交互工作。</p>
+<p>下例中，创建了两个线程——<strong>WaitThread</strong>和<strong>NotifyThread</strong>，前者检查flag值是否为false，如果符合要求，进行后续操作，否则在lock上等待，后者在睡眠了一段时间后对lock进行通知，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitNotify</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">static</span> Object lock = <span class="keyword">new</span> Object();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		Thread waitThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Wait(), <span class="string">"WaitThread"</span>);</div><div class="line">		waitThread.start();</div><div class="line">		TimeUnit.SECONDS.sleep(<span class="number">1</span>);</div><div class="line">		Thread notifyThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Notify(), <span class="string">"NotifyThread"</span>);</div><div class="line">		notifyThread.start();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Wait</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="comment">// 加锁，拥有lock的Monitor</span></div><div class="line">			<span class="keyword">synchronized</span> (lock) &#123;</div><div class="line">				<span class="comment">// 当条件不满足时，继续wait，同时释放了lock的锁</span></div><div class="line">				<span class="keyword">while</span> (flag) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						System.out.println(Thread.currentThread()</div><div class="line">								+ <span class="string">" flag is true. wait@ "</span></div><div class="line">								+ <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>)</div><div class="line">										.format(<span class="keyword">new</span> Date()));</div><div class="line">						lock.wait();</div><div class="line">						System.out.println(Thread.currentThread()+<span class="string">"拿到锁，继续执行。"</span>);</div><div class="line">					&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="comment">// 条件满足时，完成工作</span></div><div class="line">				System.out.println(Thread.currentThread()</div><div class="line">						+ <span class="string">" flag is false. running@ "</span></div><div class="line">						+ <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()));</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Notify</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="comment">// 加锁，拥有lock的Monitor</span></div><div class="line">			<span class="keyword">synchronized</span> (lock) &#123;</div><div class="line">				<span class="comment">// 获取lock的锁，然后进行通知，通知时不会释放lock的锁，</span></div><div class="line">				<span class="comment">// 直到当前线程释放了lock后，WaitThread才能从wait方法中返回</span></div><div class="line">				System.out.println(Thread.currentThread()</div><div class="line">						+ <span class="string">" hold lock. notify@ "</span></div><div class="line">						+ <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()));</div><div class="line">				lock.notifyAll();</div><div class="line">				flag = <span class="keyword">false</span>;</div><div class="line">				SleepUtils.second(<span class="number">5</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="comment">// 再次加锁</span></div><div class="line">			<span class="keyword">synchronized</span> (lock) &#123;</div><div class="line">				System.out.println(Thread.currentThread()</div><div class="line">						+ <span class="string">" hold lock again. sleep@ "</span></div><div class="line">						+ <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()));</div><div class="line">				SleepUtils.second(<span class="number">5</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Thread[WaitThread,5,main] flag is true. wait@ 08:32:25</div><div class="line">Thread[NotifyThread,5,main] hold lock. notify@ 08:32:26</div><div class="line">Thread[NotifyThread,5,main] hold lock again. sleep@ 08:32:31 //3</div><div class="line">Thread[WaitThread,5,main]拿到锁，继续执行。 //4</div><div class="line">Thread[WaitThread,5,main] flag is false. running@ 08:32:36 //4</div></pre></td></tr></table></figure>
+<p>上述3和4输出的顺序可能会互换，上述例子主要说明了调用<strong>wait()</strong>、<strong>notify()</strong>以及<strong>notifyAll()</strong>时需要注意的细节：</p>
+<ol>
+<li>使用wait()、notify()和notifyAll()时需要<strong>先对调用对象加锁</strong>。</li>
+<li>调用wait()方法后，线程状态<strong>由RUNNING变为WAITING</strong>，并将当前线程放置到对象的等待队列。</li>
+<li>notify()或notifyAll()方法调用后，<strong>等待线程依旧不会从wait()返回</strong>，需要调用notify()或notifAll()的线程释放锁之后，等待线程才有机会从wait()返回。</li>
+<li>notify()方法将等待队列中的一个等待线程<strong>从等待队列中移到同步队列中</strong>，而notifyAll()方法则是将等待队列中所有的线程全部移到同步队列，被移动的<strong>线程状态由WAITING变为BLOCKED</strong>。</li>
+<li>从wait()方法返回的前提是<strong>获得了调用对象的锁</strong>。</li>
+</ol>
+<p>上述细节中可以看到，<strong>等待/通知机制依托于同步机制</strong>，其目的就是确保等待线程从wait()方法返回时能够感知到通知线程对变量做出的修改。下图描述了上例的运行过程：</p>
+<p><img src="/images/并发编程/2019091902.png" alt=""></p>
+<p>图中执行顺序：</p>
+<ol>
+<li><strong>WaitThread</strong>首先获取了对象的锁，然后调用<strong>对象的wait()方法</strong>，从而放弃了锁并进入了对象的<strong>等待队列WaitQueue</strong>中，进入等待状态。</li>
+<li>由于<strong>WaitThread</strong>释放了对象的锁，<strong>NotifyThread</strong>随后获取了对象的锁，并调用<strong>对象的notify()方法</strong>，将<strong>WaitThread</strong>从<strong>WaitQueue</strong>移到<strong>SynchronizedQueue</strong>中，此时<strong>WaitThread</strong>的状态变为<strong>阻塞</strong>状态。</li>
+<li><strong>NotifyThread</strong>释放了锁之后，<strong>WaitThread</strong>再次获取到锁并从<strong>wait()</strong>方法返回继续执行。</li>
+</ol>
 
       
     </div>
@@ -432,8 +466,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/15/Java并发总结-并发基础一/" rel="prev" title="Java并发总结-并发基础(一)">
-                Java并发总结-并发基础(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/15/Java并发总结-线程基础/" rel="prev" title="Java并发总结-线程基础">
+                Java并发总结-线程基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -460,8 +494,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2019/09/17/Java并发总结-并发基础二/"
-           data-title="Java并发总结-并发基础(二)" data-url="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
+      <div class="ds-thread" data-thread-key="2019/09/17/Java并发总结-线程间通信/"
+           data-title="Java并发总结-线程间通信" data-url="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/">
       </div>
     
   </div>

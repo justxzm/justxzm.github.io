@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-并发基础二/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -292,8 +292,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/09/17/Java并发总结-并发基础二/" itemprop="url">
-                  Java并发总结-并发基础(二)
+                <a class="post-title-link" href="/2019/09/17/Java并发总结-线程间通信/" itemprop="url">
+                  Java并发总结-线程间通信
                 </a>
               
             
@@ -350,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/17/Java并发总结-并发基础二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-并发基础二/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/Java并发总结-线程间通信/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/17/Java并发总结-线程间通信/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,7 +385,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Synchronized</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 对Synchronized Class对象进行加锁</span></div><div class="line">		<span class="keyword">synchronized</span> (Synchronized.class) &#123;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 静态同步方法，对Synchronized Class对象进行加锁</span></div><div class="line">		m();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/17/Java并发总结-并发基础二/#more" rel="contents">
+            <a class="btn" href="/2019/09/17/Java并发总结-线程间通信/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -428,7 +428,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/Java并发总结-并发基础一/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/Java并发总结-线程基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -450,8 +450,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/09/15/Java并发总结-并发基础一/" itemprop="url">
-                  Java并发总结-并发基础(一)
+                <a class="post-title-link" href="/2019/09/15/Java并发总结-线程基础/" itemprop="url">
+                  Java并发总结-线程基础
                 </a>
               
             
@@ -508,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/15/Java并发总结-并发基础一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/15/Java并发总结-并发基础一/" itemprop="commentCount"></span>
+                <a href="/2019/09/15/Java并发总结-线程基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/15/Java并发总结-线程基础/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -541,7 +541,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[5] Attach Listener //提供一种jvm进程间通信的能力，能让一个进程传命令给另外一个进程，并让它执行内部的一些操作</div><div class="line">[4] Signal Dispatcher //分发处理发送给JVM信号的线程</div><div class="line">[3] Finalizer //调用对象finalize方法的线程</div><div class="line">[2] Reference Handler //清除Reference的线程</div><div class="line">[1] main //main线程，用户程序入口</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/15/Java并发总结-并发基础一/#more" rel="contents">
+            <a class="btn" href="/2019/09/15/Java并发总结-线程基础/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

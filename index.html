@@ -378,7 +378,7 @@
 
       
         
-          <h2 id="等待超时模式"><a href="#等待超时模式" class="headerlink" title="等待超时模式"></a>等待超时模式</h2><p><strong>使用场景</strong>：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。</p>
+          <h3 id="等待超时模式"><a href="#等待超时模式" class="headerlink" title="等待超时模式"></a>等待超时模式</h3><p><strong>使用场景</strong>：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。</p>
 <p>前面的章节介绍了<strong>等待/通知的经典范式</strong>，即<strong>加锁</strong>、<strong>条件循环</strong>和<strong>处理逻辑</strong>3个步骤，而这种范式<strong>无法做到超时等待</strong>。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示：</p>
 <p>假设<strong>超时时间段是T</strong>，那么可以推断出在当前时间<strong>now+T之后就会超时</strong>。</p>
 <p>定义如下变量：</p>
@@ -540,7 +540,7 @@
 
       
         
-          <h2 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h2><p><strong>volatile</strong>和<strong>synchronized</strong></p>
+          <h3 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h3><p><strong>volatile</strong>和<strong>synchronized</strong></p>
 <p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是不必过多使用<strong>volatile</strong>，因为它会<strong>降低程序执行的效率</strong>。</p>
 <p>关键字<strong>synchronized</strong>可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，只能有一个线程处于方法或者同步块中，它保证了线程对变量访问的<strong>可见性</strong>和<strong>排他性</strong>。</p>
 <p>如下使用了同步块和同步方法，通过使用<strong>javap</strong>工具查看生成的<strong>class</strong>文件信息来分析<strong>synchronized</strong>关键字的实现细节：</p>

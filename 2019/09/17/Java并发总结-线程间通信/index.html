@@ -87,20 +87,20 @@
 
 
 
-<meta name="description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
+<meta name="description" content="常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，">
 <meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发总结-线程间通信">
 <meta property="og:url" content="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
+<meta property="og:description" content="常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091901.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091902.png">
-<meta property="og:updated_time" content="2019-09-19T00:48:16.403Z">
+<meta property="og:updated_time" content="2019-09-19T08:52:30.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发总结-线程间通信">
-<meta name="twitter:description" content="线程间通信常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同">
+<meta name="twitter:description" content="常用关键字volatile和synchronized 关键字volatile可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从共享内存中获取，而对它的改变必须同步刷新回共享内存，它能保证所有线程对变量访问的可见性。但是不必过多使用volatile，因为它会降低程序执行的效率。 关键字synchronized可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，">
 <meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019091701.png">
 
 
@@ -378,7 +378,7 @@
       
 
       
-        <h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><h3 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h3><p><strong>volatile</strong>和<strong>synchronized</strong></p>
+        <h3 id="常用关键字"><a href="#常用关键字" class="headerlink" title="常用关键字"></a>常用关键字</h3><p><strong>volatile</strong>和<strong>synchronized</strong></p>
 <p>关键字<strong>volatile</strong>可以用来修饰字段（成员变量），就是告知程序任何对该变量的访问均需要从<strong>共享内存</strong>中获取，而对它的改变<strong>必须同步刷新回共享内存</strong>，它能保证所有线程对变量访问的<strong>可见性</strong>。但是不必过多使用<strong>volatile</strong>，因为它会<strong>降低程序执行的效率</strong>。</p>
 <p>关键字<strong>synchronized</strong>可以修饰方法或者以同步块的形式来进行使用，它主要确保多个线程在同一个时刻，只能有一个线程处于方法或者同步块中，它保证了线程对变量访问的<strong>可见性</strong>和<strong>排他性</strong>。</p>
 <p>如下使用了同步块和同步方法，通过使用<strong>javap</strong>工具查看生成的<strong>class</strong>文件信息来分析<strong>synchronized</strong>关键字的实现细节：</p>
@@ -424,6 +424,22 @@
 <li>由于<strong>WaitThread</strong>释放了对象的锁，<strong>NotifyThread</strong>随后获取了对象的锁，并调用<strong>对象的notify()方法</strong>，将<strong>WaitThread</strong>从<strong>WaitQueue</strong>移到<strong>SynchronizedQueue</strong>中，此时<strong>WaitThread</strong>的状态变为<strong>阻塞</strong>状态。</li>
 <li><strong>NotifyThread</strong>释放了锁之后，<strong>WaitThread</strong>再次获取到锁并从<strong>wait()</strong>方法返回继续执行。</li>
 </ol>
+<h3 id="等待-通知-经典范式"><a href="#等待-通知-经典范式" class="headerlink" title="等待/通知-经典范式"></a>等待/通知-经典范式</h3><p>等待方遵循如下原则：</p>
+<ol>
+<li>获取对象的锁。</li>
+<li>如果条件不满足，那么调用对象的wait()方法，被通知后仍要检查条件。</li>
+<li>条件满足则执行对应的逻辑。</li>
+</ol>
+<p>对应的伪代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(对象) &#123;</div><div class="line">	<span class="keyword">while</span>(条件不满足) &#123;</div><div class="line">		对象.wait();</div><div class="line">	&#125;</div><div class="line">	对应的处理逻辑</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通知方遵循如下原则：</p>
+<ol>
+<li>获得对象的锁。</li>
+<li>改变条件。</li>
+<li>通知所有等待在对象上的线程。</li>
+</ol>
+<p>对应的伪代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(对象) &#123;</div><div class="line">	改变条件</div><div class="line">	对象.notifyAll();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -621,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程间通信"><span class="nav-number">1.</span> <span class="nav-text">线程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用关键字"><span class="nav-number">1.1.</span> <span class="nav-text">常用关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待-通知机制"><span class="nav-number">1.2.</span> <span class="nav-text">等待/通知机制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用关键字"><span class="nav-number">1.</span> <span class="nav-text">常用关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待-通知机制"><span class="nav-number">2.</span> <span class="nav-text">等待/通知机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待-通知-经典范式"><span class="nav-number">3.</span> <span class="nav-text">等待/通知-经典范式</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java并发系列," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="等待超时模式使用场景：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。 前面的章节介绍了等待/通知的经典范式，即加锁、条件循环和处理逻辑3个步骤，而这种范式无法做到超时等待。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示： 假设超时时间段是T，那么可以推断出在当前时间now+T之后就">
+<meta name="keywords" content="Java并发系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java并发总结-线程应用实例">
+<meta property="og:url" content="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="等待超时模式使用场景：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。 前面的章节介绍了等待/通知的经典范式，即加锁、条件循环和处理逻辑3个步骤，而这种范式无法做到超时等待。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示： 假设超时时间段是T，那么可以推断出在当前时间now+T之后就">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091903.png">
+<meta property="og:updated_time" content="2019-09-19T12:32:16.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java并发总结-线程应用实例">
+<meta name="twitter:description" content="等待超时模式使用场景：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。 前面的章节介绍了等待/通知的经典范式，即加锁、条件循环和处理逻辑3个步骤，而这种范式无法做到超时等待。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示： 假设超时时间段是T，那么可以推断出在当前时间now+T之后就">
+<meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019091903.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/"/>
+
+
+
+
+
+  <title> Java并发总结-线程应用实例 | JUST DO IT </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java并发总结-线程应用实例
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-19T18:30:02+08:00">
+                2019-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java并发/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/19/Java并发总结-线程应用实例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/19/Java并发总结-线程应用实例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="等待超时模式"><a href="#等待超时模式" class="headerlink" title="等待超时模式"></a>等待超时模式</h2><p><strong>使用场景</strong>：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。</p>
+<p>前面的章节介绍了<strong>等待/通知的经典范式</strong>，即<strong>加锁</strong>、<strong>条件循环</strong>和<strong>处理逻辑</strong>3个步骤，而这种范式<strong>无法做到超时等待</strong>。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示：</p>
+<p>假设<strong>超时时间段是T</strong>，那么可以推断出在当前时间<strong>now+T之后就会超时</strong>。</p>
+<p>定义如下变量：</p>
+<ul>
+<li>等待持续时间：<strong>REMAINING</strong>=T。</li>
+<li>超时时间：<strong>FUTURE</strong>=now+T。</li>
+</ul>
+<p>这时仅需要<strong>wait(REMAINING)</strong>即可，在<strong>wait(REMAINING)</strong>返回之后会将执行：<strong>REMAINING=FUTURE–now</strong>。如果<strong>REMAINING</strong>小于等于0，表示已经超时，直接退出，否则将继续执行<strong>wait(REMAINING)</strong>。</p>
+<a id="more"></a>
+<p>上述等待超时模式的<strong>伪代码如下</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 对当前对象加锁</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">get</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">	<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</div><div class="line">	<span class="keyword">long</span> remaining = mills;</div><div class="line">	<span class="comment">// 当超时大于0并且result返回值不满足要求</span></div><div class="line">	<span class="keyword">while</span> ((result == <span class="keyword">null</span>) &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</div><div class="line">		wait(remaining);</div><div class="line">		remaining = future - System.currentTimeMillis();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>等待超时模式就是在<strong>等待/通知范式</strong>基础上增加了<strong>超时控制</strong>，这使得该模式相比原有范式更具有灵活性，因为即使方法执行时间过长，也不会“永久”阻塞调用者，而是会按照调用者的要求“按时”返回。</p>
+<h2 id="数据库连接池示例"><a href="#数据库连接池示例" class="headerlink" title="数据库连接池示例"></a>数据库连接池示例</h2><p>我们使用<strong>等待超时模式</strong>来构造一个简单的数据库连接池，在示例中模拟从连接池中<strong>获取</strong>、<strong>使用</strong>和<strong>释放</strong>连接的过程，而客户端获取连接的过程被设定为<strong>等待超时的模式</strong>，也就是在1000毫秒内如果无法获取到可用连接，将会返回给客户端一个null。设定连接池的大小为10个，然后通过调节客户端的线程数来模拟无法获取连接的场景。</p>
+<p><strong>首先</strong>看一下连接池的定义。它通过构造函数初始化连接的最大上限，通过一个<strong>双向队列</strong>来维护连接，调用方需要先调用<strong>fetchConnection(long)</strong>方法来指定在多少毫秒内超时获取连接，当连接使用完成后，需要调用<strong>releaseConnection(Connection)</strong>方法将连接放回线程池，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPool</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> LinkedList&lt;Connection&gt; pool = <span class="keyword">new</span> LinkedList&lt;Connection&gt;();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConnectionPool</span><span class="params">(<span class="keyword">int</span> initialSize)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (initialSize &gt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initialSize; i++) &#123;</div><div class="line">				pool.addLast(ConnectionDriver.createConnection());</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">releaseConnection</span><span class="params">(Connection connection)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">synchronized</span> (pool) &#123;</div><div class="line">				<span class="comment">// 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接</span></div><div class="line">				pool.addLast(connection);</div><div class="line">				pool.notifyAll();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 在mills内无法获取到连接，将会返回null</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Connection <span class="title">fetchConnection</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		<span class="keyword">synchronized</span> (pool) &#123;</div><div class="line">			<span class="comment">// 完全超时</span></div><div class="line">			<span class="keyword">if</span> (mills &lt;= <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">while</span> (pool.isEmpty()) &#123;</div><div class="line">					pool.wait();</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> pool.removeFirst();</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</div><div class="line">				<span class="keyword">long</span> remaining = mills;</div><div class="line">				<span class="keyword">while</span> (pool.isEmpty() &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</div><div class="line">					pool.wait(remaining);</div><div class="line">					remaining = future - System.currentTimeMillis();</div><div class="line">				&#125;</div><div class="line">				Connection result = <span class="keyword">null</span>;</div><div class="line">				<span class="keyword">if</span> (!pool.isEmpty()) &#123;</div><div class="line">					result = pool.removeFirst();</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> result;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于<strong>java.sql.Connection</strong>是一个接口，最终的实现是由数据库驱动提供方来实现的，考虑到只是个示例，我们通过动态代理构造了一个Connection，该Connection的代理实现仅仅是在commit()方法调用时休眠100毫秒，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionDriver</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></div><div class="line">				<span class="keyword">throws</span> Throwable &#123;</div><div class="line">			<span class="keyword">if</span> (method.getName().equals(<span class="string">"commit"</span>)) &#123;</div><div class="line">				TimeUnit.MILLISECONDS.sleep(<span class="number">100</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 创建一个Connection的代理，在commit时休眠100毫秒</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Connection <span class="title">createConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(),<span class="keyword">new</span> Class[]&#123;Connection.class&#125;, <span class="keyword">new</span> ConnectionHandler());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面通过一个示例来测试简易数据库连接池的工作情况，模拟客户端ConnectionRunner<strong>获取</strong>、<strong>使用</strong>、最后<strong>释放</strong>连接的过程，当它使用时连接将会增加获取到连接的数量，反之，将会增加未获取到连接的数量，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPoolTest</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> ConnectionPool pool = <span class="keyword">new</span> ConnectionPool(<span class="number">10</span>);</div><div class="line">	<span class="comment">// 保证所有ConnectionRunner能够同时开始</span></div><div class="line">	<span class="keyword">static</span> CountDownLatch start = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</div><div class="line">	<span class="comment">// main线程将会等待所有ConnectionRunner结束后才能继续执行</span></div><div class="line">	<span class="keyword">static</span> CountDownLatch end;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 线程数量，可以修改线程数量进行观察</span></div><div class="line">		<span class="keyword">int</span> threadCount = <span class="number">10</span>;</div><div class="line">		end = <span class="keyword">new</span> CountDownLatch(threadCount);</div><div class="line">		<span class="keyword">int</span> count = <span class="number">20</span>;</div><div class="line">		AtomicInteger got = <span class="keyword">new</span> AtomicInteger();</div><div class="line">		AtomicInteger notGot = <span class="keyword">new</span> AtomicInteger();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</div><div class="line">			Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ConnetionRunner(count, got, notGot),</div><div class="line">					<span class="string">"ConnectionRunnerThread"</span>);</div><div class="line">			thread.start();</div><div class="line">		&#125;</div><div class="line">		start.countDown();</div><div class="line">		end.await();</div><div class="line">		System.out.println(<span class="string">"total invoke: "</span> + (threadCount * count));</div><div class="line">		System.out.println(<span class="string">"got connection: "</span> + got);</div><div class="line">		System.out.println(<span class="string">"not got connection "</span> + notGot);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnetionRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> count;</div><div class="line">		AtomicInteger got;</div><div class="line">		AtomicInteger notGot;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="title">ConnetionRunner</span><span class="params">(<span class="keyword">int</span> count, AtomicInteger got,</span></span></div><div class="line">				AtomicInteger notGot) &#123;</div><div class="line">			<span class="keyword">this</span>.count = count;</div><div class="line">			<span class="keyword">this</span>.got = got;</div><div class="line">			<span class="keyword">this</span>.notGot = notGot;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				start.await();</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					<span class="comment">// 从线程池中获取连接，如果1000ms内无法获取到，将会返回null</span></div><div class="line">					<span class="comment">// 分别统计连接获取的数量got和未获取到的数量notGot</span></div><div class="line">					Connection connection = pool.fetchConnection(<span class="number">1000</span>);</div><div class="line">					<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">						<span class="keyword">try</span> &#123;</div><div class="line">							connection.createStatement();</div><div class="line">							connection.commit();</div><div class="line">						&#125; <span class="keyword">finally</span> &#123;</div><div class="line">							pool.releaseConnection(connection);</div><div class="line">							got.incrementAndGet();</div><div class="line">						&#125;</div><div class="line">					&#125; <span class="keyword">else</span> &#123;</div><div class="line">						notGot.incrementAndGet();</div><div class="line">					&#125;</div><div class="line">				&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">				&#125; <span class="keyword">finally</span> &#123;</div><div class="line">					count--;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			end.countDown();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述示例中使用了<strong>CountDownLatch</strong>来确保ConnectionRunnerThread能够<strong>同时开始执行</strong>，并且在全部结束之后，才使main线程从等待状态中返回。</p>
+<p>当前设定的场景是10个线程同时运行获取连接池（10个连接）中的连接，通过调节线程数量来观察未获取到连接的情况：线程数、总获取次数、获取到的数量、未获取到的数量以及未获取到的比率（实际输出可能与此表不同）。</p>
+<p><img src="/images/并发编程/2019091903.png" alt=""></p>
+<p>从表中的数据统计可以看出，在<strong>资源一定</strong>的情况下（连接池中的10个连接），随着客户端线程的逐步增加，客户端出现超时<strong>无法获取连接</strong>的<strong>比率不断升高</strong>。虽然客户端线程在这种超时获取的模式下会出现连接无法获取的情况，但是它能够保证客户端线程<strong>不会一直挂在连接获取的操作</strong>上，而是<strong>“按时”返回</strong>，并告知客户端连接获取出现问题，是系统的一种<strong>自我保护机制</strong>。数据库连接池的设计也可以复用到其他的资源获取的场景，针对<strong>昂贵资源</strong>（比如<strong>数据库连接</strong>）的获取都应该加以超时限制。</p>
+<h2 id="线程池技术及示例"><a href="#线程池技术及示例" class="headerlink" title="线程池技术及示例"></a>线程池技术及示例</h2><p>待续。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java并发系列/" rel="tag"># Java并发系列</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/17/Java并发总结-线程间通信/" rel="prev" title="Java并发总结-线程间通信">
+                Java并发总结-线程间通信 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/09/19/Java并发总结-线程应用实例/"
+           data-title="Java并发总结-线程应用实例" data-url="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Try.Catch" />
+          <p class="site-author-name" itemprop="name">Try.Catch</p>
+           
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客友链
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#等待超时模式"><span class="nav-number">1.</span> <span class="nav-text">等待超时模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接池示例"><span class="nav-number">2.</span> <span class="nav-text">数据库连接池示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池技术及示例"><span class="nav-number">3.</span> <span class="nav-text">线程池技术及示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"justxzm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

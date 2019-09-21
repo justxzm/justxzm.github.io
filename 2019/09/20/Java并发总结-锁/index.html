@@ -87,17 +87,22 @@
 
 
 
-<meta name="description" content="待续。">
+<meta name="description" content="Lock接口锁能够防止多个线程同时访问共享资源（但是有些锁可以允许多个线程并发的访问共享资源，比如读写锁）。 在Lock接口出现之前，Java程序是靠synchronized关键字实现锁功能的，而Java SE 5之后，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字类似的同步功能，只是在使用时需要显式地获取和释放锁。 虽然它缺少了（通过sync">
 <meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发总结-锁">
 <meta property="og:url" content="https://justxzm.github.io/2019/09/20/Java并发总结-锁/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="待续。">
-<meta property="og:updated_time" content="2019-09-20T14:10:54.324Z">
+<meta property="og:description" content="Lock接口锁能够防止多个线程同时访问共享资源（但是有些锁可以允许多个线程并发的访问共享资源，比如读写锁）。 在Lock接口出现之前，Java程序是靠synchronized关键字实现锁功能的，而Java SE 5之后，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字类似的同步功能，只是在使用时需要显式地获取和释放锁。 虽然它缺少了（通过sync">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019092101.png">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019092102.png">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019092103.png">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019092104.png">
+<meta property="og:updated_time" content="2019-09-21T14:39:55.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发总结-锁">
-<meta name="twitter:description" content="待续。">
+<meta name="twitter:description" content="Lock接口锁能够防止多个线程同时访问共享资源（但是有些锁可以允许多个线程并发的访问共享资源，比如读写锁）。 在Lock接口出现之前，Java程序是靠synchronized关键字实现锁功能的，而Java SE 5之后，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字类似的同步功能，只是在使用时需要显式地获取和释放锁。 虽然它缺少了（通过sync">
+<meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019092101.png">
 
 
 
@@ -374,7 +379,92 @@
       
 
       
-        <p>待续。</p>
+        <h2 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h2><p>锁能够<strong>防止多个线程同时访问共享资源</strong>（但是有些锁<strong>可以允许多个线程并发的访问共享资源</strong>，比如<strong>读写锁</strong>）。</p>
+<p>在<strong>Lock</strong>接口出现之前，Java程序是靠<strong>synchronized</strong>关键字实现锁功能的，而<strong>Java SE 5之后</strong>，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字<strong>类似的同步功能</strong>，只是在使用时<strong>需要显式地获取和释放锁</strong>。</p>
+<p>虽然它<strong>缺少了</strong>（通过synchronized块或者方法所提供的）<strong>隐式获取释放锁的便捷性</strong>，但是<strong>却拥有了锁获取与释放的可操作性</strong>、<strong>可中断的获取锁</strong>以及<strong>超时获取锁</strong>等多种synchronized关键字所不具备的同步特性。</p>
+<p>使用<strong>synchronized</strong>关键字将会<strong>隐式地获取锁</strong>，但是它<strong>将锁的获取和释放固化</strong>了，也就是先获取再释放。当然，这种方式简化了同步的管理，可是扩展性没有<strong>显示的锁获取和释放</strong>来的好。</p>
+<p><strong>例如：</strong>手把手进行锁获取和释放，先获得锁A，然后再获取锁B，当锁B获得后，释放锁A同时获取锁C，当锁C获得后，再释放B同时获取锁D，以此类推。这种场景下，<strong>synchronized</strong>关键字就<strong>不那么容易实现</strong>了，而使用<strong>Lock</strong>却<strong>容易许多</strong>。</p>
+<p>Lock的使用的方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line">lock.lock();</div><div class="line"><span class="comment">//不要将获取锁的过程写在try块中，因为如果在获取锁（自定义锁的实现）时发生了异常，异常抛出的同时，也会导致锁无故释放。</span></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	<span class="comment">//TODO</span></div><div class="line">&#125; <span class="keyword">finally</span> &#123;</div><div class="line">	<span class="comment">//在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。</span></div><div class="line">	lock.unlock();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>Lock接口提供的<strong>synchronized关键字所不具备的</strong>主要特性如下图：</p>
+<p><img src="/images/并发编程/2019092101.png" alt=""></p>
+<p>Lock是一个接口，它定义了<strong>锁获取和释放</strong>的基本操作，Lock的<strong>API</strong>如下：</p>
+<p><img src="/images/并发编程/2019092102.png" alt=""></p>
+<p><strong>lockInterruptibly()中断</strong>情况： </p>
+<ol>
+<li>线程在<strong>请求lock</strong>并<strong>被阻塞时</strong>，如果<strong>被interrupt</strong>，则“此线程会<strong>被唤醒</strong>并被<strong>要求处理InterruptedException</strong>”。</li>
+<li>并且如果线程<strong>已经被interrupt</strong>，<strong>再使用lockInterruptibly</strong>的时候，此线程也会<strong>被要求处理interruptedException</strong>。</li>
+</ol>
+<p>Lock接口的实现基本都是通过<strong>聚合了一个同步器的子类</strong>来<strong>完成线程访问控制</strong>的。</p>
+<h2 id="队列同步器"><a href="#队列同步器" class="headerlink" title="队列同步器"></a>队列同步器</h2><p><strong>队列同步器AbstractQueuedSynchronizer</strong>（以下简称同步器），是<strong>用来构建锁或者其他同步组件的基础框架</strong>，它使用了一个<strong>int成员变量表示同步状态</strong>，通过<strong>内置的FIFO队列</strong>来完成资源获取线程的排队工作，是<strong>实现大部分同步需求的基础</strong>。</p>
+<p>同步器的<strong>主要使用方式是继承</strong>：</p>
+<ul>
+<li>子类通过<strong>继承同步器</strong>并<strong>实现它的抽象方法</strong>来<strong>管理同步状态</strong>，同步器提供3个方法（<strong>getState()</strong>、<strong>setState(int newState)</strong>和<strong>compareAndSetState(int expect,int update)</strong>）来对同步状态进行更改，它们能够保证状态的改变是安全的。</li>
+<li>子类推荐被定义为<strong>自定义同步组件的静态内部类</strong>，同步器自身没有实现任何同步接口，它仅仅是定义了<strong>若干同步状态获取和释放的方法</strong>来供自定义同步组件使用，同步器既可以<strong>支持独占式地获取同步状态</strong>，也可以<strong>支持共享式地获取同步状态</strong>，这样就可以方便实现不同类型的同步组件（<strong>ReentrantLock</strong>、<strong>ReentrantReadWriteLock</strong>和<strong>CountDownLatch</strong>等）。</li>
+</ul>
+<p>同步器是<strong>实现锁</strong>（也可以是任意同步组件）的关键，在<strong>锁的实现中聚合同步器</strong>，利用同步器实现锁的语义。可以这样理解二者之间的关系：</p>
+<ul>
+<li><strong>锁是面向使用者的</strong>，它定义了使用者与锁交互的接口（比如可以允许两个线程并行访问），隐藏了实现细节。</li>
+<li><strong>同步器面向的是锁的实现者</strong>，它<strong>简化</strong>了<strong>锁的实现方式</strong>，<strong>屏蔽</strong>了同步状态管理、线程的排队、等待与唤醒等<strong>底层操作</strong>。锁和同步器很好地隔离了使用者和实现者所需关注的领域。</li>
+</ul>
+<h3 id="接口与示例"><a href="#接口与示例" class="headerlink" title="接口与示例"></a>接口与示例</h3><p>同步器的设计是基于<strong>模板方法模式</strong>的：</p>
+<ol>
+<li>使用者需要继承同步器并重写指定的方法。</li>
+<li>随后将同步器组合在自定义同步组件的实现中，并调用同步器提供的模板方法。</li>
+<li>这些模板方法将会调用使用者重写的方法。</li>
+</ol>
+<p>重写同步器指定的方法时，需要使用同步器提供的如下3个方法来<strong>访问或修改同步状态</strong>：</p>
+<ul>
+<li>getState()：获取当前同步状态。</li>
+<li>setState(int newState)：设置当前同步状态。</li>
+<li>compareAndSetState(int expect,int update)：使用CAS设置当前状态，该方法能够保证状态设置的原子性。</li>
+</ul>
+<p>同步器<strong>可重写的方法与描述</strong>如下：</p>
+<p><img src="/images/并发编程/2019092103.png" alt=""></p>
+<p>实现自定义同步组件时，将会调用同步器提供的模板方法，这些（部分）<strong>模板方法与描述</strong>如下：</p>
+<p><img src="/images/并发编程/2019092104.png" alt=""></p>
+<p>同步器提供的模板方法基本上分为3类：<strong>独占式获取与释放同步状态</strong>、<strong>共享式获取与释放同步状态</strong>和<strong>查询同步队列中的等待线程情况</strong>。自定义同步组件将使用同步器提供的模板方法来<strong>实现自己的同步语义</strong>。</p>
+<p>下面通过一个独占锁的示例来深入了解同步器的工作原理，独占锁就是在<strong>同一时刻只能有一个线程获取到锁</strong>，而<strong>其他</strong>获取锁的线程只能<strong>处于同步队列中等待</strong>，只有获取锁的线程<strong>释放了锁</strong>，后继的线程<strong>才能够获取锁</strong>，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mutex</span> <span class="keyword">implements</span> <span class="title">Lock</span> </span>&#123;</div><div class="line">	<span class="comment">// 静态内部类，自定义同步器</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Sync</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> </span>&#123;</div><div class="line">		<span class="comment">// 是否处于占用状态</span></div><div class="line">		<span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isHeldExclusively</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> getState() == <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 当状态为0的时候获取锁</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">			<span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, <span class="number">1</span>)) &#123;</div><div class="line">				setExclusiveOwnerThread(Thread.currentThread());</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 释放锁，将状态设置为0</span></div><div class="line">		<span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</div><div class="line">			<span class="keyword">if</span> (getState() == <span class="number">0</span>)&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException();</div><div class="line">			&#125;</div><div class="line">			setExclusiveOwnerThread(<span class="keyword">null</span>);</div><div class="line">			setState(<span class="number">0</span>);</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 返回一个Condition，每个condition都包含了一个condition队列</span></div><div class="line">		<span class="function">Condition <span class="title">newCondition</span><span class="params">()</span> </span>&#123; </div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> ConditionObject(); </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 仅需要将操作代理到Sync上即可</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Sync sync = <span class="keyword">new</span> Sync();</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123; sync.acquire(<span class="number">1</span>); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sync.tryAcquire(<span class="number">1</span>); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123; sync.release(<span class="number">1</span>); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> Condition <span class="title">newCondition</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sync.newCondition(); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLocked</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sync.isHeldExclusively(); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasQueuedThreads</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sync.hasQueuedThreads(); &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lockInterruptibly</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		sync.acquireInterruptibly(<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		<span class="keyword">return</span> sync.tryAcquireNanos(<span class="number">1</span>, unit.toNanos(timeout));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述示例中：</p>
+<ul>
+<li>独占锁Mutex是一个自定义同步组件，它在同一时刻只允许一个线程占有锁。</li>
+<li>Mutex中定义了一个静态内部类，该内部类继承了同步器并实现了独占式获取和释放同步状态：<ul>
+<li>在tryAcquire(int acquires)方法中，如果经过CAS设置成功（同步状态设置为1），则代表获取了同步状态。</li>
+<li>在tryRelease(int releases)方法中只是将同步状态重置为0。</li>
+</ul>
+</li>
+<li>用户使用Mutex时并不会直接和内部同步器的实现打交道，而是调用Mutex提供的方法。在Mutex的实现中，以获取锁的lock()方法为例，只需要在方法实现中调用同步器的模板方法acquire(int args)即可，当前线程调用该方法获取同步状态失败后会被加入到同步队列中等待，这样大大降低了实现一个可靠自定义同步组件的门槛。</li>
+</ul>
+<h2 id="重入锁"><a href="#重入锁" class="headerlink" title="重入锁"></a>重入锁</h2><p>重入锁ReentrantLock，就是<strong>支持重进入的锁</strong>，表示该锁能够<strong>支持一个线程对资源的重复加锁</strong>。除此之外，该锁的<strong>还支持获取锁时的公平和非公平性选择</strong>。</p>
+<p><strong>可重入性：</strong></p>
+<ul>
+<li>回忆在同步器一节中的示例（Mutex），同时考虑如下场景：当一个线程调用Mutex的lock()方法获取锁之后，如果再次调用lock()方法，则该线程将会被自己所阻塞，原因是Mutex在实现tryAcquire(int acquires)方法时没有考虑占有锁的线程再次获取锁的场景，而在调用tryAcquire(int acquires)方法时返回了false，导致该线程被阻塞。</li>
+<li>简单地说，Mutex是一个不支持重进入的锁。而<strong>synchronized关键字隐式的支持重进入</strong>，比如一个<strong>synchronized修饰的递归方法</strong>，在方法执行时，执行线程在<strong>获取了锁之后仍能连续多次地获得该锁</strong>，而不像Mutex由于获取了锁，而在下一次获取锁时出现阻塞自己的情况。</li>
+<li><strong>ReentrantLock</strong>虽然没能像synchronized关键字一样支持隐式的重进入，但是在调用lock()方法时，已经获取到锁的线程，能够再次调用lock()方法获取锁而不被阻塞。</li>
+</ul>
+<p><strong>公平性：</strong></p>
+<ul>
+<li>这里提到一个锁获取的公平性问题，如果<strong>在绝对时间上</strong>，<strong>先对锁进行获取的请求一定先被满足</strong>，那么这个<strong>锁是公平的</strong>，反之，是不公平的。公平的获取锁，也就是<strong>等待时间最长的线程最优先获取锁</strong>，也可以说<strong>锁获取是顺序的</strong>。ReentrantLock提供了一个构造函数，能够控制锁是否是公平的。</li>
+<li>事实上，<strong>公平的锁机制往往没有非公平的效率高</strong>，<strong>但是</strong>，并不是任何场景都是以TPS作为唯一的指标，<strong>公平锁能够减少“饥饿”发生的概率</strong>，等待越久的请求越是能够得到优先满足。</li>
+</ul>
+<p>下面将着重分析<strong>ReentrantLock</strong>是<strong>如何实现重进入和公平性获取锁</strong>的特性。</p>
+<h3 id="实现重进入"><a href="#实现重进入" class="headerlink" title="实现重进入"></a>实现重进入</h3><p>重进入是指任意线程在获取到锁之后能够再次获取该锁而不会被锁所阻塞，该特性的<strong>实现需要解决以下两个问题</strong>。</p>
+<ol>
+<li>线程再次获取锁。锁需要去<strong>识别获取锁的线程是否为当前占据锁的线程</strong>，如果是，则再次成功获取。</li>
+<li>锁的最终释放。线程重复n次获取了锁，随后在第n次释放该锁后，其他线程能够获取到该锁。锁的最终释放要求<strong>锁对于获取进行计数自增</strong>，计数表示当前锁被重复获取的次数，而<strong>锁被释放时，计数自减</strong>，当<strong>计数等于0时</strong>表示锁已经<strong>成功释放</strong>。</li>
+</ol>
+<p>ReentrantLock是通过<strong>组合自定义同步器</strong>来实现锁的获取与释放，以非公平性（默认的）实现为例，<strong>获取同步状态的代码</strong>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">nonfairTryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">	<span class="keyword">final</span> Thread current = Thread.currentThread();</div><div class="line">	<span class="keyword">int</span> c = getState();</div><div class="line">	<span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, acquires)) &#123;</div><div class="line">			setExclusiveOwnerThread(current);</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</div><div class="line">		<span class="keyword">int</span> nextc = c + acquires;</div><div class="line">		<span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</div><div class="line">		&#125;</div><div class="line">		setState(nextc);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该方法增加了再次获取同步状态的处理逻辑：通过判断当前线程是否为获取锁的线程来决定获取操作是否成功，如果是获取锁的线程再次请求，则将同步状态值进行增加并返回true，表示获取同步状态成功。</p>
+<p>成功获取锁的线程<strong>再次获取锁</strong>，只是<strong>增加了同步状态值</strong>，这也就要求ReentrantLock在<strong>释放同步状态时减少同步状态值</strong>，该方法的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> c = getState() - releases;</div><div class="line">	<span class="keyword">if</span> (Thread.currentThread() != getExclusiveOwnerThread())&#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">boolean</span> free = <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">		free = <span class="keyword">true</span>;</div><div class="line">		setExclusiveOwnerThread(<span class="keyword">null</span>);</div><div class="line">	&#125;</div><div class="line">	setState(c);</div><div class="line">	<span class="keyword">return</span> free;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果该<strong>锁被获取了n次</strong>，那么<strong>前(n-1)次tryRelease(int releases)方法必须返回false</strong>，而只有同步状态完全释放了，才能返回true。可以看到，该方法将同步状态是否为0作为最终释放的条件，当<strong>同步状态为0时</strong>，<strong>将占有线程设置为null</strong>，并<strong>返回true</strong>，表示<strong>释放成功</strong>。</p>
+<h3 id="公与非公平锁"><a href="#公与非公平锁" class="headerlink" title="公与非公平锁"></a>公与非公平锁</h3><p>公平性与否是针<strong>对获取锁而言</strong>的，如果一个<strong>锁是公平的</strong>，那么<strong>锁的获取顺序</strong>就应该<strong>符合请求的绝对时间顺序</strong>，也就是<strong>FIFO</strong>。</p>
+<p>回顾上一小节中介绍的<strong>nonfairTryAcquire(int acquires)</strong>方法，对于非公平锁，只要CAS设置同步状态成功，则表示当前线程获取了锁，而公平锁则不同，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</div><div class="line">	<span class="keyword">final</span> Thread current = Thread.currentThread();</div><div class="line">	<span class="keyword">int</span> c = getState();</div><div class="line">	<span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp; compareAndSetState(<span class="number">0</span>, acquires)) &#123;</div><div class="line">			setExclusiveOwnerThread(current);</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</div><div class="line">		<span class="keyword">int</span> nextc = c + acquires;</div><div class="line">		<span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</div><div class="line">		&#125;</div><div class="line">		setState(nextc);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该方法与nonfairTryAcquire(int acquires)比较，<strong>唯一不同</strong>的位置为判断条件多了<strong>hasQueuedPredecessors()</strong>方法，即<strong>加入了同步队列中当前节点是否有前驱节点的判断</strong>，如果该方法返回true，则表示有线程比当前线程更早地请求获取锁，因此需要等待前驱线程获取并释放锁之后才能继续获取锁。</p>
 
       
     </div>
@@ -470,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -553,6 +652,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lock接口"><span class="nav-number">1.</span> <span class="nav-text">Lock接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列同步器"><span class="nav-number">2.</span> <span class="nav-text">队列同步器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口与示例"><span class="nav-number">2.1.</span> <span class="nav-text">接口与示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重入锁"><span class="nav-number">3.</span> <span class="nav-text">重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现重进入"><span class="nav-number">3.1.</span> <span class="nav-text">实现重进入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公与非公平锁"><span class="nav-number">3.2.</span> <span class="nav-text">公与非公平锁</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -378,7 +378,7 @@
 
       
         
-          <h2 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h2><p>锁能够<strong>防止多个线程同时访问共享资源</strong>（但是有些锁<strong>可以允许多个线程并发的访问共享资源</strong>，比如<strong>读写锁</strong>）。</p>
+          <h1 id="Lock接口"><a href="#Lock接口" class="headerlink" title="Lock接口"></a>Lock接口</h1><p>锁能够<strong>防止多个线程同时访问共享资源</strong>（但是有些锁<strong>可以允许多个线程并发的访问共享资源</strong>，比如<strong>读写锁</strong>）。</p>
 <p>在<strong>Lock</strong>接口出现之前，Java程序是靠<strong>synchronized</strong>关键字实现锁功能的，而<strong>Java SE 5之后</strong>，并发包中新增了Lock接口（以及相关实现类）用来实现锁功能，它提供了与synchronized关键字<strong>类似的同步功能</strong>，只是在使用时<strong>需要显式地获取和释放锁</strong>。</p>
 <p>虽然它<strong>缺少了</strong>（通过synchronized块或者方法所提供的）<strong>隐式获取释放锁的便捷性</strong>，但是<strong>却拥有了锁获取与释放的可操作性</strong>、<strong>可中断的获取锁</strong>以及<strong>超时获取锁</strong>等多种synchronized关键字所不具备的同步特性。</p>
 <p>使用<strong>synchronized</strong>关键字将会<strong>隐式地获取锁</strong>，但是它<strong>将锁的获取和释放固化</strong>了，也就是先获取再释放。当然，这种方式简化了同步的管理，可是扩展性没有<strong>显示的锁获取和释放</strong>来的好。</p>

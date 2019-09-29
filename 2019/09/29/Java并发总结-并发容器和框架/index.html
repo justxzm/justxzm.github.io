@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="集合类," />
+  <meta name="keywords" content="Java并发系列," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
-<meta name="keywords" content="集合类">
+<meta name="description" content="待续。">
+<meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Iterator And Enumeration">
-<meta property="og:url" content="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/index.html">
+<meta property="og:title" content="Java并发总结-并发容器和框架">
+<meta property="og:url" content="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
-<meta property="og:updated_time" content="2019-07-20T03:07:05.636Z">
+<meta property="og:description" content="待续。">
+<meta property="og:updated_time" content="2019-09-29T11:38:21.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Iterator And Enumeration">
-<meta name="twitter:description" content="在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。 Enumeration是一个接口，它的源码如下：1234public interface Enumeration&amp;lt;E&amp;gt; &amp;#123;    boolean hasMo">
+<meta name="twitter:title" content="Java并发总结-并发容器和框架">
+<meta name="twitter:description" content="待续。">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/"/>
 
 
 
 
 
-  <title> Iterator And Enumeration | JUST DO IT </title>
+  <title> Java并发总结-并发容器和框架 | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -291,7 +291,7 @@
             
             
               
-                Iterator And Enumeration
+                Java并发总结-并发容器和框架
               
             
           </h1>
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T15:18:47+08:00">
-                2017-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T19:37:47+08:00">
+                2019-09-29
               </time>
             
 
@@ -329,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/Java并发/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发</span>
                   </a>
                 </span>
 
@@ -347,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/26/Iterator-And-Enumeration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/Iterator-And-Enumeration/" itemprop="commentCount"></span>
+                <a href="/2019/09/29/Java并发总结-并发容器和框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/09/29/Java并发总结-并发容器和框架/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,21 +374,8 @@
       
 
       
-        <p>在Java集合中，我们通常都通过 “Iterator(迭代器)” 或 “Enumeration(枚举类)” 去遍历集合。我们先看看 Enumeration.java 和 Iterator.java的源码，再说它们的区别。</p>
-<p>Enumeration是一个接口，它的源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Enumeration</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">E <span class="title">nextElement</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Iterator也是一个接口，它的源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p>待续。</p>
 <a id="more"></a>
-<p>效率比较**</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 测试分别通过 Iterator 和 Enumeration 去遍历Hashtable</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorEnumeration</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> val;</div><div class="line">        Random r = <span class="keyword">new</span> Random();</div><div class="line">        Hashtable table = <span class="keyword">new</span> Hashtable();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">100000</span>; i++) &#123;</div><div class="line">            <span class="comment">// 随机获取一个[0,100)之间的数字</span></div><div class="line">            val = r.nextInt(<span class="number">100</span>);</div><div class="line">            table.put(String.valueOf(i), val);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 通过Iterator遍历Hashtable</span></div><div class="line">        iterateHashtable(table) ;</div><div class="line">        <span class="comment">// 通过Enumeration遍历Hashtable</span></div><div class="line">        enumHashtable(table);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     * 通过Iterator遍历Hashtable</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">iterateHashtable</span><span class="params">(Hashtable table)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</div><div class="line">        Iterator iter = table.entrySet().iterator();</div><div class="line">        <span class="keyword">while</span>(iter.hasNext()) &#123;</div><div class="line">            <span class="comment">//System.out.println("iter:"+iter.next());</span></div><div class="line">            iter.next();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</div><div class="line">        countTime(startTime, endTime);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*</span></div><div class="line">     * 通过Enumeration遍历Hashtable</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enumHashtable</span><span class="params">(Hashtable table)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</div><div class="line">        Enumeration enu = table.elements();</div><div class="line">        <span class="keyword">while</span>(enu.hasMoreElements()) &#123;</div><div class="line">            <span class="comment">//System.out.println("enu:"+enu.nextElement());</span></div><div class="line">            enu.nextElement();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</div><div class="line">        countTime(startTime, endTime);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">countTime</span><span class="params">(<span class="keyword">long</span> start, <span class="keyword">long</span> end)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"time: "</span>+(end-start)+<span class="string">"ms"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<pre><code>time: 9ms
-time: 5ms
-</code></pre><p>从中，我们可以看出。Enumeration 比 Iterator 的遍历速度更快。为什么呢？<br>这是因为，Hashtable中Iterator是通过Enumeration去实现的，而且Iterator添加了对fail-fast机制的支持；所以，执行的操作自然要多一些。</p>
-<p><strong>关于fail-fast机制</strong></p>
-<p>fail-fast，即快速失败，它是Java集合的一种错误检测机制。当多个线程对集合（非fail-safe的集合类）进行结构上的改变的操作时，有可能会产生fail-fast机制，这个时候就会抛出ConcurrentModificationException（当方法检测到对象的并发修改，但不允许这种修改时就抛出该异常）。</p>
-<p>例如：当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
-<p>同时需要注意的是，即使不是多线程环境，如果单线程违反了规则，同样也有可能会抛出改异常。</p>
-
       
     </div>
 
@@ -411,7 +398,7 @@ time: 5ms
       
         <div class="post-tags">
           
-            <a href="/tags/集合类/" rel="tag"># 集合类</a>
+            <a href="/tags/Java并发系列/" rel="tag"># Java并发系列</a>
           
         </div>
       
@@ -424,18 +411,14 @@ time: 5ms
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/26/HashSet-And-TreeSet/" rel="next" title="HashSet And TreeSet">
-                <i class="fa fa-chevron-left"></i> HashSet And TreeSet
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/HashMap-And-HashTable/" rel="prev" title="HashMap And HashTable">
-                HashMap And HashTable <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/20/Java并发总结-锁/" rel="prev" title="Java并发总结-锁">
+                Java并发总结-锁 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,8 +445,8 @@ time: 5ms
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/26/Iterator-And-Enumeration/"
-           data-title="Iterator And Enumeration" data-url="https://justxzm.github.io/2017/03/26/Iterator-And-Enumeration/">
+      <div class="ds-thread" data-thread-key="2019/09/29/Java并发总结-并发容器和框架/"
+           data-title="Java并发总结-并发容器和框架" data-url="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/">
       </div>
     
   </div>

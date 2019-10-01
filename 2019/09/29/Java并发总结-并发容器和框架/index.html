@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="待续。">
+<meta name="description" content="ConcurrentHashMapConcurrentHashMap是线程安全且高效的HashMap。 为什么使用它在并发编程中使用HashMap可能导致程序死循环。而使用线程安全的HashTable效率又非常低下，基于以上两个原因，便有了ConcurrentHashMap的登场机会。 （1）线程不安全的HashMap 在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率">
 <meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发总结-并发容器和框架">
 <meta property="og:url" content="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="待续。">
-<meta property="og:updated_time" content="2019-09-29T11:38:21.956Z">
+<meta property="og:description" content="ConcurrentHashMapConcurrentHashMap是线程安全且高效的HashMap。 为什么使用它在并发编程中使用HashMap可能导致程序死循环。而使用线程安全的HashTable效率又非常低下，基于以上两个原因，便有了ConcurrentHashMap的登场机会。 （1）线程不安全的HashMap 在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019100101.png">
+<meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019100102.png">
+<meta property="og:updated_time" content="2019-10-01T16:37:33.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发总结-并发容器和框架">
-<meta name="twitter:description" content="待续。">
+<meta name="twitter:description" content="ConcurrentHashMapConcurrentHashMap是线程安全且高效的HashMap。 为什么使用它在并发编程中使用HashMap可能导致程序死循环。而使用线程安全的HashTable效率又非常低下，基于以上两个原因，便有了ConcurrentHashMap的登场机会。 （1）线程不安全的HashMap 在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率">
+<meta name="twitter:image" content="https://justxzm.github.io/images/并发编程/2019100101.png">
 
 
 
@@ -374,8 +377,67 @@
       
 
       
-        <p>待续。</p>
+        <h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>ConcurrentHashMap是<strong>线程安全且高效</strong>的HashMap。</p>
+<h3 id="为什么使用它"><a href="#为什么使用它" class="headerlink" title="为什么使用它"></a>为什么使用它</h3><p>在并发编程中使用<strong>HashMap</strong>可能导致<strong>程序死循环</strong>。而使用线程安全的<strong>HashTable效率又非常低下</strong>，基于以上两个原因，便有了ConcurrentHashMap的登场机会。</p>
+<p><strong>（1）线程不安全的HashMap</strong></p>
+<p>在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率接近100%，所以在并发情况下不能使用HashMap。例如，执行以下代码会引起死循环：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;(<span class="number">2</span>);</div><div class="line">Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</div><div class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">				<span class="meta">@Override</span></div><div class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">					map.put(UUID.randomUUID().toString(), <span class="string">""</span>);</div><div class="line">				&#125;</div><div class="line">			&#125;, <span class="string">"ftf"</span> + i).start();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;, <span class="string">"ftf"</span>);</div><div class="line">t.start();</div><div class="line">t.join();</div></pre></td></tr></table></figure>
+<p><strong>HashMap</strong>在<strong>并发执行put操作</strong>时会<strong>引起死循环</strong>，是因为多线程会导致<strong>HashMap的Entry</strong>链表<strong>形成环形数据结构</strong>，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。</p>
 <a id="more"></a>
+<p><strong>（2）效率低下的HashTable</strong></p>
+<p>HashTable容器<strong>使用synchronized来保证线程安全</strong>，但在线程<strong>竞争激烈</strong>的情况下HashTable的<strong>效率非常低下</strong>。因为当一个线程访问HashTable的同步方法，其他线程也访问HashTable的同步方法时，会进入阻塞或轮询状态。如线程1使用put进行元素添加，线程2不但不能使用put方法添加元素，也不能使用get方法来获取元素，所以竞争越激烈效率越低。</p>
+<p><strong>（3）ConcurrentHashMap的锁分段技术可有效提升并发访问率</strong></p>
+<p>HashTable容器在竞争激烈的并发环境下表现出效率低下的原因是所<strong>有访问HashTable的线程都必须竞争同一把锁</strong>，假如<strong>容器里有多把锁</strong>，<strong>每一把锁用于锁容器其中一部分数据</strong>，那么当多线程<strong>访问容器里不同数据段</strong>的数据时，线程间就<strong>不会存在锁竞争</strong>，从而可以<strong>有效提高并发访问效率</strong>，这就是<strong>ConcurrentHashMap</strong>所使用的<strong>锁分段技术</strong>。首先将数据分成一段一段地存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<h3 id="容器结构分析"><a href="#容器结构分析" class="headerlink" title="容器结构分析"></a>容器结构分析</h3><p>ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成：</p>
+<ul>
+<li>Segment是一种可重入锁（ReentrantLock），结构和HashMap类似，是一种数组和链表结构，在ConcurrentHashMap里扮演锁的角色，一个ConcurrentHashMap里包含一个Segment数组。</li>
+<li>HashEntry则用于存储键值对数据，一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须首先获得与它对应的Segment锁。</li>
+</ul>
+<p><img src="/images/并发编程/2019100101.png" alt=""></p>
+<p><img src="/images/并发编程/2019100102.png" alt=""></p>
+<h3 id="容器初始化原理"><a href="#容器初始化原理" class="headerlink" title="容器初始化原理"></a>容器初始化原理</h3><p>ConcurrentHashMap初始化方法是通过<strong>initialCapacity</strong>、<strong>loadFactor</strong>和<strong>concurrencyLevel</strong>等几个参数来<strong>初始化segment数组</strong>、<strong>段偏移量segmentShift</strong>、<strong>段掩码segmentMask</strong>和每个segment里的<strong>HashEntry数组</strong>来实现的。</p>
+<p><strong>（1）初始化segments数组</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (concurrencyLevel &gt; MAX_SEGMENTS)</div><div class="line">	concurrencyLevel = MAX_SEGMENTS;</div><div class="line"><span class="keyword">int</span> sshift = <span class="number">0</span>;</div><div class="line"><span class="keyword">int</span> ssize = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span> (ssize &lt; concurrencyLevel) &#123;</div><div class="line">	++sshift;</div><div class="line">	ssize &lt;&lt;= <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">segmentShift = <span class="number">32</span> - sshift;</div><div class="line">segmentMask = ssize - <span class="number">1</span>;</div><div class="line"><span class="keyword">this</span>.segments = Segment.newArray(ssize);</div></pre></td></tr></table></figure>
+<p>由源码可知，segments数组的长度ssize是通过concurrencyLevel计算得出的。为了能<strong>通过按位与的散列算法</strong>来<strong>定位segments数组的索引</strong>，<strong>必须保证segments数组的长度是2的N次方</strong>（power-of-two size），所以必须计算出一个大于或等于concurrencyLevel的最小的2的N次方值来作为segments数组的长度。假如concurrencyLevel等于14、15或16，ssize都会等于16，即容器里锁的个数也是16。</p>
+<p><strong>注意：</strong>concurrencyLevel的最大值是65535，这意味着segments数组的长度最大为65536，对应的二进制是16位。</p>
+<p><strong>（2）初始化segmentShift和segmentMask</strong></p>
+<p>这两个全局变量需要在定位segment时的散列算法里使用，sshift等于ssize从1向左移位的次数，在默认情况下concurrencyLevel等于16，1需要向左移位移动4次，所以sshift等于4。</p>
+<p><strong>segmentShift用于定位参与散列运算的位数</strong>，segmentShift等于32减sshift，所以等于28，这里之所以用32是因为ConcurrentHashMap里的hash()方法输出的最大数是32位的，后面的测试中我们可以看到这点。</p>
+<p><strong>segmentMask是散列运算的掩码</strong>，等于ssize减1，即15，掩码的二进制各个位的值都是1。因为ssize的最大长度是65536，所以segmentShift最大值是16，segmentMask最大值是65535，对应的二进制是16位，每个位都是1。</p>
+<p><strong>（3）初始化每个segment</strong></p>
+<p>输入参数<strong>initialCapacity是</strong>ConcurrentHashMap的<strong>初始化容量</strong>，<strong>loadfactor是</strong>每个segment的<strong>负载因子</strong>，在构造方法里需要通过这两个参数来初始化数组中的每个segment。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</div><div class="line">	initialCapacity = MAXIMUM_CAPACITY;</div><div class="line"><span class="keyword">int</span> c = initialCapacity / ssize;</div><div class="line"><span class="keyword">if</span> (c * ssize &lt; initialCapacity)</div><div class="line">	++c;</div><div class="line"><span class="keyword">int</span> cap = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span> (cap &lt; c)</div><div class="line">	cap &lt;&lt;= <span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.segments.length; ++i)</div><div class="line">	<span class="keyword">this</span>.segments[i] = <span class="keyword">new</span> Segment&lt;K, V&gt;(cap, loadFactor);</div></pre></td></tr></table></figure>
+<p>上面代码中的<strong>变量cap就是segment里HashEntry数组的长度</strong>，它等于initialCapacity除以ssize的倍数c，如果c大于1，就会取大于等于c的2的N次方值，所以cap不是1，就是2的N次方。</p>
+<p>segment的容量threshold＝（int）cap*loadFactor，默认情况下initialCapacity等于16，loadfactor等于0.75，通过运算cap等于1，threshold等于零。</p>
+<h3 id="如何定位Segment"><a href="#如何定位Segment" class="headerlink" title="如何定位Segment"></a>如何定位Segment</h3><p>既然ConcurrentHashMap使用分段锁Segment来保护不同段的数据，那么在插入和获取元素的时候，必须先<strong>通过散列算法定位到Segment</strong>。可以看到ConcurrentHashMap会首先<strong>使用Wang/Jenkins hash的变种算法</strong>对元素的hashCode<strong>进行一次再散列</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</div><div class="line">	h += (h &lt;&lt; <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</div><div class="line">	h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</div><div class="line">	h += (h &lt;&lt; <span class="number">3</span>);</div><div class="line">	h ^= (h &gt;&gt;&gt; <span class="number">6</span>);</div><div class="line">	h += (h &lt;&lt; <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</div><div class="line">	<span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之所以<strong>进行再散列</strong>，<strong>目的是减少散列冲突</strong>，<strong>使元素能够均匀地分布在不同的Segment上</strong>，从而提高容器的存取效率。假如散列的质量差到极点，那么所有的元素都在一个Segment中，不仅存取元素缓慢，分段锁也会失去意义。</p>
+<p>通过这种再散列能让数字的每一位都参加到散列运算当中，从而减少散列冲突。ConcurrentHashMap通过以下散列算法定位segment。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> Segment&lt;K,V&gt; <span class="title">segmentFor</span><span class="params">(<span class="keyword">int</span> hash)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> segments[(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认情况下segmentShift为28，segmentMask为15，再散列后的数最大是32位二进制数据，向右无符号移动28位，意思是让高4位参与到散列运算中，（hash&gt;&gt;&gt;segmentShift）&amp;segmentMask的运算结果分别是4、15、7和8，可以看到散列值没有发生冲突。</p>
+<h3 id="get、put、size操作"><a href="#get、put、size操作" class="headerlink" title="get、put、size操作"></a>get、put、size操作</h3><p><strong>（1）get操作</strong></p>
+<p>Segment的get操作实现非常简单和高效。先经过一次再散列，然后使用这个散列值通过散列运算定位到Segment，再通过散列算法定位到元素，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> hash = hash(key.hashCode());</div><div class="line">	<span class="keyword">return</span> segmentFor(hash).get(key, hash);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>get操作的<strong>高效之处</strong>在于整个<strong>get过程不需要加锁</strong>，除非<strong>读到的值是空才会加锁重读</strong>。</p>
+<p>我们知道<strong>HashTable容器的get方法</strong>是<strong>需要加锁</strong>的，那么<strong>ConcurrentHashMap</strong>的<strong>get操作是如何做到不加锁</strong>的呢？</p>
+<p>原因是它的get方法里将要使用的<strong>共享变量都定义成volatile类型</strong>，如用于统计当前Segement大小的count字段和用于存储值的HashEntry的value。定义成volatile的变量，<strong>能够在线程之间保持可见性</strong>，能够被多线程同时读，并且<strong>保证不会读到过期的值</strong>，但是<strong>只能被单线程写</strong>（<strong>有一种情况可以被多线程写，就是写入的值不依赖于原值</strong>），在get操作里只需要读不需要写共享变量count和value，所以可以不用加锁。之所以不会读到过期的值，是因为根据Java内存模型的<strong>happen before原则</strong>，<strong>对volatile字段的写入操作先于读操作</strong>，即使两个线程同时修改和获取volatile变量，get操作也能拿到最新的值，这是<strong>用volatile替换锁</strong>的经典应用场景。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">transient</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count;</div><div class="line"><span class="keyword">volatile</span> V value;</div></pre></td></tr></table></figure>
+<p>在定位元素的代码里我们可以发现，定位HashEntry和定位Segment的散列算法虽然一样，都与数组的长度减去1再相“与”，但是相“与”的值不一样，<strong>定位Segment使用的是元素的hashcode通过再散列后得到的值的高位</strong>，而<strong>定位HashEntry直接使用的是再散列后的值</strong>。其目的是<strong>避免两次散列后的值一样</strong>，虽然元素在Segment里散列开了，但是却没有在HashEntry里散列开。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hash &gt;&gt;&gt; segmentShift) &amp; segmentMask <span class="comment">// 定位Segment所使用的hash算法</span></div><div class="line"><span class="keyword">int</span> index = hash &amp; (tab.length - <span class="number">1</span>); <span class="comment">// 定位HashEntry所使用的hash算法</span></div></pre></td></tr></table></figure>
+<p><strong>（2）put操作</strong></p>
+<p>由于put方法里需要对共享变量进行写入操作，所以<strong>为了线程安全</strong>，在<strong>操作共享变量时必须加锁</strong>。put方法首先定位到Segment，然后在Segment里进行插入操作。插入操作需要经历两个步骤：</p>
+<ul>
+<li>第一步判断是否需要对Segment里的HashEntry数组进行扩容。</li>
+<li>第二步定位添加元素的位置，然后将其放在HashEntry数组里。</li>
+</ul>
+<p><strong>是否需要扩容：</strong>在插入元素前会先判断Segment里的HashEntry数组是否超过容量（threshold），如果超过阈值，则对数组进行扩容。（Segment的<strong>扩容判断比HashMap更恰当</strong>，因为HashMap是在插入元素后判断元素是否已经到达容量的，如果到达了就进行扩容，但是很有可能扩容之后没有新元素插入，这时HashMap就进行了一次无效的扩容）</p>
+<p><strong>如何扩容：</strong>在扩容的时候，首先会<strong>创建</strong>一个容量是原来容量两倍的<strong>数组</strong>，然后<strong>将原数组里的元素</strong>进行<strong>再散列后插入到新的数组</strong>里。为了高效，<strong>ConcurrentHashMap不会对整个容器进行扩容</strong>，而<strong>只对某个segment进行扩容</strong>。</p>
+<p><strong>（3）size操作</strong></p>
+<p>如果要统计整个ConcurrentHashMap里元素的大小，就<strong>必须统计所有Segment里元素的大小后求和</strong>。Segment里的全局变量count是一个volatile变量，那么在多线程场景下，是不是直接把所有Segment的count相加就可以得到整个ConcurrentHashMap大小了呢？不是的，虽然相加时可以获取每个Segment的count的最新值，但是可能累加前使用的count发生了变化，那么统计结果就不准了。所以，<strong>最安全的做法是在统计size的时候把所有Segment的put、remove和clean方法全部锁住，但是这种做法显然非常低效</strong>。</p>
+<p>因为在累加count操作过程中，之前累加过的count发生变化的几率非常小，所以ConcurrentHashMap的做法是<strong>先尝试2次通过不锁住Segment的方式来统计</strong>各个Segment大小，<strong>如果统计的过程中</strong>，<strong>容器的count发生了变化</strong>，则<strong>再采用加锁的方式来统计</strong>所有Segment的大小。</p>
+<p>ConcurrentHashMap<strong>如何判断在统计的时候容器是否发生了变化</strong>：使用modCount变量，在put、remove和clean方法里操作元素前都会将变量modCount进行加1，那么在统计size前后比较modCount是否发生变化，从而得知容器的大小是否发生变化。</p>
+<h2 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h2><p>待续。</p>
+
       
     </div>
 
@@ -470,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -553,6 +624,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">1.</span> <span class="nav-text">ConcurrentHashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用它"><span class="nav-number">1.1.</span> <span class="nav-text">为什么使用它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器结构分析"><span class="nav-number">1.2.</span> <span class="nav-text">容器结构分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器初始化原理"><span class="nav-number">1.3.</span> <span class="nav-text">容器初始化原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何定位Segment"><span class="nav-number">1.4.</span> <span class="nav-text">如何定位Segment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get、put、size操作"><span class="nav-number">1.5.</span> <span class="nav-text">get、put、size操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentLinkedQueue"><span class="nav-number">2.</span> <span class="nav-text">ConcurrentLinkedQueue</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -378,10 +378,14 @@
 
       
         
-          
-          待续。
-
-          
+          <p>Java从JDK 1.5开始提供了<strong>java.util.concurrent.atomic</strong>包（以下简称<strong>Atomic包</strong>），这个包中的原子操作类<strong>提供了一种用法简单、性能高效、线程安全地更新一个变量的方式</strong>。</p>
+<p>因为变量的类型有很多种，所以在Atomic包里<strong>一共提供了13个类</strong>，属于<strong>4种类型的原子更新方式</strong>，分别是<strong>原子更新基本类型</strong>、<strong>原子更新数组</strong>、<strong>原子更新引用</strong>和<strong>原子更新属性</strong>（字段）。Atomic包里的类<strong>基本都是使用Unsafe实现的包装类</strong>。</p>
+<h2 id="原子更新基本类型类"><a href="#原子更新基本类型类" class="headerlink" title="原子更新基本类型类"></a>原子更新基本类型类</h2><p>使用原子的方式更新基本类型，Atomic包提供了以下3个类：</p>
+<ul>
+<li><strong>AtomicBoolean</strong>：原子更新布尔类型。</li>
+<li><strong>AtomicInteger</strong>：原子更新整型。</li>
+<li><strong>AtomicLong</strong>：原子更新长整型。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/12/Java并发总结-原子操作类/#more" rel="contents">

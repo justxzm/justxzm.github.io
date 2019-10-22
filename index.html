@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/10/20/Java并发总结-并发编程实践/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/10/20/Java并发总结-Executor框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -292,8 +292,8 @@
             
               
                 
-                <a class="post-title-link" href="/2019/10/20/Java并发总结-并发编程实践/" itemprop="url">
-                  Java并发总结-并发编程实践
+                <a class="post-title-link" href="/2019/10/20/Java并发总结-Executor框架/" itemprop="url">
+                  Java并发总结-Executor框架
                 </a>
               
             
@@ -350,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/10/20/Java并发总结-并发编程实践/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/10/20/Java并发总结-并发编程实践/" itemprop="commentCount"></span>
+                <a href="/2019/10/20/Java并发总结-Executor框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/10/20/Java并发总结-Executor框架/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,10 +378,26 @@
 
       
         
-          <p>待续。</p>
+          <p>Java线程的创建与销毁需要一定的开销，如果为每一个任务创建一个新线程来执行：</p>
+<ul>
+<li>这些线程的创建与销毁将消耗大量的计算资源。</li>
+<li>可能会使处于高负荷状态的应用最终崩溃。</li>
+</ul>
+<p>Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开来。<strong>工作单元包括Runnable和Callable，而执行机制由Executor框架提供</strong>。</p>
+<h1 id="Executor框架简介"><a href="#Executor框架简介" class="headerlink" title="Executor框架简介"></a>Executor框架简介</h1><h2 id="Executor框架的两级调度模型"><a href="#Executor框架的两级调度模型" class="headerlink" title="Executor框架的两级调度模型"></a>Executor框架的两级调度模型</h2><p>在HotSpot VM的线程模型中，Java线程（java.lang.Thread）被一对一映射为本地操作系统线程：</p>
+<ol>
+<li>Java线程启动时会创建一个本地操作系统线程。</li>
+<li>当该Java线程终止时，这个操作系统线程也会被回收。</li>
+<li>操作系统会调度所有线程并将它们分配给可用的CPU。</li>
+</ol>
+<p>这种两级调度模型：</p>
+<ul>
+<li><strong>在上层</strong>，Java多线程程序通常把应用分解为若干个任务，然后使用用户级的调度器（Executor框架）将这些任务映射为固定数量的线程，应用程序通过Executor框架控制上层的调度；</li>
+<li><strong>在底层</strong>，操作系统内核将这些线程映射到硬件处理器上，下层的调度由操作系统内核控制，下层的调度不受应用程序的控制。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/10/20/Java并发总结-并发编程实践/#more" rel="contents">
+            <a class="btn" href="/2019/10/20/Java并发总结-Executor框架/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

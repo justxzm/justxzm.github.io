@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="Spring," />
 
 
 
@@ -87,25 +87,21 @@
 
 
 
-<meta name="description" content="在电脑上已经安装好git的前提之上的，要进行以下配置，请先确保你的电脑已经安装好git。以下配置步骤是在git bash里面进行配置的，可以通过 右键 git bash here 打开 https和ssh使用区别在管理Git项目上，很多时候都是直接使用https url克隆到本地，当然也有有些人使用SSH url克隆到本地。 这两种方式的主要区别在于：使用https url克隆对初学者来说会比较方">
-<meta name="keywords" content="Git">
+<meta name="description" content="结论 通常来说，如果问Spring内部如何解决循环依赖，一定是默认的单例Bean中，属性互相引用的场景。  原型(Prototype)的场景是不支持循环依赖的，通常会走到AbstractBeanFactory类中下面的判断，抛出异常。 123if (isPrototypeCurrentlyInCreation(beanName)) &amp;#123;      throw new BeanCurrent">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git ssh 配置及使用">
-<meta property="og:url" content="https://justxzm.github.io/2018/04/02/Git-ssh-配置及使用/index.html">
+<meta property="og:title" content="Spring循环依赖">
+<meta property="og:url" content="https://justxzm.github.io/2020/08/22/Spring循环依赖/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="在电脑上已经安装好git的前提之上的，要进行以下配置，请先确保你的电脑已经安装好git。以下配置步骤是在git bash里面进行配置的，可以通过 右键 git bash here 打开 https和ssh使用区别在管理Git项目上，很多时候都是直接使用https url克隆到本地，当然也有有些人使用SSH url克隆到本地。 这两种方式的主要区别在于：使用https url克隆对初学者来说会比较方">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061205.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061206.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061207.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061208.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061209.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061210.jpg">
-<meta property="og:image" content="https://justxzm.github.io/images/Java/2018061211.jpg">
-<meta property="og:updated_time" content="2019-07-14T07:17:12.689Z">
+<meta property="og:description" content="结论 通常来说，如果问Spring内部如何解决循环依赖，一定是默认的单例Bean中，属性互相引用的场景。  原型(Prototype)的场景是不支持循环依赖的，通常会走到AbstractBeanFactory类中下面的判断，抛出异常。 123if (isPrototypeCurrentlyInCreation(beanName)) &amp;#123;      throw new BeanCurrent">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2020082201.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2020082202.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2020082203.gif">
+<meta property="og:updated_time" content="2020-08-22T07:18:21.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git ssh 配置及使用">
-<meta name="twitter:description" content="在电脑上已经安装好git的前提之上的，要进行以下配置，请先确保你的电脑已经安装好git。以下配置步骤是在git bash里面进行配置的，可以通过 右键 git bash here 打开 https和ssh使用区别在管理Git项目上，很多时候都是直接使用https url克隆到本地，当然也有有些人使用SSH url克隆到本地。 这两种方式的主要区别在于：使用https url克隆对初学者来说会比较方">
-<meta name="twitter:image" content="https://justxzm.github.io/images/Java/2018061205.jpg">
+<meta name="twitter:title" content="Spring循环依赖">
+<meta name="twitter:description" content="结论 通常来说，如果问Spring内部如何解决循环依赖，一定是默认的单例Bean中，属性互相引用的场景。  原型(Prototype)的场景是不支持循环依赖的，通常会走到AbstractBeanFactory类中下面的判断，抛出异常。 123if (isPrototypeCurrentlyInCreation(beanName)) &amp;#123;      throw new BeanCurrent">
+<meta name="twitter:image" content="https://justxzm.github.io/images/Spring/2020082201.png">
 
 
 
@@ -133,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/04/02/Git-ssh-配置及使用/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2020/08/22/Spring循环依赖/"/>
 
 
 
 
 
-  <title> Git ssh 配置及使用 | JUST DO IT </title>
+  <title> Spring循环依赖 | JUST DO IT </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -312,7 +308,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/04/02/Git-ssh-配置及使用/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/08/22/Spring循环依赖/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -333,7 +329,7 @@
             
             
               
-                Git ssh 配置及使用
+                Spring循环依赖
               
             
           </h1>
@@ -348,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T19:14:57+08:00">
-                2018-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-22T14:09:09+08:00">
+                2020-08-22
               </time>
             
 
@@ -371,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
                   </a>
                 </span>
 
@@ -389,8 +385,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/02/Git-ssh-配置及使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/02/Git-ssh-配置及使用/" itemprop="commentCount"></span>
+                <a href="/2020/08/22/Spring循环依赖/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/08/22/Spring循环依赖/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -416,79 +412,42 @@
       
 
       
-        <p>在电脑上已经安装好git的前提之上的，要进行以下配置，请先确保你的电脑已经安装好git。以下配置步骤是在git bash里面进行配置的，可以通过 右键 git bash here 打开</p>
-<h3 id="https和ssh使用区别"><a href="#https和ssh使用区别" class="headerlink" title="https和ssh使用区别"></a>https和ssh使用区别</h3><p>在管理Git项目上，很多时候都是直接使用https url克隆到本地，当然也有有些人使用SSH url克隆到本地。</p>
-<p>这两种方式的主要区别在于：使用https url克隆对初学者来说会比较方便，复制https url然后到git Bash里面直接用clone命令克隆到本地就好了，但是每次fetch和push代码都需要输入账号和密码，这也是https方式的麻烦之处。</p>
-<p>而使用SSH url克隆却需要在克隆之前先配置和添加好SSH key，因此，如果你想要使用SSH url克隆的话，你必须是这个项目的拥有者。否则你是无法添加SSH key的，另外ssh默认是每次fetch和push代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和push也可以另外进行设置。</p>
+        <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li><p>通常来说，如果问Spring内部如何解决循环依赖，一定是默认的<strong>单例Bean中，属性互相引用的场景</strong>。</p>
+</li>
+<li><p>原型(<strong>Prototype</strong>)的场景是<strong>不支持循环依赖</strong>的，通常会走到<code>AbstractBeanFactory</code>类中下面的判断，抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (isPrototypeCurrentlyInCreation(beanName)) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> BeanCurrentlyInCreationException(beanName);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原因很好理解，创建新的A时，发现要注入原型字段B，又创建新的B发现要注入原型字段A…，这就套娃了。</p>
+<p>你猜是先StackOverflow还是OutOfMemory？Spring怕你不好猜，就先抛出BeanCurrentlyInCreationException。</p>
+</li>
+<li><p>基于构造器的循环依赖，就更不用说了，官方文档都摊牌了，你想<strong>让构造器注入支持循环依赖，是不存在的</strong>，不如把代码改了。</p>
+</li>
+</ol>
 <a id="more"></a>
-<h3 id="配置ssh主要步骤"><a href="#配置ssh主要步骤" class="headerlink" title="配置ssh主要步骤"></a>配置ssh主要步骤</h3><ul>
-<li>设置Git的user name和email：(如果是第一次的话)</li>
-<li>检查是否已经有SSH Key。</li>
-<li>生成密钥</li>
-<li>添加密钥到ssh-agent</li>
-<li>登陆Github, 添加 ssh</li>
-<li>测试</li>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p>几个Bean之间的互相引用：</p>
+<p><img src="/images/Spring/2020082201.png" alt=""></p>
+<p>自己“循环”依赖自己：</p>
+<p><img src="/images/Spring/2020082202.png" alt=""></p>
+<h2 id="Spring如何解决"><a href="#Spring如何解决" class="headerlink" title="Spring如何解决"></a>Spring如何解决</h2><p>首先，Spring内部维护了三个Map，也就是我们通常说的三级缓存（Spring文档中没有三级缓存的概念，本土为了方便理解的词汇）。</p>
+<p>在Spring的<code>DefaultSingletonBeanRegistry</code>类中，你会赫然发现类上方挂着这三个Map：</p>
+<ul>
+<li><strong>singletonObjects</strong> 它是我们最熟悉的朋友，俗称“单例池”“容器”，缓存创建完成单例Bean的地方。</li>
+<li><strong>singletonFactories</strong> 映射创建Bean的原始工厂</li>
+<li><strong>earlySingletonObjects</strong> 映射Bean的早期引用，也就是说在这个Map里的Bean不是完整的，甚至还不能称之为“Bean”，只是一个Instance.</li>
 </ul>
-<h4 id="设置Git的user-name和email：-如果是第一次的话"><a href="#设置Git的user-name和email：-如果是第一次的话" class="headerlink" title="设置Git的user name和email：(如果是第一次的话)"></a>设置Git的user name和email：(如果是第一次的话)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 这里的“justxzm&quot; 可以替换成自己的用户名</div><div class="line">git config --global user.name &quot;justxzm&quot;</div><div class="line"># 这里的邮箱 justxzm@163.com  替换成自己的邮箱</div><div class="line">git config --global user.email  &quot;justxzm@163.com&quot;</div></pre></td></tr></table></figure>
-<h4 id="检查是否已经有SSH-Key"><a href="#检查是否已经有SSH-Key" class="headerlink" title="检查是否已经有SSH Key"></a>检查是否已经有SSH Key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/.ssh</div></pre></td></tr></table></figure>
-<p>接着输入ls</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls</div></pre></td></tr></table></figure>
-<p>列出该文件下的文件，看是否存在 id_isa 和 id_isa.pub 文件（也可以是别的文件名，只要 yourName 和 yourName.pub 成对存在），如果存在的话，证明已经存在 ssh key了，可以直接跳过生成密钥这一步骤，</p>
-<p>下图是存在的情况下</p>
-<p><img src="/images/Java/2018061205.jpg" alt=""></p>
-<h4 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 这里的邮箱 justxzm@163.com  替换成自己的邮箱</div><div class="line">ssh-keygen -t rsa -C &quot;justxzm@163.com&quot;</div></pre></td></tr></table></figure>
-<p>连续3个回车。如果不需要密码的话。<br>最后得到了两个文件：id_rsa和id_rsa.pub。</p>
-<p>默认的存储路径是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Users\Administrator\.ssh</div></pre></td></tr></table></figure>
-<h4 id="添加密钥到ssh-agent"><a href="#添加密钥到ssh-agent" class="headerlink" title="添加密钥到ssh-agent"></a>添加密钥到ssh-agent</h4><p>确保 ssh-agent 是可用的。ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># start the ssh-agent in the background</div><div class="line">eval &quot;$(ssh-agent -s)&quot;</div></pre></td></tr></table></figure>
-<p><img src="/images/Java/2018061206.jpg" alt=""></p>
-<p>添加生成的 SSH key 到 ssh-agent：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
-<h4 id="登陆Github-添加-ssh"><a href="#登陆Github-添加-ssh" class="headerlink" title="登陆Github, 添加 ssh"></a>登陆Github, 添加 ssh</h4><p>把id_rsa.pub文件里的内容复制到这里</p>
-<p><img src="/images/Java/2018061207.jpg" alt=""></p>
-<p><img src="/images/Java/2018061208.jpg" alt=""></p>
-<p><img src="/images/Java/2018061209.jpg" alt=""></p>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
-<p>测试的时候“ssh -T git@github.com”后要输入yes，你将会看到：</p>
-<blockquote>
-<p>Hi just! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-</blockquote>
-<p>如果看到Hi后面是你的用户名，就说明成功了。</p>
-<p><img src="/images/Java/2018061210.jpg" alt=""></p>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>如果我之前的仓库是用https提交的，那么我现在想用ssh 的方式提交，怎么办呢 ，别急，下面就来教你怎样操作了。</p>
-<p>这里同样以我本机目录下的G://test 仓库为例子，</p>
-<p>找到仓库下 .git 文件夹下的config文件，打开，可以看到以下内容</p>
-<pre><code>[core]
-    repositoryformatversion = 0
-    filemode = false
-    bare = false
-    logallrefupdates = true
-    symlinks = false
-    ignorecase = true
-[remote &quot;origin&quot;]
-    url = https://github.com/gdutxiaoxu/test.git
-    fetch = +refs/heads/*:refs/remotes/origin/*
-[branch &quot;master&quot;]
-    remote = origin
-    merge = refs/heads/master
-</code></pre><p>将文件中的 url = <a href="https://github.com/gdutxiaoxu/test.git" target="_blank" rel="external">https://github.com/gdutxiaoxu/test.git</a> 更改为 url = git@github.com:gdutxiaoxu/test.git 即可。</p>
-<p>修改后的文件如下：</p>
-<pre><code>[core]
-    repositoryformatversion = 0
-    filemode = false
-    bare = false
-    logallrefupdates = true
-    symlinks = false
-    ignorecase = true
-[remote &quot;origin&quot;]
-    url = git@github.com:gdutxiaoxu/test.git
-    fetch = +refs/heads/*:refs/remotes/origin/*
-[branch &quot;master&quot;]
-    remote = origin
-    merge = refs/heads/master
-</code></pre><p>进入本地仓库 ，增加 xujun.txt 文件，提交，你会看到不需要再提交密码了</p>
-<p><img src="/images/Java/2018061211.jpg" alt=""></p>
+<p>后两个Map其实是“垫脚石”级别的，只是创建Bean的时候，用来借助了一下，创建完成就清掉了。</p>
+<p>假设最终放在singletonObjects的Bean是你想要的一杯“<em>凉白开</em>”，那么Spring准备了两个杯子，即<em>singletonFactories</em>和<em>earlySingletonObjects</em>来回“倒腾”几番，把热水晾成“<em>凉白开</em>”放到singletonObjects中。</p>
+<p><img src="/images/Spring/2020082203.gif" alt=""></p>
+<h2 id="模拟解决实现"><a href="#模拟解决实现" class="headerlink" title="模拟解决实现"></a>模拟解决实现</h2><p>先去缓存里找Bean，没有则实例化当前的Bean放到Map，如果有需要依赖当前Bean的，就能从Map取到。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CyclicDependence</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 放置创建好的bean Map</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Object&gt; cacheMap = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">2</span>);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 假装扫描出来的对象</span></div><div class="line">        Class[] classes = &#123;A.class, B.class&#125;;</div><div class="line">        <span class="comment">// 假装项目初始化实例化所有bean</span></div><div class="line">        <span class="keyword">for</span> (Class aClass : classes) &#123;</div><div class="line">            getBean(aClass);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// check</span></div><div class="line">        System.out.println(getBean(B.class).getA() == getBean(A.class));</div><div class="line">        System.out.println(getBean(A.class).getB() == getBean(B.class));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">getBean</span><span class="params">(Class&lt;T&gt; beanClass)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 本文用类名小写 简单代替bean的命名规则</span></div><div class="line">        String beanName = beanClass.getSimpleName().toLowerCase();</div><div class="line">        <span class="comment">// 如果已经是一个bean，则直接返回</span></div><div class="line">        <span class="keyword">if</span> (cacheMap.containsKey(beanName)) &#123;</div><div class="line">            <span class="keyword">return</span> (T) cacheMap.get(beanName);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 将对象本身实例化</span></div><div class="line">        Object object = beanClass.getDeclaredConstructor().newInstance();</div><div class="line">        <span class="comment">// 放入缓存</span></div><div class="line">        cacheMap.put(beanName, object);</div><div class="line">        <span class="comment">// 把所有字段当成需要注入的bean，创建并注入到当前bean中</span></div><div class="line">        Field[] fields = object.getClass().getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line">            field.setAccessible(<span class="keyword">true</span>);</div><div class="line">            <span class="comment">// 获取需要注入字段的class</span></div><div class="line">            Class&lt;?&gt; fieldClass = field.getType();</div><div class="line">            String fieldBeanName = fieldClass.getSimpleName().toLowerCase();</div><div class="line">            <span class="comment">// 如果需要注入的bean，已经在缓存Map中，那么把缓存Map中的值注入到该field即可</span></div><div class="line">            <span class="comment">// 如果缓存没有 继续创建</span></div><div class="line">            field.set(object, cacheMap.containsKey(fieldBeanName) ? cacheMap.get(fieldBeanName) : getBean(fieldClass));</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 属性填充完成，返回</span></div><div class="line">        <span class="keyword">return</span> (T) object;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="问题解决本质"><a href="#问题解决本质" class="headerlink" title="问题解决本质"></a>问题解决本质</h2><p>问题本质是<strong>two sum</strong>！</p>
+<p>two sum是刷题网站leetcode序号为1的题，也就是大多人的算法入门的第一题。</p>
+<p>问题内容是：给定一个数组，给定一个数字。返回数组中可以相加得到指定数字的两个索引。</p>
+<p>比如：给定<code>nums = [2, 7, 11, 15], target = 9</code></p>
+<p>那么要返回 <code>[0, 1]</code>，因为<code>2 + 7 = 9</code></p>
+<p>这道题的优解是，一次遍历+HashMap：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> complement = target - nums[i];</div><div class="line">            <span class="keyword">if</span> (map.containsKey(complement)) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(complement), i&#125;;</div><div class="line">            &#125;</div><div class="line">            map.put(nums[i], i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"No two sum solution"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] twoSum = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>&#125;;</div><div class="line">        <span class="keyword">int</span> target = <span class="number">10</span>;</div><div class="line">        <span class="keyword">int</span>[] res = twoSum(twoSum, target);</div><div class="line">        System.out.println(Arrays.toString(res));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先去Map中找需要的数字，没有就将当前的数字保存在Map中，如果找到需要的数字，则一起返回。</p>
 
       
     </div>
@@ -512,7 +471,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -525,18 +484,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/03/MySQL免安装版配置/" rel="next" title="MySQL免安装版配置">
-                <i class="fa fa-chevron-left"></i> MySQL免安装版配置
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/04/Java-Volatile/" rel="prev" title="Java Volatile">
-                Java Volatile <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/21/IO流之切割合并文件/" rel="prev" title="IO流之切割合并文件">
+                IO流之切割合并文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,8 +518,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/04/02/Git-ssh-配置及使用/"
-           data-title="Git ssh 配置及使用" data-url="https://justxzm.github.io/2018/04/02/Git-ssh-配置及使用/">
+      <div class="ds-thread" data-thread-key="2020/08/22/Spring循环依赖/"
+           data-title="Spring循环依赖" data-url="https://justxzm.github.io/2020/08/22/Spring循环依赖/">
       </div>
     
   </div>
@@ -690,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#https和ssh使用区别"><span class="nav-number">1.</span> <span class="nav-text">https和ssh使用区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ssh主要步骤"><span class="nav-number">2.</span> <span class="nav-text">配置ssh主要步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置Git的user-name和email：-如果是第一次的话"><span class="nav-number">2.1.</span> <span class="nav-text">设置Git的user name和email：(如果是第一次的话)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查是否已经有SSH-Key"><span class="nav-number">2.2.</span> <span class="nav-text">检查是否已经有SSH Key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成密钥"><span class="nav-number">2.3.</span> <span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加密钥到ssh-agent"><span class="nav-number">2.4.</span> <span class="nav-text">添加密钥到ssh-agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登陆Github-添加-ssh"><span class="nav-number">2.5.</span> <span class="nav-text">登陆Github, 添加 ssh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">2.6.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图解"><span class="nav-number">2.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring如何解决"><span class="nav-number">3.</span> <span class="nav-text">Spring如何解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟解决实现"><span class="nav-number">4.</span> <span class="nav-text">模拟解决实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题解决本质"><span class="nav-number">5.</span> <span class="nav-text">问题解决本质</span></a></li></ol></div>
             
 
           </div>

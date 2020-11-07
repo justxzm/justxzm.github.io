@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="内存回收常用算法：  引用计数 可达性分析（GC Root）  如何判断一个对象的死亡？ 1当一个对象不再被任何存活的对象继续引用的时候，这个对象就死亡了。">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2020062401.png">
-<meta property="og:updated_time" content="2020-06-24T09:41:36.287Z">
+<meta property="og:updated_time" content="2020-11-07T06:25:52.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java垃圾回收">
 <meta name="twitter:description" content="内存回收常用算法：  引用计数 可达性分析（GC Root）  如何判断一个对象的死亡？ 1当一个对象不再被任何存活的对象继续引用的时候，这个对象就死亡了。">
@@ -421,20 +421,14 @@
 <h2 id="可达性分析"><a href="#可达性分析" class="headerlink" title="可达性分析"></a>可达性分析</h2><p>别名：根搜索算法，追踪性垃圾收集，GC Root。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>首先，我们选取一些对象，这些对象是存活的，也被称为 GC Roots，然后根据这些对象的引用关系，凡是直接或者间接跟 GC Roots 相关联的对象，都是存活的。就像图中的连通性判断一样。</p>
 <p><img src="/images/Java/2020062401.png" alt=""></p>
-<h3 id="如何选取GC-Roots"><a href="#如何选取GC-Roots" class="headerlink" title="如何选取GC Roots"></a>如何选取GC Roots</h3><ul>
-<li>在堆结构周围的一些结构，其中引用的对象可以作为GC Roots，具体可以概括为：</li>
-<li><p>虚拟机栈上（确切的说，是栈帧上的本地变量表）所引用的对象</p>
-</li>
-<li><p>本地方法栈引用的对象</p>
-</li>
-<li><p>方法区中的静态属性，常量引用</p>
-</li>
-<li><p>Java 虚拟机的内部引用，常用数据类型的 Class 对象，常驻的异常对象，系统类加载器</p>
-</li>
-<li><p>所有被同步锁持有的对象</p>
-</li>
-<li><p>除此之外，还有一些临时的 GC Roots 可以加入进来。比如老年代中的对象一般都存活时间比较久，也就是大概率是活着的对象，也可临时作为 GC Roots。</p>
-</li>
+<h3 id="如何选取GC-Roots"><a href="#如何选取GC-Roots" class="headerlink" title="如何选取GC Roots"></a>如何选取GC Roots</h3><p>在堆结构周围的一些结构，其中引用的对象可以作为GC Roots，具体可以概括为：</p>
+<ul>
+<li>虚拟机栈上（确切的说，是栈帧上的本地变量表）所引用的对象</li>
+<li>本地方法栈引用的对象</li>
+<li>方法区中的静态属性，常量引用</li>
+<li>Java 虚拟机的内部引用，常用数据类型的 Class 对象，常驻的异常对象，系统类加载器</li>
+<li>所有被同步锁持有的对象</li>
+<li>除此之外，还有一些临时的 GC Roots 可以加入进来。比如老年代中的对象一般都存活时间比较久，也就是大概率是活着的对象，也可临时作为 GC Roots。</li>
 </ul>
 <h3 id="标记死亡后如何自救"><a href="#标记死亡后如何自救" class="headerlink" title="标记死亡后如何自救"></a>标记死亡后如何自救</h3><p>被判定为不可达的对象，并不立刻死亡。它仍然有次机会进行自救，需要重写 finalize()。</p>
 <p>也就是可达性算法的逻辑大致是这样的：</p>

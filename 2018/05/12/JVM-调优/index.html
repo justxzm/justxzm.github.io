@@ -96,7 +96,7 @@
 <meta property="og:description" content="JDK配置 1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME 1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxP">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018051201.png">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2018051202.png">
-<meta property="og:updated_time" content="2019-07-14T07:10:25.088Z">
+<meta property="og:updated_time" content="2020-11-20T01:19:33.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM 调优">
 <meta name="twitter:description" content="JDK配置 1-Xms512m -Xmx1024m -XX:PermSize=256M -XX:MaxPermSize=512M -Dmaven.multiModuleProjectDirectory=$M2_HOME 1234-Xms512m JVM初始分配的堆内存-Xmx1024m JVM最大允许分配的堆内存，按需分配-XX:PermSize=256M JVM初始分配的非堆内存-XX:MaxP">
@@ -461,6 +461,8 @@
 </table>
 <h3 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h3><p>编辑TOMCAT_HOME/bin/catalina.bat，在第二行中插入如下配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set JAVA_OPTS=-server -Xms1024m -Xmx1024m -XX:PermSize=64M -XX:MaxNewSize=512m -XX:MaxPermSize=128m</div></pre></td></tr></table></figure>
+<p>linux下编辑TOMCAT_HOME/bin/catalina.sh，在第二行中插入如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JAVA_OPTS=&quot;-server -Xms1024m -Xmx1024m -XX:PermSize=128M -XX:MaxNewSize=512m -XX:MaxPermSize=512m&quot;</div></pre></td></tr></table></figure>
 <p>一般设置-Xms、-Xmx 相等以避免在每次GC 后调整堆的大小。</p>
 <p><img src="/images/Java/2018051202.png" alt=""></p>
 <h3 id="Eclipse配置"><a href="#Eclipse配置" class="headerlink" title="Eclipse配置"></a>Eclipse配置</h3><p>编辑eclipse安装目录下eclipse.ini配置文件，最后添加如下配置：</p>
@@ -609,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

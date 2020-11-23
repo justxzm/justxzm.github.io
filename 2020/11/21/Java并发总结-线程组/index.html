@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，Thread不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
+<meta name="description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
 <meta name="keywords" content="Java并发系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发总结-线程组">
 <meta property="og:url" content="https://justxzm.github.io/2020/11/21/Java并发总结-线程组/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，Thread不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
-<meta property="og:updated_time" content="2020-11-23T11:45:00.784Z">
+<meta property="og:description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
+<meta property="og:updated_time" content="2020-11-23T12:08:23.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发总结-线程组">
-<meta name="twitter:description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，Thread不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
+<meta name="twitter:description" content="线程组概念Java中用ThreadGroup来表示线程组  每个Thread必然存在于一个ThreadGroup中，不能独立于ThreadGroup存在。 如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。 我们可以使用线程组对线程进行批量控制（统一异常处理）。">
 
 
 
@@ -400,7 +400,7 @@
       
         <h2 id="线程组概念"><a href="#线程组概念" class="headerlink" title="线程组概念"></a>线程组概念</h2><p>Java中用ThreadGroup来表示线程组</p>
 <ul>
-<li>每个Thread必然存在于一个ThreadGroup中，Thread不能独立于ThreadGroup存在。</li>
+<li>每个Thread必然存在于一个ThreadGroup中，不能独立于ThreadGroup存在。</li>
 <li>如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。</li>
 <li>我们可以使用线程组对线程进行批量控制（统一异常处理）。</li>
 </ul>
@@ -429,8 +429,7 @@
 <li>这里涉及到<code>SecurityManager</code>这个类，它是Java的安全管理器，它允许应用程序在执行一个可能不安全或敏感的操作前确定该操作是什么，以及是否是在允许执行该操作的安全上下文中执行它。应用程序可以允许或不允许该操作。比如引入了第三方类库，但是并不能保证它的安全性。</li>
 <li>其实Thread类也有一个checkAccess()方法，不过是用来当前运行的线程是否有权限修改被调用的这个线程实例。（Determines if the currently running thread has permission to modify this thread.）</li>
 </ul>
-<p><strong>总结</strong>：</p>
-<ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>线程组是一个<strong>树状的结构</strong>。</li>
 <li>每个线程组下面可以<strong>有多个线程或者线程组</strong>。</li>
 <li>线程组可以起到<strong>统一控制线程的优先级</strong>和<strong>检查线程的权限</strong>的作用。</li>
@@ -628,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组概念"><span class="nav-number">1.</span> <span class="nav-text">线程组概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与线程的优先级"><span class="nav-number">2.</span> <span class="nav-text">与线程的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组常用方法"><span class="nav-number">3.</span> <span class="nav-text">线程组常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组数据结构"><span class="nav-number">4.</span> <span class="nav-text">线程组数据结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组概念"><span class="nav-number">1.</span> <span class="nav-text">线程组概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与线程的优先级"><span class="nav-number">2.</span> <span class="nav-text">与线程的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组常用方法"><span class="nav-number">3.</span> <span class="nav-text">线程组常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程组数据结构"><span class="nav-number">4.</span> <span class="nav-text">线程组数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

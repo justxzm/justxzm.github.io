@@ -404,7 +404,7 @@
         
           <h2 id="线程组概念"><a href="#线程组概念" class="headerlink" title="线程组概念"></a>线程组概念</h2><p>Java中用ThreadGroup来表示线程组</p>
 <ul>
-<li>每个Thread必然存在于一个ThreadGroup中，Thread不能独立于ThreadGroup存在。</li>
+<li>每个Thread必然存在于一个ThreadGroup中，不能独立于ThreadGroup存在。</li>
 <li>如果在new Thread时没有显式指定，那么默认将父线程（当前执行new Thread的线程）线程组设置为自己的线程组。</li>
 <li>我们可以使用线程组对线程进行批量控制（统一异常处理）。</li>
 </ul>

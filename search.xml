@@ -552,7 +552,7 @@
   </entry>
   <entry>
     <title>自定义类加载器实现热加载</title>
-    <url>/2019/11/05/%E8%87%AA%E5%AE%9A%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%83%AD%E5%8A%A0%E8%BD%BD/</url>
+    <url>/2019/11/05/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%83%AD%E5%8A%A0%E8%BD%BD/</url>
     <content><![CDATA[<h2 id="什么是热加载"><a href="#什么是热加载" class="headerlink" title="什么是热加载"></a>什么是热加载</h2><ul>
 <li>热加载是指在不重启服务的情况下让更改的代码生效。</li>
 <li>热加载基于 Java 的类加载器实现，可以显著提升开发以及调试的效率。</li>

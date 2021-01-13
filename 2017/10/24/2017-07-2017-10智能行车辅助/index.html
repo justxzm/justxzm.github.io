@@ -1,0 +1,1048 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="激情岁月," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一个javaer大学生一段富有激情的实习经历。 自动泊车与低速循迹C#实现的PC上位机实时获取、处理、展示ECU行车电脑总线数据，反应挡位、转向角度、车速等各类详尽的行车数据。">
+<meta name="keywords" content="激情岁月">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017.07~2017.10智能行车辅助">
+<meta property="og:url" content="https://justxzm.github.io/2017/10/24/2017-07-2017-10智能行车辅助/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="一个javaer大学生一段富有激情的实习经历。 自动泊车与低速循迹C#实现的PC上位机实时获取、处理、展示ECU行车电脑总线数据，反应挡位、转向角度、车速等各类详尽的行车数据。">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011301.png">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011302.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011303.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011304.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011305.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011306.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011307.jpg">
+<meta property="og:image" content="https://justxzm.github.io/images/工作总结/2021011308.png">
+<meta property="og:updated_time" content="2021-01-13T12:23:23.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017.07~2017.10智能行车辅助">
+<meta name="twitter:description" content="一个javaer大学生一段富有激情的实习经历。 自动泊车与低速循迹C#实现的PC上位机实时获取、处理、展示ECU行车电脑总线数据，反应挡位、转向角度、车速等各类详尽的行车数据。">
+<meta name="twitter:image" content="https://justxzm.github.io/images/工作总结/2021011301.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2017/10/24/2017-07-2017-10智能行车辅助/"/>
+
+
+
+
+
+  <title> 2017.07~2017.10智能行车辅助 | JUST DO IT </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/10/24/2017-07-2017-10智能行车辅助/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2017.07~2017.10智能行车辅助
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T18:17:38+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一个javaer大学生一段富有激情的实习经历。</p>
+<h2 id="自动泊车与低速循迹"><a href="#自动泊车与低速循迹" class="headerlink" title="自动泊车与低速循迹"></a>自动泊车与低速循迹</h2><h3 id="C-实现的PC上位机"><a href="#C-实现的PC上位机" class="headerlink" title="C#实现的PC上位机"></a>C#实现的PC上位机</h3><p>实时获取、处理、展示ECU行车电脑总线数据，反应挡位、转向角度、车速等各类详尽的行车数据。</p>
+<p><img src="/images/工作总结/2021011301.png" alt=""></p>
+<a id="more"></a>
+<h3 id="Hybird-App实现的手机客户端"><a href="#Hybird-App实现的手机客户端" class="headerlink" title="Hybird App实现的手机客户端"></a>Hybird App实现的手机客户端</h3><p>在局域网中，与PC端建立连接，实时接收行车数据，反应车身周围障碍物距离。</p>
+<p><img src="/images/工作总结/2021011302.jpg" alt=""></p>
+<p>实时接收并显示行车数据，便于调试。</p>
+<p><img src="/images/工作总结/2021011303.jpg" alt=""><img src="/images/工作总结/2021011304.jpg" alt=""></p>
+<p>与PC端建立连接后，选择泊车模式（侧方位、倒车入库）、泊车方向，长按“控制键”开始自动泊车，松开“控制键”或与车连接断开时泊车过程立即停止。</p>
+<p><img src="/images/工作总结/2021011305.jpg" alt=""><img src="/images/工作总结/2021011306.jpg" alt=""><img src="/images/工作总结/2021011307.jpg" alt=""></p>
+<ul>
+<li>app发送信号至PC端，PC端再发送至ECU行车总线，实现控制车辆。</li>
+<li>泊车过程中车辆的方向、速度、挡位均由泊车算法计算后经行车总线控制。转向的控制得益于方向盘的电子助力，挡位的控制需改造加装电机带动挡位至所需位置。</li>
+</ul>
+<h3 id="C-实现的PC客户端工具"><a href="#C-实现的PC客户端工具" class="headerlink" title="C#实现的PC客户端工具"></a>C#实现的PC客户端工具</h3><ul>
+<li>实时记录转向角度以及车速数据，绘制行车轨迹。</li>
+<li>导入行车轨迹数据，能够自动完成低速循迹行使。</li>
+</ul>
+<p><img src="/images/工作总结/2021011308.png" alt=""></p>
+<h3 id="另：公司官网的搭建与维护"><a href="#另：公司官网的搭建与维护" class="headerlink" title="另：公司官网的搭建与维护"></a>另：公司官网的搭建与维护</h3><h2 id="工作日志"><a href="#工作日志" class="headerlink" title="工作日志"></a>工作日志</h2><p><strong>7.24</strong></p>
+<p>看打印的vector相关产品的资料，熟悉报文结构，底层总线结构等。</p>
+<p><strong>7.25</strong></p>
+<p>带自己电脑，写java http通信并抓包，封装太好，无果，写java套接字通信，抓包分析tcpip协议结构，如序列号、确认号、回复帧号、数据存放位置等，熟悉握手挥手细节。</p>
+<p><strong>7.26</strong></p>
+<p>京东七千多Thinkpad工作本到，装vs等一系列环境，下午写c#套接字并抓包再分析一波。</p>
+<p><strong>7.27</strong></p>
+<p>上午c#套接字发长度为5000字节数据，抓包，显然进行分片发送，1424B每片，第四片即最后一片为728B，最后服务器进行一次应答，下午，张哥给CAN相关项目并讲解，看其代码，归。</p>
+<p><strong>7.28</strong></p>
+<p>看CAN项目代码，读懂七七八八，抽取剥离关键点，自己搞demo，踩坑，CAN通道实例化不成功，未果，归，寻张哥要demo、及项目配置文件。</p>
+<p><strong>7.29</strong></p>
+<p>张哥丢失项目配置文件，我仅得demo及相关dll。</p>
+<p><strong>7.30</strong></p>
+<p>张哥给我demo(Vector CAN)pdf文档。</p>
+<p><strong>7.31</strong></p>
+<p>张哥的CAN demo跑起来，可发可读数据，并吃透，其后搞自己demo，添加dll引用，并将另两个dll放入应用程序dubug目录下，解决实例化问题，填完坑。</p>
+<p><strong>8.1</strong></p>
+<p>基于demo，CAN收发器基本成型，可设置收发地址，可收可发CAN报文，用委托机制进行数据回显，计划使用计时器每隔20ms发送数据。</p>
+<p><strong>8.2</strong></p>
+<p>比较计时器和线程的差别，前者高优先级介入cpu，后者主动让出cpu时间片进入阻塞队列，两者都无法精确定时20ms量级，前者15ms以上在30ms波动，后者16ms以上在30ms波动，DateTime.Now.Tick也无果，在20ms和30ms两值交替波动，最终用DateTime.Now.MilliSecond，数十周期后有峰值30ms左右存在。</p>
+<p><strong>8.3</strong></p>
+<p>20ms定时解决未果，暂放，张哥给解析数据包的demo，八个字节传输，到服务器转64位大小数组，按各种数据包结构一一截断解析，将逻辑值转换成物理值一并展示到server界面，共32种数据包，完成八，归。</p>
+<p><strong>8.4</strong></p>
+<p>重新设计界面，优化代码，完成控件的一套复用，完成重构10个Zone数据包解析，并分析OBJ数据包业务逻辑，计算机中负数的存储和传输以负数的补码表示，对于有符号数据需判断最高位bit值，为0按源码传输正数，为1则是按补码传输负数，接收端接受负数需再取补码，或都视为源码，通过向右移位赋值给有符号变量，让计算机判断并计算出正数或负数的值，最后除以2的移位位数次方即可。</p>
+<p><strong>8.7</strong></p>
+<p>剩余六个数据包未解析，发现界面卡顿甚至卡死，查看内存使用情况，怀疑频繁GC导致。</p>
+<p><strong>8.8</strong></p>
+<p>减少局部字符串的使用，调整语句，优化代码，无果。发现由于数据包大而发送周期小过分刷新界面导致，将数据的接收和界面的显示相分离，数据时时接收至全局变量，定时器每隔20毫秒根据下拉框选项显示相应数据，有效缓解界面卡顿，解决。开始留档测试，完成2.8个。</p>
+<p><strong>8.9</strong></p>
+<p>留档测试完毕，修正多处，其后考虑协议设计，app端界面设计，归前半小时老大讲解matlab的使用，设计好模块代码生成。</p>
+<p><strong>8.10</strong></p>
+<p>进行代码重构，将解析逻辑从界面代码中分离出去，封装到实体类中，实体类中的属性从原来的普通整型改为复杂类型BaseValue，每个属性都是拥有属性名、属性值、属性值对应的物理含义值、切割64位bit数组转换得到整型属性值的原数据、对属性值进行转16进制字符串的函数等的复杂结构体，将属性的通用逻辑和通用值的获取封装到其中，极大提高的代码的重用和可读性。对于放入集合中的相同数据结构的不同数据种类，需根据数据ID进行差异化，以便差异化显示各种数据的属性名，而其他数据种类直接将逻辑代码迁移至实体类中即可，用来展示的属性名通过反射(java)或泛型(c#)得到，即属性变量名，不需要重写。</p>
+<p><strong>8.11</strong></p>
+<p>重构完毕，进行第二次测试，过。Windows最小定时15ms，通过stopwatch类可实现20ms精确定时任务，可同时从同一can口发送多个数据。研究报文协议结构，开始制定适合自己的通信协议。</p>
+<p><strong>8.14</strong></p>
+<p>根据抓的包中的数据关系制作协议思维导图，包中数据为json格式。吸收完汽车雷达探距app端动态显示的两种实现方式，其一通过js画出来，四个坐标构成一个矩形，另外坐标轴上两点一线去截矩形平行的两边，截得焦点，加上矩形顶点共六个点即可围出两个颜色不同的矩形，根据服务器响应过来的数据改变坐标轴上两点，上下平行移动直线，截得不同焦点，时时重绘颜色不同的两个相连矩形即可展现出雷达探距的动态效果。其二，通过制图制作各个雷达展示模块，先相对布局后再绝对布局到页面中，两种不同颜色的同一模块重合在一起，用css动画改变其中一个模块的长或宽，动态展现出两个相邻颜色不同的矩形，缺点是绝对定位复杂费时费力，各个模块不严丝合缝，动态效果仅限在横纵方向上，拐角没有弧度。</p>
+<p><strong>8.15</strong></p>
+<p>过完一遍js，讨论通信协议的制定。研究服务器和浏览器端js的socket通信，解决浏览器关闭后服务器端仍有多个监听线程重复关闭连接的问题，完善服务器端每30ms判断连接是否alive的功能，用stopwatch类轮询，超时则关闭相应连接，浏览器端每20ms发送一个keepalive帧。而服务器端对连接是否alive的检测周期是需越小越好的，假如周期为40ms则存在漏帧的情况，即40ms时收到的帧覆盖了20ms时收到帧的信息，服务器只检测到一帧，其实两帧已经过来了，这就存在一个问题，因为每一帧都是携带alivecount的，来标记这是第几帧，每发一帧加一，服务器对每接收的帧的alivecount标记值进行预判并比对，若和预期不符则做出相应响应，比如关闭连接、关闭所有服务。当连接建立，假如发了一帧alivecount为N的keepalive帧时，如果hacker模拟浏览器端的所有请求头信息并发出“合法”请求的话，那么hacker发的一帧alivecount必须是N+1，当真正的合法用户再次发送alivecount为N+1的帧时，那么会出现服务器端出现两帧alivecount相同，和预期的下个alivecount不符的情况，则马上关闭连接、停止所有服务，回到上述40ms周期检测的情况，当两帧alivecount相同，其一把其一覆盖的时候，这时不能检测到冲突，察觉不到hacker的存在，即此设计存在侵入性。就相当于你在书房看书，小伙伴来你家门口找你玩，但你家门是关着的，小伙伴每隔一段时间来敲门喊你，你每隔一段时间去门口看看有没有小伙伴来找你，即使你看的多勤快，也是存在小伙伴来过多次你只察觉一次的情况的。因此采用轮询法，需控制检测周期小于发送周期，但此法需观察cpu、内存资源消耗情况。另一解决方法是事件触发，帧接收完毕后通知开始检测，不用另起线程轮询。待研究websocket和原生socket的区别、websocket默认连接断开时间、连接时是否自动回ack帧、长数据是否自动分片并保证数据完整性。</p>
+<p><strong>8.16</strong></p>
+<p>协议制定完毕。对websocket进一步研究。当因超时连接断开时，socket连接仍处于timewait状态，两分钟后才真正关闭。当客户端发送数据到服务器，服务器再发回数据后，客户端自动回一帧0长度的ack。当客户端发送数据到服务器，服务器不发回数据时，服务器自动回一ack帧。客户端每10ms、15ms、20ms、50ms发一帧时，服务器分别每接收1、2、2、1帧回一ack帧。当客户端断网时，连接超时自动关闭。服务器端发送500字节长数据时，自动分片，其中1416字节三片，752字节一片,客户端发送长数据时1424每片。超时时长为100ms时，客户端发送数据在40ms周期以下时越频繁越慢，超时越严重，周期40ms有时发送数据六七百次后出现超时，有时两千次左右出现超时，周期50ms时，三四百次就出现超时。超时时长为150ms时，客户端周期40ms时，发送至一万三千多次没出现超时，周期50ms两千三百多次出现过超时，其后一次至八千次还未超时，测试少，不排除偶然情况，仅供参考。</p>
+<p><strong>8.17</strong></p>
+<p>看了半天C Primer Plus。研究将网页嵌入app，一种做法是原生android控件webview加载本地网页，还有一种是HBuilder直接将网页打包成apk文件，但这都存在问题，网页加载完套接字连接建立后都自己关闭了连接，效果等同于浏览器端建立连接后再关闭了网页，加载完后不能保持连接状态。待解决。</p>
+<p><strong>8.18</strong></p>
+<p>采用AppCan的API，采用的是socket，其长数据分片情况与websocket相同，发1424每片，收1416每片。但在短数据传输时，websocket有所不同，websocket采用的是WebSocket Text [FIN] [MASKED]和WebSocket Text [FIN]，而socket则是常见的PSH。而且websocket的tcp三次握手以后还建立了一次http握手，这是socket没有的，socket还可以设置超时时长。</p>
+<p><strong>8.21</strong></p>
+<p>抽象出连接协议父类BaseServer，用于切换websocket和tcp协议，websocket协议适合用浏览器调试写的业务逻辑，调试完毕，换tcp协议，只需换连接接口，业务逻辑不换。上午调通两端，以json格式传输获取数据，下午写完服务器端逻辑，页面端显示逻辑未写完，待调试。</p>
+<p><strong>8.22</strong></p>
+<p>页面完成，非集合类数据显示测试完毕，服务器端对于不同长度的数据传输需加上相应头部，126B，65535B为临界值。Can通道不能挂在虚拟通道上。集合类数据传输和页面展示待测。</p>
+<p><strong>8.23</strong></p>
+<p>Client端使用websocket完成在页面上正确展示数据，服务器端响应的数据根据大小不同要加上不同数值不同长度的头数据，才能正确响应回客户端，而对于Client端使用socket协议的情况，响应数据不需要加头数据，直接发送至Client端，分多段发送，但Client端不负责拼接，使用socket协议需考虑数据接收的有序性和拼接。制造死数据进行模块话测试。</p>
+<p><strong>8.24</strong></p>
+<p>客户端采用AppCan socket实现展示完毕。抓包分析知Server端传至Client端途中大数据对象是分片的，1416长度每片，但协议处理完上传到上层AppCan socket回调函数的是分段的json字符串(而websocket拿到的是整个字符串)，分多次传输且有序，对于分段情况如下，此处分为了两段，两段为一整个数据，数据总长40692，不同次连接的每次接收分段情况都不同，无规律。在大数据对象中增加一个endMark字段，接收时进行判断，对字符串进行拼接，indexOf到该字段中的值则拼接完成进行展示，随后立即清空buffer，准备下次拼接。还发现：Server端响应大数据对象的频率和Client端发送keepAlive的频率相互制约，都较大时导致连接中断。</p>
+<p><strong>8.25</strong></p>
+<p>Server端与Client端收发周期问题。抓包分析：</p>
+<ul>
+<li>Client端短周期发送Server端报无效json基元原因：发的快，两次keepalive合为了一次发，到Server端无法正确从json转对象。40ms、60ms抓的包中皆有体现。由于AppCan socket底层实现，大约70ms发送一次，周期小于70ms存在两次写入同一buffer的情况，周期设置为80ms解决。</li>
+<li>Server端发送周期太短，会出现数据包会出现乱序，即使有重传机制Client也无法正确拼接。Server端300ms周期加锁后在第148次发送时仍偶尔会出现乱序、重传。用双检锁，千次没问题。待再测。</li>
+</ul>
+<p><strong>8.28</strong></p>
+<p>上午去人工智能产业园试车。Client端window.setInterval发送getResource周期短导致tcp数据包乱序重传，转换思路：在收到数据后再去发送下一次请求，试验未果。将Client端界面用bootstrap重新展示。</p>
+<p><strong>8.29</strong></p>
+<p>界面重布局完毕。用AppCan websocket尝试解决收发周期问题未果，每次调试都需生产并安装app，太耗时。回来公交上想到一法子：Server端对收到的数据进行切割，无论收到一个数据还是两个合一帧发的数据、无论合在一起的是keepalive还是getResource切割完都放入数组按序处理，Client端发送的keepalive的周期可提高，并且重新尝试Client端在收到整个数据后再发下一次请求，这样性能瓶颈就在传播时延上，并且数据包不会乱序。</p>
+<p><strong>8.30</strong></p>
+<p>Client端keepalive周期可至40ms，为了不给服务器增加没必要的压力调至80ms，getResource周期经测试跟Client的性能有关，手机作为客户端每0.8s左右更新一次，笔记本作为客户端0.5s左右更新一次，目前周期已最优。明日待调整界面和调试服务器超时时长、数据合法性验证，并解决事件触发法在客户端断网情况下的不足。</p>
+<p><strong>8.31</strong></p>
+<p>完成服务器超时时长测试、数据合法性验证，轮询解决客户端断网情况下的不足。看计算机网络tcp部分，对为什么Server端发送的大数据到Client端是分几次收到的原因有了深刻理解，因为tcp协议面向字节流，发送的数据段数和接收到的段数不一定相等，需要程序有还原数据的能力。</p>
+<p><strong>9.1</strong></p>
+<p>调整Client端界面，调整协议，完成模式选择功能，待调试。</p>
+<p><strong>9.4</strong></p>
+<p>Client模式选择功能完成。Alivecount验证存在多线程问题，待解决。只允许一个客户端连接的情况，断开连接后再连接存在问题。</p>
+<p><strong>9.5</strong></p>
+<p>添加实体类，用于存放向Client发送的数据，排除一切不需要数据，减少数据量，提高getResource的刷新频率至300ms。</p>
+<p><strong>9.6</strong></p>
+<p>Vector(中国)2017用户大会。</p>
+<p><strong>9.7</strong></p>
+<p>完善Server端超时函数，下去实测，改obj、objDist业务逻辑。</p>
+<p><strong>9.8</strong></p>
+<p>实测，还是存在闪退，查看手机log尝试解决问题，次日完善Server端，论坛提交问题。</p>
+<p><strong>9.11</strong></p>
+<p>改完业务逻辑，调整完界面（固定表格宽度，排完序），改用TCPServer类，闪退问题还未出现，由于两端协议不完全相同导致，完善调整Server界面。sdcard/widgetone/log/crash。还是偶尔出现闪退，未解决，Server业务逻辑还存在问题，Client disconnect存在问题。</p>
+<p><strong>9.12</strong></p>
+<p>Server业务逻辑加锁调试完毕。Client端代码待封装重构，待动态化处理。找到每个点坐标，计算斜率。</p>
+<p><strong>9.13</strong></p>
+<p>制作公司官网，完成七七八八。</p>
+<p><strong>9.14</strong></p>
+<p>公司官网上午搞定，下午Client端动画、文字展示集成完毕。</p>
+<p><strong>9.15</strong></p>
+<p>Server端读写分离解决同步问题，Client基本完成下去试车成功，调细节方面。</p>
+<p><strong>9.18</strong></p>
+<p>调Client界面，完善功能逻辑。</p>
+<p><strong>9.19</strong></p>
+<p>调Client界面，完善功能逻辑。</p>
+<p><strong>9.20</strong></p>
+<p>调Client界面，完善功能逻辑。判断一个数是否包含在一个数中，采用与运算，为0则不存在，否则存在。</p>
+<p><strong>9.21</strong></p>
+<p>localStorage完善ip设置，Server端解决没联网状态下tcp初始化ip的异常。</p>
+<p><strong>9.22</strong></p>
+<p>完善调试Client功能。</p>
+<p><strong>9.25</strong></p>
+<p>研究appcan发送函数中的回调函数中error一直为0未果。下午开始新功能，保留、绘制行驶轨迹。关于坐标点跳变的问题，重要的是差值和在跳变位置差值增减的判断，设置一个阈值。</p>
+<p><strong>9.26</strong></p>
+<p>坐标点画图完毕，点坐标写文件完毕。</p>
+<p><strong>9.27</strong></p>
+<p>读数据完毕。开始读数据打开文件流，开始不断写文件，写完再关闭文件流，否则高频实例化、销毁文件流将导致资源占用线性上升并且界面卡死。</p>
+<p><strong>9.28</strong></p>
+<p>画图完毕，存在swa匹配问题。</p>
+<p><strong>9.29</strong></p>
+<p>解决swa匹配问题，由于计算distance错误导致，x或y值变化时逗得计算，先前漏其一导致漏点，曲线提前。Client加入AutoDrv功能，短距试车成功。BaseValue中refresh计算存在问题。</p>
+<p><strong>9.30</strong></p>
+<p>解决BaseValue中存在的问题：BitArray的比较采用“Equals“和”==“都无效，采用循环实现每个元素的比较，对于一开始断点断到多个null值是由于实体类中多个属性导致，有几个属性赋值，一开始就断到几个null值。可改进的地方：oldValue可由BitArray类型换成int型，refresh进来先计算新的CANValue值，其次与oldValue比较，最后将其更新到oldValue中。函数中new的对象在函数结束后只销毁引用变量不销毁其指向的内存空间。</p>
+<p><strong>10.9</strong></p>
+<p>解决节前的一系列BUG。</p>
+<p><strong>10.10</strong></p>
+<p>百米循迹试车成功，但在大转向的情况下仍存在问题，S弯、调头失败，待解决。</p>
+<p><strong>10.11</strong></p>
+<p>完善Server程序，修曲线匹配完成，但S弯、调头仍失败，待解决。</p>
+<p><strong>10.12</strong></p>
+<p>错误：N-&gt;ReqCtrl-&gt;ReqTakeOver-&gt;D-&gt;AutoDrv-&gt;N-&gt;R</p>
+<p>正常：N-&gt;ReqCtrl-&gt;ReqTakeOver-&gt;D-&gt;AutoDrv-&gt;N-&gt;R-&gt;N-&gt;D</p>
+<p>当方向打死时，不能保持，方向很快回正了，导致S弯、调头失败。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/激情岁月/" rel="tag"># 激情岁月</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/Git-ssh-配置及使用/" rel="next" title="Git ssh 配置及使用">
+                <i class="fa fa-chevron-left"></i> Git ssh 配置及使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/Java-Volatile/" rel="prev" title="Java Volatile">
+                Java Volatile <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Try.Catch" />
+          <p class="site-author-name" itemprop="name">Try.Catch</p>
+           
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客友链
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自动泊车与低速循迹"><span class="nav-number">1.</span> <span class="nav-text">自动泊车与低速循迹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-实现的PC上位机"><span class="nav-number">1.1.</span> <span class="nav-text">C#实现的PC上位机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hybird-App实现的手机客户端"><span class="nav-number">1.2.</span> <span class="nav-text">Hybird App实现的手机客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-实现的PC客户端工具"><span class="nav-number">1.3.</span> <span class="nav-text">C#实现的PC客户端工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另：公司官网的搭建与维护"><span class="nav-number">1.4.</span> <span class="nav-text">另：公司官网的搭建与维护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作日志"><span class="nav-number">2.</span> <span class="nav-text">工作日志</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

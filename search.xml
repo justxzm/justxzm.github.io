@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Oracle查询优化改写</title>
+    <url>/2021/03/21/Oracle%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E6%94%B9%E5%86%99/</url>
+    <content><![CDATA[<h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="将空指转换为实际值"><a href="#将空指转换为实际值" class="headerlink" title="将空指转换为实际值"></a>将空指转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT coalesce(comm,0) FROM emp;</div><div class="line">SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;</div><div class="line"># 若改用nvl，要嵌套很多层</div><div class="line">SELECT nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) AS c FROM v;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="从表中随机返回n条记录"><a href="#从表中随机返回n条记录" class="headerlink" title="从表中随机返回n条记录"></a>从表中随机返回n条记录</h3><p>正确写法：先随机排序，再取数据</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> empno,ename </div><div class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> empno,ename <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> dbms_random.value())</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;= <span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p>错误写法：先取数据，再随机排序</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> empno,ename <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;=<span class="number">3</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> dbms_random.value;</div></pre></td></tr></table></figure>
+<h3 id="模糊查询（转义）"><a href="#模糊查询（转义）" class="headerlink" title="模糊查询（转义）"></a>模糊查询（转义）</h3><p>在LIKE子句中有两个通配符：“%”（替代一个或多个字符）、“_”（替代一个或多个字符）。“_”被当作通配符了怎么办，可以用转义字符：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> v <span class="keyword">WHERE</span> vname <span class="keyword">LIKE</span> <span class="string">'\_BCE%'</span> ESCAPE <span class="string">'\';</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> v <span class="keyword">WHERE</span> vname <span class="keyword">LIKE</span> <span class="string">'_\BCE%'</span> ESCAPE <span class="string">'\';</span></div><div class="line">ORA-01424：转义符之后字符缺失或非法</div><div class="line"># 双写转义字符即可，对于字符串中包含“%”同理</div><div class="line">SELECT * FROM v WHERE vname LIKE '_\\BCE%<span class="string">' ESCAPE '</span>\<span class="string">';</span></div></pre></td></tr></table></figure>
+<h2 id="查询结果排序"><a href="#查询结果排序" class="headerlink" title="查询结果排序"></a>查询结果排序</h2><h3 id="以数字指定排序列"><a href="#以数字指定排序列" class="headerlink" title="以数字指定排序列"></a>以数字指定排序列</h3><figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 按第三列排序</div><div class="line">SELECT empno,ename,hiredate FROM emp WHERE deptno = 10 ORDER BY 3 ASC;</div><div class="line"># 当取值不定时很方便，比如有时取sal，有时取comm来显示</div><div class="line">SELECT empno,ename,sal FROM emp WHERE deptno = 10 ORDER BY 3 ASC;</div><div class="line">SELECT empno,ename,comm FROM emp WHERE deptno = 10 ORDER BY 3 ASC;</div></pre></td></tr></table></figure>
+<h3 id="TRANSLATE"><a href="#TRANSLATE" class="headerlink" title="TRANSLATE"></a>TRANSLATE</h3><p>语法格式：TRANSLATE(expr, from_string, to_string)</p>
+<p>from_string 与 to_string 以字符为单位，对应字符一一替换。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT TRANSLATE('ab 你好 bcadefg', 'abcdefg', '1234567') AS NEW_STR FROM DUAL;</div><div class="line"># 12 你好 2314567</div></pre></td></tr></table></figure>
+<p>如果 to_string 为空，则返回空值。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT TRANSLATE('ab 你好 bcadefg', 'abcdefg', '') AS NEW_STR FROM DUAL;</div><div class="line"># NULL</div></pre></td></tr></table></figure>
+<p>如果 to_string 对应的位置没有字符，删除 from_string 中列出的字符将会被消掉。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT TRANSLATE('ab 你好 bcadefg', '1abcdefg', '1') AS NEW_STR FROM DUAL;</div><div class="line"># 你好</div></pre></td></tr></table></figure>
+<h3 id="处理排序空值"><a href="#处理排序空值" class="headerlink" title="处理排序空值"></a>处理排序空值</h3><p>Oracle 默认排序空值在后面，如果想把空值（如 emp.comm）显示在前面：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">SELECT ename,sal,comm,nvl(comm, -1) order_col FROM emp ORDER BY 4;</div><div class="line"># 这种方法需要对列类型及其中保存的数据有所了解才行</div></pre></td></tr></table></figure>
+<p>其实可以用关键字 NULLS FIRST 和 NULLS LAST：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line"># 空值在前</div><div class="line">SELECT ename,sal,comm FROM emp ORDER BY 3 NULLS FIRST;</div><div class="line"># 空值在后</div><div class="line">SELECT ename,sal,comm FROM emp ORDER BY 3 NULLS LAST;</div></pre></td></tr></table></figure>
+<h2 id="操作多个表"><a href="#操作多个表" class="headerlink" title="操作多个表"></a>操作多个表</h2><h3 id="ROWID"><a href="#ROWID" class="headerlink" title="ROWID"></a>ROWID</h3><p>除了用唯一列、主键列外，还可以使用 rowid</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">ROWID</span>,deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> mgr = <span class="number">7698</span>;</div></pre></td></tr></table></figure>
+<p>如果数据不是取自表，而是取自VIEW</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">select rowid from v;</div><div class="line"># ORA-01445：无法从不带保留关键字的表的连接视图中选择 ROWID 或采样</div></pre></td></tr></table></figure>
+<h3 id="查询期间创建临时视图"><a href="#查询期间创建临时视图" class="headerlink" title="查询期间创建临时视图"></a>查询期间创建临时视图</h3><p>仅在查询期间存在，查询结束消失</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">WITH e AS (<span class="keyword">SELECT</span> <span class="keyword">ROWNUM</span> <span class="keyword">AS</span> sn,deptno,mgr,job <span class="keyword">FROM</span> v)</div><div class="line"><span class="keyword">SELECT</span> sn,deptno <span class="keyword">FROM</span> e <span class="keyword">WHERE</span> mgr = <span class="number">7698</span>;</div></pre></td></tr></table></figure>
+<h3 id="EXPLAIN分析查询语句"><a href="#EXPLAIN分析查询语句" class="headerlink" title="EXPLAIN分析查询语句"></a>EXPLAIN分析查询语句</h3><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">EXPLAIN</span> PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> empno,ename <span class="keyword">FROM</span> emp;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span>(dbms_xplan.display());</div></pre></td></tr></table></figure>
+<h3 id="JOIN查询不同写法"><a href="#JOIN查询不同写法" class="headerlink" title="JOIN查询不同写法"></a>JOIN查询不同写法</h3><p>INNER JOIN</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="number">1.</span><span class="keyword">str</span> <span class="keyword">AS</span> left_str, r.str <span class="keyword">AS</span> right_str</div><div class="line"><span class="keyword">FROM</span> <span class="number">1</span>, r</div><div class="line"><span class="keyword">WHERE</span> l.v = r.v</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>LEFT JOIN</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> l.str <span class="keyword">AS</span> left_str, r.str <span class="keyword">AS</span> right_str</div><div class="line"><span class="keyword">FROM</span> l, r</div><div class="line"><span class="keyword">WHERE</span> l.v = r.v(+)</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>RIGHT JOIN</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> l.str <span class="keyword">AS</span> left_str, r.str <span class="keyword">AS</span> right_str</div><div class="line"><span class="keyword">FROM</span> l, r</div><div class="line"><span class="keyword">WHERE</span> l.v(+) = r.v</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>FULL JOIN 无(+)的写法。</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java类隔离加载实现</title>
     <url>/2021/02/23/Java%E7%B1%BB%E9%9A%94%E7%A6%BB%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<p>类隔离技术是为了解决依赖冲突而诞生的，它通过<strong>自定义类加载器破坏双亲委派机制</strong>，然后<strong>利用类加载传导规则</strong>实现了不同模块的类隔离。</p>

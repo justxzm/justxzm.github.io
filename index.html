@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -326,8 +326,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/03/21/Oracle查询优化改写/" itemprop="url">
-                  Oracle查询优化改写
+                <a class="post-title-link" href="/2021/03/21/Oracle查询优化改写-笔记/" itemprop="url">
+                  Oracle查询优化改写-笔记
                 </a>
               
             
@@ -402,11 +402,11 @@
 
       
         
-          <h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="将空指转换为实际值"><a href="#将空指转换为实际值" class="headerlink" title="将空指转换为实际值"></a>将空指转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SELECT coalesce(comm,0) FROM emp;</div><div class="line">SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;</div><div class="line"># 若改用nvl，要嵌套很多层</div><div class="line">SELECT nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) AS c FROM v;</div></pre></td></tr></table></figure>
+          <h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="空值转换为实际值"><a href="#空值转换为实际值" class="headerlink" title="空值转换为实际值"></a>空值转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SELECT coalesce(comm,0) FROM emp;</div><div class="line">SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;</div><div class="line"># 若改用nvl，要嵌套很多层</div><div class="line">SELECT nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) AS c FROM V;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/21/Oracle查询优化改写/#more" rel="contents">
+            <a class="btn" href="/2021/03/21/Oracle查询优化改写-笔记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

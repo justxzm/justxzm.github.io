@@ -94,7 +94,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/04/03/MySQL免安装版配置/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="下载解压5.7 32位https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-win32.zip 5.7 64位https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip 本人解压到的是D:\Program Files\mysql（这里解压后文件夹重命名为了">
-<meta property="og:updated_time" content="2019-07-14T07:22:28.041Z">
+<meta property="og:updated_time" content="2021-06-05T04:37:53.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL免安装版配置">
 <meta name="twitter:description" content="下载解压5.7 32位https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-win32.zip 5.7 64位https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip 本人解压到的是D:\Program Files\mysql（这里解压后文件夹重命名为了">
@@ -412,10 +412,10 @@
 <h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 启动mysql</div><div class="line">net start MySQLService</div></pre></td></tr></table></figure>
 <h3 id="登陆服务"><a href="#登陆服务" class="headerlink" title="登陆服务"></a>登陆服务</h3><h4 id="忽略密码"><a href="#忽略密码" class="headerlink" title="忽略密码"></a>忽略密码</h4><p>同样黑窗口，用命令 mysql –u root –p 进入mysql管理界面，待输入密码时直接回车即可</p>
 <p>因为上述mysql.ini配置中最后第二行<code>skip-grant-tables</code>即忽略密码设置，可不输入密码直接回车登录数据库。更改密码后，注释掉或删掉后重启服务即可。</p>
-<h4 id="更改密码"><a href="#更改密码" class="headerlink" title="更改密码"></a>更改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt;mysql-uroot -p</div><div class="line">mysql&gt;show databases;</div><div class="line">mysql&gt;use mysql;</div><div class="line">mysql&gt;UPDATE user SET password=PASSWORD(&quot;root&quot;) WHERE user=&apos;root&apos;;</div><div class="line">mysql&gt;FLUSH PRIVILEGES;（刷新权限）</div><div class="line">mysql&gt;QUIT（退出后重启服务）</div></pre></td></tr></table></figure>
+<h4 id="更改密码"><a href="#更改密码" class="headerlink" title="更改密码"></a>更改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt;mysql -uroot -p</div><div class="line">mysql&gt;show databases;</div><div class="line">mysql&gt;use mysql;</div><div class="line">mysql&gt;UPDATE user SET password=PASSWORD(&quot;root&quot;) WHERE user=&apos;root&apos;;</div><div class="line">mysql&gt;FLUSH PRIVILEGES;（刷新权限）</div><div class="line">mysql&gt;QUIT（退出后重启服务）</div></pre></td></tr></table></figure>
 <h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 停止服务</div><div class="line">net stop MySQLService</div><div class="line"># 启动服务</div><div class="line">net start MySQLService</div></pre></td></tr></table></figure>
 <h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>在服务列表中停止服务，“管理员身份”，点击”cmd”右键，选择“管理员方式运行”，执行控制台cmd。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 删除服务</div><div class="line">sc delete MySQLService（服务名称）</div><div class="line"># 查询服务</div><div class="line">sc query MySQLService（服务名称）</div><div class="line"># 导入</div><div class="line">mysql --defaults-extra-file=&quot;D:\Program Files\mysql\my.ini&quot; 数据库名&lt;C:\文件名.sql</div><div class="line"># 导出</div><div class="line">mysqldump --defaults-extra-file=&quot;D:\Program Files\mysql\my.ini&quot; 数据库名&gt;C:\文件名.sql</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 删除服务</div><div class="line">sc delete MySQLService（服务名称）</div><div class="line"># 查询服务</div><div class="line">sc query MySQLService（服务名称）</div><div class="line"># 导入</div><div class="line">mysql -uroot -p;</div><div class="line">create database 数据库名;</div><div class="line">mysql -uroot -p 数据库名&lt;C:\文件名.sql;</div><div class="line">(mysql --defaults-extra-file=&quot;D:\Program Files\mysql\my.ini&quot; 数据库名&lt;C:\文件名.sql)</div><div class="line"># 导出</div><div class="line">mysqldump -uroot -p 数据库名&gt;C:\文件名.sql;</div><div class="line">(mysqldump --defaults-extra-file=&quot;D:\Program Files\mysql\my.ini&quot; 数据库名&gt;C:\文件名.sql)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -536,7 +536,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -402,7 +402,7 @@
 
       
         
-          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础操作/">《Oracle查询优化改写》笔记（基础操作）</a></p>
+          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
 <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1139,7 +1139,7 @@
 
       
         
-          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础操作/">《Oracle查询优化改写》笔记（基础操作）</a></p>
+          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
 <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-调优案例/">《Oracle查询优化改写》笔记（调优案例）</a></p>
 <h2 id="范围处理"><a href="#范围处理" class="headerlink" title="范围处理"></a>范围处理</h2><h3 id="定位连续值的范围"><a href="#定位连续值的范围" class="headerlink" title="定位连续值的范围"></a>定位连续值的范围</h3><p>方法一：自关联</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> v1.proj_id <span class="keyword">AS</span> 工程号,v1.proj_start 开始日期,v1.proj_end 结束日期</div><div class="line"><span class="keyword">FROM</span> v v1,v v2</div><div class="line"><span class="keyword">WHERE</span> v2.proj_start = v1.proj_end</div></pre></td></tr></table></figure>

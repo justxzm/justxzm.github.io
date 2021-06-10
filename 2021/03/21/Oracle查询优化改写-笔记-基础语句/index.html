@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（调优案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
+<meta name="description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（应用案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
 <meta name="keywords" content="Oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Oracle查询优化改写》笔记（基础语句）">
 <meta property="og:url" content="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（调优案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
-<meta property="og:updated_time" content="2021-06-08T11:39:40.562Z">
+<meta property="og:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（应用案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
+<meta property="og:updated_time" content="2021-06-10T01:21:29.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Oracle查询优化改写》笔记（基础语句）">
-<meta name="twitter:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（调优案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
+<meta name="twitter:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（应用案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
 
 
 
@@ -399,7 +399,7 @@
 
       
         <p><a href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
-<p><a href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-调优案例/">《Oracle查询优化改写》笔记（调优案例）</a></p>
+<p><a href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
 <h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="空值转换为实际值"><a href="#空值转换为实际值" class="headerlink" title="空值转换为实际值"></a>空值转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SELECT coalesce(comm,0) FROM emp;</div><div class="line">SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;</div><div class="line"># 若改用nvl，要嵌套很多层</div><div class="line">SELECT nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) AS c FROM V;</div></pre></td></tr></table></figure>
 <a id="more"></a>

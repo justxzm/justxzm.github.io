@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java IO," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java IO,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/06/13/Java-BIO实例/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="本文实例以文件操作、字节流、字符流、序列化流模块进行归纳，输入输出流同理部分缺省。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-12-21T04:18:52.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java BIO实例">
@@ -105,10 +98,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -125,17 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/06/13/Java-BIO实例/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/06/13/Java-BIO实例/">
 
 
 
 
 
-  <title> Java BIO实例 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Java BIO实例 | JUST DO IT</title>
   
 
 
@@ -145,18 +136,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -165,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -195,49 +184,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -248,7 +237,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -269,9 +258,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -303,13 +290,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/06/13/Java-BIO实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -321,14 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Java BIO实例
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Java BIO实例</h1>
         
 
         <div class="post-meta">
@@ -351,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -382,6 +366,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -391,7 +380,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -400,48 +391,42 @@
       
         <p>本文实例以文件操作、字节流、字符流、序列化流模块进行归纳，输入输出流同理部分缺省。</p>
 <a id="more"></a>
-<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h4 id="java-io-File"><a href="#java-io-File" class="headerlink" title="java.io.File"></a>java.io.File</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		File file = <span class="keyword">new</span> File(<span class="string">"E:\\javaio"</span>);</div><div class="line">		<span class="comment">//System.out.println(file.exists());</span></div><div class="line">		<span class="keyword">if</span>(!file.exists())｛</div><div class="line">			file.mkdir(); <span class="comment">//file.mkdirs()</span></div><div class="line">		｝<span class="keyword">else</span>｛</div><div class="line">			file.delete();</div><div class="line">		｝</div><div class="line">		<span class="comment">//是否是一个目录  如果是目录返回true,如果不是目录or目录不存在返回的是false</span></div><div class="line">		System.out.println(file.isDirectory());</div><div class="line">		<span class="comment">//是否是一个文件</span></div><div class="line">		System.out.println(file.isFile());</div><div class="line">		</div><div class="line">		<span class="comment">//File file2 = new File("e:\\javaio\\日记1.txt");</span></div><div class="line">		File file2 = <span class="keyword">new</span> File(<span class="string">"e:\\javaio"</span>,<span class="string">"日记1.txt"</span>);</div><div class="line">		<span class="keyword">if</span>(!file2.exists())｛</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				file2.createNewFile();</div><div class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">				<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		｝<span class="keyword">else</span>｛</div><div class="line">			file2.delete();</div><div class="line">		｝</div><div class="line">		<span class="comment">//常用的File对象的API</span></div><div class="line">		System.out.println(file);<span class="comment">//file.toString()的内容</span></div><div class="line">		System.out.println(file.getAbsolutePath());</div><div class="line">		System.out.println(file.getName());</div><div class="line">		System.out.println(file2.getName());</div><div class="line">		System.out.println(file.getParent());</div><div class="line">		System.out.println(file2.getParent());</div><div class="line">		System.out.println(file.getParentFile().getAbsolutePath());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		File file = <span class="keyword">new</span> File(<span class="string">"e:\\example"</span>);</div><div class="line">		</div><div class="line">		<span class="comment">//skill_01</span></div><div class="line">		String[] filenames = file.list(<span class="keyword">new</span> FilenameFilter() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</div><div class="line">				<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">				System.out.println(dir+<span class="string">"\\"</span>+name);</div><div class="line">				<span class="keyword">return</span> name.endsWith(<span class="string">"java"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		<span class="keyword">for</span> (String string : filenames) &#123;</div><div class="line">			System.out.println(string);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="comment">//skill_02</span></div><div class="line">		File[] files = file.listFiles(<span class="keyword">new</span> FilenameFilter() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</div><div class="line">				<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">				System.out.println(dir+<span class="string">"\\"</span>+name);</div><div class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		</div><div class="line">		<span class="comment">//skill_03</span></div><div class="line">		File[] files = file.listFiles(<span class="keyword">new</span> FileFilter() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File pathname)</span> </span>&#123;</div><div class="line">				<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">				System.out.println(pathname);</div><div class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo3</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		File dir=<span class="keyword">new</span> File(<span class="string">"src/lee"</span>);</div><div class="line">		FileAccept fileAccept=<span class="keyword">new</span> FileAccept();</div><div class="line">		fileAccept.setExtendName(<span class="string">"java"</span>);</div><div class="line">		String[] fileName=dir.list(fileAccept);</div><div class="line">		<span class="keyword">for</span>(String name:fileName)&#123;</div><div class="line">			System.out.println(name);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileAccept</span> <span class="keyword">implements</span> <span class="title">FilenameFilter</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String extendName;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExtendName</span><span class="params">(String s)</span></span>&#123;</div><div class="line">		extendName=<span class="string">"."</span>+s;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">return</span> name.endsWith(extendName);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo4</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		File f=<span class="keyword">new</span> File(<span class="string">"E:\\workspace\\eclipse jee\\HelloWorld_01"</span>);</div><div class="line">		System.out.println(f.getName());</div><div class="line">		tree(f,<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tree</span><span class="params">(File f,<span class="keyword">int</span> leve)</span></span>&#123;</div><div class="line">		String str=<span class="string">""</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;leve;j++)&#123;</div><div class="line">			str+=<span class="string">"    "</span>;</div><div class="line">		&#125;</div><div class="line">		File[] children=f.listFiles();<span class="comment">//list()方法返回字符串数组，目录下所有文件名</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;children.length;i++)&#123;</div><div class="line">			System.out.println(str+children[i].getName());</div><div class="line">			<span class="keyword">if</span>(children[i].isDirectory())&#123;</div><div class="line">				tree(children[i],leve+<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><h4 id="java-io-FileOutputStream"><a href="#java-io-FileOutputStream" class="headerlink" title="java.io.FileOutputStream"></a>java.io.FileOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileOutDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		<span class="comment">//如果该文件不存在，则直接创建，如果存在，删除后创建</span></div><div class="line">		FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"demo/out.dat"</span>);</div><div class="line">		out.write(<span class="string">'A'</span>);<span class="comment">//写出了'A'的低八位</span></div><div class="line">		out.write(<span class="string">'B'</span>);<span class="comment">//写出了'B'的低八位</span></div><div class="line">		<span class="keyword">int</span> a = <span class="number">10</span>;<span class="comment">//write只能写八位,那么写一个int需要些4次每次8位</span></div><div class="line">		out.write(a &gt;&gt;&gt; <span class="number">24</span>);</div><div class="line">		out.write(a &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">		out.write(a &gt;&gt;&gt; <span class="number">8</span>);</div><div class="line">		out.write(a);</div><div class="line">		<span class="keyword">byte</span>[] gbk = <span class="string">"中国"</span>.getBytes(<span class="string">"gbk"</span>);</div><div class="line">		out.write(gbk);</div><div class="line">		out.close();</div><div class="line">		IOUtil.printHex(<span class="string">"demo/out.dat"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(<span class="string">"a.txt"</span>);</div><div class="line">    fos.write(<span class="string">"你好啊！"</span>.getBytes());</div><div class="line">    fos.flush();<span class="comment">//清空缓存，立即输出缓存中的内容</span></div><div class="line">    fos.close();<span class="comment">//关闭的时候也会清空缓存</span></div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">    <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-FileInputStream"><a href="#java-io-FileInputStream" class="headerlink" title="java.io.FileInputStream"></a>java.io.FileInputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileInputDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		FileInputStream input = <span class="keyword">new</span> FileInputStream(<span class="string">"demo/out.dat"</span>);</div><div class="line">		System.out.println(input.read());</div><div class="line">		System.out.println(input.read());</div><div class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</div><div class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</div><div class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</div><div class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</div><div class="line">		System.out.println(i);</div><div class="line">		<span class="keyword">byte</span>[] gbk = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">		input.read(gbk);</div><div class="line">		System.out.println(<span class="keyword">new</span> String(gbk));</div><div class="line">		input.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//默认的相对路径：就是我们的项目路径</span></div><div class="line">FileInputStream fis=<span class="keyword">new</span> FileInputStream(<span class="string">"src/com/gem/sun/io/io.txt"</span>);</div><div class="line"><span class="comment">//read可以读取一个字符</span></div><div class="line"><span class="comment">//当文件比较大的时候，这种方式就读取不了了</span></div><div class="line"><span class="keyword">byte</span>[] bytes=<span class="keyword">new</span> <span class="keyword">byte</span>[fis.available()];</div><div class="line">fis.read(bytes);</div><div class="line">System.out.println(<span class="keyword">new</span> String(bytes));</div><div class="line">fis.close();</div></pre></td></tr></table></figure>
-<h4 id="java-io-DataOutputStream"><a href="#java-io-DataOutputStream" class="headerlink" title="java.io.DataOutputStream"></a>java.io.DataOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DosDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		String file = <span class="string">"demo/dos.dat"</span>;</div><div class="line">		DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(file));</div><div class="line">		dos.writeInt(<span class="number">10</span>);</div><div class="line">		dos.writeInt(-<span class="number">10</span>);</div><div class="line">		dos.writeLong(<span class="number">10l</span>);</div><div class="line">		dos.writeDouble(<span class="number">10.5</span>);</div><div class="line">		<span class="comment">//采用utf-8编码写出</span></div><div class="line">		dos.writeUTF(<span class="string">"中国"</span>);</div><div class="line">		<span class="comment">//采用utf-16be编码写出</span></div><div class="line">		dos.writeChars(<span class="string">"中国"</span>);</div><div class="line">		dos.close();</div><div class="line">		IOUtil.printHex(file);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-DataInputStream"><a href="#java-io-DataInputStream" class="headerlink" title="java.io.DataInputStream"></a>java.io.DataInputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DisDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		String file = <span class="string">"demo/dos.dat"</span>;</div><div class="line">		IOUtil.printHex(file);</div><div class="line">		DataInputStream dis = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(file));</div><div class="line">		<span class="keyword">int</span> i = dis.readInt();</div><div class="line">		System.out.println(i);</div><div class="line">        </div><div class="line">		i = dis.readInt();</div><div class="line">		System.out.println(i);</div><div class="line">        </div><div class="line">		<span class="keyword">long</span> l = dis.readLong();</div><div class="line">		System.out.println(l);</div><div class="line">        </div><div class="line">		<span class="keyword">double</span> d = dis.readDouble();</div><div class="line">		System.out.println(d);</div><div class="line">        </div><div class="line">		String s = dis.readUTF();</div><div class="line">		System.out.println(s);</div><div class="line">		dis.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-ByteArrayOutputStream"><a href="#java-io-ByteArrayOutputStream" class="headerlink" title="java.io.ByteArrayOutputStream"></a>java.io.ByteArrayOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">File file=<span class="keyword">new</span> File(<span class="string">"a.txt"</span>);</div><div class="line"><span class="comment">//1.创建输出流</span></div><div class="line">FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(file);</div><div class="line"><span class="comment">//创建数组</span></div><div class="line"><span class="keyword">byte</span>[] b=<span class="keyword">null</span>;</div><div class="line"><span class="comment">//1.1如果是字符串</span></div><div class="line">b=<span class="string">"abc"</span>.getBytes();</div><div class="line"><span class="comment">//1.2他可能是一连串的数据</span></div><div class="line">ByteArrayOutputStream bos=<span class="keyword">new</span> ByteArrayOutputStream();<span class="comment">//字节数组输出流</span></div><div class="line">bos.write(b);<span class="comment">//write就是将数据积累到bos</span></div><div class="line"></div><div class="line"><span class="comment">//2.向外输出内容</span></div><div class="line">fos.write(bos.toByteArray());</div><div class="line"><span class="comment">//3.关闭输出流</span></div><div class="line">fos.close();</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ByteArrayOutputStream bos=<span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line"><span class="comment">//分段读取</span></div><div class="line">FileInputStream fis=<span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</div><div class="line"><span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>];</div><div class="line"><span class="keyword">int</span> lenth=<span class="number">0</span>;</div><div class="line"><span class="keyword">while</span>((lenth=fis.read(b))!=-<span class="number">1</span>)&#123;</div><div class="line">    bos.write(b, <span class="number">0</span>, lenth);</div><div class="line">    <span class="comment">//System.out.println(new String(b,0,b.length));</span></div><div class="line">&#125;</div><div class="line">b=bos.toByteArray();</div><div class="line">System.out.println(<span class="keyword">new</span> String(b,<span class="string">"utf-8"</span>));</div><div class="line">fis.close();</div></pre></td></tr></table></figure>
-<h4 id="java-io-PrintStream"><a href="#java-io-PrintStream" class="headerlink" title="java.io.PrintStream"></a>java.io.PrintStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(<span class="string">"e:/test.txt"</span>);</div><div class="line">PrintStream ps=<span class="keyword">new</span> PrintStream(fos);</div><div class="line">System.setOut(ps);</div><div class="line">System.out.println(<span class="number">6666</span>);</div><div class="line">System.out.println(<span class="number">777</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintStreamDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		String filename=args[<span class="number">0</span>];</div><div class="line">		<span class="keyword">if</span>(filename!=<span class="keyword">null</span>)&#123;</div><div class="line">			list(filename,System.out);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">list</span><span class="params">(String f,PrintStream fs)</span></span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			BufferedReader br=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(f));</div><div class="line">			String s=<span class="keyword">null</span>;</div><div class="line">			<span class="keyword">while</span>((s=br.readLine())!=<span class="keyword">null</span>)&#123;</div><div class="line">				fs.println(s);</div><div class="line">			&#125;</div><div class="line">			br.close();</div><div class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">			<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><h4 id="java-io-FileWriter"><a href="#java-io-FileWriter" class="headerlink" title="java.io.FileWriter"></a>java.io.FileWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FrAndFwDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"e:\\javaio\\fileWrite.txt"</span>);</div><div class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"e:\\javaio\\fileWrite2.txt"</span>);</div><div class="line">		<span class="comment">//FileWriter fw = new FileWriter("e:\\javaio\\fileWrite2.txt",true);</span></div><div class="line">		<span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2056</span>];</div><div class="line">		<span class="keyword">int</span> c ;</div><div class="line">		<span class="keyword">while</span>((c = fr.read(buffer,<span class="number">0</span>,buffer.length))!=-<span class="number">1</span>)&#123;</div><div class="line">			fw.write(buffer,<span class="number">0</span>,c);</div><div class="line">			fw.flush();</div><div class="line">		&#125;</div><div class="line">		fr.close();</div><div class="line">		fw.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-FileReader"><a href="#java-io-FileReader" class="headerlink" title="java.io.FileReader"></a>java.io.FileReader</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	FileReader fr=<span class="keyword">new</span> FileReader(<span class="string">"a.txt"</span>);</div><div class="line">	<span class="keyword">char</span>[] chr=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1</span>];</div><div class="line">	<span class="keyword">int</span> lenth=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>((lenth=fr.read(chr))!=-<span class="number">1</span>)&#123;</div><div class="line">		System.out.print(<span class="keyword">new</span> String(chr));</div><div class="line">	&#125;</div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-BufferedWriter"><a href="#java-io-BufferedWriter" class="headerlink" title="java.io.BufferedWriter"></a>java.io.BufferedWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrAndBwOrPwDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		<span class="comment">//对文件进行读写操作</span></div><div class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">"e:\\javaio\\imooc.txt"</span>)));</div><div class="line">		<span class="comment">/*BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("e:\\javaio\\imooc3.txt")));*/</span></div><div class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="string">"e:\\javaio\\imooc4.txt"</span>);</div><div class="line">		<span class="comment">//PrintWriter pw1 = new PrintWriter(outputStream,boolean autoFlush);</span></div><div class="line">		String line ;</div><div class="line">		<span class="keyword">while</span>((line = br.readLine())!=<span class="keyword">null</span>)&#123;</div><div class="line">			System.out.println(line);<span class="comment">//一次读一行，并不能识别换行</span></div><div class="line">			<span class="comment">/*bw.write(line);</span></div><div class="line">			//单独写出换行操作</div><div class="line">			bw.newLine();//换行操作</div><div class="line">			bw.flush();*/</div><div class="line">			pw.println(line);</div><div class="line">			pw.flush();</div><div class="line">		&#125;</div><div class="line">		br.close();</div><div class="line">		<span class="comment">//bw.close();</span></div><div class="line">		pw.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-OutputStreamWriter"><a href="#java-io-OutputStreamWriter" class="headerlink" title="java.io.OutputStreamWriter"></a>java.io.OutputStreamWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IsrAndOswDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		FileInputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"e:\\javaio\\imoocutf8.txt"</span>);</div><div class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,<span class="string">"utf-8"</span>);<span class="comment">//默认项目的编码,操作的时候，要写文件本身的编码格式</span></div><div class="line">		FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"e:\\javaio\\imoocutf81.txt"</span>);</div><div class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(out,<span class="string">"utf-8"</span>);</div><div class="line">		<span class="comment">/*int c ;</span></div><div class="line">		while((c = isr.read())!=-1)&#123;</div><div class="line">			System.out.print((char)c);</div><div class="line">		&#125;*/</div><div class="line">		<span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line">		<span class="keyword">int</span> c;</div><div class="line">		<span class="comment">/*批量读取，放入buffer这个字符数组，从第0个位置开始放置，最多放buffer.length个</span></div><div class="line">		  返回的是读到的字符的个数</div><div class="line">		*/</div><div class="line">		<span class="keyword">while</span>(( c = isr.read(buffer,<span class="number">0</span>,buffer.length))!=-<span class="number">1</span>)&#123;</div><div class="line">			String s = <span class="keyword">new</span> String(buffer,<span class="number">0</span>,c);</div><div class="line">			System.out.print(s);</div><div class="line">			osw.write(buffer,<span class="number">0</span>,c);</div><div class="line">			osw.flush();</div><div class="line">		&#125;</div><div class="line">		isr.close();</div><div class="line">		osw.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-PrintWriter"><a href="#java-io-PrintWriter" class="headerlink" title="java.io.PrintWriter"></a>java.io.PrintWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintWriterDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		String s=<span class="keyword">null</span>;</div><div class="line">		BufferedReader br =<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">		FileWriter fw=<span class="keyword">new</span> FileWriter(<span class="string">"e:/logfile.log"</span>,<span class="keyword">true</span>);</div><div class="line">		PrintWriter log=<span class="keyword">new</span> PrintWriter(fw);</div><div class="line">		<span class="keyword">while</span>((s=br.readLine())!=<span class="keyword">null</span>)&#123;</div><div class="line">			<span class="keyword">if</span>(s.equalsIgnoreCase(<span class="string">"exit"</span>))&#123;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			System.out.println(s.toUpperCase());</div><div class="line">			log.println(<span class="string">"------------"</span>);</div><div class="line">			log.println(s.toUpperCase());</div><div class="line">			log.flush();</div><div class="line">		&#125;</div><div class="line">		log.println(<span class="string">"==="</span>+<span class="keyword">new</span> Date()+<span class="string">"==="</span>);</div><div class="line">		log.flush();</div><div class="line">		log.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h3><h4 id="java-io-RandomAccessFile"><a href="#java-io-RandomAccessFile" class="headerlink" title="java.io.RandomAccessFile"></a>java.io.RandomAccessFile</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RafDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		File demo = <span class="keyword">new</span> File(<span class="string">"demo"</span>);</div><div class="line">		<span class="keyword">if</span>(!demo.exists())｛</div><div class="line">			demo.mkdir();</div><div class="line">		｝</div><div class="line">		File file = <span class="keyword">new</span> File(demo,<span class="string">"raf.dat"</span>);</div><div class="line">		<span class="keyword">if</span>(!file.exists())｛</div><div class="line">			file.createNewFile();</div><div class="line">		｝</div><div class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(file, <span class="string">"rw"</span>);</div><div class="line">		<span class="comment">//指针的位置</span></div><div class="line">		System.out.println(raf.getFilePointer());</div><div class="line">		</div><div class="line">		raf.write(<span class="string">'A'</span>);<span class="comment">//只写了一个字节</span></div><div class="line">		System.out.println(raf.getFilePointer());</div><div class="line">		raf.write(<span class="string">'B'</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> i = <span class="number">0x7fffffff</span>;</div><div class="line">		<span class="comment">//用write方法每次只能写一个字节，如果要把i写进去就得写4次</span></div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">24</span>);<span class="comment">//高8位</span></div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</div><div class="line">		raf.write(i);</div><div class="line">		System.out.println(raf.getFilePointer());</div><div class="line">		</div><div class="line">		<span class="comment">//可以直接写一个int</span></div><div class="line">		raf.writeInt(i);</div><div class="line">		</div><div class="line">		String s = <span class="string">"中"</span>;</div><div class="line">		<span class="keyword">byte</span>[] gbk = s.getBytes(<span class="string">"gbk"</span>);</div><div class="line">		raf.write(gbk);</div><div class="line">		System.out.println(raf.length());</div><div class="line">		</div><div class="line">		<span class="comment">//读文件，必须把指针移到头部</span></div><div class="line">		raf.seek(<span class="number">0</span>);</div><div class="line">		<span class="comment">//一次性读取,把文件中的内容都读到字节数组中</span></div><div class="line">		<span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)raf.length()];</div><div class="line">		raf.read(buf);</div><div class="line">		</div><div class="line">		System.out.println(Arrays.toString(buf));</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">byte</span> b : buf) &#123;</div><div class="line">			System.out.println(Integer.toHexString(b &amp; <span class="number">0xff</span>)+<span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		raf.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RafReadDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"demo/raf.dat"</span>, <span class="string">"r"</span>);</div><div class="line">		raf.seek(<span class="number">2</span>);</div><div class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> b = raf.read();<span class="comment">//读取到一个字节</span></div><div class="line">		System.out.println(raf.getFilePointer());</div><div class="line">		i = i | (b &lt;&lt; <span class="number">24</span> );</div><div class="line">		b = raf.read();</div><div class="line">		i = i | ( b &lt;&lt; <span class="number">16</span>);</div><div class="line">		b = raf.read();</div><div class="line">		i = i | (b &lt;&lt; <span class="number">8</span> );</div><div class="line">		b = raf.read();</div><div class="line">		i = i | b;</div><div class="line">		System.out.println(Integer.toHexString(i));</div><div class="line">		raf.seek(<span class="number">2</span>);</div><div class="line">		i = raf.readInt();</div><div class="line">		System.out.println(Integer.toHexString(i));</div><div class="line">		raf.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomAccessFileSeriaDemo</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">		File demo = <span class="keyword">new</span> File(<span class="string">"demo1"</span>);</div><div class="line">		<span class="keyword">if</span>(!demo.exists())｛</div><div class="line">			demo.mkdir();</div><div class="line">		｝</div><div class="line">		File file = <span class="keyword">new</span> File(demo,<span class="string">"raf.dat"</span>);</div><div class="line">		<span class="keyword">if</span>(!file.exists())｛</div><div class="line">			file.createNewFile();</div><div class="line">		｝</div><div class="line">		<span class="comment">//打开文件，进行随机读写</span></div><div class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(file, <span class="string">"rw"</span>);</div><div class="line">		<span class="comment">/*序列化*/</span></div><div class="line">		<span class="keyword">int</span> i = <span class="number">0x7ffffff</span>;</div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">24</span>);</div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</div><div class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</div><div class="line">		raf.write(i);</div><div class="line">		System.out.println(raf.getFilePointer());</div><div class="line">		</div><div class="line">		<span class="comment">/*反序列化*/</span></div><div class="line">		raf.seek(<span class="number">0</span>);</div><div class="line">		<span class="keyword">int</span> b = raf.read();</div><div class="line">		i = i | (b &lt;&lt; <span class="number">24</span>);</div><div class="line">		b = raf.read();</div><div class="line">		i = i | (b &lt;&lt; <span class="number">16</span>);</div><div class="line">		b = raf.read();</div><div class="line">		i = i | (b &lt;&lt; <span class="number">8</span>);</div><div class="line">		b = raf.read();</div><div class="line">		i = i | b;</div><div class="line">		System.out.println(Integer.toHexString(i));</div><div class="line">		raf.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="java-io-ObjectOutputStream"><a href="#java-io-ObjectOutputStream" class="headerlink" title="java.io.ObjectOutputStream"></a>java.io.ObjectOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> String stuno;</div><div class="line">	<span class="keyword">private</span> String stuname;</div><div class="line">	<span class="comment">//该元素不会进行jvm默认的序列化,也可以自己完成这个元素的序列化</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> stuage;  </div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String stuno, String stuname, <span class="keyword">int</span> stuage)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.stuno = stuno;</div><div class="line">		<span class="keyword">this</span>.stuname = stuname;</div><div class="line">		<span class="keyword">this</span>.stuage = stuage;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getStuno</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> stuno;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuno</span><span class="params">(String stuno)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.stuno = stuno;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getStuname</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> stuname;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuname</span><span class="params">(String stuname)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.stuname = stuname;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStuage</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> stuage;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuage</span><span class="params">(<span class="keyword">int</span> stuage)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.stuage = stuage;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Student [stuno="</span> + stuno + <span class="string">", stuname="</span> + stuname </div><div class="line">				+ <span class="string">", stuage="</span> + stuage + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line">	 <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeObject</span><span class="params">(java.io.ObjectOutputStream s)</span></span></div><div class="line">		        <span class="keyword">throws</span> java.io.IOException&#123;</div><div class="line">		 s.defaultWriteObject();<span class="comment">//把jvm能默认序列化的元素进行序列化操作</span></div><div class="line">		 s.writeInt(stuage);<span class="comment">//自己完成stuage的序列化</span></div><div class="line">	 &#125;</div><div class="line">	 <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream s)</span></span></div><div class="line">		        <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException&#123;</div><div class="line">		  s.defaultReadObject();<span class="comment">//把jvm能默认反序列化的元素进行反序列化操作</span></div><div class="line">		  <span class="keyword">this</span>.stuage = s.readInt();<span class="comment">//自己完成stuage的反序列化操作</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectSeriaDemo1</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">		String file = <span class="string">"demo/obj.dat"</span>;</div><div class="line">		<span class="comment">//1.对象的序列化</span></div><div class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</div><div class="line">				<span class="keyword">new</span> FileOutputStream(file));</div><div class="line">		Student stu = <span class="keyword">new</span> Student(<span class="string">"10001"</span>, <span class="string">"张三"</span>, <span class="number">20</span>);</div><div class="line">		oos.writeObject(stu);</div><div class="line">		oos.flush();</div><div class="line">		oos.close();</div><div class="line">		</div><div class="line">		<span class="comment">//2.对象的反序列化</span></div><div class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</div><div class="line">				<span class="keyword">new</span> FileInputStream(file));</div><div class="line">		Student stu = (Student)ois.readObject();</div><div class="line">		System.out.println(stu);</div><div class="line">		ois.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectSeriaDemo2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">		<span class="comment">//序列化过程递归调用父类的构造函数</span></div><div class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</div><div class="line">				<span class="keyword">new</span> FileOutputStream(<span class="string">"demo/obj1.dat"</span>));</div><div class="line">		Foo2 foo2 = <span class="keyword">new</span> Foo2();</div><div class="line">		oos.writeObject(foo2);</div><div class="line">		oos.flush();</div><div class="line">		oos.close();</div><div class="line">		</div><div class="line">		<span class="comment">//反序列化不递归调用父类的构造函数</span></div><div class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</div><div class="line">				<span class="keyword">new</span> FileInputStream(<span class="string">"demo/obj1.dat"</span>));</div><div class="line">		Foo2 foo2 = (Foo2)ois.readObject();</div><div class="line">		System.out.println(foo2);</div><div class="line">		ois.close();</div><div class="line">		</div><div class="line">		<span class="comment">//序列化过程递归调用父类的构造函数</span></div><div class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</div><div class="line">				<span class="keyword">new</span> FileOutputStream(<span class="string">"demo/obj1.dat"</span>));</div><div class="line">		Bar2 bar2 = <span class="keyword">new</span> Bar2();</div><div class="line">		oos.writeObject(bar2);</div><div class="line">		oos.flush();</div><div class="line">		oos.close();</div><div class="line">		</div><div class="line">		<span class="comment">/*</span></div><div class="line">		 * 对子类对象进行反序列化操作时，</div><div class="line">		 * 如果其父类没有实现序列化接口</div><div class="line">		 * 那么其父类的构造函数会被调用</div><div class="line">		 */</div><div class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</div><div class="line">				<span class="keyword">new</span> FileInputStream(<span class="string">"demo/obj1.dat"</span>));</div><div class="line">		Bar2 bar2 = (Bar2)ois.readObject();</div><div class="line">		System.out.println(bar2);</div><div class="line">		ois.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line"> *   一个类实现了序列化接口，那么其子类都可以进行序列化</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"foo..."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo1</span> <span class="keyword">extends</span> <span class="title">Foo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo1</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"foo1..."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo2</span> <span class="keyword">extends</span> <span class="title">Foo1</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo2</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"foo2..."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"bar"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar1</span> <span class="keyword">extends</span> <span class="title">Bar</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar1</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"bar1.."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar2</span> <span class="keyword">extends</span> <span class="title">Bar1</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar2</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"bar2..."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h4 id="java-io-File"><a href="#java-io-File" class="headerlink" title="java.io.File"></a>java.io.File</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File file = <span class="keyword">new</span> File(<span class="string">"E:\\javaio"</span>);</span><br><span class="line">		<span class="comment">//System.out.println(file.exists());</span></span><br><span class="line">		<span class="keyword">if</span>(!file.exists())｛</span><br><span class="line">			file.mkdir(); <span class="comment">//file.mkdirs()</span></span><br><span class="line">		｝<span class="keyword">else</span>｛</span><br><span class="line">			file.delete();</span><br><span class="line">		｝</span><br><span class="line">		<span class="comment">//是否是一个目录  如果是目录返回true,如果不是目录or目录不存在返回的是false</span></span><br><span class="line">		System.out.println(file.isDirectory());</span><br><span class="line">		<span class="comment">//是否是一个文件</span></span><br><span class="line">		System.out.println(file.isFile());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//File file2 = new File("e:\\javaio\\日记1.txt");</span></span><br><span class="line">		File file2 = <span class="keyword">new</span> File(<span class="string">"e:\\javaio"</span>,<span class="string">"日记1.txt"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!file2.exists())｛</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				file2.createNewFile();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		｝<span class="keyword">else</span>｛</span><br><span class="line">			file2.delete();</span><br><span class="line">		｝</span><br><span class="line">		<span class="comment">//常用的File对象的API</span></span><br><span class="line">		System.out.println(file);<span class="comment">//file.toString()的内容</span></span><br><span class="line">		System.out.println(file.getAbsolutePath());</span><br><span class="line">		System.out.println(file.getName());</span><br><span class="line">		System.out.println(file2.getName());</span><br><span class="line">		System.out.println(file.getParent());</span><br><span class="line">		System.out.println(file2.getParent());</span><br><span class="line">		System.out.println(file.getParentFile().getAbsolutePath());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File file = <span class="keyword">new</span> File(<span class="string">"e:\\example"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//skill_01</span></span><br><span class="line">		String[] filenames = file.list(<span class="keyword">new</span> FilenameFilter() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(dir+<span class="string">"\\"</span>+name);</span><br><span class="line">				<span class="keyword">return</span> name.endsWith(<span class="string">"java"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">for</span> (String string : filenames) &#123;</span><br><span class="line">			System.out.println(string);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//skill_02</span></span><br><span class="line">		File[] files = file.listFiles(<span class="keyword">new</span> FilenameFilter() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(dir+<span class="string">"\\"</span>+name);</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//skill_03</span></span><br><span class="line">		File[] files = file.listFiles(<span class="keyword">new</span> FileFilter() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File pathname)</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(pathname);</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo3</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File dir=<span class="keyword">new</span> File(<span class="string">"src/lee"</span>);</span><br><span class="line">		FileAccept fileAccept=<span class="keyword">new</span> FileAccept();</span><br><span class="line">		fileAccept.setExtendName(<span class="string">"java"</span>);</span><br><span class="line">		String[] fileName=dir.list(fileAccept);</span><br><span class="line">		<span class="keyword">for</span>(String name:fileName)&#123;</span><br><span class="line">			System.out.println(name);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileAccept</span> <span class="keyword">implements</span> <span class="title">FilenameFilter</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String extendName;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExtendName</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">		extendName=<span class="string">"."</span>+s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">return</span> name.endsWith(extendName);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo4</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		File f=<span class="keyword">new</span> File(<span class="string">"E:\\workspace\\eclipse jee\\HelloWorld_01"</span>);</span><br><span class="line">		System.out.println(f.getName());</span><br><span class="line">		tree(f,<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tree</span><span class="params">(File f,<span class="keyword">int</span> leve)</span></span>&#123;</span><br><span class="line">		String str=<span class="string">""</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;leve;j++)&#123;</span><br><span class="line">			str+=<span class="string">"    "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		File[] children=f.listFiles();<span class="comment">//list()方法返回字符串数组，目录下所有文件名</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;children.length;i++)&#123;</span><br><span class="line">			System.out.println(str+children[i].getName());</span><br><span class="line">			<span class="keyword">if</span>(children[i].isDirectory())&#123;</span><br><span class="line">				tree(children[i],leve+<span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><h4 id="java-io-FileOutputStream"><a href="#java-io-FileOutputStream" class="headerlink" title="java.io.FileOutputStream"></a>java.io.FileOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileOutDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//如果该文件不存在，则直接创建，如果存在，删除后创建</span></span><br><span class="line">		FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"demo/out.dat"</span>);</span><br><span class="line">		out.write(<span class="string">'A'</span>);<span class="comment">//写出了'A'的低八位</span></span><br><span class="line">		out.write(<span class="string">'B'</span>);<span class="comment">//写出了'B'的低八位</span></span><br><span class="line">		<span class="keyword">int</span> a = <span class="number">10</span>;<span class="comment">//write只能写八位,那么写一个int需要些4次每次8位</span></span><br><span class="line">		out.write(a &gt;&gt;&gt; <span class="number">24</span>);</span><br><span class="line">		out.write(a &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">		out.write(a &gt;&gt;&gt; <span class="number">8</span>);</span><br><span class="line">		out.write(a);</span><br><span class="line">		<span class="keyword">byte</span>[] gbk = <span class="string">"中国"</span>.getBytes(<span class="string">"gbk"</span>);</span><br><span class="line">		out.write(gbk);</span><br><span class="line">		out.close();</span><br><span class="line">		IOUtil.printHex(<span class="string">"demo/out.dat"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">    fos.write(<span class="string">"你好啊！"</span>.getBytes());</span><br><span class="line">    fos.flush();<span class="comment">//清空缓存，立即输出缓存中的内容</span></span><br><span class="line">    fos.close();<span class="comment">//关闭的时候也会清空缓存</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-FileInputStream"><a href="#java-io-FileInputStream" class="headerlink" title="java.io.FileInputStream"></a>java.io.FileInputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileInputDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		FileInputStream input = <span class="keyword">new</span> FileInputStream(<span class="string">"demo/out.dat"</span>);</span><br><span class="line">		System.out.println(input.read());</span><br><span class="line">		System.out.println(input.read());</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</span><br><span class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</span><br><span class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</span><br><span class="line">		i = input.read() | (i &lt;&lt; <span class="number">8</span>);</span><br><span class="line">		System.out.println(i);</span><br><span class="line">		<span class="keyword">byte</span>[] gbk = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		input.read(gbk);</span><br><span class="line">		System.out.println(<span class="keyword">new</span> String(gbk));</span><br><span class="line">		input.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认的相对路径：就是我们的项目路径</span></span><br><span class="line">FileInputStream fis=<span class="keyword">new</span> FileInputStream(<span class="string">"src/com/gem/sun/io/io.txt"</span>);</span><br><span class="line"><span class="comment">//read可以读取一个字符</span></span><br><span class="line"><span class="comment">//当文件比较大的时候，这种方式就读取不了了</span></span><br><span class="line"><span class="keyword">byte</span>[] bytes=<span class="keyword">new</span> <span class="keyword">byte</span>[fis.available()];</span><br><span class="line">fis.read(bytes);</span><br><span class="line">System.out.println(<span class="keyword">new</span> String(bytes));</span><br><span class="line">fis.close();</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-DataOutputStream"><a href="#java-io-DataOutputStream" class="headerlink" title="java.io.DataOutputStream"></a>java.io.DataOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DosDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		String file = <span class="string">"demo/dos.dat"</span>;</span><br><span class="line">		DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(file));</span><br><span class="line">		dos.writeInt(<span class="number">10</span>);</span><br><span class="line">		dos.writeInt(-<span class="number">10</span>);</span><br><span class="line">		dos.writeLong(<span class="number">10l</span>);</span><br><span class="line">		dos.writeDouble(<span class="number">10.5</span>);</span><br><span class="line">		<span class="comment">//采用utf-8编码写出</span></span><br><span class="line">		dos.writeUTF(<span class="string">"中国"</span>);</span><br><span class="line">		<span class="comment">//采用utf-16be编码写出</span></span><br><span class="line">		dos.writeChars(<span class="string">"中国"</span>);</span><br><span class="line">		dos.close();</span><br><span class="line">		IOUtil.printHex(file);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-DataInputStream"><a href="#java-io-DataInputStream" class="headerlink" title="java.io.DataInputStream"></a>java.io.DataInputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DisDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		String file = <span class="string">"demo/dos.dat"</span>;</span><br><span class="line">		IOUtil.printHex(file);</span><br><span class="line">		DataInputStream dis = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(file));</span><br><span class="line">		<span class="keyword">int</span> i = dis.readInt();</span><br><span class="line">		System.out.println(i);</span><br><span class="line">        </span><br><span class="line">		i = dis.readInt();</span><br><span class="line">		System.out.println(i);</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">long</span> l = dis.readLong();</span><br><span class="line">		System.out.println(l);</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">double</span> d = dis.readDouble();</span><br><span class="line">		System.out.println(d);</span><br><span class="line">        </span><br><span class="line">		String s = dis.readUTF();</span><br><span class="line">		System.out.println(s);</span><br><span class="line">		dis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-ByteArrayOutputStream"><a href="#java-io-ByteArrayOutputStream" class="headerlink" title="java.io.ByteArrayOutputStream"></a>java.io.ByteArrayOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">File file=<span class="keyword">new</span> File(<span class="string">"a.txt"</span>);</span><br><span class="line"><span class="comment">//1.创建输出流</span></span><br><span class="line">FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line"><span class="comment">//创建数组</span></span><br><span class="line"><span class="keyword">byte</span>[] b=<span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//1.1如果是字符串</span></span><br><span class="line">b=<span class="string">"abc"</span>.getBytes();</span><br><span class="line"><span class="comment">//1.2他可能是一连串的数据</span></span><br><span class="line">ByteArrayOutputStream bos=<span class="keyword">new</span> ByteArrayOutputStream();<span class="comment">//字节数组输出流</span></span><br><span class="line">bos.write(b);<span class="comment">//write就是将数据积累到bos</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.向外输出内容</span></span><br><span class="line">fos.write(bos.toByteArray());</span><br><span class="line"><span class="comment">//3.关闭输出流</span></span><br><span class="line">fos.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ByteArrayOutputStream bos=<span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line"><span class="comment">//分段读取</span></span><br><span class="line">FileInputStream fis=<span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line"><span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>];</span><br><span class="line"><span class="keyword">int</span> lenth=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>((lenth=fis.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">    bos.write(b, <span class="number">0</span>, lenth);</span><br><span class="line">    <span class="comment">//System.out.println(new String(b,0,b.length));</span></span><br><span class="line">&#125;</span><br><span class="line">b=bos.toByteArray();</span><br><span class="line">System.out.println(<span class="keyword">new</span> String(b,<span class="string">"utf-8"</span>));</span><br><span class="line">fis.close();</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-PrintStream"><a href="#java-io-PrintStream" class="headerlink" title="java.io.PrintStream"></a>java.io.PrintStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fos=<span class="keyword">new</span> FileOutputStream(<span class="string">"e:/test.txt"</span>);</span><br><span class="line">PrintStream ps=<span class="keyword">new</span> PrintStream(fos);</span><br><span class="line">System.setOut(ps);</span><br><span class="line">System.out.println(<span class="number">6666</span>);</span><br><span class="line">System.out.println(<span class="number">777</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintStreamDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		String filename=args[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">if</span>(filename!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			list(filename,System.out);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">list</span><span class="params">(String f,PrintStream fs)</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			BufferedReader br=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(f));</span><br><span class="line">			String s=<span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">while</span>((s=br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				fs.println(s);</span><br><span class="line">			&#125;</span><br><span class="line">			br.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><h4 id="java-io-FileWriter"><a href="#java-io-FileWriter" class="headerlink" title="java.io.FileWriter"></a>java.io.FileWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FrAndFwDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">		FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"e:\\javaio\\fileWrite.txt"</span>);</span><br><span class="line">		FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"e:\\javaio\\fileWrite2.txt"</span>);</span><br><span class="line">		<span class="comment">//FileWriter fw = new FileWriter("e:\\javaio\\fileWrite2.txt",true);</span></span><br><span class="line">		<span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2056</span>];</span><br><span class="line">		<span class="keyword">int</span> c ;</span><br><span class="line">		<span class="keyword">while</span>((c = fr.read(buffer,<span class="number">0</span>,buffer.length))!=-<span class="number">1</span>)&#123;</span><br><span class="line">			fw.write(buffer,<span class="number">0</span>,c);</span><br><span class="line">			fw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		fr.close();</span><br><span class="line">		fw.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-FileReader"><a href="#java-io-FileReader" class="headerlink" title="java.io.FileReader"></a>java.io.FileReader</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	FileReader fr=<span class="keyword">new</span> FileReader(<span class="string">"a.txt"</span>);</span><br><span class="line">	<span class="keyword">char</span>[] chr=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">int</span> lenth=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((lenth=fr.read(chr))!=-<span class="number">1</span>)&#123;</span><br><span class="line">		System.out.print(<span class="keyword">new</span> String(chr));</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-BufferedWriter"><a href="#java-io-BufferedWriter" class="headerlink" title="java.io.BufferedWriter"></a>java.io.BufferedWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrAndBwOrPwDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">		<span class="comment">//对文件进行读写操作</span></span><br><span class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">"e:\\javaio\\imooc.txt"</span>)));</span><br><span class="line">		<span class="comment">/*BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("e:\\javaio\\imooc3.txt")));*/</span></span><br><span class="line">		PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="string">"e:\\javaio\\imooc4.txt"</span>);</span><br><span class="line">		<span class="comment">//PrintWriter pw1 = new PrintWriter(outputStream,boolean autoFlush);</span></span><br><span class="line">		String line ;</span><br><span class="line">		<span class="keyword">while</span>((line = br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			System.out.println(line);<span class="comment">//一次读一行，并不能识别换行</span></span><br><span class="line">			<span class="comment">/*bw.write(line);</span></span><br><span class="line"><span class="comment">			//单独写出换行操作</span></span><br><span class="line"><span class="comment">			bw.newLine();//换行操作</span></span><br><span class="line"><span class="comment">			bw.flush();*/</span></span><br><span class="line">			pw.println(line);</span><br><span class="line">			pw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		br.close();</span><br><span class="line">		<span class="comment">//bw.close();</span></span><br><span class="line">		pw.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-OutputStreamWriter"><a href="#java-io-OutputStreamWriter" class="headerlink" title="java.io.OutputStreamWriter"></a>java.io.OutputStreamWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IsrAndOswDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		FileInputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"e:\\javaio\\imoocutf8.txt"</span>);</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,<span class="string">"utf-8"</span>);<span class="comment">//默认项目的编码,操作的时候，要写文件本身的编码格式</span></span><br><span class="line">		FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"e:\\javaio\\imoocutf81.txt"</span>);</span><br><span class="line">		OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(out,<span class="string">"utf-8"</span>);</span><br><span class="line">		<span class="comment">/*int c ;</span></span><br><span class="line"><span class="comment">		while((c = isr.read())!=-1)&#123;</span></span><br><span class="line"><span class="comment">			System.out.print((char)c);</span></span><br><span class="line"><span class="comment">		&#125;*/</span></span><br><span class="line">		<span class="keyword">char</span>[] buffer = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">8</span>*<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> c;</span><br><span class="line">		<span class="comment">/*批量读取，放入buffer这个字符数组，从第0个位置开始放置，最多放buffer.length个</span></span><br><span class="line"><span class="comment">		  返回的是读到的字符的个数</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">		<span class="keyword">while</span>(( c = isr.read(buffer,<span class="number">0</span>,buffer.length))!=-<span class="number">1</span>)&#123;</span><br><span class="line">			String s = <span class="keyword">new</span> String(buffer,<span class="number">0</span>,c);</span><br><span class="line">			System.out.print(s);</span><br><span class="line">			osw.write(buffer,<span class="number">0</span>,c);</span><br><span class="line">			osw.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		isr.close();</span><br><span class="line">		osw.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-PrintWriter"><a href="#java-io-PrintWriter" class="headerlink" title="java.io.PrintWriter"></a>java.io.PrintWriter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintWriterDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		String s=<span class="keyword">null</span>;</span><br><span class="line">		BufferedReader br =<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">		FileWriter fw=<span class="keyword">new</span> FileWriter(<span class="string">"e:/logfile.log"</span>,<span class="keyword">true</span>);</span><br><span class="line">		PrintWriter log=<span class="keyword">new</span> PrintWriter(fw);</span><br><span class="line">		<span class="keyword">while</span>((s=br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(s.equalsIgnoreCase(<span class="string">"exit"</span>))&#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(s.toUpperCase());</span><br><span class="line">			log.println(<span class="string">"------------"</span>);</span><br><span class="line">			log.println(s.toUpperCase());</span><br><span class="line">			log.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		log.println(<span class="string">"==="</span>+<span class="keyword">new</span> Date()+<span class="string">"==="</span>);</span><br><span class="line">		log.flush();</span><br><span class="line">		log.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="序列化流"><a href="#序列化流" class="headerlink" title="序列化流"></a>序列化流</h3><h4 id="java-io-RandomAccessFile"><a href="#java-io-RandomAccessFile" class="headerlink" title="java.io.RandomAccessFile"></a>java.io.RandomAccessFile</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RafDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">		File demo = <span class="keyword">new</span> File(<span class="string">"demo"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!demo.exists())｛</span><br><span class="line">			demo.mkdir();</span><br><span class="line">		｝</span><br><span class="line">		File file = <span class="keyword">new</span> File(demo,<span class="string">"raf.dat"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!file.exists())｛</span><br><span class="line">			file.createNewFile();</span><br><span class="line">		｝</span><br><span class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(file, <span class="string">"rw"</span>);</span><br><span class="line">		<span class="comment">//指针的位置</span></span><br><span class="line">		System.out.println(raf.getFilePointer());</span><br><span class="line">		</span><br><span class="line">		raf.write(<span class="string">'A'</span>);<span class="comment">//只写了一个字节</span></span><br><span class="line">		System.out.println(raf.getFilePointer());</span><br><span class="line">		raf.write(<span class="string">'B'</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0x7fffffff</span>;</span><br><span class="line">		<span class="comment">//用write方法每次只能写一个字节，如果要把i写进去就得写4次</span></span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">24</span>);<span class="comment">//高8位</span></span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</span><br><span class="line">		raf.write(i);</span><br><span class="line">		System.out.println(raf.getFilePointer());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//可以直接写一个int</span></span><br><span class="line">		raf.writeInt(i);</span><br><span class="line">		</span><br><span class="line">		String s = <span class="string">"中"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] gbk = s.getBytes(<span class="string">"gbk"</span>);</span><br><span class="line">		raf.write(gbk);</span><br><span class="line">		System.out.println(raf.length());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//读文件，必须把指针移到头部</span></span><br><span class="line">		raf.seek(<span class="number">0</span>);</span><br><span class="line">		<span class="comment">//一次性读取,把文件中的内容都读到字节数组中</span></span><br><span class="line">		<span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)raf.length()];</span><br><span class="line">		raf.read(buf);</span><br><span class="line">		</span><br><span class="line">		System.out.println(Arrays.toString(buf));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">byte</span> b : buf) &#123;</span><br><span class="line">			System.out.println(Integer.toHexString(b &amp; <span class="number">0xff</span>)+<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		raf.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RafReadDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"demo/raf.dat"</span>, <span class="string">"r"</span>);</span><br><span class="line">		raf.seek(<span class="number">2</span>);</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> b = raf.read();<span class="comment">//读取到一个字节</span></span><br><span class="line">		System.out.println(raf.getFilePointer());</span><br><span class="line">		i = i | (b &lt;&lt; <span class="number">24</span> );</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | ( b &lt;&lt; <span class="number">16</span>);</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | (b &lt;&lt; <span class="number">8</span> );</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | b;</span><br><span class="line">		System.out.println(Integer.toHexString(i));</span><br><span class="line">		raf.seek(<span class="number">2</span>);</span><br><span class="line">		i = raf.readInt();</span><br><span class="line">		System.out.println(Integer.toHexString(i));</span><br><span class="line">		raf.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomAccessFileSeriaDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		File demo = <span class="keyword">new</span> File(<span class="string">"demo1"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!demo.exists())｛</span><br><span class="line">			demo.mkdir();</span><br><span class="line">		｝</span><br><span class="line">		File file = <span class="keyword">new</span> File(demo,<span class="string">"raf.dat"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!file.exists())｛</span><br><span class="line">			file.createNewFile();</span><br><span class="line">		｝</span><br><span class="line">		<span class="comment">//打开文件，进行随机读写</span></span><br><span class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(file, <span class="string">"rw"</span>);</span><br><span class="line">		<span class="comment">/*序列化*/</span></span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0x7ffffff</span>;</span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">24</span>);</span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</span><br><span class="line">		raf.write(i &gt;&gt;&gt; <span class="number">8</span>);</span><br><span class="line">		raf.write(i);</span><br><span class="line">		System.out.println(raf.getFilePointer());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*反序列化*/</span></span><br><span class="line">		raf.seek(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">int</span> b = raf.read();</span><br><span class="line">		i = i | (b &lt;&lt; <span class="number">24</span>);</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | (b &lt;&lt; <span class="number">16</span>);</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | (b &lt;&lt; <span class="number">8</span>);</span><br><span class="line">		b = raf.read();</span><br><span class="line">		i = i | b;</span><br><span class="line">		System.out.println(Integer.toHexString(i));</span><br><span class="line">		raf.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="java-io-ObjectOutputStream"><a href="#java-io-ObjectOutputStream" class="headerlink" title="java.io.ObjectOutputStream"></a>java.io.ObjectOutputStream</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String stuno;</span><br><span class="line">	<span class="keyword">private</span> String stuname;</span><br><span class="line">	<span class="comment">//该元素不会进行jvm默认的序列化,也可以自己完成这个元素的序列化</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> stuage;  </span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String stuno, String stuname, <span class="keyword">int</span> stuage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.stuno = stuno;</span><br><span class="line">		<span class="keyword">this</span>.stuname = stuname;</span><br><span class="line">		<span class="keyword">this</span>.stuage = stuage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getStuno</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> stuno;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuno</span><span class="params">(String stuno)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.stuno = stuno;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getStuname</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> stuname;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuname</span><span class="params">(String stuname)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.stuname = stuname;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStuage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> stuage;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStuage</span><span class="params">(<span class="keyword">int</span> stuage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.stuage = stuage;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [stuno="</span> + stuno + <span class="string">", stuname="</span> + stuname </span><br><span class="line">				+ <span class="string">", stuage="</span> + stuage + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeObject</span><span class="params">(java.io.ObjectOutputStream s)</span></span></span><br><span class="line"><span class="function">		        <span class="keyword">throws</span> java.io.IOException</span>&#123;</span><br><span class="line">		 s.defaultWriteObject();<span class="comment">//把jvm能默认序列化的元素进行序列化操作</span></span><br><span class="line">		 s.writeInt(stuage);<span class="comment">//自己完成stuage的序列化</span></span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream s)</span></span></span><br><span class="line"><span class="function">		        <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException</span>&#123;</span><br><span class="line">		  s.defaultReadObject();<span class="comment">//把jvm能默认反序列化的元素进行反序列化操作</span></span><br><span class="line">		  <span class="keyword">this</span>.stuage = s.readInt();<span class="comment">//自己完成stuage的反序列化操作</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectSeriaDemo1</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		String file = <span class="string">"demo/obj.dat"</span>;</span><br><span class="line">		<span class="comment">//1.对象的序列化</span></span><br><span class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</span><br><span class="line">				<span class="keyword">new</span> FileOutputStream(file));</span><br><span class="line">		Student stu = <span class="keyword">new</span> Student(<span class="string">"10001"</span>, <span class="string">"张三"</span>, <span class="number">20</span>);</span><br><span class="line">		oos.writeObject(stu);</span><br><span class="line">		oos.flush();</span><br><span class="line">		oos.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2.对象的反序列化</span></span><br><span class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</span><br><span class="line">				<span class="keyword">new</span> FileInputStream(file));</span><br><span class="line">		Student stu = (Student)ois.readObject();</span><br><span class="line">		System.out.println(stu);</span><br><span class="line">		ois.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectSeriaDemo2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//序列化过程递归调用父类的构造函数</span></span><br><span class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</span><br><span class="line">				<span class="keyword">new</span> FileOutputStream(<span class="string">"demo/obj1.dat"</span>));</span><br><span class="line">		Foo2 foo2 = <span class="keyword">new</span> Foo2();</span><br><span class="line">		oos.writeObject(foo2);</span><br><span class="line">		oos.flush();</span><br><span class="line">		oos.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//反序列化不递归调用父类的构造函数</span></span><br><span class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</span><br><span class="line">				<span class="keyword">new</span> FileInputStream(<span class="string">"demo/obj1.dat"</span>));</span><br><span class="line">		Foo2 foo2 = (Foo2)ois.readObject();</span><br><span class="line">		System.out.println(foo2);</span><br><span class="line">		ois.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//序列化过程递归调用父类的构造函数</span></span><br><span class="line">		ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</span><br><span class="line">				<span class="keyword">new</span> FileOutputStream(<span class="string">"demo/obj1.dat"</span>));</span><br><span class="line">		Bar2 bar2 = <span class="keyword">new</span> Bar2();</span><br><span class="line">		oos.writeObject(bar2);</span><br><span class="line">		oos.flush();</span><br><span class="line">		oos.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 对子类对象进行反序列化操作时，</span></span><br><span class="line"><span class="comment">		 * 如果其父类没有实现序列化接口</span></span><br><span class="line"><span class="comment">		 * 那么其父类的构造函数会被调用</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</span><br><span class="line">				<span class="keyword">new</span> FileInputStream(<span class="string">"demo/obj1.dat"</span>));</span><br><span class="line">		Bar2 bar2 = (Bar2)ois.readObject();</span><br><span class="line">		System.out.println(bar2);</span><br><span class="line">		ois.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *   一个类实现了序列化接口，那么其子类都可以进行序列化</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"foo..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo1</span> <span class="keyword">extends</span> <span class="title">Foo</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"foo1..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo2</span> <span class="keyword">extends</span> <span class="title">Foo1</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo2</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"foo2..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"bar"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar1</span> <span class="keyword">extends</span> <span class="title">Bar</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"bar1.."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar2</span> <span class="keyword">extends</span> <span class="title">Bar1</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bar2</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"bar2..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -453,15 +438,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/21/Oracle运维常用操作/" rel="next" title="Oracle运维常用操作">
-                <i class="fa fa-chevron-left"></i> Oracle运维常用操作
+              <a href="/2018/06/12/Java-BIO归纳/" rel="next" title="Java BIO归纳">
+                <i class="fa fa-chevron-left"></i> Java BIO归纳
               </a>
             
           </div>
@@ -470,8 +455,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/12/Java-BIO归纳/" rel="prev" title="Java BIO归纳">
-                Java BIO归纳 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/21/Oracle运维常用操作/" rel="prev" title="Oracle运维常用操作">
+                Oracle运维常用操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,6 +466,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -490,15 +479,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -514,101 +508,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -641,30 +616,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -674,9 +675,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -698,61 +703,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -773,6 +804,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -780,138 +829,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -919,6 +1156,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

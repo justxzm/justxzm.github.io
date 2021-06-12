@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java核心," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java核心,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2019/11/05/自定义类加载器实现热加载/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="什么是热加载 热加载是指在不重启服务的情况下让更改的代码生效。 热加载基于 Java 的类加载器实现，可以显著提升开发以及调试的效率。 由于热加载的不安全性，一般不会用于正式的生产环境。  热加载与热部署的区别相同点：  都可以在不重启服务的情况下编译/部署项目。 都是基于 Java 的类加载器实现的。  不同点：  部署方式上： 热部署是在服务器运行时重新部署项目。 热加载是在运行时重新加载 c">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://justxzm.github.io/images/Java/2019110501.jpg">
 <meta property="og:updated_time" content="2021-01-13T08:43:19.067Z">
 <meta name="twitter:card" content="summary">
@@ -107,10 +100,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -127,17 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/11/05/自定义类加载器实现热加载/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/11/05/自定义类加载器实现热加载/">
 
 
 
 
 
-  <title> 自定义类加载器实现热加载 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>自定义类加载器实现热加载 | JUST DO IT</title>
   
 
 
@@ -147,18 +138,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -167,7 +156,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,49 +186,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -250,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -271,9 +260,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -305,13 +292,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/11/05/自定义类加载器实现热加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -323,14 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                自定义类加载器实现热加载
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">自定义类加载器实现热加载</h1>
         
 
         <div class="post-meta">
@@ -353,7 +337,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -384,6 +368,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -393,7 +382,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -429,7 +420,7 @@
 </li>
 </ul>
 <a id="more"></a>
-<h2 id="类加载五个阶段"><a href="#类加载五个阶段" class="headerlink" title="类加载五个阶段"></a>类加载五个阶段</h2><p><img src="/images/Java/2019110501.jpg" alt=""></p>
+<h2 id="类加载五个阶段"><a href="#类加载五个阶段" class="headerlink" title="类加载五个阶段"></a>类加载五个阶段</h2><p><img src="/images/Java/2019110501.jpg" alt></p>
 <p>类的完整生命周期一共是7个阶段，除图里最后的使用（Using）和卸载（Unloading）外的五个阶段是类加载阶段。</p>
 <p>简单描述一下类加载的五个阶段：</p>
 <ol>
@@ -461,46 +452,40 @@
 </ol>
 <h3 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h3><p>设计 Java 虚拟机的团队把类的加载阶段放到的 JVM 的外部实现（通过一个类的全限定名来获取描述此类的二进制字节流 ），这样就可以让程序自己决定如何获取到类信息。而实现这个加载动作的代码模块，我们就称之为 “类加载器”。在 Java 中，类加载器也就是 <strong>ClassLoader</strong>。</p>
 <p>所以如果我们想要自己<strong>实现一个类加载器</strong>，就<strong>需要继承 ClassLoader 然后重写里面 findClass的方法</strong>，同时因为类加载器是<strong>双亲委派模型</strong>实现（也就说，除了一个最顶层的类加载器之外，每个类加载器都要有父加载器，而加载时，会先询问父加载器能否加载，如果父加载器不能加载，则会自己尝试加载）所以我们还需要指定父加载器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileInputStream;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义Java类加载器来实现Java类的热加载</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClasslLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">/** 要加载的 Java 类的 classpath 路径 */</span></div><div class="line">	<span class="keyword">private</span> String classpath;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyClasslLoader</span><span class="params">(String classpath)</span> </span>&#123;</div><div class="line">		<span class="comment">// 指定父加载器</span></div><div class="line">		<span class="keyword">super</span>(ClassLoader.getSystemClassLoader());</div><div class="line">		<span class="keyword">this</span>.classpath = classpath;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</div><div class="line">		<span class="keyword">byte</span>[] data = <span class="keyword">this</span>.loadClassData(name);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.defineClass(name, data, <span class="number">0</span>, data.length);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 加载 class 文件中的内容</div><div class="line">	 *</div><div class="line">	 * <span class="doctag">@param</span> name</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] loadClassData(String name) &#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// 传进来是带包名的</span></div><div class="line">			name = name.replace(<span class="string">"."</span>, <span class="string">"//"</span>);</div><div class="line">			FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(</div><div class="line">					classpath + name + <span class="string">".class"</span>));</div><div class="line">			<span class="comment">// 定义字节数组输出流</span></div><div class="line">			ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">			<span class="keyword">int</span> b = <span class="number">0</span>;</div><div class="line">			<span class="keyword">while</span> ((b = inputStream.read()) != -<span class="number">1</span>) &#123;</div><div class="line">				baos.write(b);</div><div class="line">			&#125;</div><div class="line">			inputStream.close();</div><div class="line">			<span class="keyword">return</span> baos.toByteArray();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义Java类加载器来实现Java类的热加载</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClasslLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** 要加载的 Java 类的 classpath 路径 */</span></span><br><span class="line">	<span class="keyword">private</span> String classpath;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyClasslLoader</span><span class="params">(String classpath)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 指定父加载器</span></span><br><span class="line">		<span class="keyword">super</span>(ClassLoader.getSystemClassLoader());</span><br><span class="line">		<span class="keyword">this</span>.classpath = classpath;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">		<span class="keyword">byte</span>[] data = <span class="keyword">this</span>.loadClassData(name);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.defineClass(name, data, <span class="number">0</span>, data.length);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 加载 class 文件中的内容</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] loadClassData(String name) &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// 传进来是带包名的</span></span><br><span class="line">			name = name.replace(<span class="string">"."</span>, <span class="string">"//"</span>);</span><br><span class="line">			FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(</span><br><span class="line">					classpath + name + <span class="string">".class"</span>));</span><br><span class="line">			<span class="comment">// 定义字节数组输出流</span></span><br><span class="line">			ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">			<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> ((b = inputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">				baos.write(b);</span><br><span class="line">			&#125;</span><br><span class="line">			inputStream.close();</span><br><span class="line">			<span class="keyword">return</span> baos.toByteArray();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="定义要类型热加载的类"><a href="#定义要类型热加载的类" class="headerlink" title="定义要类型热加载的类"></a>定义要类型热加载的类</h3><p>假设某个接口（BaseTask.java）下的某个方法（execute）要进行热加载处理。</p>
 <p>首先定义接口信息：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 实现这个接口的子类，需要动态更新。也就是热加载</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现这个接口的子类，需要动态更新。也就是热加载</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BaseTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>写一个这个接口的实现类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * BaseTask 这个接口的实现类需要热加载功能。</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">implements</span> <span class="title">BaseTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="keyword">new</span> Date() + <span class="string">": Java类的热加载"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * BaseTask 这个接口的实现类需要热加载功能。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">implements</span> <span class="title">BaseTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date() + <span class="string">": Java类的热加载"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>后面要让这个类可以通过MyClassLoader进行自定义加载。为了避免无意义的重复加载，类的热加载应当只有在类的信息被更改然后重新编译之后进行重新加载，所以需要判断class是否进行了更新，需要记录class类的修改时间，以及对应的类信息。</p>
 <p>编译一个类用来记录某个类对应的某个类加载器以及上次加载的class的修改时间：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 封装加载类的信息</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadInfo</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/** 自定义的类加载器 */</span></div><div class="line">    <span class="keyword">private</span> MyClasslLoader myClasslLoader;</div><div class="line"></div><div class="line">    <span class="comment">/** 记录要加载的类的时间戳--&gt;加载的时间 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> loadTime;</div><div class="line"></div><div class="line">    <span class="comment">/** 需要被热加载的类 */</span></div><div class="line">    <span class="keyword">private</span> BaseTask myTask;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadInfo</span><span class="params">(MyClasslLoader myClasslLoader, <span class="keyword">long</span> loadTime)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.myClasslLoader = myClasslLoader;</div><div class="line">        <span class="keyword">this</span>.loadTime = loadTime;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> MyClasslLoader <span class="title">getMyClasslLoader</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> myClasslLoader;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyClasslLoader</span><span class="params">(MyClasslLoader myClasslLoader)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.myClasslLoader = myClasslLoader;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getLoadTime</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> loadTime;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLoadTime</span><span class="params">(<span class="keyword">long</span> loadTime)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.loadTime = loadTime;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> BaseTask <span class="title">getTask</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> myTask;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTask</span><span class="params">(BaseTask myTask)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.myTask = myTask;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 封装加载类的信息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadInfo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 自定义的类加载器 */</span></span><br><span class="line">    <span class="keyword">private</span> MyClasslLoader myClasslLoader;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 记录要加载的类的时间戳--&gt;加载的时间 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> loadTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 需要被热加载的类 */</span></span><br><span class="line">    <span class="keyword">private</span> BaseTask myTask;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadInfo</span><span class="params">(MyClasslLoader myClasslLoader, <span class="keyword">long</span> loadTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.myClasslLoader = myClasslLoader;</span><br><span class="line">        <span class="keyword">this</span>.loadTime = loadTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyClasslLoader <span class="title">getMyClasslLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myClasslLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyClasslLoader</span><span class="params">(MyClasslLoader myClasslLoader)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.myClasslLoader = myClasslLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getLoadTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> loadTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLoadTime</span><span class="params">(<span class="keyword">long</span> loadTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.loadTime = loadTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BaseTask <span class="title">getTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myTask;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTask</span><span class="params">(BaseTask myTask)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.myTask = myTask;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="热加载获取类信息"><a href="#热加载获取类信息" class="headerlink" title="热加载获取类信息"></a>热加载获取类信息</h3><p>每次调用要热加载的类时，我们都要进行检查类是否被更新然后决定要不要重新加载。可以使用一个简单的工厂模式进行封装。 </p>
 <p>要注意是加载class文件需要指定完整的路径，所以类中定义了CLASS_PATH 常量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 加载 manager 的工厂</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskFactory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/** 记录热加载类的加载信息 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, LoadInfo&gt; loadTimeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="comment">/** 要加载的类的 classpath */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLASS_PATH = <span class="string">"E:\\MyLearning\\LearningWorkSpace\\MyLearning\\bin\\"</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 实现热加载的类的全名称(包名+类名 ) */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String MY_MANAGER = <span class="string">"com.justxzm.alex.MyTask"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BaseTask <span class="title">getManager</span><span class="params">(String className)</span> </span>&#123;</div><div class="line">        File loadFile = <span class="keyword">new</span> File(CLASS_PATH + className.replaceAll(<span class="string">"\\."</span>, <span class="string">"/"</span>) + <span class="string">".class"</span>);</div><div class="line">        <span class="comment">// 获取最后一次修改时间</span></div><div class="line">        <span class="keyword">long</span> lastModified = loadFile.lastModified();</div><div class="line">        <span class="comment">// loadTimeMap 不包含 ClassName 为 key 的信息，证明这个类没有被加载，要加载到 JVM</span></div><div class="line">        <span class="keyword">if</span> (loadTimeMap.get(className) == <span class="keyword">null</span>) &#123;</div><div class="line">        	System.out.println(<span class="string">"init"</span>);</div><div class="line">            load(className, lastModified);</div><div class="line">        &#125; <span class="comment">// 加载类的时间戳变化了，我们同样要重新加载这个类到 JVM。</span></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (loadTimeMap.get(className).getLoadTime() != lastModified) &#123;</div><div class="line">        	System.out.println(<span class="string">"modify"</span>);</div><div class="line">            load(className, lastModified);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> loadTimeMap.get(className).getTask();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 加载 class ，缓存到 loadTimeMap</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> className</div><div class="line">     * <span class="doctag">@param</span> lastModified</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">(String className, <span class="keyword">long</span> lastModified)</span> </span>&#123;</div><div class="line">        MyClasslLoader myClasslLoader = <span class="keyword">new</span> MyClasslLoader(CLASS_PATH);</div><div class="line">        Class loadClass = <span class="keyword">null</span>;</div><div class="line">        <span class="comment">// 加载</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//myClasslLoader.loadClass(className)采用默认类加载器，需进入debugger模式运行</span></div><div class="line">            loadClass = myClasslLoader.findClass(className);</div><div class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        BaseTask task = newInstance(loadClass);</div><div class="line">        LoadInfo loadInfo = <span class="keyword">new</span> LoadInfo(myClasslLoader, lastModified);</div><div class="line">        loadInfo.setTask(task);</div><div class="line">        loadTimeMap.put(className, loadInfo);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 以反射的方式创建 BaseManager 的子类对象</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> loadClass</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> BaseTask <span class="title">newInstance</span><span class="params">(Class loadClass)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">return</span> (BaseTask)loadClass.getConstructor(<span class="keyword">new</span> Class[] &#123;&#125;).newInstance(<span class="keyword">new</span> Object[] &#123;&#125;);</div><div class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载 manager 的工厂</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 记录热加载类的加载信息 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, LoadInfo&gt; loadTimeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 要加载的类的 classpath */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLASS_PATH = <span class="string">"E:\\MyLearning\\LearningWorkSpace\\MyLearning\\bin\\"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 实现热加载的类的全名称(包名+类名 ) */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String MY_MANAGER = <span class="string">"com.justxzm.alex.MyTask"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BaseTask <span class="title">getManager</span><span class="params">(String className)</span> </span>&#123;</span><br><span class="line">        File loadFile = <span class="keyword">new</span> File(CLASS_PATH + className.replaceAll(<span class="string">"\\."</span>, <span class="string">"/"</span>) + <span class="string">".class"</span>);</span><br><span class="line">        <span class="comment">// 获取最后一次修改时间</span></span><br><span class="line">        <span class="keyword">long</span> lastModified = loadFile.lastModified();</span><br><span class="line">        <span class="comment">// loadTimeMap 不包含 ClassName 为 key 的信息，证明这个类没有被加载，要加载到 JVM</span></span><br><span class="line">        <span class="keyword">if</span> (loadTimeMap.get(className) == <span class="keyword">null</span>) &#123;</span><br><span class="line">        	System.out.println(<span class="string">"init"</span>);</span><br><span class="line">            load(className, lastModified);</span><br><span class="line">        &#125; <span class="comment">// 加载类的时间戳变化了，我们同样要重新加载这个类到 JVM。</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (loadTimeMap.get(className).getLoadTime() != lastModified) &#123;</span><br><span class="line">        	System.out.println(<span class="string">"modify"</span>);</span><br><span class="line">            load(className, lastModified);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loadTimeMap.get(className).getTask();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加载 class ，缓存到 loadTimeMap</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> className</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lastModified</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">(String className, <span class="keyword">long</span> lastModified)</span> </span>&#123;</span><br><span class="line">        MyClasslLoader myClasslLoader = <span class="keyword">new</span> MyClasslLoader(CLASS_PATH);</span><br><span class="line">        Class loadClass = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 加载</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//myClasslLoader.loadClass(className)采用默认类加载器，需进入debugger模式运行</span></span><br><span class="line">            loadClass = myClasslLoader.findClass(className);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        BaseTask task = newInstance(loadClass);</span><br><span class="line">        LoadInfo loadInfo = <span class="keyword">new</span> LoadInfo(myClasslLoader, lastModified);</span><br><span class="line">        loadInfo.setTask(task);</span><br><span class="line">        loadTimeMap.put(className, loadInfo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 以反射的方式创建 BaseManager 的子类对象</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> loadClass</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> BaseTask <span class="title">newInstance</span><span class="params">(Class loadClass)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (BaseTask)loadClass.getConstructor(<span class="keyword">new</span> Class[] &#123;&#125;).newInstance(<span class="keyword">new</span> Object[] &#123;&#125;);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="热加载测试"><a href="#热加载测试" class="headerlink" title="热加载测试"></a>热加载测试</h3><p>写一个线程不断的检测要热加载的类是不是已经更改需要重新加载，然后运行测试：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 后台启动一条线程，不断检测是否要刷新重新加载，实现了热加载的类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgHandle</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            BaseTask task = TaskFactory.getManager(TaskFactory.MY_MANAGER);</div><div class="line">            task.execute();</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Thread.sleep(<span class="number">2000</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 后台启动一条线程，不断检测是否要刷新重新加载，实现了热加载的类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgHandle</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            BaseTask task = TaskFactory.getManager(TaskFactory.MY_MANAGER);</span><br><span class="line">            task.execute();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>主线程：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.justxzm.alex;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassLoadTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> MsgHandle()).start();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.justxzm.alex;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassLoadTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> MsgHandle()).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>启动后看到控制台不断的输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init</div><div class="line">Tue Nov 05 19:49:38 CST 2019: Java类的热加载</div><div class="line">Tue Nov 05 19:49:40 CST 2019: Java类的热加载</div><div class="line">Tue Nov 05 19:49:42 CST 2019: Java类的热加载</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">init</span><br><span class="line">Tue Nov 05 19:49:38 CST 2019: Java类的热加载</span><br><span class="line">Tue Nov 05 19:49:40 CST 2019: Java类的热加载</span><br><span class="line">Tue Nov 05 19:49:42 CST 2019: Java类的热加载</span><br></pre></td></tr></table></figure>
 <p> 这时候我们随便改下MyTask类的execute方法的输出内容然后保存：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">implements</span> <span class="title">BaseTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="keyword">new</span> Date() + <span class="string">": Java类的热加载 By justxzm"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">implements</span> <span class="title">BaseTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date() + <span class="string">": Java类的热加载 By justxzm"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 可以看到控制台的输出已经自动更改了 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">init</div><div class="line">Tue Nov 05 20:12:52 CST 2019: Java类的热加载</div><div class="line">Tue Nov 05 20:12:54 CST 2019: Java类的热加载</div><div class="line">Tue Nov 05 20:12:56 CST 2019: Java类的热加载</div><div class="line">modify</div><div class="line">Tue Nov 05 20:12:58 CST 2019: Java类的热加载 By justxzm</div><div class="line">Tue Nov 05 20:13:00 CST 2019: Java类的热加载 By justxzm</div><div class="line">Tue Nov 05 20:13:02 CST 2019: Java类的热加载 By justxzm</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">init</span><br><span class="line">Tue Nov 05 20:12:52 CST 2019: Java类的热加载</span><br><span class="line">Tue Nov 05 20:12:54 CST 2019: Java类的热加载</span><br><span class="line">Tue Nov 05 20:12:56 CST 2019: Java类的热加载</span><br><span class="line">modify</span><br><span class="line">Tue Nov 05 20:12:58 CST 2019: Java类的热加载 By justxzm</span><br><span class="line">Tue Nov 05 20:13:00 CST 2019: Java类的热加载 By justxzm</span><br><span class="line">Tue Nov 05 20:13:02 CST 2019: Java类的热加载 By justxzm</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -512,15 +497,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/14/MyBatis实现原理：动态代理的运用/" rel="next" title="MyBatis实现原理：动态代理的运用">
-                <i class="fa fa-chevron-left"></i> MyBatis实现原理：动态代理的运用
+              <a href="/2019/10/20/Java并发总结-Executor框架/" rel="next" title="Java并发总结-Executor框架">
+                <i class="fa fa-chevron-left"></i> Java并发总结-Executor框架
               </a>
             
           </div>
@@ -529,8 +514,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/20/Java并发总结-Executor框架/" rel="prev" title="Java并发总结-Executor框架">
-                Java并发总结-Executor框架 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/14/MyBatis实现原理：动态代理的运用/" rel="prev" title="MyBatis实现原理：动态代理的运用">
+                MyBatis实现原理：动态代理的运用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,6 +525,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -549,15 +538,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -573,101 +567,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -700,30 +675,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -733,9 +734,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -757,61 +762,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -832,6 +863,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -839,138 +888,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -978,6 +1215,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java并发系列," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java并发系列,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="等待超时模式使用场景：调用一个方法时等待一段时间（一般来说是给定一个时间段），如果该方法能够在给定的时间段之内得到结果，那么将结果立刻返回，反之，超时返回默认结果。 前面的章节介绍了等待/通知的经典范式，即加锁、条件循环和处理逻辑3个步骤，而这种范式无法做到超时等待。而超时等待的加入，只需要对经典范式做出非常小的改动，改动内容如下所示： 假设超时时间段是T，那么可以推断出在当前时间now+T之后就">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091903.png">
 <meta property="og:updated_time" content="2019-09-20T14:09:13.003Z">
 <meta name="twitter:card" content="summary">
@@ -107,10 +100,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -127,17 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/">
 
 
 
 
 
-  <title> Java并发总结-线程应用实例 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Java并发总结-线程应用实例 | JUST DO IT</title>
   
 
 
@@ -147,18 +138,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -167,7 +156,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,49 +186,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -250,7 +239,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -271,9 +260,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -305,13 +292,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -323,14 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Java并发总结-线程应用实例
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Java并发总结-线程应用实例</h1>
         
 
         <div class="post-meta">
@@ -353,7 +337,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -384,6 +368,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -393,7 +382,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -411,18 +402,18 @@
 <p>这时仅需要<strong>wait(REMAINING)</strong>即可，在<strong>wait(REMAINING)</strong>返回之后会将执行：<strong>REMAINING=FUTURE–now</strong>。如果<strong>REMAINING</strong>小于等于0，表示已经超时，直接退出，否则将继续执行<strong>wait(REMAINING)</strong>。</p>
 <a id="more"></a>
 <p>上述等待超时模式的<strong>伪代码如下</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 对当前对象加锁</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">get</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">	<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</div><div class="line">	<span class="keyword">long</span> remaining = mills;</div><div class="line">	<span class="comment">// 当超时大于0并且result返回值不满足要求</span></div><div class="line">	<span class="keyword">while</span> ((result == <span class="keyword">null</span>) &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</div><div class="line">		wait(remaining);</div><div class="line">		remaining = future - System.currentTimeMillis();</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对当前对象加锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">get</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">	<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</span><br><span class="line">	<span class="keyword">long</span> remaining = mills;</span><br><span class="line">	<span class="comment">// 当超时大于0并且result返回值不满足要求</span></span><br><span class="line">	<span class="keyword">while</span> ((result == <span class="keyword">null</span>) &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		wait(remaining);</span><br><span class="line">		remaining = future - System.currentTimeMillis();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>等待超时模式就是在<strong>等待/通知范式</strong>基础上增加了<strong>超时控制</strong>，这使得该模式相比原有范式更具有灵活性，因为即使方法执行时间过长，也不会“永久”阻塞调用者，而是会按照调用者的要求“按时”返回。</p>
 <h2 id="数据库连接池示例"><a href="#数据库连接池示例" class="headerlink" title="数据库连接池示例"></a>数据库连接池示例</h2><p>我们使用<strong>等待超时模式</strong>来构造一个简单的数据库连接池，在示例中模拟从连接池中<strong>获取</strong>、<strong>使用</strong>和<strong>释放</strong>连接的过程，而客户端获取连接的过程被设定为<strong>等待超时的模式</strong>，也就是在1000毫秒内如果无法获取到可用连接，将会返回给客户端一个null。设定连接池的大小为10个，然后通过调节客户端的线程数来模拟无法获取连接的场景。</p>
 <p><strong>首先</strong>看一下连接池的定义。它通过构造函数初始化连接的最大上限，通过一个<strong>双向队列</strong>来维护连接，调用方需要先调用<strong>fetchConnection(long)</strong>方法来指定在多少毫秒内超时获取连接，当连接使用完成后，需要调用<strong>releaseConnection(Connection)</strong>方法将连接放回线程池，示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPool</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> LinkedList&lt;Connection&gt; pool = <span class="keyword">new</span> LinkedList&lt;Connection&gt;();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConnectionPool</span><span class="params">(<span class="keyword">int</span> initialSize)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (initialSize &gt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initialSize; i++) &#123;</div><div class="line">				pool.addLast(ConnectionDriver.createConnection());</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">releaseConnection</span><span class="params">(Connection connection)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">synchronized</span> (pool) &#123;</div><div class="line">				<span class="comment">// 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接</span></div><div class="line">				pool.addLast(connection);</div><div class="line">				pool.notifyAll();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 在mills内无法获取到连接，将会返回null</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Connection <span class="title">fetchConnection</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		<span class="keyword">synchronized</span> (pool) &#123;</div><div class="line">			<span class="comment">// 完全超时</span></div><div class="line">			<span class="keyword">if</span> (mills &lt;= <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">while</span> (pool.isEmpty()) &#123;</div><div class="line">					pool.wait();</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> pool.removeFirst();</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</div><div class="line">				<span class="keyword">long</span> remaining = mills;</div><div class="line">				<span class="keyword">while</span> (pool.isEmpty() &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</div><div class="line">					pool.wait(remaining);</div><div class="line">					remaining = future - System.currentTimeMillis();</div><div class="line">				&#125;</div><div class="line">				Connection result = <span class="keyword">null</span>;</div><div class="line">				<span class="keyword">if</span> (!pool.isEmpty()) &#123;</div><div class="line">					result = pool.removeFirst();</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> result;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPool</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> LinkedList&lt;Connection&gt; pool = <span class="keyword">new</span> LinkedList&lt;Connection&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ConnectionPool</span><span class="params">(<span class="keyword">int</span> initialSize)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (initialSize &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initialSize; i++) &#123;</span><br><span class="line">				pool.addLast(ConnectionDriver.createConnection());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">releaseConnection</span><span class="params">(Connection connection)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (pool) &#123;</span><br><span class="line">				<span class="comment">// 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接</span></span><br><span class="line">				pool.addLast(connection);</span><br><span class="line">				pool.notifyAll();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 在mills内无法获取到连接，将会返回null</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Connection <span class="title">fetchConnection</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span> (pool) &#123;</span><br><span class="line">			<span class="comment">// 完全超时</span></span><br><span class="line">			<span class="keyword">if</span> (mills &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">while</span> (pool.isEmpty()) &#123;</span><br><span class="line">					pool.wait();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> pool.removeFirst();</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">long</span> future = System.currentTimeMillis() + mills;</span><br><span class="line">				<span class="keyword">long</span> remaining = mills;</span><br><span class="line">				<span class="keyword">while</span> (pool.isEmpty() &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					pool.wait(remaining);</span><br><span class="line">					remaining = future - System.currentTimeMillis();</span><br><span class="line">				&#125;</span><br><span class="line">				Connection result = <span class="keyword">null</span>;</span><br><span class="line">				<span class="keyword">if</span> (!pool.isEmpty()) &#123;</span><br><span class="line">					result = pool.removeFirst();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> result;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于<strong>java.sql.Connection</strong>是一个接口，最终的实现是由数据库驱动提供方来实现的，考虑到只是个示例，我们通过动态代理构造了一个Connection，该Connection的代理实现仅仅是在commit()方法调用时休眠100毫秒，示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionDriver</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></div><div class="line">				<span class="keyword">throws</span> Throwable &#123;</div><div class="line">			<span class="keyword">if</span> (method.getName().equals(<span class="string">"commit"</span>)) &#123;</div><div class="line">				TimeUnit.MILLISECONDS.sleep(<span class="number">100</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 创建一个Connection的代理，在commit时休眠100毫秒</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Connection <span class="title">createConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(),<span class="keyword">new</span> Class[]&#123;Connection.class&#125;, <span class="keyword">new</span> ConnectionHandler());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionDriver</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></span><br><span class="line"><span class="function">				<span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (method.getName().equals(<span class="string">"commit"</span>)) &#123;</span><br><span class="line">				TimeUnit.MILLISECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建一个Connection的代理，在commit时休眠100毫秒</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Connection <span class="title">createConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(),<span class="keyword">new</span> Class[]&#123;Connection.class&#125;, <span class="keyword">new</span> ConnectionHandler());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>下面通过一个示例来测试简易数据库连接池的工作情况，模拟客户端ConnectionRunner<strong>获取</strong>、<strong>使用</strong>、最后<strong>释放</strong>连接的过程，当它使用时连接将会增加获取到连接的数量，反之，将会增加未获取到连接的数量，示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPoolTest</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> ConnectionPool pool = <span class="keyword">new</span> ConnectionPool(<span class="number">10</span>);</div><div class="line">	<span class="comment">// 保证所有ConnectionRunner能够同时开始</span></div><div class="line">	<span class="keyword">static</span> CountDownLatch start = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</div><div class="line">	<span class="comment">// main线程将会等待所有ConnectionRunner结束后才能继续执行</span></div><div class="line">	<span class="keyword">static</span> CountDownLatch end;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 线程数量，可以修改线程数量进行观察</span></div><div class="line">		<span class="keyword">int</span> threadCount = <span class="number">10</span>;</div><div class="line">		end = <span class="keyword">new</span> CountDownLatch(threadCount);</div><div class="line">		<span class="keyword">int</span> count = <span class="number">20</span>;</div><div class="line">		AtomicInteger got = <span class="keyword">new</span> AtomicInteger();</div><div class="line">		AtomicInteger notGot = <span class="keyword">new</span> AtomicInteger();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</div><div class="line">			Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ConnetionRunner(count, got, notGot),</div><div class="line">					<span class="string">"ConnectionRunnerThread"</span>);</div><div class="line">			thread.start();</div><div class="line">		&#125;</div><div class="line">		start.countDown();</div><div class="line">		end.await();</div><div class="line">		System.out.println(<span class="string">"total invoke: "</span> + (threadCount * count));</div><div class="line">		System.out.println(<span class="string">"got connection: "</span> + got);</div><div class="line">		System.out.println(<span class="string">"not got connection "</span> + notGot);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnetionRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> count;</div><div class="line">		AtomicInteger got;</div><div class="line">		AtomicInteger notGot;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="title">ConnetionRunner</span><span class="params">(<span class="keyword">int</span> count, AtomicInteger got,</span></span></div><div class="line">				AtomicInteger notGot) &#123;</div><div class="line">			<span class="keyword">this</span>.count = count;</div><div class="line">			<span class="keyword">this</span>.got = got;</div><div class="line">			<span class="keyword">this</span>.notGot = notGot;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				start.await();</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">try</span> &#123;</div><div class="line">					<span class="comment">// 从线程池中获取连接，如果1000ms内无法获取到，将会返回null</span></div><div class="line">					<span class="comment">// 分别统计连接获取的数量got和未获取到的数量notGot</span></div><div class="line">					Connection connection = pool.fetchConnection(<span class="number">1000</span>);</div><div class="line">					<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">						<span class="keyword">try</span> &#123;</div><div class="line">							connection.createStatement();</div><div class="line">							connection.commit();</div><div class="line">						&#125; <span class="keyword">finally</span> &#123;</div><div class="line">							pool.releaseConnection(connection);</div><div class="line">							got.incrementAndGet();</div><div class="line">						&#125;</div><div class="line">					&#125; <span class="keyword">else</span> &#123;</div><div class="line">						notGot.incrementAndGet();</div><div class="line">					&#125;</div><div class="line">				&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">				&#125; <span class="keyword">finally</span> &#123;</div><div class="line">					count--;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			end.countDown();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPoolTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> ConnectionPool pool = <span class="keyword">new</span> ConnectionPool(<span class="number">10</span>);</span><br><span class="line">	<span class="comment">// 保证所有ConnectionRunner能够同时开始</span></span><br><span class="line">	<span class="keyword">static</span> CountDownLatch start = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">	<span class="comment">// main线程将会等待所有ConnectionRunner结束后才能继续执行</span></span><br><span class="line">	<span class="keyword">static</span> CountDownLatch end;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// 线程数量，可以修改线程数量进行观察</span></span><br><span class="line">		<span class="keyword">int</span> threadCount = <span class="number">10</span>;</span><br><span class="line">		end = <span class="keyword">new</span> CountDownLatch(threadCount);</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">20</span>;</span><br><span class="line">		AtomicInteger got = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">		AtomicInteger notGot = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">			Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ConnetionRunner(count, got, notGot),</span><br><span class="line">					<span class="string">"ConnectionRunnerThread"</span>);</span><br><span class="line">			thread.start();</span><br><span class="line">		&#125;</span><br><span class="line">		start.countDown();</span><br><span class="line">		end.await();</span><br><span class="line">		System.out.println(<span class="string">"total invoke: "</span> + (threadCount * count));</span><br><span class="line">		System.out.println(<span class="string">"got connection: "</span> + got);</span><br><span class="line">		System.out.println(<span class="string">"not got connection "</span> + notGot);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnetionRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count;</span><br><span class="line">		AtomicInteger got;</span><br><span class="line">		AtomicInteger notGot;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">ConnetionRunner</span><span class="params">(<span class="keyword">int</span> count, AtomicInteger got,</span></span></span><br><span class="line"><span class="function"><span class="params">				AtomicInteger notGot)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.count = count;</span><br><span class="line">			<span class="keyword">this</span>.got = got;</span><br><span class="line">			<span class="keyword">this</span>.notGot = notGot;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				start.await();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="comment">// 从线程池中获取连接，如果1000ms内无法获取到，将会返回null</span></span><br><span class="line">					<span class="comment">// 分别统计连接获取的数量got和未获取到的数量notGot</span></span><br><span class="line">					Connection connection = pool.fetchConnection(<span class="number">1000</span>);</span><br><span class="line">					<span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">						<span class="keyword">try</span> &#123;</span><br><span class="line">							connection.createStatement();</span><br><span class="line">							connection.commit();</span><br><span class="line">						&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">							pool.releaseConnection(connection);</span><br><span class="line">							got.incrementAndGet();</span><br><span class="line">						&#125;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						notGot.incrementAndGet();</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">				&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">					count--;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			end.countDown();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述示例中使用了<strong>CountDownLatch</strong>来确保ConnectionRunnerThread能够<strong>同时开始执行</strong>，并且在全部结束之后，才使main线程从等待状态中返回。</p>
 <p>当前设定的场景是10个线程同时运行获取连接池（10个连接）中的连接，通过调节线程数量来观察未获取到连接的情况：线程数、总获取次数、获取到的数量、未获取到的数量以及未获取到的比率（实际输出可能与此表不同）。</p>
-<p><img src="/images/并发编程/2019091903.png" alt=""></p>
+<p><img src="/images/并发编程/2019091903.png" alt></p>
 <p>从表中的数据统计可以看出，在<strong>资源一定</strong>的情况下（连接池中的10个连接），随着<strong>客户端线程的逐步增加</strong>，客户端出现超时<strong>无法获取连接的比率不断升高</strong>。虽然客户端线程在这种超时获取的模式下<strong>会出现连接无法获取的情况</strong>，<strong>但是</strong>它能够保证客户端线程<strong>不会一直挂在连接获取的操作</strong>上，而是<strong>“按时”返回</strong>，并告知客户端连接获取出现问题，是系统的一种<strong>自我保护机制</strong>。数据库连接池的设计也可以<strong>复用到其他的资源获取</strong>的场景，针对<strong>昂贵资源</strong>（比如<strong>数据库连接</strong>）的获取都应该加以超时限制。</p>
 <h2 id="线程池技术及示例"><a href="#线程池技术及示例" class="headerlink" title="线程池技术及示例"></a>线程池技术及示例</h2><p><strong>应用场景：</strong></p>
 <p>对于服务端的程序，经常面对的是客户端传入的短小（<strong>执行时间短</strong>、<strong>工作内容较为单一</strong>）任务，需要服务端<strong>快速处理并返回结果</strong>。如果服务端每次接受到一个任务，创建一个线程，然后进行执行，这在原型阶段是个不错的选择。</p>
@@ -431,31 +422,25 @@
 <p>线程池技术能够很好地解决这个问题，它<strong>预先创建了若干数量的线程</strong>，并且不能由用户直接对线程的创建进行控制，在这个前提下<strong>重复使用固定或较为固定数目的线程</strong>来完成任务的执行。</p>
 <p>这样做的好处是，一方面，<strong>消除</strong>了频繁创建和消亡线程的<strong>系统资源开销</strong>，另一方面，面对<strong>过量任务</strong>的提交能够<strong>平缓</strong>的劣化。</p>
 <p>先看一个简单的线程池接口定义：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; </span>&#123;</div><div class="line">	<span class="comment">// 执行一个Job，这个Job需要实现Runnable</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span></span>;</div><div class="line">	<span class="comment">// 关闭线程池</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</div><div class="line">	<span class="comment">// 增加工作者线程</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</div><div class="line">	<span class="comment">// 减少工作者线程</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</div><div class="line">	<span class="comment">// 得到正在等待执行的任务数量</span></div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 执行一个Job，这个Job需要实现Runnable</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span></span>;</span><br><span class="line">	<span class="comment">// 关闭线程池</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 增加工作者线程</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">	<span class="comment">// 减少工作者线程</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">	<span class="comment">// 得到正在等待执行的任务数量</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>客户端可以通过<strong>execute(Job)</strong>方法<strong>将Job提交入线程池执行</strong>，而客户端自身<strong>不用等待Job的执行完成</strong>。除了execute(Job)方法以外，线程池接口提供了<strong>增大/减少工作者线程</strong>以及<strong>关闭线程池的方法</strong>。这里工作者线程代表着<strong>一个重复执行Job的线程</strong>，而每个由客户端提交的Job都将<strong>进入到一个工作队列</strong>中等待工作者线程的处理。</p>
 <p>以下是线程池接口的默认实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; <span class="keyword">implements</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span>&gt; </span>&#123;</div><div class="line">	<span class="comment">// 线程池最大限制数</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_WORKER_NUMBERS = <span class="number">10</span>;</div><div class="line">	<span class="comment">// 线程池默认的数量</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_WORKER_NUMBERS = <span class="number">5</span>;</div><div class="line">	<span class="comment">// 线程池最小的数量</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_WORKER_NUMBERS = <span class="number">1</span>;</div><div class="line">	<span class="comment">// 这是一个工作列表，将会向里面插入工作</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> LinkedList&lt;Job&gt; jobs = <span class="keyword">new</span> LinkedList&lt;Job&gt;();</div><div class="line">	<span class="comment">// 工作者列表</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> List&lt;Worker&gt; workers = Collections</div><div class="line">			.synchronizedList(<span class="keyword">new</span> ArrayList&lt;Worker&gt;());</div><div class="line">	<span class="comment">// 工作者线程的数量</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> workerNum = DEFAULT_WORKER_NUMBERS;</div><div class="line">	<span class="comment">// 线程编号生成</span></div><div class="line">	<span class="keyword">private</span> AtomicLong threadNum = <span class="keyword">new</span> AtomicLong();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">()</span> </span>&#123;</div><div class="line">		initializeWokers(DEFAULT_WORKER_NUMBERS);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		workerNum = num &gt; MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS</div><div class="line">				: num &lt; MIN_WORKER_NUMBERS ? MIN_WORKER_NUMBERS : num;</div><div class="line">		initializeWokers(workerNum);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (job != <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="comment">// 添加一个工作，然后进行通知</span></div><div class="line">			<span class="keyword">synchronized</span> (jobs) &#123;</div><div class="line">				jobs.addLast(job);</div><div class="line">				jobs.notify();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (Worker worker : workers) &#123;</div><div class="line">			worker.shutdown();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="keyword">synchronized</span> (jobs) &#123;</div><div class="line">			<span class="comment">// 限制新增的Worker数量不能超过最大值</span></div><div class="line">			<span class="keyword">if</span> (num + <span class="keyword">this</span>.workerNum &gt; MAX_WORKER_NUMBERS) &#123;</div><div class="line">				num = MAX_WORKER_NUMBERS - <span class="keyword">this</span>.workerNum;</div><div class="line">			&#125;</div><div class="line">			initializeWokers(num);</div><div class="line">			<span class="keyword">this</span>.workerNum += num;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="keyword">synchronized</span> (jobs) &#123;</div><div class="line">			<span class="keyword">if</span> (num &gt;= <span class="keyword">this</span>.workerNum) &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"beyond workNum"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="comment">// 按照给定的数量停止Worker</span></div><div class="line">			<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">			<span class="keyword">while</span> (count &lt; num) &#123;</div><div class="line">				Worker worker = workers.get(count);</div><div class="line">				<span class="keyword">if</span> (workers.remove(worker)) &#123;</div><div class="line">					worker.shutdown();</div><div class="line">					count++;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">this</span>.workerNum -= count;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> jobs.size();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 初始化线程工作者</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initializeWokers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</div><div class="line">			Worker worker = <span class="keyword">new</span> Worker();</div><div class="line">			workers.add(worker);</div><div class="line">			Thread thread = <span class="keyword">new</span> Thread(worker, <span class="string">"ThreadPool-Worker-"</span></div><div class="line">					+ threadNum.incrementAndGet());</div><div class="line">			thread.start();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 工作者，负责消费任务</span></div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">		<span class="comment">// 是否工作</span></div><div class="line">		<span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> running = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">while</span> (running) &#123;</div><div class="line">				Job job = <span class="keyword">null</span>;</div><div class="line">				<span class="keyword">synchronized</span> (jobs) &#123;</div><div class="line">					<span class="comment">// 如果工作者列表是空的，那么就wait</span></div><div class="line">					<span class="keyword">while</span> (jobs.isEmpty()) &#123;</div><div class="line">						<span class="keyword">try</span> &#123;</div><div class="line">							jobs.wait();</div><div class="line">						&#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</div><div class="line">							<span class="comment">// 感知到外部对WorkerThread的中断操作，返回</span></div><div class="line">							Thread.currentThread().interrupt();</div><div class="line">							<span class="keyword">return</span>;</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">					<span class="comment">// 取出一个Job</span></div><div class="line">					job = jobs.removeFirst();</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span> (job != <span class="keyword">null</span>) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						job.run();</div><div class="line">					&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">						<span class="comment">// 忽略Job执行中的Exception</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</div><div class="line">			running = <span class="keyword">false</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; <span class="keyword">implements</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 线程池最大限制数</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_WORKER_NUMBERS = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">// 线程池默认的数量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_WORKER_NUMBERS = <span class="number">5</span>;</span><br><span class="line">	<span class="comment">// 线程池最小的数量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_WORKER_NUMBERS = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 这是一个工作列表，将会向里面插入工作</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> LinkedList&lt;Job&gt; jobs = <span class="keyword">new</span> LinkedList&lt;Job&gt;();</span><br><span class="line">	<span class="comment">// 工作者列表</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> List&lt;Worker&gt; workers = Collections</span><br><span class="line">			.synchronizedList(<span class="keyword">new</span> ArrayList&lt;Worker&gt;());</span><br><span class="line">	<span class="comment">// 工作者线程的数量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> workerNum = DEFAULT_WORKER_NUMBERS;</span><br><span class="line">	<span class="comment">// 线程编号生成</span></span><br><span class="line">	<span class="keyword">private</span> AtomicLong threadNum = <span class="keyword">new</span> AtomicLong();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		initializeWokers(DEFAULT_WORKER_NUMBERS);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		workerNum = num &gt; MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS</span><br><span class="line">				: num &lt; MIN_WORKER_NUMBERS ? MIN_WORKER_NUMBERS : num;</span><br><span class="line">		initializeWokers(workerNum);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (job != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="comment">// 添加一个工作，然后进行通知</span></span><br><span class="line">			<span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">				jobs.addLast(job);</span><br><span class="line">				jobs.notify();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (Worker worker : workers) &#123;</span><br><span class="line">			worker.shutdown();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">			<span class="comment">// 限制新增的Worker数量不能超过最大值</span></span><br><span class="line">			<span class="keyword">if</span> (num + <span class="keyword">this</span>.workerNum &gt; MAX_WORKER_NUMBERS) &#123;</span><br><span class="line">				num = MAX_WORKER_NUMBERS - <span class="keyword">this</span>.workerNum;</span><br><span class="line">			&#125;</span><br><span class="line">			initializeWokers(num);</span><br><span class="line">			<span class="keyword">this</span>.workerNum += num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">			<span class="keyword">if</span> (num &gt;= <span class="keyword">this</span>.workerNum) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"beyond workNum"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 按照给定的数量停止Worker</span></span><br><span class="line">			<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (count &lt; num) &#123;</span><br><span class="line">				Worker worker = workers.get(count);</span><br><span class="line">				<span class="keyword">if</span> (workers.remove(worker)) &#123;</span><br><span class="line">					worker.shutdown();</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">this</span>.workerNum -= count;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> jobs.size();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 初始化线程工作者</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initializeWokers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">			Worker worker = <span class="keyword">new</span> Worker();</span><br><span class="line">			workers.add(worker);</span><br><span class="line">			Thread thread = <span class="keyword">new</span> Thread(worker, <span class="string">"ThreadPool-Worker-"</span></span><br><span class="line">					+ threadNum.incrementAndGet());</span><br><span class="line">			thread.start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 工作者，负责消费任务</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 是否工作</span></span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> running = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">while</span> (running) &#123;</span><br><span class="line">				Job job = <span class="keyword">null</span>;</span><br><span class="line">				<span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">					<span class="comment">// 如果工作者列表是空的，那么就wait</span></span><br><span class="line">					<span class="keyword">while</span> (jobs.isEmpty()) &#123;</span><br><span class="line">						<span class="keyword">try</span> &#123;</span><br><span class="line">							jobs.wait();</span><br><span class="line">						&#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">							<span class="comment">// 感知到外部对WorkerThread的中断操作，返回</span></span><br><span class="line">							Thread.currentThread().interrupt();</span><br><span class="line">							<span class="keyword">return</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="comment">// 取出一个Job</span></span><br><span class="line">					job = jobs.removeFirst();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (job != <span class="keyword">null</span>) &#123;</span><br><span class="line">					<span class="keyword">try</span> &#123;</span><br><span class="line">						job.run();</span><br><span class="line">					&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">						<span class="comment">// 忽略Job执行中的Exception</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			running = <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当客户端调用execute(Job)方法时，会不断地向任务列表jobs中添加Job，而每个工作者线程会<strong>不断地</strong>从jobs上<strong>取出一个Job进行执行</strong>，当<strong>jobs为空时</strong>，<strong>工作者线程进入等待状态</strong>。</p>
 <p>添加一个Job后，对工作队列jobs调用了其notify()方法，而不是notifyAll()方法，因为能够确定有工作者线程被唤醒，这时使用<strong>notify()</strong>方法将会<strong>比notifyAll()</strong>方法获得<strong>更小的开销</strong>（<strong>避免将等待队列中的线程全部移动到阻塞队列中</strong>）。</p>
 <p><strong>线程池的本质</strong>就是使用了<strong>一个线程安全的工作队列</strong>连接<strong>工作者线程</strong>和<strong>客户端线程</strong>，客户端线程将任务放入工作队列后便返回，而工作者线程则不断地从工作队列上取出工作并执行。当工作队列为空时，所有的工作者线程均等待在工作队列上，当有客户端提交了一个任务之后会通知任意一个工作者线程，随着大量的任务被提交，更多的工作者线程会被唤醒。</p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -467,15 +452,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/20/Java并发总结-锁/" rel="next" title="Java并发总结-锁">
-                <i class="fa fa-chevron-left"></i> Java并发总结-锁
+              <a href="/2019/09/17/Java并发总结-线程间通信/" rel="next" title="Java并发总结-线程间通信">
+                <i class="fa fa-chevron-left"></i> Java并发总结-线程间通信
               </a>
             
           </div>
@@ -484,8 +469,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/17/Java并发总结-线程间通信/" rel="prev" title="Java并发总结-线程间通信">
-                Java并发总结-线程间通信 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/20/Java并发总结-锁/" rel="prev" title="Java并发总结-锁">
+                Java并发总结-锁 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -495,6 +480,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -504,15 +493,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -528,101 +522,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -655,30 +630,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -688,9 +689,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -712,61 +717,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -787,6 +818,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -794,138 +843,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -933,6 +1170,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

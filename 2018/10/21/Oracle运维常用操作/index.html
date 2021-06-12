@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Oracle," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Oracle,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2018/10/21/Oracle运维常用操作/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="登录12345sqlplus /nologconn /as sysdba附：shut immediate; 关机startup; 启动 创建123456789create tablespace PMSAlex datafile &apos;E:/AlexPMS/tablespace/PMSAlex.DBF&apos; size 100m autoextend on next 20m maxsize 4096m ext">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-05-22T03:03:04.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle运维常用操作">
@@ -105,10 +98,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -125,17 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2018/10/21/Oracle运维常用操作/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2018/10/21/Oracle运维常用操作/">
 
 
 
 
 
-  <title> Oracle运维常用操作 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Oracle运维常用操作 | JUST DO IT</title>
   
 
 
@@ -145,18 +136,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -165,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -195,49 +184,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -248,7 +237,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -269,9 +258,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -303,13 +290,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/Oracle运维常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -321,14 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Oracle运维常用操作
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Oracle运维常用操作</h1>
         
 
         <div class="post-meta">
@@ -351,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -382,6 +366,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -391,58 +380,54 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlplus /nolog</div><div class="line">conn /as sysdba</div><div class="line">附：</div><div class="line">shut immediate; 关机</div><div class="line">startup; 启动</div></pre></td></tr></table></figure>
-<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">datafile</span> <span class="string">'E:/AlexPMS/tablespace/PMSAlex.DBF'</span> <span class="keyword">size</span> <span class="number">100</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">20</span>m <span class="keyword">maxsize</span> <span class="number">4096</span>m <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</div><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">datafile</span> <span class="string">'E:/AlexPMS/tablespace/PMSAlex.DBF'</span> <span class="keyword">size</span> <span class="number">500</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span>;</div><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex <span class="keyword">default</span> <span class="keyword">tablespace</span> PMSAlex; 新建用户</div><div class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> PMSAlex;</div><div class="line">quit;</div><div class="line">附：</div><div class="line"><span class="keyword">drop</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">including</span> <span class="keyword">contents</span> <span class="keyword">and</span> <span class="keyword">datafiles</span>; 删除表空间</div><div class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> PRJAlex <span class="keyword">rename</span> <span class="keyword">to</span> PMSAlex; 重命名表空间</div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> u0MWVwS5; 修改连接的用户名和密码</div></pre></td></tr></table></figure>
+        <h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sqlplus /nolog</span><br><span class="line">conn /as sysdba</span><br><span class="line">附：</span><br><span class="line">shut immediate; 关机</span><br><span class="line">startup; 启动</span><br></pre></td></tr></table></figure>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">datafile</span> <span class="string">'E:/AlexPMS/tablespace/PMSAlex.DBF'</span> <span class="keyword">size</span> <span class="number">100</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">20</span>m <span class="keyword">maxsize</span> <span class="number">4096</span>m <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">datafile</span> <span class="string">'E:/AlexPMS/tablespace/PMSAlex.DBF'</span> <span class="keyword">size</span> <span class="number">500</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex <span class="keyword">default</span> <span class="keyword">tablespace</span> PMSAlex; 新建用户</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> PMSAlex;</span><br><span class="line">quit;</span><br><span class="line">附：</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">including</span> <span class="keyword">contents</span> <span class="keyword">and</span> <span class="keyword">datafiles</span>; 删除表空间</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> PRJAlex <span class="keyword">rename</span> <span class="keyword">to</span> PMSAlex; 重命名表空间</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> u0MWVwS5; 修改连接的用户名和密码</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="换库"><a href="#换库" class="headerlink" title="换库"></a>换库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">user</span> PMSAlex <span class="keyword">cascade</span>; 删除用户</div><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex <span class="keyword">default</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">temporary</span> <span class="keyword">tablespace</span> temp; 新建用户</div><div class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> prjAlex; 赋权</div><div class="line">quit; 退出</div></pre></td></tr></table></figure>
-<h3 id="导出导入"><a href="#导出导入" class="headerlink" title="导出导入"></a>导出导入</h3><h4 id="exp-imp"><a href="#exp-imp" class="headerlink" title="exp/imp"></a>exp/imp</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">exp PMSAlex/PMSAlex file=E:AlexPMS_20181021.dmp;</div><div class="line">imp PMSAlex/PMSAlex file=E:AlexPMS_20181021.dmp full=y ignore=y;</div><div class="line">exp PMSAlex/PMSAlex@192.168.8.169:1521/orcl file=E:AlexPMS_20181021.dmp;</div><div class="line">imp PMSAlex/PMSAlex@192.168.8.169:1521/orcl file=E:AlexPMS_20181021.dmp full=y ignore=y;</div></pre></td></tr></table></figure>
-<h4 id="expdp-impdp"><a href="#expdp-impdp" class="headerlink" title="expdp/impdp"></a>expdp/impdp</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">create directory expdp_dir as 'E:\oracle\temp_expdp';</div><div class="line">grant read,write on directory expdp_dir to PMSAlex;</div><div class="line">expdp PMSAlex/PMSAlex@orcl schemas=PMSAlex directory=expdp_dir dumpfile=AlexPMS_20181021.dmp logfile=AlexPMS_20181021.log parallel=4;</div><div class="line">create directory impdp_dir as 'E:\oracle\temp_impdp';</div><div class="line">impdp PMSAlex/PMSAlex@orcl schemas=PMSAlex directory=impdp_dir dumpfile=AlexPMS_20181021.dmp logfile=AlexPMS_20181021.log;</div><div class="line"># 导入时如果需要更换表空间、用户，语句后面加：</div><div class="line">REMAP_SCHEMA=oldUserName:newUserName REMAP_TABLESPACE=oldSpaceName:newSpaceName</div></pre></td></tr></table></figure>
-<h3 id="赋权相关"><a href="#赋权相关" class="headerlink" title="赋权相关"></a>赋权相关</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> PMSAlex; 赋予数据库连接权限</div><div class="line"><span class="keyword">grant</span> <span class="keyword">insert</span>,<span class="keyword">update</span>,<span class="keyword">select</span>,<span class="keyword">delete</span> <span class="keyword">on</span> PMSAlex.W_PSDDOCUMENT <span class="keyword">to</span> PMSAlex;</div><div class="line">conn PMSAlex/PMSAlex;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> PMSAlex.W_PSDDOCUMENT;</div></pre></td></tr></table></figure>
-<h3 id="库迁移相关"><a href="#库迁移相关" class="headerlink" title="库迁移相关"></a>库迁移相关</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 表转表空间，复制col列数据执行即可。</div><div class="line">SELECT ('alter table '||a.TABLE_NAME||' move tablespace ALEXNEW;') AS col FROM user_tables a WHERE tablespace_name='ALEX';</div><div class="line">SELECT ('alter table '||t.TABLE_NAME||' move tablespace ALEXNEW;') AS col FROM dba_tables t WHERE tablespace_name='ALEX' and t.OWNER='ALEX';</div><div class="line"># 索引转表空间，针对lob类型索引应该先转分区，复制v_sql列数据执行即可。</div><div class="line">SELECT 'alter table '||t.owner||'.'||t.table_name||' move tablespace ALEX lob('||t.column_name ||') store as(tablespace ALEXNEW);' v_sql FROM dba_lobs t WHERE t.tablespace_name='ALEX' and t.OWNER='ALEX';</div><div class="line"># 针对手动添加的索引进行如下sql查询，复制sql列数据执行即可。</div><div class="line">SELECT 'ALTER INDEX '||t.INDEX_NAME||' REBUILD TABLESPACE ALEXNEW;' sql FROM user_indexes t WHERE TABLESPACE_NAME='ALEX';</div><div class="line">SELECT 'ALTER INDEX '||t.INDEX_NAME||' REBUILD TABLESPACE ALEXNEW;' sql FROM dba_indexes t WHERE  TABLESPACE_NAME='ALEX' and t.OWNER='ALEX';</div><div class="line"># 在转空间的过程中会产生失效的索引，应rebuild下可在toad操作，执行以下查询复制sql列数据执行即可。</div><div class="line">SELECT 'ALTER INDEX '||t.INDEX_NAME||' REBUILD;' sql FROM user_indexes t WHERE status='UNUSABLE';</div><div class="line">ALTER INDEX "unique_dbom_code" REBUILD TABLESPACE ALEXNEW;</div><div class="line"># 报错序列不存在，即Sequence的tablespace的名也未改可以执行如下语句(ALEX为你的项目名)</div><div class="line">DROP SEQUENCE ALEX.$&#123;TABLENAME&#125;;</div></pre></td></tr></table></figure>
-<h3 id="字段顺序调整"><a href="#字段顺序调整" class="headerlink" title="字段顺序调整"></a>字段顺序调整</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#1.查询出表的id,注意：owner和object_name的值要大写</div><div class="line">--DBA用户使用</div><div class="line">select object_id,object_name from all_objects where owner='PMSALEX' and object_name='TABLENAME';</div><div class="line">--表归属用户可以使用</div><div class="line">select object_id from obj where object_name='TABLENAME';</div><div class="line">#2.通过id查出该表所有字段的顺序</div><div class="line">select obj#,col#,name from sys.col$ where obj#=188299 order by col#;</div><div class="line">#3.更新字段顺序,需要sys用户或是System用户 as sysdba登录，</div><div class="line"># 或是其他拥有sysdba权限的用户，但是这里的操作一定要小心。</div><div class="line">--更新受影响字段的col#，自己根据情况自己组织语句</div><div class="line">update sys.col$ set col#=col#+1 where obj#=188299 and col#&gt;4;</div><div class="line">--更新目标字段的col#</div><div class="line">update sys.col$ set col#=5 where obj#=188299 and name='FIELDNAME';</div><div class="line">#4.commit;</div><div class="line">#5.重启oracle服务</div></pre></td></tr></table></figure>
-<h3 id="其它语句"><a href="#其它语句" class="headerlink" title="其它语句"></a>其它语句</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(1)查目录 ，找不到导入导出路径时用</div><div class="line">	select * from dba_directories;</div><div class="line">(2)Oracle 高版本导出到低版本11-&gt;10，在低版本上找到具体版本</div><div class="line">	select * from v$version;</div><div class="line">	在高版本上导出时加上 version=10.2.0.4.0</div></pre></td></tr></table></figure>
-<h3 id="空表问题"><a href="#空表问题" class="headerlink" title="空表问题"></a>空表问题</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、把用户下的表改为statistics模式，使其num_rows的值可信</div><div class="line">	<span class="keyword">select</span> <span class="string">'analyze table '</span>||table_name||<span class="string">' compute statistics;'</span> <span class="keyword">from</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span></div><div class="line"><span class="number">2</span>、查询所有有数据的业务表，利用Excel构造成导库的语句</div><div class="line">	<span class="keyword">select</span> <span class="string">'select * from '</span>||table_name <span class="keyword">FROM</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span> <span class="keyword">and</span> num_rows&gt;<span class="number">0</span>;</div></pre></td></tr></table></figure>
-<h3 id="账户锁定问题"><a href="#账户锁定问题" class="headerlink" title="账户锁定问题"></a>账户锁定问题</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SQL&gt;alter user system account unlock；（解除锁定的方法）</div><div class="line">--为防止多次错误后锁定账户，将次数修改为N/无限次</div><div class="line">SQL&gt;alter profile default limit FAILED_LOGIN_ATTEMPTS N/unlimited;</div><div class="line">--查看被锁时间：</div><div class="line">select username,lock_date from dba_users;</div></pre></td></tr></table></figure>
+<h3 id="换库"><a href="#换库" class="headerlink" title="换库"></a>换库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> PMSAlex <span class="keyword">cascade</span>; 删除用户</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex <span class="keyword">default</span> <span class="keyword">tablespace</span> PMSAlex <span class="keyword">temporary</span> <span class="keyword">tablespace</span> temp; 新建用户</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> prjAlex; 赋权</span><br><span class="line">quit; 退出</span><br></pre></td></tr></table></figure>
+<h3 id="导出导入"><a href="#导出导入" class="headerlink" title="导出导入"></a>导出导入</h3><h4 id="exp-imp"><a href="#exp-imp" class="headerlink" title="exp/imp"></a>exp/imp</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exp PMSAlex/PMSAlex file=E:AlexPMS_20181021.dmp;</span><br><span class="line">imp PMSAlex/PMSAlex file=E:AlexPMS_20181021.dmp full=y ignore=y;</span><br><span class="line">exp PMSAlex/PMSAlex@192.168.8.169:1521/orcl file=E:AlexPMS_20181021.dmp;</span><br><span class="line">imp PMSAlex/PMSAlex@192.168.8.169:1521/orcl file=E:AlexPMS_20181021.dmp full=y ignore=y;</span><br></pre></td></tr></table></figure>
+<h4 id="expdp-impdp"><a href="#expdp-impdp" class="headerlink" title="expdp/impdp"></a>expdp/impdp</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">directory</span> expdp_dir <span class="keyword">as</span> <span class="string">'E:\oracle\temp_expdp'</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">read</span>,write <span class="keyword">on</span> <span class="keyword">directory</span> expdp_dir <span class="keyword">to</span> PMSAlex;</span><br><span class="line">expdp PMSAlex/PMSAlex@orcl schemas=PMSAlex directory=expdp_dir dumpfile=AlexPMS_20181021.dmp logfile=AlexPMS_20181021.log parallel=4;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">directory</span> impdp_dir <span class="keyword">as</span> <span class="string">'E:\oracle\temp_impdp'</span>;</span><br><span class="line">impdp PMSAlex/PMSAlex@orcl schemas=PMSAlex directory=impdp_dir dumpfile=AlexPMS_20181021.dmp logfile=AlexPMS_20181021.log;</span><br><span class="line"># 导入时如果需要更换表空间、用户，语句后面加：</span><br><span class="line">REMAP_SCHEMA=oldUserName:newUserName REMAP_TABLESPACE=oldSpaceName:newSpaceName</span><br></pre></td></tr></table></figure>
+<h3 id="赋权相关"><a href="#赋权相关" class="headerlink" title="赋权相关"></a>赋权相关</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> PMSAlex <span class="keyword">identified</span> <span class="keyword">by</span> PMSAlex;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> PMSAlex; 赋予数据库连接权限</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span>,<span class="keyword">update</span>,<span class="keyword">select</span>,<span class="keyword">delete</span> <span class="keyword">on</span> PMSAlex.W_PSDDOCUMENT <span class="keyword">to</span> PMSAlex;</span><br><span class="line">conn PMSAlex/PMSAlex;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> PMSAlex.W_PSDDOCUMENT;</span><br></pre></td></tr></table></figure>
+<h3 id="库迁移相关"><a href="#库迁移相关" class="headerlink" title="库迁移相关"></a>库迁移相关</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 表转表空间，复制col列数据执行即可。</span><br><span class="line"><span class="keyword">SELECT</span> (<span class="string">'alter table '</span>||a.TABLE_NAME||<span class="string">' move tablespace ALEXNEW;'</span>) <span class="keyword">AS</span> <span class="keyword">col</span> <span class="keyword">FROM</span> user_tables a <span class="keyword">WHERE</span> tablespace_name=<span class="string">'ALEX'</span>;</span><br><span class="line"><span class="keyword">SELECT</span> (<span class="string">'alter table '</span>||t.TABLE_NAME||<span class="string">' move tablespace ALEXNEW;'</span>) <span class="keyword">AS</span> <span class="keyword">col</span> <span class="keyword">FROM</span> dba_tables t <span class="keyword">WHERE</span> tablespace_name=<span class="string">'ALEX'</span> <span class="keyword">and</span> t.OWNER=<span class="string">'ALEX'</span>;</span><br><span class="line"># 索引转表空间，针对lob类型索引应该先转分区，复制v_sql列数据执行即可。</span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'alter table '</span>||t.owner||<span class="string">'.'</span>||t.table_name||<span class="string">' move tablespace ALEX lob('</span>||t.column_name ||<span class="string">') store as(tablespace ALEXNEW);'</span> v_sql <span class="keyword">FROM</span> dba_lobs t <span class="keyword">WHERE</span> t.tablespace_name=<span class="string">'ALEX'</span> <span class="keyword">and</span> t.OWNER=<span class="string">'ALEX'</span>;</span><br><span class="line"># 针对手动添加的索引进行如下sql查询，复制sql列数据执行即可。</span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'ALTER INDEX '</span>||t.INDEX_NAME||<span class="string">' REBUILD TABLESPACE ALEXNEW;'</span> <span class="keyword">sql</span> <span class="keyword">FROM</span> user_indexes t <span class="keyword">WHERE</span> TABLESPACE_NAME=<span class="string">'ALEX'</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'ALTER INDEX '</span>||t.INDEX_NAME||<span class="string">' REBUILD TABLESPACE ALEXNEW;'</span> <span class="keyword">sql</span> <span class="keyword">FROM</span> dba_indexes t <span class="keyword">WHERE</span>  TABLESPACE_NAME=<span class="string">'ALEX'</span> <span class="keyword">and</span> t.OWNER=<span class="string">'ALEX'</span>;</span><br><span class="line"># 在转空间的过程中会产生失效的索引，应rebuild下可在toad操作，执行以下查询复制sql列数据执行即可。</span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'ALTER INDEX '</span>||t.INDEX_NAME||<span class="string">' REBUILD;'</span> <span class="keyword">sql</span> <span class="keyword">FROM</span> user_indexes t <span class="keyword">WHERE</span> <span class="keyword">status</span>=<span class="string">'UNUSABLE'</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">INDEX</span> <span class="string">"unique_dbom_code"</span> <span class="keyword">REBUILD</span> <span class="keyword">TABLESPACE</span> ALEXNEW;</span><br><span class="line"># 报错序列不存在，即Sequence的tablespace的名也未改可以执行如下语句(ALEX为你的项目名)</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SEQUENCE</span> ALEX.$&#123;TABLENAME&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="字段顺序调整"><a href="#字段顺序调整" class="headerlink" title="字段顺序调整"></a>字段顺序调整</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#1.查询出表的id,注意：owner和object_name的值要大写</span><br><span class="line"><span class="comment">--DBA用户使用</span></span><br><span class="line"><span class="keyword">select</span> object_id,object_name <span class="keyword">from</span> all_objects <span class="keyword">where</span> owner=<span class="string">'PMSALEX'</span> <span class="keyword">and</span> object_name=<span class="string">'TABLENAME'</span>;</span><br><span class="line"><span class="comment">--表归属用户可以使用</span></span><br><span class="line"><span class="keyword">select</span> object_id <span class="keyword">from</span> obj <span class="keyword">where</span> object_name=<span class="string">'TABLENAME'</span>;</span><br><span class="line">#2.通过id查出该表所有字段的顺序</span><br><span class="line"><span class="keyword">select</span> obj#,<span class="keyword">col</span>#,<span class="keyword">name</span> <span class="keyword">from</span> sys.col$ <span class="keyword">where</span> obj#=<span class="number">188299</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">col</span>#;</span><br><span class="line">#3.更新字段顺序,需要sys用户或是System用户 as sysdba登录，</span><br><span class="line"># 或是其他拥有sysdba权限的用户，但是这里的操作一定要小心。</span><br><span class="line"><span class="comment">--更新受影响字段的col#，自己根据情况自己组织语句</span></span><br><span class="line"><span class="keyword">update</span> sys.col$ <span class="keyword">set</span> <span class="keyword">col</span>#=<span class="keyword">col</span>#+<span class="number">1</span> <span class="keyword">where</span> obj#=<span class="number">188299</span> <span class="keyword">and</span> <span class="keyword">col</span>#&gt;<span class="number">4</span>;</span><br><span class="line"><span class="comment">--更新目标字段的col#</span></span><br><span class="line"><span class="keyword">update</span> sys.col$ <span class="keyword">set</span> <span class="keyword">col</span>#=<span class="number">5</span> <span class="keyword">where</span> obj#=<span class="number">188299</span> <span class="keyword">and</span> <span class="keyword">name</span>=<span class="string">'FIELDNAME'</span>;</span><br><span class="line">#4.commit;</span><br><span class="line">#5.重启oracle服务</span><br></pre></td></tr></table></figure>
+<h3 id="其它语句"><a href="#其它语句" class="headerlink" title="其它语句"></a>其它语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1)查目录 ，找不到导入导出路径时用</span><br><span class="line">	<span class="keyword">select</span> * <span class="keyword">from</span> dba_directories;</span><br><span class="line">(2)Oracle 高版本导出到低版本11-&gt;10，在低版本上找到具体版本</span><br><span class="line">	<span class="keyword">select</span> * <span class="keyword">from</span> v$<span class="keyword">version</span>;</span><br><span class="line">	在高版本上导出时加上 version=10.2.0.4.0</span><br></pre></td></tr></table></figure>
+<h3 id="空表问题"><a href="#空表问题" class="headerlink" title="空表问题"></a>空表问题</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、把用户下的表改为statistics模式，使其num_rows的值可信</span><br><span class="line">	<span class="keyword">select</span> <span class="string">'analyze table '</span>||table_name||<span class="string">' compute statistics;'</span> <span class="keyword">from</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span></span><br><span class="line"><span class="number">2</span>、查询所有有数据的业务表，利用Excel构造成导库的语句</span><br><span class="line">	<span class="keyword">select</span> <span class="string">'select * from '</span>||table_name <span class="keyword">FROM</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span> <span class="keyword">and</span> num_rows&gt;<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="账户锁定问题"><a href="#账户锁定问题" class="headerlink" title="账户锁定问题"></a>账户锁定问题</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter user system account unlock；（解除锁定的方法）</span><br><span class="line"><span class="comment">--为防止多次错误后锁定账户，将次数修改为N/无限次</span></span><br><span class="line">SQL&gt;alter profile default limit FAILED_LOGIN_ATTEMPTS N/unlimited;</span><br><span class="line"><span class="comment">--查看被锁时间：</span></span><br><span class="line"><span class="keyword">select</span> username,lock_date <span class="keyword">from</span> dba_users;</span><br></pre></td></tr></table></figure>
 <h3 id="ORA-12516监听错误"><a href="#ORA-12516监听错误" class="headerlink" title="ORA-12516监听错误"></a>ORA-12516监听错误</h3><p>错误代码含义：TNS监听程序找不到符合协议堆栈要求的可用处理器<br>原因及解决方法：修改连接数的限制 –session数不够</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a.已sysdba 登录PL/SQL 或者Worksheet</div><div class="line">b.查询目前连接数、最大连接数</div><div class="line">	<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> v$process;</div><div class="line">	<span class="keyword">select</span> <span class="keyword">value</span> <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'processes'</span>;或<span class="keyword">show</span> parameter processes;</div><div class="line">c.更改系统连接数</div><div class="line">	<span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> processes=<span class="number">1000</span> <span class="keyword">scope</span>=<span class="keyword">spfile</span>;//默认的连接数为150</div><div class="line">d.创建pfile</div><div class="line">	<span class="keyword">create</span> pfile <span class="keyword">from</span> <span class="keyword">spfile</span>;</div><div class="line">e.重启Oracle服务，或重启Oracle服务器；//reboot</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a.已sysdba 登录PL/SQL 或者Worksheet</span><br><span class="line">b.查询目前连接数、最大连接数</span><br><span class="line">	<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> v$process;</span><br><span class="line">	<span class="keyword">select</span> <span class="keyword">value</span> <span class="keyword">from</span> v$parameter <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'processes'</span>;或<span class="keyword">show</span> parameter processes;</span><br><span class="line">c.更改系统连接数</span><br><span class="line">	<span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> processes=<span class="number">1000</span> <span class="keyword">scope</span>=<span class="keyword">spfile</span>;//默认的连接数为150</span><br><span class="line">d.创建pfile</span><br><span class="line">	<span class="keyword">create</span> pfile <span class="keyword">from</span> <span class="keyword">spfile</span>;</span><br><span class="line">e.重启Oracle服务，或重启Oracle服务器；//reboot</span><br></pre></td></tr></table></figure>
 <h3 id="ORA-39213导入错误"><a href="#ORA-39213导入错误" class="headerlink" title="ORA-39213导入错误"></a>ORA-39213导入错误</h3><p>Metadata processing is not available</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlplus /nolog;</div><div class="line">SQL&gt; conn sys/sys as sysdba;</div><div class="line">SQL&gt; exec dbms_metadata_util.load_stylesheets;</div><div class="line"></div><div class="line">数据库显示：PL/SQL procedure successfully completed.</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sqlplus /nolog;</span><br><span class="line">SQL&gt; conn sys/sys as sysdba;</span><br><span class="line">SQL&gt; exec dbms_metadata_util.load_stylesheets;</span><br><span class="line"></span><br><span class="line">数据库显示：PL/SQL procedure successfully completed.</span><br></pre></td></tr></table></figure>
 <h3 id="编码相关错误"><a href="#编码相关错误" class="headerlink" title="编码相关错误"></a>编码相关错误</h3><p>ORA-39064: 无法写入日志文件 </p>
 <p>ORA-29285: 文件写入错误</p>
 <p>导入索引报错，中文数据乱码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">解决方案:（导入导出两边都要改，改成一样的）</div><div class="line">一、windows</div><div class="line">运行 -》 regedit -》查找 键值 NLS_LANG </div><div class="line">注册表路径：HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\HOMExx\NLS_LANG</div><div class="line">将字符集 SIMPLIFIED CHINESE_CHINA.ZHS16GBK 修改为AMERICAN_AMERICA.AL32UTF8</div><div class="line">二、centos7</div><div class="line">--查看oracle数据库字符集： </div><div class="line">　　select userenv('language') from dual; </div><div class="line">--查看oracle数据库的编码 </div><div class="line">　　select * from nls_database_parameters where parameter ='NLS_CHARACTERSET'; </div><div class="line">--查询结果：</div><div class="line">　　NLS_CHARACTERSET AL32UTF8</div><div class="line">--修改oracle数据库字符集：（在SQL Plus中）</div><div class="line">　　sqlplus / as sysdba;</div><div class="line">　　sql&gt; conn / as sysdba;</div><div class="line">　　sql&gt; shutdown immediate;</div><div class="line">　　sql&gt; startup mount;</div><div class="line">　　sql&gt; alter system enable restricted session;</div><div class="line">　　sql&gt; alter system set job_queue_processes=0;</div><div class="line">　　sql&gt; alter system set aq_tm_processes=0;</div><div class="line">　　sql&gt; alter database open;</div><div class="line">　　sql&gt; alter database character set internal_use AL32UTF8;</div><div class="line">　　# alter database character set internal_use ZHS16GBK;</div><div class="line">　　# alter database character set internal_use UTF8;</div><div class="line">　　sql&gt; shutdown immediate;</div><div class="line">　　sql&gt; startup;</div><div class="line">--再次查看oracle数据库字符集</div><div class="line">　　select userenv('language') from dual;</div></pre></td></tr></table></figure>
-<h3 id="自动备份与清除脚本"><a href="#自动备份与清除脚本" class="headerlink" title="自动备份与清除脚本"></a>自动备份与清除脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@<span class="built_in">echo</span> off</div><div class="line"></div><div class="line">rem <span class="built_in">set</span> backupfile=f_database_%date:~0,4%-%date:~5,2%-%date:~8,2%.dmp</div><div class="line"></div><div class="line">rem <span class="built_in">set</span> logfile=f_database_%date:~0,4%-%date:~5,2%-%date:~8,2%.log</div><div class="line"></div><div class="line">rem delete 30days files</div><div class="line"></div><div class="line">forfiles /p <span class="string">"D:\temp\dmp"</span> /d -30  /c <span class="string">"cmd /c echo deleting @file ... &amp;&amp; del /f @path"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> D:\temp\dmp</div><div class="line"></div><div class="line">rem backup schemas</div><div class="line"></div><div class="line"><span class="built_in">set</span> backupfile=sshe_%date:~0,4%-%date:~5,2%-%date:~8,2%-%time:~0,2%-%time:~3,2%-%time:~6,2%.dmp</div><div class="line"></div><div class="line"><span class="built_in">set</span> logfile=sshe_%date:~0,4%-%date:~5,2%-%date:~8,2%-%time:~0,2%-%time:~3,2%-%time:~6,2%.log</div><div class="line"></div><div class="line">expdp sshe/sshe directory=DIR_DP  dumpfile=%backupfile%  logfile=%logfile% schemas=sshe parallel=4</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">解决方案:（导入导出两边都要改，改成一样的）</span><br><span class="line">一、windows</span><br><span class="line">运行 -》 regedit -》查找 键值 NLS_LANG </span><br><span class="line">注册表路径：HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\HOMExx\NLS_LANG</span><br><span class="line">将字符集 SIMPLIFIED CHINESE_CHINA.ZHS16GBK 修改为AMERICAN_AMERICA.AL32UTF8</span><br><span class="line">二、centos7</span><br><span class="line"><span class="comment">--查看oracle数据库字符集： </span></span><br><span class="line">　　<span class="keyword">select</span> userenv(<span class="string">'language'</span>) <span class="keyword">from</span> dual; </span><br><span class="line"><span class="comment">--查看oracle数据库的编码 </span></span><br><span class="line">　　<span class="keyword">select</span> * <span class="keyword">from</span> nls_database_parameters <span class="keyword">where</span> parameter =<span class="string">'NLS_CHARACTERSET'</span>; </span><br><span class="line"><span class="comment">--查询结果：</span></span><br><span class="line">　　NLS_CHARACTERSET AL32UTF8</span><br><span class="line"><span class="comment">--修改oracle数据库字符集：（在SQL Plus中）</span></span><br><span class="line">　　sqlplus / as sysdba;</span><br><span class="line">　　sql&gt; conn / as sysdba;</span><br><span class="line">　　sql&gt; shutdown immediate;</span><br><span class="line">　　sql&gt; startup mount;</span><br><span class="line">　　sql&gt; alter system enable restricted session;</span><br><span class="line">　　sql&gt; alter system set job_queue_processes=0;</span><br><span class="line">　　sql&gt; alter system set aq_tm_processes=0;</span><br><span class="line">　　sql&gt; alter database open;</span><br><span class="line">　　sql&gt; alter database character set internal_use AL32UTF8;</span><br><span class="line">　　# alter database character set internal_use ZHS16GBK;</span><br><span class="line">　　# alter database character set internal_use UTF8;</span><br><span class="line">　　sql&gt; shutdown immediate;</span><br><span class="line">　　sql&gt; startup;</span><br><span class="line"><span class="comment">--再次查看oracle数据库字符集</span></span><br><span class="line">　　<span class="keyword">select</span> userenv(<span class="string">'language'</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h3 id="自动备份与清除脚本"><a href="#自动备份与清除脚本" class="headerlink" title="自动备份与清除脚本"></a>自动备份与清除脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line">rem <span class="built_in">set</span> backupfile=f_database_%date:~0,4%-%date:~5,2%-%date:~8,2%.dmp</span><br><span class="line"></span><br><span class="line">rem <span class="built_in">set</span> logfile=f_database_%date:~0,4%-%date:~5,2%-%date:~8,2%.log</span><br><span class="line"></span><br><span class="line">rem delete 30days files</span><br><span class="line"></span><br><span class="line">forfiles /p <span class="string">"D:\temp\dmp"</span> /d -30  /c <span class="string">"cmd /c echo deleting @file ... &amp;&amp; del /f @path"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> D:\temp\dmp</span><br><span class="line"></span><br><span class="line">rem backup schemas</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> backupfile=sshe_%date:~0,4%-%date:~5,2%-%date:~8,2%-%time:~0,2%-%time:~3,2%-%time:~6,2%.dmp</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> logfile=sshe_%date:~0,4%-%date:~5,2%-%date:~8,2%-%time:~0,2%-%time:~3,2%-%time:~6,2%.log</span><br><span class="line"></span><br><span class="line">expdp sshe/sshe directory=DIR_DP  dumpfile=%backupfile%  logfile=%logfile% schemas=sshe parallel=4</span><br></pre></td></tr></table></figure>
 <h3 id="服务器上传文件备份"><a href="#服务器上传文件备份" class="headerlink" title="服务器上传文件备份"></a>服务器上传文件备份</h3><p>脚本：fileBackup.bat</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@<span class="built_in">echo</span> off</div><div class="line">xcopy <span class="string">"D:\alex01"</span> <span class="string">"E:\alex02"</span> /e/I/d/h/r/y</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">xcopy <span class="string">"D:\alex01"</span> <span class="string">"E:\alex02"</span> /e/I/d/h/r/y</span><br></pre></td></tr></table></figure>
 <h3 id="表数据定时同步脚本"><a href="#表数据定时同步脚本" class="headerlink" title="表数据定时同步脚本"></a>表数据定时同步脚本</h3><p>merget.bat</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sqlplus PMSAlex/PMSAlex@127.0.0.1:1521/ORCL @<span class="string">"E:\merge.sql"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus PMSAlex/PMSAlex@127.0.0.1:1521/ORCL @<span class="string">"E:\merge.sql"</span></span><br></pre></td></tr></table></figure>
 <p>merge.sql</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> PMSAlex.LINKTEST02 b <span class="keyword">where</span> b.ID <span class="keyword">not</span> <span class="keyword">in</span> </div><div class="line">(<span class="keyword">select</span> c.ID <span class="keyword">from</span> PMSAlex.LINKTEST02 c <span class="keyword">inner</span> <span class="keyword">join</span> PMSAlex.LINKTEST01@PMSAlexLINK d <span class="keyword">on</span> c.ID=d.ID);</div><div class="line"><span class="keyword">merge</span> <span class="keyword">into</span> PMSAlex.LINKTEST02 b <span class="keyword">using</span> PMSAlex.LINKTEST01@PMSAlexLINK k <span class="keyword">on</span> (b.ID=k.ID) </div><div class="line"><span class="keyword">when</span> <span class="keyword">matched</span> <span class="keyword">then</span> <span class="keyword">update</span> <span class="keyword">set</span> b.NAME=k.NAME,b.AGE=k.AGE </div><div class="line"><span class="keyword">when</span> <span class="keyword">not</span> <span class="keyword">matched</span> <span class="keyword">then</span> <span class="keyword">insert</span> <span class="keyword">values</span>(k.ID, k.NAME,k.AGE);</div><div class="line"><span class="keyword">commit</span>;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> PMSAlex.LINKTEST02 b <span class="keyword">where</span> b.ID <span class="keyword">not</span> <span class="keyword">in</span> </span><br><span class="line">(<span class="keyword">select</span> c.ID <span class="keyword">from</span> PMSAlex.LINKTEST02 c <span class="keyword">inner</span> <span class="keyword">join</span> PMSAlex.LINKTEST01@PMSAlexLINK d <span class="keyword">on</span> c.ID=d.ID);</span><br><span class="line"><span class="keyword">merge</span> <span class="keyword">into</span> PMSAlex.LINKTEST02 b <span class="keyword">using</span> PMSAlex.LINKTEST01@PMSAlexLINK k <span class="keyword">on</span> (b.ID=k.ID) </span><br><span class="line"><span class="keyword">when</span> <span class="keyword">matched</span> <span class="keyword">then</span> <span class="keyword">update</span> <span class="keyword">set</span> b.NAME=k.NAME,b.AGE=k.AGE </span><br><span class="line"><span class="keyword">when</span> <span class="keyword">not</span> <span class="keyword">matched</span> <span class="keyword">then</span> <span class="keyword">insert</span> <span class="keyword">values</span>(k.ID, k.NAME,k.AGE);</span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line">quit;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -454,15 +439,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/21/局域网内建立Git远程仓库/" rel="next" title="Windows局域网内建立Git远程仓库">
-                <i class="fa fa-chevron-left"></i> Windows局域网内建立Git远程仓库
+              <a href="/2018/06/13/Java-BIO实例/" rel="next" title="Java BIO实例">
+                <i class="fa fa-chevron-left"></i> Java BIO实例
               </a>
             
           </div>
@@ -471,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/13/Java-BIO实例/" rel="prev" title="Java BIO实例">
-                Java BIO实例 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/21/局域网内建立Git远程仓库/" rel="prev" title="Windows局域网内建立Git远程仓库">
+                Windows局域网内建立Git远程仓库 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -482,6 +467,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -491,15 +480,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -515,101 +509,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -642,30 +617,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -675,9 +676,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -699,61 +704,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -774,6 +805,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -781,138 +830,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -920,6 +1157,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

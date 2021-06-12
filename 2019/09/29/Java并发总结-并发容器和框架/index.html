@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Java并发系列," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java并发系列,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="ConcurrentHashMapConcurrentHashMap是线程安全且高效的HashMap。 为什么使用它在并发编程中使用HashMap可能导致程序死循环。而使用线程安全的HashTable效率又非常低下，基于以上两个原因，便有了ConcurrentHashMap的登场机会。 （1）线程不安全的HashMap 在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019100101.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019100102.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019100701.png">
@@ -112,10 +105,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -132,17 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/">
 
 
 
 
 
-  <title> Java并发总结-并发容器和框架 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Java并发总结-并发容器和框架 | JUST DO IT</title>
   
 
 
@@ -152,18 +143,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -172,7 +161,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,49 +191,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -255,7 +244,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -276,9 +265,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -310,13 +297,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/29/Java并发总结-并发容器和框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -328,14 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Java并发总结-并发容器和框架
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Java并发总结-并发容器和框架</h1>
         
 
         <div class="post-meta">
@@ -358,7 +342,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -389,6 +373,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -398,7 +387,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -409,7 +400,7 @@
 <h3 id="为什么使用它"><a href="#为什么使用它" class="headerlink" title="为什么使用它"></a>为什么使用它</h3><p>在并发编程中使用<strong>HashMap</strong>可能导致<strong>程序死循环</strong>。而使用线程安全的<strong>HashTable效率又非常低下</strong>，基于以上两个原因，便有了ConcurrentHashMap的登场机会。</p>
 <p><strong>（1）线程不安全的HashMap</strong></p>
 <p>在<strong>多线程环境下</strong>，使用<strong>HashMap</strong>进行<strong>put操作</strong>会引起<strong>死循环</strong>，导致CPU利用率接近100%，所以在并发情况下不能使用HashMap。例如，执行以下代码会引起死循环：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;(<span class="number">2</span>);</div><div class="line">Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</div><div class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">				<span class="meta">@Override</span></div><div class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">					map.put(UUID.randomUUID().toString(), <span class="string">""</span>);</div><div class="line">				&#125;</div><div class="line">			&#125;, <span class="string">"ftf"</span> + i).start();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;, <span class="string">"ftf"</span>);</div><div class="line">t.start();</div><div class="line">t.join();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;(<span class="number">2</span>);</span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					map.put(UUID.randomUUID().toString(), <span class="string">""</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;, <span class="string">"ftf"</span> + i).start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="string">"ftf"</span>);</span><br><span class="line">t.start();</span><br><span class="line">t.join();</span><br></pre></td></tr></table></figure>
 <p><strong>HashMap</strong>在<strong>并发执行put操作</strong>时会<strong>引起死循环</strong>，是因为多线程会导致<strong>HashMap的Entry</strong>链表<strong>形成环形数据结构</strong>，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。</p>
 <a id="more"></a>
 <p><strong>（2）效率低下的HashTable</strong></p>
@@ -421,11 +412,11 @@
 <li>Segment是一种可重入锁（ReentrantLock），结构和HashMap类似，是一种数组和链表结构，在ConcurrentHashMap里扮演锁的角色，一个ConcurrentHashMap里包含一个Segment数组。</li>
 <li>HashEntry则用于存储键值对数据，一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须首先获得与它对应的Segment锁。</li>
 </ul>
-<p><img src="/images/并发编程/2019100101.png" alt=""></p>
-<p><img src="/images/并发编程/2019100102.png" alt=""></p>
+<p><img src="/images/并发编程/2019100101.png" alt></p>
+<p><img src="/images/并发编程/2019100102.png" alt></p>
 <h3 id="容器初始化原理"><a href="#容器初始化原理" class="headerlink" title="容器初始化原理"></a>容器初始化原理</h3><p>ConcurrentHashMap初始化方法是通过<strong>initialCapacity</strong>、<strong>loadFactor</strong>和<strong>concurrencyLevel</strong>等几个参数来<strong>初始化segment数组</strong>、<strong>段偏移量segmentShift</strong>、<strong>段掩码segmentMask</strong>和每个segment里的<strong>HashEntry数组</strong>来实现的。</p>
 <p><strong>（1）初始化segments数组</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (concurrencyLevel &gt; MAX_SEGMENTS)</div><div class="line">	concurrencyLevel = MAX_SEGMENTS;</div><div class="line"><span class="keyword">int</span> sshift = <span class="number">0</span>;</div><div class="line"><span class="keyword">int</span> ssize = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span> (ssize &lt; concurrencyLevel) &#123;</div><div class="line">	++sshift;</div><div class="line">	ssize &lt;&lt;= <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">segmentShift = <span class="number">32</span> - sshift;</div><div class="line">segmentMask = ssize - <span class="number">1</span>;</div><div class="line"><span class="keyword">this</span>.segments = Segment.newArray(ssize);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (concurrencyLevel &gt; MAX_SEGMENTS)</span><br><span class="line">	concurrencyLevel = MAX_SEGMENTS;</span><br><span class="line"><span class="keyword">int</span> sshift = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> ssize = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (ssize &lt; concurrencyLevel) &#123;</span><br><span class="line">	++sshift;</span><br><span class="line">	ssize &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">segmentShift = <span class="number">32</span> - sshift;</span><br><span class="line">segmentMask = ssize - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">this</span>.segments = Segment.newArray(ssize);</span><br></pre></td></tr></table></figure>
 <p>由源码可知，segments数组的长度ssize是通过concurrencyLevel计算得出的。为了能<strong>通过按位与的散列算法</strong>来<strong>定位segments数组的索引</strong>，<strong>必须保证segments数组的长度是2的N次方</strong>（power-of-two size），所以必须计算出一个大于或等于concurrencyLevel的最小的2的N次方值来作为segments数组的长度。假如concurrencyLevel等于14、15或16，ssize都会等于16，即容器里锁的个数也是16。</p>
 <p><strong>注意：</strong>concurrencyLevel的最大值是65535，这意味着segments数组的长度最大为65536，对应的二进制是16位。</p>
 <p><strong>（2）初始化segmentShift和segmentMask</strong></p>
@@ -434,26 +425,26 @@
 <p><strong>segmentMask是散列运算的掩码</strong>，等于ssize减1，即15，掩码的二进制各个位的值都是1。因为ssize的最大长度是65536，所以segmentShift最大值是16，segmentMask最大值是65535，对应的二进制是16位，每个位都是1。</p>
 <p><strong>（3）初始化每个segment</strong></p>
 <p>输入参数<strong>initialCapacity是</strong>ConcurrentHashMap的<strong>初始化容量</strong>，<strong>loadfactor是</strong>每个segment的<strong>负载因子</strong>，在构造方法里需要通过这两个参数来初始化数组中的每个segment。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</div><div class="line">	initialCapacity = MAXIMUM_CAPACITY;</div><div class="line"><span class="keyword">int</span> c = initialCapacity / ssize;</div><div class="line"><span class="keyword">if</span> (c * ssize &lt; initialCapacity)</div><div class="line">	++c;</div><div class="line"><span class="keyword">int</span> cap = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span> (cap &lt; c)</div><div class="line">	cap &lt;&lt;= <span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.segments.length; ++i)</div><div class="line">	<span class="keyword">this</span>.segments[i] = <span class="keyword">new</span> Segment&lt;K, V&gt;(cap, loadFactor);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</span><br><span class="line">	initialCapacity = MAXIMUM_CAPACITY;</span><br><span class="line"><span class="keyword">int</span> c = initialCapacity / ssize;</span><br><span class="line"><span class="keyword">if</span> (c * ssize &lt; initialCapacity)</span><br><span class="line">	++c;</span><br><span class="line"><span class="keyword">int</span> cap = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (cap &lt; c)</span><br><span class="line">	cap &lt;&lt;= <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.segments.length; ++i)</span><br><span class="line">	<span class="keyword">this</span>.segments[i] = <span class="keyword">new</span> Segment&lt;K, V&gt;(cap, loadFactor);</span><br></pre></td></tr></table></figure>
 <p>上面代码中的<strong>变量cap就是segment里HashEntry数组的长度</strong>，它等于initialCapacity除以ssize的倍数c，如果c大于1，就会取大于等于c的2的N次方值，所以cap不是1，就是2的N次方。</p>
 <p>segment的容量threshold＝（int）cap*loadFactor，默认情况下initialCapacity等于16，loadfactor等于0.75，通过运算cap等于1，threshold等于零。</p>
 <h3 id="如何定位Segment"><a href="#如何定位Segment" class="headerlink" title="如何定位Segment"></a>如何定位Segment</h3><p>既然ConcurrentHashMap使用分段锁Segment来保护不同段的数据，那么在插入和获取元素的时候，必须先<strong>通过散列算法定位到Segment</strong>。可以看到ConcurrentHashMap会首先<strong>使用Wang/Jenkins hash的变种算法</strong>对元素的hashCode<strong>进行一次再散列</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</div><div class="line">	h += (h &lt;&lt; <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</div><div class="line">	h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</div><div class="line">	h += (h &lt;&lt; <span class="number">3</span>);</div><div class="line">	h ^= (h &gt;&gt;&gt; <span class="number">6</span>);</div><div class="line">	h += (h &lt;&lt; <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</div><div class="line">	<span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">	h += (h &lt;&lt; <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</span><br><span class="line">	h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</span><br><span class="line">	h += (h &lt;&lt; <span class="number">3</span>);</span><br><span class="line">	h ^= (h &gt;&gt;&gt; <span class="number">6</span>);</span><br><span class="line">	h += (h &lt;&lt; <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</span><br><span class="line">	<span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>之所以<strong>进行再散列</strong>，<strong>目的是减少散列冲突</strong>，<strong>使元素能够均匀地分布在不同的Segment上</strong>，从而提高容器的存取效率。假如散列的质量差到极点，那么所有的元素都在一个Segment中，不仅存取元素缓慢，分段锁也会失去意义。</p>
 <p>通过这种再散列能让数字的每一位都参加到散列运算当中，从而减少散列冲突。ConcurrentHashMap通过以下散列算法定位segment。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> Segment&lt;K,V&gt; <span class="title">segmentFor</span><span class="params">(<span class="keyword">int</span> hash)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> segments[(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> Segment&lt;K,V&gt; <span class="title">segmentFor</span><span class="params">(<span class="keyword">int</span> hash)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> segments[(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>默认情况下segmentShift为28，segmentMask为15，再散列后的数最大是32位二进制数据，向右无符号移动28位，意思是让高4位参与到散列运算中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0001111"</span>, <span class="number">2</span>)));</div><div class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0011111"</span>, <span class="number">2</span>)));</div><div class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0111111"</span>, <span class="number">2</span>)));</div><div class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"1111111"</span>, <span class="number">2</span>)));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">segmentFor</span><span class="params">(<span class="keyword">int</span> keyHashCode)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> (hash(keyHashCode) &gt;&gt;&gt; <span class="number">28</span>) &amp; <span class="number">15</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</div><div class="line">		h += (h &lt;&lt; <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</div><div class="line">		h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</div><div class="line">		h += (h &lt;&lt; <span class="number">3</span>);</div><div class="line">		h ^= (h &gt;&gt;&gt; <span class="number">6</span>);</div><div class="line">		h += (h &lt;&lt; <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</div><div class="line">		<span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0001111"</span>, <span class="number">2</span>)));</span><br><span class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0011111"</span>, <span class="number">2</span>)));</span><br><span class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"0111111"</span>, <span class="number">2</span>)));</span><br><span class="line">		System.out.println(segmentFor(Integer.parseInt(<span class="string">"1111111"</span>, <span class="number">2</span>)));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">segmentFor</span><span class="params">(<span class="keyword">int</span> keyHashCode)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (hash(keyHashCode) &gt;&gt;&gt; <span class="number">28</span>) &amp; <span class="number">15</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">		h += (h &lt;&lt; <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</span><br><span class="line">		h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</span><br><span class="line">		h += (h &lt;&lt; <span class="number">3</span>);</span><br><span class="line">		h ^= (h &gt;&gt;&gt; <span class="number">6</span>);</span><br><span class="line">		h += (h &lt;&lt; <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</span><br><span class="line">		<span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运算结果分别是4、15、7和8，可以看到散列值没有发生冲突。</p>
 <h3 id="get、put、size操作"><a href="#get、put、size操作" class="headerlink" title="get、put、size操作"></a>get、put、size操作</h3><p><strong>（1）get操作</strong></p>
 <p>Segment的get操作实现非常简单和高效。先经过一次再散列，然后使用这个散列值通过散列运算定位到Segment，再通过散列算法定位到元素，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> hash = hash(key.hashCode());</div><div class="line">	<span class="keyword">return</span> segmentFor(hash).get(key, hash);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> hash = hash(key.hashCode());</span><br><span class="line">	<span class="keyword">return</span> segmentFor(hash).get(key, hash);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>get操作的<strong>高效之处</strong>在于整个<strong>get过程不需要加锁</strong>，除非<strong>读到的值是空才会加锁重读</strong>。</p>
 <p>我们知道<strong>HashTable容器的get方法</strong>是<strong>需要加锁</strong>的，那么<strong>ConcurrentHashMap</strong>的<strong>get操作是如何做到不加锁</strong>的呢？</p>
 <p>原因是它的get方法里将要使用的<strong>共享变量都定义成volatile类型</strong>，如用于统计当前Segement大小的count字段和用于存储值的HashEntry的value。定义成volatile的变量，<strong>能够在线程之间保持可见性</strong>，能够被多线程同时读，并且<strong>保证不会读到过期的值</strong>，但是<strong>只能被单线程写</strong>（<strong>有一种情况可以被多线程写，就是写入的值不依赖于原值</strong>），在get操作里只需要读不需要写共享变量count和value，所以可以不用加锁。之所以不会读到过期的值，是因为根据Java内存模型的<strong>happen before原则</strong>，<strong>对volatile字段的写入操作先于读操作</strong>，即使两个线程同时修改和获取volatile变量，get操作也能拿到最新的值，这是<strong>用volatile替换锁</strong>的经典应用场景。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">transient</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count;</div><div class="line"><span class="keyword">volatile</span> V value;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">transient</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count;</span><br><span class="line"><span class="keyword">volatile</span> V value;</span><br></pre></td></tr></table></figure>
 <p>在定位元素的代码里我们可以发现，定位HashEntry和定位Segment的散列算法虽然一样，都与数组的长度减去1再相“与”，但是相“与”的值不一样，<strong>定位Segment使用的是元素的hashcode通过再散列后得到的值的高位</strong>，而<strong>定位HashEntry直接使用的是再散列后的值</strong>。其目的是<strong>避免两次散列后的值一样</strong>，虽然元素在Segment里散列开了，但是却没有在HashEntry里散列开。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask <span class="comment">// 定位Segment所使用的hash算法</span></div><div class="line"><span class="keyword">int</span> index = hash &amp; (tab.length - <span class="number">1</span>); <span class="comment">// 定位HashEntry所使用的hash算法</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask <span class="comment">// 定位Segment所使用的hash算法</span></span><br><span class="line"><span class="keyword">int</span> index = hash &amp; (tab.length - <span class="number">1</span>); <span class="comment">// 定位HashEntry所使用的hash算法</span></span><br></pre></td></tr></table></figure>
 <p><strong>（2）put操作</strong></p>
 <p>由于put方法里需要对共享变量进行写入操作，所以<strong>为了线程安全</strong>，在<strong>操作共享变量时必须加锁</strong>。put方法首先定位到Segment，然后在Segment里进行插入操作。插入操作需要经历两个步骤：</p>
 <ul>
@@ -472,12 +463,12 @@
 <li>另一种是使用<strong>非阻塞算法</strong>。非阻塞的实现方式则可以使用循环CAS的方式来实现。</li>
 </ul>
 <p><strong>ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列</strong>，它<strong>采用先进先出的规则</strong>对节点进行排序，当我们添加一个元素的时候，它会添加到队列的尾部；当获取一个元素时，它会返回队列头部的元素。它采用“wait-free”算法（即CAS算法）来实现。</p>
-<h3 id="容器结构分析-1"><a href="#容器结构分析-1" class="headerlink" title="容器结构分析"></a>容器结构分析</h3><p><img src="/images/并发编程/2019100701.png" alt=""></p>
+<h3 id="容器结构分析-1"><a href="#容器结构分析-1" class="headerlink" title="容器结构分析"></a>容器结构分析</h3><p><img src="/images/并发编程/2019100701.png" alt></p>
 <p>ConcurrentLinkedQueue由<strong>head节点</strong>和<strong>tail节点</strong>组成，每个节点（Node）由节点元素（item）和指向下一个节点（next）的引用组成，节点与节点之间就是通过这个next关联起来，从而组成一张链表结构的队列。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//默认情况下head节点存储的元素为空，tail节点等于head节点。</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> Node&lt;E&gt; tail = head;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认情况下head节点存储的元素为空，tail节点等于head节点。</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> Node&lt;E&gt; tail = head;</span><br></pre></td></tr></table></figure>
 <h3 id="入队列剖析"><a href="#入队列剖析" class="headerlink" title="入队列剖析"></a>入队列剖析</h3><p><strong>入队列的过程</strong></p>
 <p><strong>入队列就是将入队节点添加到队列的尾部</strong>。为了方便理解入队时队列的变化，以及head节点和tail节点的变化，这里以一个示例来展开介绍：</p>
-<p><img src="/images/并发编程/2019100702.png" alt=""></p>
+<p><img src="/images/并发编程/2019100702.png" alt></p>
 <p>假设我们在一个队列中依次插入4个节点：</p>
 <ol>
 <li>添加元素1。队列更新head节点的next节点为元素1节点。又因为tail节点默认情况下等于head节点，所以它们的next节点都指向元素1节点。</li>
@@ -495,7 +486,7 @@
 </li>
 </ol>
 <p>通过对上面的分析，我们从单线程入队的角度理解了入队过程，但是<strong>多个线程同时进行入队</strong>的情况就变得更加复杂了，因为<strong>可能会出现其他线程插队的情况</strong>。如果有一个线程正在入队，那么它必须先获取尾节点，然后设置尾节点的下一个节点为入队节点，但这时可能有另外一个线程插队了，那么队列的尾节点就会发生变化，这时当前线程要暂停入队操作，然后重新获取尾节点。让我们再<strong>通过源码来详细分析</strong>一下它是<strong>如何使用CAS算法来入队</strong>的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (e == <span class="keyword">null</span>)</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">	<span class="comment">// 入队前，创建一个入队节点</span></div><div class="line">	Node&lt;E&gt; n = <span class="keyword">new</span> Node&lt;E&gt;(e);</div><div class="line">	retry:</div><div class="line">	<span class="comment">// 死循环，入队不成功反复入队。</span></div><div class="line">	<span class="keyword">for</span> (;;) &#123;</div><div class="line">		<span class="comment">// 创建一个指向tail节点的引用</span></div><div class="line">		Node&lt;E&gt; t = tail;</div><div class="line">		<span class="comment">// p用来表示队列的尾节点，默认情况下等于tail节点。</span></div><div class="line">		Node&lt;E&gt; p = t;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> hops = <span class="number">0</span>;; hops++) &#123;</div><div class="line">			<span class="comment">// 获得p节点的下一个节点。</span></div><div class="line">			Node&lt;E&gt; next = succ(p);</div><div class="line">			<span class="comment">// next节点不为空，说明p不是尾节点，需要更新p后在将它指向next节点</span></div><div class="line">			<span class="keyword">if</span> (next != <span class="keyword">null</span>) &#123;</div><div class="line">				<span class="comment">// 循环了两次及其以上，并且当前节点还是不等于尾节点</span></div><div class="line">				<span class="keyword">if</span> (hops &gt; HOPS &amp;&amp; t != tail)</div><div class="line">					<span class="keyword">continue</span> retry;</div><div class="line">				p = next;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">// 如果p是尾节点，则设置p节点的next节点为入队节点。</span></div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (p.casNext(<span class="keyword">null</span>, n)) &#123;</div><div class="line">				<span class="comment">/*</span></div><div class="line">				 * 如果tail节点有大于等于1个next节点，则将入队节点设置成tail节点，</div><div class="line">				 * 更新失败了也没关系，因为失败了表示有其他线程成功更新了tail节点</div><div class="line">				 */</div><div class="line">				<span class="keyword">if</span> (hops &gt;= HOPS)</div><div class="line">					casTail(t, n); <span class="comment">// 更新tail节点，允许失败</span></div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">// p有next节点,表示p的next节点是尾节点，则重新设置p节点</span></div><div class="line">			<span class="keyword">else</span> &#123;</div><div class="line">				p = succ(p);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">	<span class="comment">// 入队前，创建一个入队节点</span></span><br><span class="line">	Node&lt;E&gt; n = <span class="keyword">new</span> Node&lt;E&gt;(e);</span><br><span class="line">	retry:</span><br><span class="line">	<span class="comment">// 死循环，入队不成功反复入队。</span></span><br><span class="line">	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">// 创建一个指向tail节点的引用</span></span><br><span class="line">		Node&lt;E&gt; t = tail;</span><br><span class="line">		<span class="comment">// p用来表示队列的尾节点，默认情况下等于tail节点。</span></span><br><span class="line">		Node&lt;E&gt; p = t;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> hops = <span class="number">0</span>;; hops++) &#123;</span><br><span class="line">			<span class="comment">// 获得p节点的下一个节点。</span></span><br><span class="line">			Node&lt;E&gt; next = succ(p);</span><br><span class="line">			<span class="comment">// next节点不为空，说明p不是尾节点，需要更新p后在将它指向next节点</span></span><br><span class="line">			<span class="keyword">if</span> (next != <span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="comment">// 循环了两次及其以上，并且当前节点还是不等于尾节点</span></span><br><span class="line">				<span class="keyword">if</span> (hops &gt; HOPS &amp;&amp; t != tail)</span><br><span class="line">					<span class="keyword">continue</span> retry;</span><br><span class="line">				p = next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 如果p是尾节点，则设置p节点的next节点为入队节点。</span></span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (p.casNext(<span class="keyword">null</span>, n)) &#123;</span><br><span class="line">				<span class="comment">/*</span></span><br><span class="line"><span class="comment">				 * 如果tail节点有大于等于1个next节点，则将入队节点设置成tail节点，</span></span><br><span class="line"><span class="comment">				 * 更新失败了也没关系，因为失败了表示有其他线程成功更新了tail节点</span></span><br><span class="line"><span class="comment">				 */</span></span><br><span class="line">				<span class="keyword">if</span> (hops &gt;= HOPS)</span><br><span class="line">					casTail(t, n); <span class="comment">// 更新tail节点，允许失败</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// p有next节点,表示p的next节点是尾节点，则重新设置p节点</span></span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				p = succ(p);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从源代码角度来看，整个<strong>入队</strong>过程<strong>主要做两件事情</strong>：</p>
 <ul>
 <li>第一是<strong>定位出尾节点</strong>；</li>
@@ -503,7 +494,7 @@
 </ul>
 <h2 id="Fork-Join框架"><a href="#Fork-Join框架" class="headerlink" title="Fork/Join框架"></a>Fork/Join框架</h2><h3 id="什么是Fork-Join框架"><a href="#什么是Fork-Join框架" class="headerlink" title="什么是Fork/Join框架"></a>什么是Fork/Join框架</h3><p>Fork/Join框架是Java 7提供的一个<strong>用于并行执行任务的框架</strong>，是一个<strong>把大任务分割成若干个小任务</strong>，<strong>最终汇总每个小任务结果后得到大任务结果</strong>的框架。</p>
 <p><strong>Fork就是把一个大任务切分为若干子任务并行的执行，Join就是合并这些子任务的执行结果，最后得到这个大任务的结果。</strong>比如计算1+2+…+10000，可以分割成10个子任务，每个子任务分别对1000个数进行求和，最终汇总这10个子任务的结果。Fork/Join的运行流程如下：</p>
-<p><img src="/images/并发编程/2019101201.png" alt=""></p>
+<p><img src="/images/并发编程/2019101201.png" alt></p>
 <h3 id="工作窃取算法"><a href="#工作窃取算法" class="headerlink" title="工作窃取算法"></a>工作窃取算法</h3><p>工作窃取（work-stealing）算法是指<strong>某个线程从其他队列里窃取任务来执行</strong>。</p>
 <p><strong>为什么需要使用工作窃取算法</strong>呢？</p>
 <ol>
@@ -512,7 +503,7 @@
 <li>而在这时它们会访问同一个队列，所以<strong>为了减少窃取任务线程和被窃取任务线程之间的竞争</strong>，通常会使用双端队列，<strong>被窃取任务线程永远从双端队列的头部拿任务执行，而窃取任务的线程永远从双端队列的尾部拿任务执行</strong>。</li>
 </ol>
 <p>工作窃取的运行流程如下：</p>
-<p><img src="/images/并发编程/2019101202.png" alt=""></p>
+<p><img src="/images/并发编程/2019101202.png" alt></p>
 <ul>
 <li>工作窃取算法的<strong>优点</strong>：充分利用线程进行并行计算，减少了线程间的竞争。</li>
 <li>工作窃取算法的<strong>缺点</strong>：在某些情况下还是存在竞争，比如双端队列里只有一个任务时。并且该算法会消耗了更多的系统资源，比如创建多个线程和多个双端队列。</li>
@@ -535,7 +526,7 @@
 </ul>
 <h3 id="使用Fork-Join框架"><a href="#使用Fork-Join框架" class="headerlink" title="使用Fork/Join框架"></a>使用Fork/Join框架</h3><p>让我们通过一个简单的需求来使用Fork/Join框架，需求是：计算1+2+3+4的结果。</p>
 <p>使用Fork/Join框架首先要考虑到的是如何分割任务，如果希望每个子任务最多执行两个数的相加，那么我们<strong>设置分割的阈值是2</strong>，由于是4个数字相加，所以Fork/Join框架会把这个任务<strong>fork成两个子任务</strong>，子任务一负责计算1+2，子任务二负责计算3+4，然后再join两个子任务的结果。因为是<strong>有结果的任务</strong>，所以<strong>必须继承RecursiveTask</strong>，实现代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD = <span class="number">2</span>;<span class="comment">// 阈值</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> start;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> end;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CountTask</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.start = start;</div><div class="line">		<span class="keyword">this</span>.end = end;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 如果任务足够小就计算任务</span></div><div class="line">		<span class="keyword">boolean</span> canCompute = (end - start) &lt;= THRESHOLD;</div><div class="line">		<span class="keyword">if</span> (canCompute) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= end; i++) &#123;</div><div class="line">				sum += i;</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// 如果任务大于阈值，就分裂成两个子任务计算</span></div><div class="line">			<span class="keyword">int</span> middle = (start + end) / <span class="number">2</span>;</div><div class="line">			CountTask leftTask = <span class="keyword">new</span> CountTask(start, middle);</div><div class="line">			CountTask rightTask = <span class="keyword">new</span> CountTask(middle + <span class="number">1</span>, end);</div><div class="line">			<span class="comment">// 执行子任务</span></div><div class="line">			leftTask.fork();</div><div class="line">			rightTask.fork();</div><div class="line">			<span class="comment">// 等待子任务执行完，并得到其结果</span></div><div class="line">			<span class="keyword">int</span> leftResult = leftTask.join();</div><div class="line">			<span class="keyword">int</span> rightResult = rightTask.join();</div><div class="line">			<span class="comment">// 合并子任务</span></div><div class="line">			sum = leftResult + rightResult;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sum;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		ForkJoinPool forkJoinPool = <span class="keyword">new</span> ForkJoinPool();</div><div class="line">		<span class="comment">// 生成一个计算任务，负责计算1+2+3+4</span></div><div class="line">		CountTask task = <span class="keyword">new</span> CountTask(<span class="number">1</span>, <span class="number">4</span>);</div><div class="line">		<span class="comment">// 执行一个任务</span></div><div class="line">		Future&lt;Integer&gt; result = forkJoinPool.submit(task);</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			System.out.println(result.get());</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</div><div class="line">			<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD = <span class="number">2</span>;<span class="comment">// 阈值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CountTask</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.start = start;</span><br><span class="line">		<span class="keyword">this</span>.end = end;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 如果任务足够小就计算任务</span></span><br><span class="line">		<span class="keyword">boolean</span> canCompute = (end - start) &lt;= THRESHOLD;</span><br><span class="line">		<span class="keyword">if</span> (canCompute) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= end; i++) &#123;</span><br><span class="line">				sum += i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 如果任务大于阈值，就分裂成两个子任务计算</span></span><br><span class="line">			<span class="keyword">int</span> middle = (start + end) / <span class="number">2</span>;</span><br><span class="line">			CountTask leftTask = <span class="keyword">new</span> CountTask(start, middle);</span><br><span class="line">			CountTask rightTask = <span class="keyword">new</span> CountTask(middle + <span class="number">1</span>, end);</span><br><span class="line">			<span class="comment">// 执行子任务</span></span><br><span class="line">			leftTask.fork();</span><br><span class="line">			rightTask.fork();</span><br><span class="line">			<span class="comment">// 等待子任务执行完，并得到其结果</span></span><br><span class="line">			<span class="keyword">int</span> leftResult = leftTask.join();</span><br><span class="line">			<span class="keyword">int</span> rightResult = rightTask.join();</span><br><span class="line">			<span class="comment">// 合并子任务</span></span><br><span class="line">			sum = leftResult + rightResult;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ForkJoinPool forkJoinPool = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">		<span class="comment">// 生成一个计算任务，负责计算1+2+3+4</span></span><br><span class="line">		CountTask task = <span class="keyword">new</span> CountTask(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">		<span class="comment">// 执行一个任务</span></span><br><span class="line">		Future&lt;Integer&gt; result = forkJoinPool.submit(task);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(result.get());</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>ForkJoinTask与一般任务的主要区别在于它需要<strong>实现compute方法</strong>：</p>
 <ol>
 <li>首先需要判断任务是否足够小，如果足够小就直接执行任务。</li>
@@ -543,7 +534,7 @@
 <li>使用join方法会等待子任务执行完并得到其结果。</li>
 </ol>
 <h3 id="Fork-Join框架的异常处理"><a href="#Fork-Join框架的异常处理" class="headerlink" title="Fork/Join框架的异常处理"></a>Fork/Join框架的异常处理</h3><p>ForkJoinTask在执行的时候可能会抛出异常，但是我们<strong>没办法在主线程里直接捕获异常</strong>，所以ForkJoinTask提供了<strong>isCompletedAbnormally()方法</strong>来<strong>检查任务是否已经抛出异常或已经被取消</strong>了，并且可以通过ForkJoinTask的<strong>getException方法获取异常</strong>。使用如下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(task.isCompletedAbnormally())&#123;</div><div class="line">	System.out.println(task.getException());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(task.isCompletedAbnormally())&#123;</span><br><span class="line">	System.out.println(task.getException());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>getException方法返回Throwable对象：</p>
 <ul>
 <li>如果任务被取消了则返回CancellationException。</li>
@@ -552,21 +543,15 @@
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -578,15 +563,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/09/Oracle归档日志启用与维护/" rel="next" title="Oracle归档日志启用与维护">
-                <i class="fa fa-chevron-left"></i> Oracle归档日志启用与维护
+              <a href="/2019/09/20/Java并发总结-锁/" rel="next" title="Java并发总结-锁">
+                <i class="fa fa-chevron-left"></i> Java并发总结-锁
               </a>
             
           </div>
@@ -595,8 +580,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/20/Java并发总结-锁/" rel="prev" title="Java并发总结-锁">
-                Java并发总结-锁 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/09/Oracle归档日志启用与维护/" rel="prev" title="Oracle归档日志启用与维护">
+                Oracle归档日志启用与维护 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,6 +591,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -615,15 +604,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -639,101 +633,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -766,30 +741,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -799,9 +800,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -823,61 +828,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -898,6 +929,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -905,138 +954,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -1044,6 +1281,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

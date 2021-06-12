@@ -1,20 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
 
 
 
@@ -32,46 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Oracle," />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -79,8 +48,31 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Oracle,">
+
+
+
+
 
 
 
@@ -94,6 +86,7 @@
 <meta property="og:url" content="https://justxzm.github.io/2019/07/22/Oracle数据治理/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="表相关| 系统名 | 表名 | 表类型 | 记录数 | 是否空表 | 表说明 | 1234567891011121314151617181920212223242526select &apos;analyze table &apos;||table_name||&apos; compute statistics;&apos; from user_tables where tablespace_name=&apos;PMSAlex&apos; and INS">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2021-06-07T04:30:02.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle数据治理">
@@ -105,10 +98,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -125,17 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2019/07/22/Oracle数据治理/"/>
+  <link rel="canonical" href="https://justxzm.github.io/2019/07/22/Oracle数据治理/">
 
 
 
 
 
-  <title> Oracle数据治理 | JUST DO IT </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>Oracle数据治理 | JUST DO IT</title>
   
 
 
@@ -145,18 +136,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -165,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">JUST DO IT</span>
         <span class="logo-line-after"><i></i></span>
@@ -195,49 +184,49 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -248,7 +237,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -269,9 +258,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -303,13 +290,17 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/22/Oracle数据治理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -321,14 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Oracle数据治理
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Oracle数据治理</h1>
         
 
         <div class="post-meta">
@@ -351,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -382,6 +366,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
           
 
@@ -391,7 +380,9 @@
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -399,31 +390,25 @@
 
       
         <h3 id="表相关"><a href="#表相关" class="headerlink" title="表相关"></a>表相关</h3><p>| 系统名 | 表名 | 表类型 | 记录数 | 是否空表 | 表说明 |</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="string">'analyze table '</span>||table_name||<span class="string">' compute statistics;'</span> <span class="keyword">from</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">    t1.SYSTEM_NAME 系统名,</div><div class="line">    t1.OBJECT_NAME 表名,</div><div class="line">    t1.OBJECT_TYPE 表类型,</div><div class="line">    t2.num_rows 记录数,</div><div class="line">    t2.ISNULLTB 是否空表,</div><div class="line">    t3.COMMENTS 表说明</div><div class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span></div><div class="line">        <span class="string">'Alex'</span> SYSTEM_NAME,</div><div class="line">        OBJECT_NAME,</div><div class="line">        OBJECT_TYPE</div><div class="line">    <span class="keyword">FROM</span> USER_OBJECTS </div><div class="line">    <span class="keyword">WHERE</span> OBJECT_TYPE=<span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span></div><div class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> OBJECT_TYPE,OBJECT_NAME) t1</div><div class="line"></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span></div><div class="line">        TABLE_NAME,</div><div class="line">        num_rows,</div><div class="line">        (<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) ISNULLTB</div><div class="line">    <span class="keyword">FROM</span> user_tables) t2</div><div class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t2.TABLE_NAME</div><div class="line"></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> USER_TAB_COMMENTS t3</div><div class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t3.TABLE_NAME;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">'analyze table '</span>||table_name||<span class="string">' compute statistics;'</span> <span class="keyword">from</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    t1.SYSTEM_NAME 系统名,</span><br><span class="line">    t1.OBJECT_NAME 表名,</span><br><span class="line">    t1.OBJECT_TYPE 表类型,</span><br><span class="line">    t2.num_rows 记录数,</span><br><span class="line">    t2.ISNULLTB 是否空表,</span><br><span class="line">    t3.COMMENTS 表说明</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span></span><br><span class="line">        <span class="string">'Alex'</span> SYSTEM_NAME,</span><br><span class="line">        OBJECT_NAME,</span><br><span class="line">        OBJECT_TYPE</span><br><span class="line">    <span class="keyword">FROM</span> USER_OBJECTS </span><br><span class="line">    <span class="keyword">WHERE</span> OBJECT_TYPE=<span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span></span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> OBJECT_TYPE,OBJECT_NAME) t1</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span></span><br><span class="line">        TABLE_NAME,</span><br><span class="line">        num_rows,</span><br><span class="line">        (<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) ISNULLTB</span><br><span class="line">    <span class="keyword">FROM</span> user_tables) t2</span><br><span class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t2.TABLE_NAME</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> USER_TAB_COMMENTS t3</span><br><span class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t3.TABLE_NAME;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="字段相关"><a href="#字段相关" class="headerlink" title="字段相关"></a>字段相关</h3><p>| 系统名称 | 表名称 | 表类型 | 字段名称 | 字段类型 | 是否允许空 | 是否主键 |</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="string">'Alex'</span> <span class="keyword">AS</span> 系统名称,</div><div class="line">    an.TABLE_NAME <span class="keyword">AS</span> 表名称,</div><div class="line">    an.TABLE_TYPE <span class="keyword">AS</span> 表类型,</div><div class="line">    an.COLUMN_NAME <span class="keyword">AS</span> 字段名称,</div><div class="line">    an.THE_TYPE <span class="keyword">AS</span> 字段类型,</div><div class="line">    an.NULLABLE <span class="keyword">AS</span> 是否允许空,</div><div class="line">    (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> an.TABLE_NAME=b.TABLE_NAME <span class="keyword">AND</span> an.COLUMN_NAME = b.COLUMN_NAME <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> 是否主键</div><div class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span></div><div class="line">        t1.TABLE_NAME,</div><div class="line">        (<span class="keyword">CASE</span> t2.OBJECT_TYPE <span class="keyword">WHEN</span> <span class="string">'TABLE'</span> <span class="keyword">THEN</span> <span class="string">'原表'</span> <span class="keyword">ELSE</span> <span class="string">'视图'</span> <span class="keyword">END</span>) TABLE_TYPE,</div><div class="line">        t1.COLUMN_NAME,</div><div class="line">        t1.DATA_TYPE || <span class="string">'('</span> || t1.DATA_LENGTH || <span class="string">')'</span> <span class="keyword">AS</span> THE_TYPE,</div><div class="line">        t1.NULLABLE</div><div class="line">    <span class="keyword">FROM</span> USER_TAB_COLS t1,</div><div class="line">        (<span class="keyword">SELECT</span> OBJECT_NAME,OBJECT_TYPE <span class="keyword">FROM</span> USER_OBJECTS <span class="keyword">WHERE</span> OBJECT_TYPE = <span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span>) t2</div><div class="line">    <span class="keyword">WHERE</span> t1.TABLE_NAME = t2.OBJECT_NAME) an </div><div class="line"></div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> </div><div class="line">        cu.TABLE_NAME,</div><div class="line">        cu.COLUMN_NAME </div><div class="line">    <span class="keyword">FROM</span> USER_CONS_COLUMNS cu,USER_CONSTRAINTS au</div><div class="line">    <span class="keyword">WHERE</span> cu.constraint_name = au.constraint_name</div><div class="line">    <span class="keyword">AND</span> cu.table_name = au.table_name</div><div class="line">    <span class="keyword">AND</span> cu.owner = au.owner</div><div class="line">    <span class="keyword">AND</span> CONSTRAINT_TYPE = <span class="string">'P'</span>) b</div><div class="line"></div><div class="line"><span class="keyword">ON</span> an.table_name = b.table_name <span class="keyword">AND</span> an.column_name = b.column_name</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> 表名称;</div></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    b.TABLE_NAME <span class="keyword">AS</span> 表名,</div><div class="line">    b.COLUMN_NAME <span class="keyword">AS</span> 列名,</div><div class="line">    b.DATA_TYPE <span class="keyword">AS</span> 类型,</div><div class="line">    b.DATA_LENGTH <span class="keyword">AS</span> 长度,</div><div class="line">    A .COMMENTS <span class="keyword">AS</span> 描述,</div><div class="line">    b.NULLABLE <span class="keyword">AS</span> 是否可空</div><div class="line"><span class="keyword">FROM</span></div><div class="line">    USER_TAB_COLUMNS b,</div><div class="line">    USER_COL_COMMENTS A</div><div class="line"><span class="keyword">WHERE</span></div><div class="line">    b.TABLE_NAME <span class="keyword">IN</span> (<span class="string">'TABLENAME'</span>)</div><div class="line">    <span class="keyword">AND</span> b.TABLE_NAME = A .TABLE_NAME</div><div class="line">    <span class="keyword">AND</span> b.COLUMN_NAME = A .COLUMN_NAME</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></div><div class="line">    b.TABLE_NAME,</div><div class="line">    b.COLUMN_ID</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">'Alex'</span> <span class="keyword">AS</span> 系统名称,</span><br><span class="line">    an.TABLE_NAME <span class="keyword">AS</span> 表名称,</span><br><span class="line">    an.TABLE_TYPE <span class="keyword">AS</span> 表类型,</span><br><span class="line">    an.COLUMN_NAME <span class="keyword">AS</span> 字段名称,</span><br><span class="line">    an.THE_TYPE <span class="keyword">AS</span> 字段类型,</span><br><span class="line">    an.NULLABLE <span class="keyword">AS</span> 是否允许空,</span><br><span class="line">    (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> an.TABLE_NAME=b.TABLE_NAME <span class="keyword">AND</span> an.COLUMN_NAME = b.COLUMN_NAME <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> 是否主键</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span></span><br><span class="line">        t1.TABLE_NAME,</span><br><span class="line">        (<span class="keyword">CASE</span> t2.OBJECT_TYPE <span class="keyword">WHEN</span> <span class="string">'TABLE'</span> <span class="keyword">THEN</span> <span class="string">'原表'</span> <span class="keyword">ELSE</span> <span class="string">'视图'</span> <span class="keyword">END</span>) TABLE_TYPE,</span><br><span class="line">        t1.COLUMN_NAME,</span><br><span class="line">        t1.DATA_TYPE || <span class="string">'('</span> || t1.DATA_LENGTH || <span class="string">')'</span> <span class="keyword">AS</span> THE_TYPE,</span><br><span class="line">        t1.NULLABLE</span><br><span class="line">    <span class="keyword">FROM</span> USER_TAB_COLS t1,</span><br><span class="line">        (<span class="keyword">SELECT</span> OBJECT_NAME,OBJECT_TYPE <span class="keyword">FROM</span> USER_OBJECTS <span class="keyword">WHERE</span> OBJECT_TYPE = <span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span>) t2</span><br><span class="line">    <span class="keyword">WHERE</span> t1.TABLE_NAME = t2.OBJECT_NAME) an </span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> </span><br><span class="line">        cu.TABLE_NAME,</span><br><span class="line">        cu.COLUMN_NAME </span><br><span class="line">    <span class="keyword">FROM</span> USER_CONS_COLUMNS cu,USER_CONSTRAINTS au</span><br><span class="line">    <span class="keyword">WHERE</span> cu.constraint_name = au.constraint_name</span><br><span class="line">    <span class="keyword">AND</span> cu.table_name = au.table_name</span><br><span class="line">    <span class="keyword">AND</span> cu.owner = au.owner</span><br><span class="line">    <span class="keyword">AND</span> CONSTRAINT_TYPE = <span class="string">'P'</span>) b</span><br><span class="line"></span><br><span class="line"><span class="keyword">ON</span> an.table_name = b.table_name <span class="keyword">AND</span> an.column_name = b.column_name</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> 表名称;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    b.TABLE_NAME <span class="keyword">AS</span> 表名,</span><br><span class="line">    b.COLUMN_NAME <span class="keyword">AS</span> 列名,</span><br><span class="line">    b.DATA_TYPE <span class="keyword">AS</span> 类型,</span><br><span class="line">    b.DATA_LENGTH <span class="keyword">AS</span> 长度,</span><br><span class="line">    A .COMMENTS <span class="keyword">AS</span> 描述,</span><br><span class="line">    b.NULLABLE <span class="keyword">AS</span> 是否可空</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    USER_TAB_COLUMNS b,</span><br><span class="line">    USER_COL_COMMENTS A</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    b.TABLE_NAME <span class="keyword">IN</span> (<span class="string">'TABLENAME'</span>)</span><br><span class="line">    <span class="keyword">AND</span> b.TABLE_NAME = A .TABLE_NAME</span><br><span class="line">    <span class="keyword">AND</span> b.COLUMN_NAME = A .COLUMN_NAME</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    b.TABLE_NAME,</span><br><span class="line">    b.COLUMN_ID</span><br></pre></td></tr></table></figure>
 <h3 id="表使用情况"><a href="#表使用情况" class="headerlink" title="表使用情况"></a>表使用情况</h3><p>| 系统名 | 数据库类型 | 用户名 | 表名 | 字段数 | 记录数 | B    | KB   | MB   | 是否空表 |</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">    <span class="string">'Alex'</span> <span class="keyword">AS</span> 系统名,</div><div class="line">    <span class="string">'oracle'</span> <span class="keyword">AS</span> 数据库类型,</div><div class="line">    t1.TABLESPACE_NAME <span class="keyword">AS</span> 用户名,</div><div class="line">    t1.TABLE_NAME <span class="keyword">AS</span> 表名,</div><div class="line">    t2.column_num <span class="keyword">AS</span> 字段数,</div><div class="line">    t1.num_rows <span class="keyword">AS</span> 记录数,</div><div class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>,<span class="number">0</span>) <span class="keyword">AS</span> B,</div><div class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>/<span class="number">1024</span>,<span class="number">8</span>) <span class="keyword">AS</span> KB,</div><div class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>/<span class="number">1024</span>/<span class="number">1024</span>,<span class="number">8</span>) <span class="keyword">AS</span> MB,</div><div class="line">    (<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) <span class="keyword">AS</span> 是否空表</div><div class="line"><span class="keyword">FROM</span> user_tables t1</div><div class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></div><div class="line">(<span class="keyword">SELECT</span> table_name,<span class="keyword">count</span>(*) column_num <span class="keyword">FROM</span> user_tab_columns <span class="keyword">GROUP</span> <span class="keyword">BY</span> table_name) t2</div><div class="line"><span class="keyword">ON</span> t1.TABLE_NAME = t2.table_name;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="string">'Alex'</span> <span class="keyword">AS</span> 系统名,</span><br><span class="line">    <span class="string">'oracle'</span> <span class="keyword">AS</span> 数据库类型,</span><br><span class="line">    t1.TABLESPACE_NAME <span class="keyword">AS</span> 用户名,</span><br><span class="line">    t1.TABLE_NAME <span class="keyword">AS</span> 表名,</span><br><span class="line">    t2.column_num <span class="keyword">AS</span> 字段数,</span><br><span class="line">    t1.num_rows <span class="keyword">AS</span> 记录数,</span><br><span class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>,<span class="number">0</span>) <span class="keyword">AS</span> B,</span><br><span class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>/<span class="number">1024</span>,<span class="number">8</span>) <span class="keyword">AS</span> KB,</span><br><span class="line">    <span class="keyword">ROUND</span>((t1.num_rows*t1.avg_row_len)/<span class="number">8</span>/<span class="number">1024</span>/<span class="number">1024</span>,<span class="number">8</span>) <span class="keyword">AS</span> MB,</span><br><span class="line">    (<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) <span class="keyword">AS</span> 是否空表</span><br><span class="line"><span class="keyword">FROM</span> user_tables t1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span></span><br><span class="line">(<span class="keyword">SELECT</span> table_name,<span class="keyword">count</span>(*) column_num <span class="keyword">FROM</span> user_tab_columns <span class="keyword">GROUP</span> <span class="keyword">BY</span> table_name) t2</span><br><span class="line"><span class="keyword">ON</span> t1.TABLE_NAME = t2.table_name;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
+    
 
     <footer class="post-footer">
       
@@ -435,15 +420,15 @@
       
 
       
-        
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/31/Java并发总结-底层原理/" rel="next" title="Java并发总结-底层原理">
-                <i class="fa fa-chevron-left"></i> Java并发总结-底层原理
+              <a href="/2019/07/20/对象克隆/" rel="next" title="对象克隆">
+                <i class="fa fa-chevron-left"></i> 对象克隆
               </a>
             
           </div>
@@ -452,8 +437,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/20/对象克隆/" rel="prev" title="对象克隆">
-                对象克隆 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/31/Java并发总结-底层原理/" rel="prev" title="Java并发总结-底层原理">
+                Java并发总结-底层原理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,6 +448,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -472,15 +461,20 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
 
 
         </div>
@@ -496,101 +490,82 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Try.Catch" />
-          <p class="site-author-name" itemprop="name">Try.Catch</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
               <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
-          
-        </div>
-        <nav class="site-state motion-element">
+          </div>
 
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">90</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+          <nav class="site-state motion-element">
 
-          
             
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/justxzm" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
-              <span class="links-of-author-item">
-                <a href="https://muyinchen.github.io" target="_blank" title="博客友链">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  博客友链
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -623,30 +598,56 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
 
         
       </div>
@@ -656,9 +657,13 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
+
     
+
   </div>
 
   
@@ -680,61 +685,87 @@
   
 
 
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
   
-
 
 
   
@@ -755,6 +786,24 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
 
 
 
@@ -762,138 +811,326 @@
 
   
 
-
-
-  
-  
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
-  
+
+
 
   
 
@@ -901,6 +1138,12 @@
 
   
 
+  
+  
+
+  
+
+  
 
   
 

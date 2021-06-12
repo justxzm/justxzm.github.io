@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061006.png">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061007.png">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061008.png">
-<meta property="og:updated_time" content="2021-06-12T08:13:53.193Z">
+<meta property="og:updated_time" content="2021-06-12T10:10:32.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Oracle查询优化改写》笔记（应用案例）">
 <meta name="twitter:description" content="《Oracle查询优化改写》笔记（基础语句） 《Oracle查询优化改写》笔记（高级查询） 提取不同位置字符串123456SELECT     ltrim(regexp_substr(v.msg,&apos;(\[)([^]]+)&apos;,1,1),&apos;[&apos;) 第一个串,    ltrim(regexp_substr(v.msg,&apos;(\[)([^]]+)&apos;,1,2),&apos;[&apos;) 第二个串,    ltrim(rege">
@@ -421,6 +421,7 @@
 <p>因为回车符不能用可见字符表示，所以使用 <strong>chr 函数</strong> 来把文本拆分为多行处理：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1,</span><br><span class="line">    regexp_substr(c1,<span class="string">'[^|#]+'</span>,<span class="number">1</span>,<span class="number">1</span>) <span class="keyword">AS</span> d1,</span><br><span class="line">    regexp_substr(c1,<span class="string">'[^|#]+'</span>,<span class="number">1</span>,<span class="number">2</span>) <span class="keyword">AS</span> d2,</span><br><span class="line">    regexp_substr(c1,<span class="string">'[^|#]+'</span>,<span class="number">1</span>,<span class="number">3</span>) <span class="keyword">AS</span> d3,</span><br><span class="line">    regexp_substr(c1,<span class="string">'[^|#]+'</span>,<span class="number">1</span>,<span class="number">4</span>) <span class="keyword">AS</span> d4,</span><br><span class="line">    regexp_substr(c1,<span class="string">'[^|#]+'</span>,<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">AS</span> d5</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> to_char(regexp_substr(c1,<span class="string">'[^'</span> || <span class="keyword">CHR</span>(<span class="number">10</span>) || <span class="string">']+'</span>,<span class="number">1</span>,<span class="keyword">LEVEL</span>+<span class="number">1</span>)) <span class="keyword">AS</span> c1</span><br><span class="line">    <span class="keyword">FROM</span> <span class="keyword">test</span> </span><br><span class="line">    <span class="keyword">CONNECT</span> <span class="keyword">BY</span> <span class="keyword">LEVEL</span> &lt;= regexp_count(c1, <span class="keyword">chr</span>(<span class="number">10</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p><img src="/images/数据库/2021061008.png" alt></p>
+<p>（待续）</p>
 
       
     </div>

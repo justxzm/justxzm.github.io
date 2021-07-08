@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091603.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019091604.png">
 <meta property="og:image" content="https://justxzm.github.io/images/并发编程/2019110701.jpg">
-<meta property="og:updated_time" content="2019-11-07T10:22:34.844Z">
+<meta property="og:updated_time" content="2021-07-08T08:57:36.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发总结-线程基础">
 <meta name="twitter:description" content="线程简介多线程一个Java程序的运行不仅仅是main()方法的运行，而是main线程和多个其他线程的同时运行。 12345678910111213public class MultiThread &amp;#123;	public static void main(String[] args) &amp;#123;		// 获取Java线程管理MXBean		ThreadMXBean threadMXBean =">
@@ -418,6 +418,29 @@
 <p>通过示例，我们了解到Java程序运行中线程状态的具体含义。线程在自身的生命周期中，并不是固定地处于某个状态，而是随着代码的执行在不同的状态之间进行切换，<strong>Java线程状态变迁</strong>如下所示：</p>
 <p><img src="/images/并发编程/2019091604.png" alt></p>
 <p><strong>注意：</strong>Java将操作系统中的<strong>运行</strong>和<strong>就绪</strong>两个状态合并称为<strong>运行状态</strong>。阻塞状态是线程阻塞在进入<strong>synchronized</strong>关键字修饰的方法或代码块（获取锁）时的状态，但是阻塞在<strong>java.concurrent</strong>包中<strong>Lock</strong>接口的线程状态却是等待状态，因为<strong>java.concurrent</strong>包中Lock接口对于阻塞的实现均使用了<strong>LockSupport</strong>类中的相关方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] agrs)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">	Thread th = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">		<span class="comment">//阻塞当前线程</span></span><br><span class="line">		LockSupport.park();</span><br><span class="line">		System.out.println(<span class="string">"子线程执行---------"</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	th.start();</span><br><span class="line">	<span class="comment">//睡眠2秒</span></span><br><span class="line">	Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">	System.out.println(<span class="string">"主线程执行---------"</span>);</span><br><span class="line">	<span class="comment">//唤醒线程</span></span><br><span class="line">	LockSupport.unpark(th);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">主线程执行---------</span><br><span class="line">子线程执行---------</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 先唤醒th线程，再阻塞th线程，最终th线程没有被阻塞，从广义上来说park和unpark代表阻塞和唤醒 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] agrs)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">	Thread th = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">		<span class="comment">//唤醒当前线程</span></span><br><span class="line">		LockSupport.unpark(Thread.currentThread());</span><br><span class="line">		<span class="comment">//阻塞当前线程</span></span><br><span class="line">		LockSupport.park();</span><br><span class="line">		System.out.println(<span class="string">"子线程执行---------"</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	th.start();</span><br><span class="line">	<span class="comment">//睡眠2秒</span></span><br><span class="line">	Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">	System.out.println(<span class="string">"主线程执行---------"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">子线程执行---------</span><br><span class="line">主线程执行---------</span><br></pre></td></tr></table></figure>
+<p>LockSupport的设计思路是通过许可证来实现的，就像汽车上高速公路，入口处要获取通行卡，出口处要交出通行卡，如果没有通行卡你就无法出站，当然你可以选择补一张通行卡。</p>
+<p>LockSupport会为使用它的线程关联一个许可证（permit）状态，permit的语义「是否拥有许可」，0代表否，1代表是，<strong>默认是0</strong>。</p>
+<ul>
+<li>LockSupport.unpark：指定线程关联的permit直接更新为1，如果更新前的permit&lt;1，唤醒指定线程</li>
+<li>LockSupport.park：当前线程关联的permit如果&gt;0，直接把permit更新为0，否则阻塞当前线程</li>
+</ul>
+<p>因<code>park</code>阻塞的线程不仅仅会被<code>unpark</code>唤醒，还可能会被线程中断（<code>Thread.interrupt</code>）唤醒，而且不会抛出<code>InterruptedException</code>异常，所以建议在<code>park</code>后自行判断<strong>线程中断状态</strong>，来做对应的业务处理。</p>
+<p>为什么推荐使用<code>LockSupport</code>来做线程的阻塞与唤醒（<strong>线程间协同工作</strong>）？</p>
+<ul>
+<li>操作更精准，可以准确地唤醒某一个线程（notify随机唤醒一个线程，notifyAll唤醒所有等待的线程）</li>
+<li>无需竞争锁对象（以线程作为操作对象），不会因竞争锁对象产生死锁问题</li>
+<li>unpark与park没有严格的执行顺序，不会因执行顺序引起死锁，比如「Thread.suspend和Thread.resume」没按照严格顺序执行，就会产生死锁</li>
+</ul>
+<p><code>LockSupport</code>还提供了<code>park</code>的重载函数，提升灵活性：</p>
+<ul>
+<li>void parkNanos(long nanos)：增加了超时机制</li>
+<li>void parkUntil(long deadline)：加入超时机制（指定到某个时间点，1970年到指定时间点的毫秒数）</li>
+<li>void park(Object blocker)：设置blocker对象，当线程没有许可证被阻塞时，该对象会被记录到该线程的内部，方便后续使用诊断工具进行问题排查</li>
+<li>void parkNanos(Object blocker, long nanos)：设置blocker对象，加入超时机制</li>
+<li>void parkUntil(Object blocker, long deadline)：设置blocker对象，加入超时机制（指定到某个时间点，1970年到指定时间点的毫秒数）</li>
+</ul>
 <h2 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h2><h3 id="守护线程简述"><a href="#守护线程简述" class="headerlink" title="守护线程简述"></a>守护线程简述</h3><ul>
 <li>指的是程序运行时在后台提供的一种通用服务的线程。</li>
 <li>在操作系统里面是没有所谓的守护线程的概念，只有守护进程一说。</li>

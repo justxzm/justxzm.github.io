@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java二叉树实现/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/数据结构/Java二叉树实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/31/Java二叉树实现/" itemprop="url">Java二叉树实现</a></h1>
+                <a class="post-title-link" href="/2017/03/31/数据结构/Java二叉树实现/" itemprop="url">Java二叉树实现</a></h1>
         
 
         <div class="post-meta">
@@ -389,7 +389,7 @@
           <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">	<span class="keyword">public</span> Node left;</span><br><span class="line">	<span class="keyword">public</span> Node right;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">store</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (value &lt; <span class="keyword">this</span>.value) &#123;</span><br><span class="line">			<span class="keyword">if</span> (left == <span class="keyword">null</span>) &#123;</span><br><span class="line">				left = <span class="keyword">new</span> Node();</span><br><span class="line">				left.value = value;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				left.store(value);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (value &gt; <span class="keyword">this</span>.value) &#123;</span><br><span class="line">			<span class="keyword">if</span> (right == <span class="keyword">null</span>) &#123;</span><br><span class="line">				right = <span class="keyword">new</span> Node();</span><br><span class="line">				right.value = value;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				right.store(value);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"happen "</span> + <span class="keyword">this</span>.value);</span><br><span class="line">		<span class="keyword">if</span> (value == <span class="keyword">this</span>.value) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (value &gt; <span class="keyword">this</span>.value) &#123;</span><br><span class="line">			<span class="keyword">if</span> (right == <span class="keyword">null</span>)</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			<span class="keyword">return</span> right.find(value);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (left == <span class="keyword">null</span>)</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			<span class="keyword">return</span> left.find(value);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 前序遍历</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="keyword">this</span>.value + <span class="string">","</span>);</span><br><span class="line">		<span class="keyword">if</span> (left != <span class="keyword">null</span>)</span><br><span class="line">			left.preList();</span><br><span class="line">		<span class="keyword">if</span> (right != <span class="keyword">null</span>)</span><br><span class="line">			right.preList();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 中序遍历</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">middleList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (left != <span class="keyword">null</span>)</span><br><span class="line">			left.preList();</span><br><span class="line">		System.out.print(<span class="keyword">this</span>.value + <span class="string">","</span>);</span><br><span class="line">		<span class="keyword">if</span> (right != <span class="keyword">null</span>)</span><br><span class="line">			right.preList();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 后序遍历</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (left != <span class="keyword">null</span>)</span><br><span class="line">			left.preList();</span><br><span class="line">		<span class="keyword">if</span> (right != <span class="keyword">null</span>)</span><br><span class="line">			right.preList();</span><br><span class="line">		System.out.print(<span class="keyword">this</span>.value + <span class="string">","</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">			data[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">100</span>) + <span class="number">1</span>;</span><br><span class="line">			System.out.print(data[i] + <span class="string">","</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">		Node root = <span class="keyword">new</span> Node();</span><br><span class="line">		root.value = data[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">			root.store(data[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		root.find(data[<span class="number">19</span>]);</span><br><span class="line">		root.preList();</span><br><span class="line">		System.out.println();</span><br><span class="line">		root.middleList();</span><br><span class="line">		System.out.println();</span><br><span class="line">		root.afterList();</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/31/Java二叉树实现/#more" rel="contents">
+            <a class="btn" href="/2017/03/31/数据结构/Java二叉树实现/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -440,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java内存泄露/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java深入/Java内存泄露/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -459,7 +459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/31/Java内存泄露/" itemprop="url">Java内存泄露</a></h1>
+                <a class="post-title-link" href="/2017/03/31/Java深入/Java内存泄露/" itemprop="url">Java内存泄露</a></h1>
         
 
         <div class="post-meta">
@@ -536,7 +536,7 @@
 <p>监视对象状态是为了更加准确地、及时地释放对象，而释放对象的根本原则就是该对象不再被引用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/31/Java内存泄露/#more" rel="contents">
+            <a class="btn" href="/2017/03/31/Java深入/Java内存泄露/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -587,7 +587,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java-Lambda/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java深入/Java-Lambda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -606,7 +606,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/31/Java-Lambda/" itemprop="url">Java Lambda</a></h1>
+                <a class="post-title-link" href="/2017/03/31/Java深入/Java-Lambda/" itemprop="url">Java Lambda</a></h1>
         
 
         <div class="post-meta">
@@ -694,7 +694,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c -&gt; &#123; <span class="keyword">return</span> c.size(); &#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/31/Java-Lambda/#more" rel="contents">
+            <a class="btn" href="/2017/03/31/Java深入/Java-Lambda/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -745,7 +745,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/29/Copy-On-Write/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/29/Java并发/Copy-On-Write/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -764,7 +764,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/29/Copy-On-Write/" itemprop="url">Copy On Write</a></h1>
+                <a class="post-title-link" href="/2017/03/29/Java并发/Copy-On-Write/" itemprop="url">Copy On Write</a></h1>
         
 
         <div class="post-meta">
@@ -841,7 +841,7 @@
 <h3 id="什么是CopyOnWrite容器"><a href="#什么是CopyOnWrite容器" class="headerlink" title="什么是CopyOnWrite容器"></a><strong>什么是CopyOnWrite容器</strong></h3><p>CopyOnWrite容器即写时复制的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/29/Copy-On-Write/#more" rel="contents">
+            <a class="btn" href="/2017/03/29/Java并发/Copy-On-Write/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -892,7 +892,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/28/Java异常处理机制/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/28/Java基础/Java异常处理机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -911,7 +911,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/28/Java异常处理机制/" itemprop="url">Java异常处理机制</a></h1>
+                <a class="post-title-link" href="/2017/03/28/Java基础/Java异常处理机制/" itemprop="url">Java异常处理机制</a></h1>
         
 
         <div class="post-meta">
@@ -987,7 +987,7 @@
           <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>try…catch…finally恐怕是大家再熟悉不过的语句了，而且感觉用起来也是很简单，逻辑上似乎也是很容易理解。不过，我亲自体验的“教训”告诉我，这个东西可不是想象中的那么简单、听话。不信？那你看看下面的代码，“猜猜”它执行后的结果会是什么？不要往后看答案、也不许执行代码看真正答案哦。如果你的答案是正确，那么这篇文章你就不用浪费时间看啦。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Java异常处理机制/#more" rel="contents">
+            <a class="btn" href="/2017/03/28/Java基础/Java异常处理机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1038,7 +1038,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/28/Java冒泡排序/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/28/算法/Java冒泡排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1057,7 +1057,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/28/Java冒泡排序/" itemprop="url">Java冒泡排序</a></h1>
+                <a class="post-title-link" href="/2017/03/28/算法/Java冒泡排序/" itemprop="url">Java冒泡排序</a></h1>
         
 
         <div class="post-meta">
@@ -1135,7 +1135,7 @@
 <p>如果算法是稳定的有什么好处呢？排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位相同的元素其顺序再高位也相同时是不会改变的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Java冒泡排序/#more" rel="contents">
+            <a class="btn" href="/2017/03/28/算法/Java冒泡排序/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1186,7 +1186,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/27/ConcurrentHashMap从jdk1.7到jdk1.8的变化/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/27/Java深入/ConcurrentHashMap从jdk1.7到jdk1.8的变化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1205,7 +1205,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/27/ConcurrentHashMap从jdk1.7到jdk1.8的变化/" itemprop="url">ConcurrentHashMap从jdk1.7到jdk1.8的变化</a></h1>
+                <a class="post-title-link" href="/2017/03/27/Java深入/ConcurrentHashMap从jdk1.7到jdk1.8的变化/" itemprop="url">ConcurrentHashMap从jdk1.7到jdk1.8的变化</a></h1>
         
 
         <div class="post-meta">
@@ -1284,7 +1284,7 @@
 <p>每一个segment都是一个HashEntry<k,v>[] table， table中的每一个元素本质上都是一个HashEntry的单向队列。比如table[3]为首节点，table[3]-&gt;next为节点1，之后为节点2，依次类推。</k,v></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/ConcurrentHashMap从jdk1.7到jdk1.8的变化/#more" rel="contents">
+            <a class="btn" href="/2017/03/27/Java深入/ConcurrentHashMap从jdk1.7到jdk1.8的变化/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1335,7 +1335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/26/ArrayList-And-Vector/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/26/Java基础/ArrayList-And-Vector/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1354,7 +1354,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/26/ArrayList-And-Vector/" itemprop="url">ArrayList And Vector</a></h1>
+                <a class="post-title-link" href="/2017/03/26/Java基础/ArrayList-And-Vector/" itemprop="url">ArrayList And Vector</a></h1>
         
 
         <div class="post-meta">
@@ -1437,7 +1437,7 @@
 <li><p>Vector可以设置增长因子，而ArrayList不可以，最开始看这个的时候，我没理解什么是增量因子，不过通过对比一下两个源码理解了这个，先看看两个类的构造方法： ArrayList有三个构造方法：分别是</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/26/ArrayList-And-Vector/#more" rel="contents">
+            <a class="btn" href="/2017/03/26/Java基础/ArrayList-And-Vector/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1479,7 +1479,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1527,7 +1527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1538,7 +1538,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1549,7 +1549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

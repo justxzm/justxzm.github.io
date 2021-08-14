@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/04/07/Oracle触发器trigger/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/04/07/数据库/Oracle触发器trigger/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/04/07/Oracle触发器trigger/" itemprop="url">Oracle触发器trigger</a></h1>
+                <a class="post-title-link" href="/2021/04/07/数据库/Oracle触发器trigger/" itemprop="url">Oracle触发器trigger</a></h1>
         
 
         <div class="post-meta">
@@ -389,7 +389,7 @@
           <h2 id="触发器语法"><a href="#触发器语法" class="headerlink" title="触发器语法"></a>触发器语法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">OR</span> <span class="keyword">REPLACE</span>] <span class="keyword">TRIGGER</span> trigger_name</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">BEFORE</span> | <span class="keyword">AFTER</span> &#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">INSERT</span> | <span class="keyword">DELETE</span> | <span class="keyword">UPDATE</span> [<span class="keyword">OF</span> <span class="keyword">column</span> [, <span class="keyword">column</span> …]]&#125;</span><br><span class="line">[<span class="keyword">OR</span> &#123;<span class="keyword">INSERT</span> | <span class="keyword">DELETE</span> | <span class="keyword">UPDATE</span> [<span class="keyword">OF</span> <span class="keyword">column</span> [, <span class="keyword">column</span> …]]&#125;...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">ON</span> [schema.]table_name | [schema.]view_name</span><br><span class="line"></span><br><span class="line">[<span class="keyword">REFERENCING</span> &#123;<span class="keyword">OLD</span> [<span class="keyword">AS</span>] <span class="keyword">old</span> | <span class="keyword">NEW</span> [<span class="keyword">AS</span>] <span class="keyword">new</span>| <span class="keyword">PARENT</span> <span class="keyword">as</span> <span class="keyword">parent</span>&#125;]</span><br><span class="line"></span><br><span class="line">[<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> ]</span><br><span class="line"></span><br><span class="line">[<span class="keyword">WHEN</span> condition]</span><br><span class="line"></span><br><span class="line">PL/SQL_BLOCK | <span class="keyword">CALL</span> procedure_name;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/07/Oracle触发器trigger/#more" rel="contents">
+            <a class="btn" href="/2021/04/07/数据库/Oracle触发器trigger/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -440,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -459,7 +459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/03/21/Oracle查询优化改写-笔记-基础语句/" itemprop="url">《Oracle查询优化改写》笔记（基础语句）</a></h1>
+                <a class="post-title-link" href="/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/" itemprop="url">《Oracle查询优化改写》笔记（基础语句）</a></h1>
         
 
         <div class="post-meta">
@@ -538,7 +538,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">coalesce</span>(comm,<span class="number">0</span>) <span class="keyword">FROM</span> emp;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(C1,C2,C3,C4,C5,C6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br><span class="line"># 若改用nvl，要嵌套很多层</span><br><span class="line"><span class="keyword">SELECT</span> nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/21/Oracle查询优化改写-笔记-基础语句/#more" rel="contents">
+            <a class="btn" href="/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -589,7 +589,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/02/23/Java类隔离加载实现/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/02/23/Java深入/Java类隔离加载实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -608,7 +608,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/02/23/Java类隔离加载实现/" itemprop="url">Java类隔离加载实现</a></h1>
+                <a class="post-title-link" href="/2021/02/23/Java深入/Java类隔离加载实现/" itemprop="url">Java类隔离加载实现</a></h1>
         
 
         <div class="post-meta">
@@ -694,7 +694,7 @@
 <p>通过这种方式，只要让模块的 main 方法类使用不同的类加载器加载，那么每个模块的都会使用 main 方法类的类加载器加载，这样就能让多个模块分别使用不同类加载器。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/02/23/Java类隔离加载实现/#more" rel="contents">
+            <a class="btn" href="/2021/02/23/Java深入/Java类隔离加载实现/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -745,7 +745,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/21/Java并发总结-线程组/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/21/Java并发/Java并发总结-线程组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -764,7 +764,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/11/21/Java并发总结-线程组/" itemprop="url">Java并发总结-线程组</a></h1>
+                <a class="post-title-link" href="/2020/11/21/Java并发/Java并发总结-线程组/" itemprop="url">Java并发总结-线程组</a></h1>
         
 
         <div class="post-meta">
@@ -845,7 +845,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/21/Java并发总结-线程组/#more" rel="contents">
+            <a class="btn" href="/2020/11/21/Java并发/Java并发总结-线程组/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -896,7 +896,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/20/Centos7系统部署/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/20/Linux/Centos7系统部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -915,7 +915,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/11/20/Centos7系统部署/" itemprop="url">Centos7系统部署</a></h1>
+                <a class="post-title-link" href="/2020/11/20/Linux/Centos7系统部署/" itemprop="url">Centos7系统部署</a></h1>
         
 
         <div class="post-meta">
@@ -998,7 +998,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/20/Centos7系统部署/#more" rel="contents">
+            <a class="btn" href="/2020/11/20/Linux/Centos7系统部署/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1049,7 +1049,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/12/获得鼠标指向的页面元素/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/12/前端/获得鼠标指向的页面元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1068,7 +1068,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/11/12/获得鼠标指向的页面元素/" itemprop="url">获得鼠标指向的页面元素</a></h1>
+                <a class="post-title-link" href="/2020/11/12/前端/获得鼠标指向的页面元素/" itemprop="url">获得鼠标指向的页面元素</a></h1>
         
 
         <div class="post-meta">
@@ -1144,7 +1144,7 @@
           <h3 id="类F12鼠标选中功能"><a href="#类F12鼠标选中功能" class="headerlink" title="类F12鼠标选中功能"></a>类F12鼠标选中功能</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onmousemove = track_mouse;</span><br><span class="line"><span class="keyword">var</span> last_element = <span class="literal">null</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">track_mouse</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> elementMouseIsOver = get_current_element(event)</span><br><span class="line">	<span class="keyword">if</span> (elementMouseIsOver === last_element) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (last_element != <span class="literal">null</span>) &#123;</span><br><span class="line">		remove_hightlight(last_element);</span><br><span class="line">	&#125;</span><br><span class="line">	highlight(elementMouseIsOver);</span><br><span class="line">	last_element = elementMouseIsOver;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_current_element</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> x = event.clientX;</span><br><span class="line">	<span class="keyword">var</span> y = event.clientY;</span><br><span class="line">	<span class="keyword">var</span> element = <span class="built_in">document</span>.elementFromPoint(x, y);</span><br><span class="line">	<span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">highlight</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">	element.style.outline = <span class="string">'#f00 solid 2px'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove_hightlight</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">	element.style.removeProperty(<span class="string">'outline'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/12/获得鼠标指向的页面元素/#more" rel="contents">
+            <a class="btn" href="/2020/11/12/前端/获得鼠标指向的页面元素/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1195,7 +1195,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/12/Java-RMI/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/11/12/Java深入/Java-RMI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1214,7 +1214,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/11/12/Java-RMI/" itemprop="url">Java RMI</a></h1>
+                <a class="post-title-link" href="/2020/11/12/Java深入/Java-RMI/" itemprop="url">Java RMI</a></h1>
         
 
         <div class="post-meta">
@@ -1295,7 +1295,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/12/Java-RMI/#more" rel="contents">
+            <a class="btn" href="/2020/11/12/Java深入/Java-RMI/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1346,7 +1346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/09/17/死锁检测工具/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2020/09/17/JVM/死锁检测工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1365,7 +1365,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/17/死锁检测工具/" itemprop="url">死锁检测工具</a></h1>
+                <a class="post-title-link" href="/2020/09/17/JVM/死锁检测工具/" itemprop="url">死锁检测工具</a></h1>
         
 
         <div class="post-meta">
@@ -1442,7 +1442,7 @@
 <p><img src="/images/JVM/2020091701.png" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/17/死锁检测工具/#more" rel="contents">
+            <a class="btn" href="/2020/09/17/JVM/死锁检测工具/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1484,7 +1484,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1532,7 +1532,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1543,7 +1543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1554,7 +1554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

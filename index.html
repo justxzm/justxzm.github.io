@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/07/08/LRU缓存机制实现/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/07/08/算法/LRU缓存机制实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/07/08/LRU缓存机制实现/" itemprop="url">LRU缓存机制实现</a></h1>
+                <a class="post-title-link" href="/2021/07/08/算法/LRU缓存机制实现/" itemprop="url">LRU缓存机制实现</a></h1>
         
 
         <div class="post-meta">
@@ -390,7 +390,7 @@
 <p>Redis在内存达到最大限制的时候会使用LRU等淘汰机制，如果来了一个新的数，此时内存满了，就需要把旧的数淘汰，那为了方便移动数据，得使用链表类似的数据结构，再加上要判断这条数据是不是最新的或者最旧的那么应该也要使用hashmap等key-value形式的数据结构。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/07/08/LRU缓存机制实现/#more" rel="contents">
+            <a class="btn" href="/2021/07/08/算法/LRU缓存机制实现/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -441,7 +441,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-应用案例/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -460,7 +460,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/06/08/Oracle查询优化改写-笔记-应用案例/" itemprop="url">《Oracle查询优化改写》笔记（应用案例）</a></h1>
+                <a class="post-title-link" href="/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/" itemprop="url">《Oracle查询优化改写》笔记（应用案例）</a></h1>
         
 
         <div class="post-meta">
@@ -538,7 +538,7 @@
 <h3 id="提取不同位置字符串"><a href="#提取不同位置字符串" class="headerlink" title="提取不同位置字符串"></a>提取不同位置字符串</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">1</span>),<span class="string">'['</span>) 第一个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">2</span>),<span class="string">'['</span>) 第二个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">3</span>),<span class="string">'['</span>) 第三个串</span><br><span class="line">    msg</span><br><span class="line"><span class="keyword">FROM</span> v;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/06/08/Oracle查询优化改写-笔记-应用案例/#more" rel="contents">
+            <a class="btn" href="/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -589,7 +589,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/06/07/滑动时间窗口限流算法/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/06/07/算法/滑动时间窗口限流算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -608,7 +608,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/06/07/滑动时间窗口限流算法/" itemprop="url">滑动时间窗口限流算法</a></h1>
+                <a class="post-title-link" href="/2021/06/07/算法/滑动时间窗口限流算法/" itemprop="url">滑动时间窗口限流算法</a></h1>
         
 
         <div class="post-meta">
@@ -685,7 +685,7 @@
 <p>或者按照实现原理来说，任意通过2次内的时间差，都不超过10秒。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/06/07/滑动时间窗口限流算法/#more" rel="contents">
+            <a class="btn" href="/2021/06/07/算法/滑动时间窗口限流算法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -736,7 +736,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/26/工作流引擎实现思路/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/26/其他/工作流引擎实现思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -755,7 +755,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/05/26/工作流引擎实现思路/" itemprop="url">工作流引擎实现思路</a></h1>
+                <a class="post-title-link" href="/2021/05/26/其他/工作流引擎实现思路/" itemprop="url">工作流引擎实现思路</a></h1>
         
 
         <div class="post-meta">
@@ -836,7 +836,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/26/工作流引擎实现思路/#more" rel="contents">
+            <a class="btn" href="/2021/05/26/其他/工作流引擎实现思路/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -887,7 +887,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/25/规则执行器替代大量if判断/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/25/设计模式/规则执行器替代大量if判断/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -906,7 +906,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/05/25/规则执行器替代大量if判断/" itemprop="url">规则执行器替代大量if判断</a></h1>
+                <a class="post-title-link" href="/2021/05/25/设计模式/规则执行器替代大量if判断/" itemprop="url">规则执行器替代大量if判断</a></h1>
         
 
         <div class="post-meta">
@@ -989,7 +989,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/25/规则执行器替代大量if判断/#more" rel="contents">
+            <a class="btn" href="/2021/05/25/设计模式/规则执行器替代大量if判断/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1040,7 +1040,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/25/策略模式干掉if-else-switch/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/25/设计模式/策略模式干掉if-else-switch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1059,7 +1059,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/05/25/策略模式干掉if-else-switch/" itemprop="url">策略模式干掉if-else/switch</a></h1>
+                <a class="post-title-link" href="/2021/05/25/设计模式/策略模式干掉if-else-switch/" itemprop="url">策略模式干掉if-else/switch</a></h1>
         
 
         <div class="post-meta">
@@ -1138,7 +1138,7 @@
 <p>面向接口编程，而不是面向实现。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/25/策略模式干掉if-else-switch/#more" rel="contents">
+            <a class="btn" href="/2021/05/25/设计模式/策略模式干掉if-else-switch/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1189,7 +1189,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1208,7 +1208,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/05/24/Oracle查询优化改写-笔记-高级查询/" itemprop="url">《Oracle查询优化改写》笔记（高级查询）</a></h1>
+                <a class="post-title-link" href="/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/" itemprop="url">《Oracle查询优化改写》笔记（高级查询）</a></h1>
         
 
         <div class="post-meta">
@@ -1290,7 +1290,7 @@
 <p>自关联需要扫描两次视图“V”，而使用分析函数只需要一次，大部分情况可以通过分析函数优化查询性能。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/24/Oracle查询优化改写-笔记-高级查询/#more" rel="contents">
+            <a class="btn" href="/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1341,7 +1341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/04/15/Centos7定时任务/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2021/04/15/Linux/Centos7定时任务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1360,7 +1360,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/04/15/Centos7定时任务/" itemprop="url">Centos7定时任务</a></h1>
+                <a class="post-title-link" href="/2021/04/15/Linux/Centos7定时任务/" itemprop="url">Centos7定时任务</a></h1>
         
 
         <div class="post-meta">
@@ -1444,7 +1444,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/15/Centos7定时任务/#more" rel="contents">
+            <a class="btn" href="/2021/04/15/Linux/Centos7定时任务/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1486,7 +1486,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1534,7 +1534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1545,7 +1545,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1556,7 +1556,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

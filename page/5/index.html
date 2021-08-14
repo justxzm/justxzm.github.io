@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/20/Java并发总结-锁/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/20/Java并发/Java并发总结-锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/20/Java并发总结-锁/" itemprop="url">Java并发总结-锁</a></h1>
+                <a class="post-title-link" href="/2019/09/20/Java并发/Java并发总结-锁/" itemprop="url">Java并发总结-锁</a></h1>
         
 
         <div class="post-meta">
@@ -395,7 +395,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="comment">//不要将获取锁的过程写在try块中，因为如果在获取锁（自定义锁的实现）时发生了异常，异常抛出的同时，也会导致锁无故释放。</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">//TODO</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	<span class="comment">//在finally块中释放锁，目的是保证在获取到锁之后，最终能够被释放。</span></span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/20/Java并发总结-锁/#more" rel="contents">
+            <a class="btn" href="/2019/09/20/Java并发/Java并发总结-锁/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -446,7 +446,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/19/Java并发总结-线程应用实例/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/19/Java并发/Java并发总结-线程应用实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -465,7 +465,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/19/Java并发总结-线程应用实例/" itemprop="url">Java并发总结-线程应用实例</a></h1>
+                <a class="post-title-link" href="/2019/09/19/Java并发/Java并发总结-线程应用实例/" itemprop="url">Java并发总结-线程应用实例</a></h1>
         
 
         <div class="post-meta">
@@ -549,7 +549,7 @@
 <p>这时仅需要<strong>wait(REMAINING)</strong>即可，在<strong>wait(REMAINING)</strong>返回之后会将执行：<strong>REMAINING=FUTURE–now</strong>。如果<strong>REMAINING</strong>小于等于0，表示已经超时，直接退出，否则将继续执行<strong>wait(REMAINING)</strong>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/19/Java并发总结-线程应用实例/#more" rel="contents">
+            <a class="btn" href="/2019/09/19/Java并发/Java并发总结-线程应用实例/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -600,7 +600,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发总结-线程间通信/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/17/Java并发/Java并发总结-线程间通信/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -619,7 +619,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/17/Java并发总结-线程间通信/" itemprop="url">Java并发总结-线程间通信</a></h1>
+                <a class="post-title-link" href="/2019/09/17/Java并发/Java并发总结-线程间通信/" itemprop="url">Java并发总结-线程间通信</a></h1>
         
 
         <div class="post-meta">
@@ -699,7 +699,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Synchronized</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 对Synchronized Class对象进行加锁</span></span><br><span class="line">		<span class="keyword">synchronized</span> (Synchronized.class) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 静态同步方法，对Synchronized Class对象进行加锁</span></span><br><span class="line">		m();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/17/Java并发总结-线程间通信/#more" rel="contents">
+            <a class="btn" href="/2019/09/17/Java并发/Java并发总结-线程间通信/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -750,7 +750,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/Java并发总结-线程基础/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/09/15/Java并发/Java并发总结-线程基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -769,7 +769,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/15/Java并发总结-线程基础/" itemprop="url">Java并发总结-线程基础</a></h1>
+                <a class="post-title-link" href="/2019/09/15/Java并发/Java并发总结-线程基础/" itemprop="url">Java并发总结-线程基础</a></h1>
         
 
         <div class="post-meta">
@@ -847,7 +847,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[5] Attach Listener //提供一种jvm进程间通信的能力，能让一个进程传命令给另外一个进程，并让它执行内部的一些操作</span><br><span class="line">[4] Signal Dispatcher //分发处理发送给JVM信号的线程</span><br><span class="line">[3] Finalizer //调用对象finalize方法的线程</span><br><span class="line">[2] Reference Handler //清除Reference的线程</span><br><span class="line">[1] main //main线程，用户程序入口</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/15/Java并发总结-线程基础/#more" rel="contents">
+            <a class="btn" href="/2019/09/15/Java并发/Java并发总结-线程基础/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -898,7 +898,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/08/31/Java并发总结-底层原理/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/08/31/Java并发/Java并发总结-底层原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -917,7 +917,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/31/Java并发总结-底层原理/" itemprop="url">Java并发总结-底层原理</a></h1>
+                <a class="post-title-link" href="/2019/08/31/Java并发/Java并发总结-底层原理/" itemprop="url">Java并发总结-底层原理</a></h1>
         
 
         <div class="post-meta">
@@ -1001,7 +1001,7 @@
 <li><p><strong>协程</strong>。在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/31/Java并发总结-底层原理/#more" rel="contents">
+            <a class="btn" href="/2019/08/31/Java并发/Java并发总结-底层原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1052,7 +1052,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/22/Oracle数据治理/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/22/数据库/Oracle数据治理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1071,7 +1071,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/22/Oracle数据治理/" itemprop="url">Oracle数据治理</a></h1>
+                <a class="post-title-link" href="/2019/07/22/数据库/Oracle数据治理/" itemprop="url">Oracle数据治理</a></h1>
         
 
         <div class="post-meta">
@@ -1148,7 +1148,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">'analyze table '</span>||table_name||<span class="string">' compute statistics;'</span> <span class="keyword">from</span> user_tables <span class="keyword">where</span> tablespace_name=<span class="string">'PMSAlex'</span> <span class="keyword">and</span> <span class="keyword">INSTR</span>(table_name, <span class="string">'W_'</span>)&gt;<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    t1.SYSTEM_NAME 系统名,</span><br><span class="line">    t1.OBJECT_NAME 表名,</span><br><span class="line">    t1.OBJECT_TYPE 表类型,</span><br><span class="line">    t2.num_rows 记录数,</span><br><span class="line">    t2.ISNULLTB 是否空表,</span><br><span class="line">    t3.COMMENTS 表说明</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span></span><br><span class="line">        <span class="string">'Alex'</span> SYSTEM_NAME,</span><br><span class="line">        OBJECT_NAME,</span><br><span class="line">        OBJECT_TYPE</span><br><span class="line">    <span class="keyword">FROM</span> USER_OBJECTS </span><br><span class="line">    <span class="keyword">WHERE</span> OBJECT_TYPE=<span class="string">'TABLE'</span> <span class="keyword">OR</span> OBJECT_TYPE=<span class="string">'VIEW'</span></span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> OBJECT_TYPE,OBJECT_NAME) t1</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span></span><br><span class="line">        TABLE_NAME,</span><br><span class="line">        num_rows,</span><br><span class="line">        (<span class="keyword">CASE</span> num_rows <span class="keyword">WHEN</span> <span class="number">0</span> <span class="keyword">THEN</span> <span class="string">'Y'</span> <span class="keyword">ELSE</span> <span class="string">'N'</span> <span class="keyword">END</span>) ISNULLTB</span><br><span class="line">    <span class="keyword">FROM</span> user_tables) t2</span><br><span class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t2.TABLE_NAME</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> USER_TAB_COMMENTS t3</span><br><span class="line"><span class="keyword">ON</span> t1.OBJECT_NAME = t3.TABLE_NAME;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/22/Oracle数据治理/#more" rel="contents">
+            <a class="btn" href="/2019/07/22/数据库/Oracle数据治理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1199,7 +1199,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/20/对象克隆/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/20/Java深入/对象克隆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1218,7 +1218,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/20/对象克隆/" itemprop="url">对象克隆</a></h1>
+                <a class="post-title-link" href="/2019/07/20/Java深入/对象克隆/" itemprop="url">对象克隆</a></h1>
         
 
         <div class="post-meta">
@@ -1299,7 +1299,7 @@
 <p><img src="/images/Java/2019072001.jpg" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/20/对象克隆/#more" rel="contents">
+            <a class="btn" href="/2019/07/20/Java深入/对象克隆/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1350,7 +1350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/20/解决问题的一般套路/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/20/其他/解决问题的一般套路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1369,7 +1369,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/20/解决问题的一般套路/" itemprop="url">解决问题的一般套路</a></h1>
+                <a class="post-title-link" href="/2019/07/20/其他/解决问题的一般套路/" itemprop="url">解决问题的一般套路</a></h1>
         
 
         <div class="post-meta">
@@ -1455,7 +1455,7 @@
 <li><p>不暗示倾向于某种原因或者解决方法；</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/20/解决问题的一般套路/#more" rel="contents">
+            <a class="btn" href="/2019/07/20/其他/解决问题的一般套路/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1497,7 +1497,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1545,7 +1545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1556,7 +1556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1567,7 +1567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/14/ThreadLocal源码剖析/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/14/Java并发/ThreadLocal源码剖析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/14/ThreadLocal源码剖析/" itemprop="url">ThreadLocal源码剖析</a></h1>
+                <a class="post-title-link" href="/2019/07/14/Java并发/ThreadLocal源码剖析/" itemprop="url">ThreadLocal源码剖析</a></h1>
         
 
         <div class="post-meta">
@@ -395,7 +395,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/14/ThreadLocal源码剖析/#more" rel="contents">
+            <a class="btn" href="/2019/07/14/Java并发/ThreadLocal源码剖析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -446,7 +446,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/12/SimpleDateFormat线程安全问题/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/12/Java并发/SimpleDateFormat线程安全问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -465,7 +465,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/12/SimpleDateFormat线程安全问题/" itemprop="url">SimpleDateFormat线程安全问题</a></h1>
+                <a class="post-title-link" href="/2019/07/12/Java并发/SimpleDateFormat线程安全问题/" itemprop="url">SimpleDateFormat线程安全问题</a></h1>
         
 
         <div class="post-meta">
@@ -542,7 +542,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleDateFormatTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">formatDate</span><span class="params">(Date date)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sdf.format(date);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Date <span class="title">parse</span><span class="params">(String strDate)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sdf.parse(strDate);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ParseException </span>&#123;</span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">                service.execute(<span class="keyword">new</span> Runnable() &#123;		</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                System.out.println(parse(<span class="string">"2018-01-02 09:45:59"</span>));</span><br><span class="line">                            &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">                                e.printStackTrace();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">    	    <span class="comment">// 等待上述的线程执行完</span></span><br><span class="line">    	    service.shutdown();</span><br><span class="line">    	    service.awaitTermination(<span class="number">1</span>, TimeUnit.DAYS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/12/SimpleDateFormat线程安全问题/#more" rel="contents">
+            <a class="btn" href="/2019/07/12/Java并发/SimpleDateFormat线程安全问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -593,7 +593,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/06/HashMap源码解析/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/06/Java深入/HashMap源码解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -612,7 +612,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/06/HashMap源码解析/" itemprop="url">HashMap源码解析</a></h1>
+                <a class="post-title-link" href="/2019/07/06/Java深入/HashMap源码解析/" itemprop="url">HashMap源码解析</a></h1>
         
 
         <div class="post-meta">
@@ -689,7 +689,7 @@
 <p>我们这里能看到，和 HashTable 一样有 Capacity 和 Factor 的设定，这里面我们的默认值也是 16 和 0.75 的值。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/06/HashMap源码解析/#more" rel="contents">
+            <a class="btn" href="/2019/07/06/Java深入/HashMap源码解析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -740,7 +740,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/05/敏捷开发/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/07/05/其他/敏捷开发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -759,7 +759,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/05/敏捷开发/" itemprop="url">敏捷开发</a></h1>
+                <a class="post-title-link" href="/2019/07/05/其他/敏捷开发/" itemprop="url">敏捷开发</a></h1>
         
 
         <div class="post-meta">
@@ -841,7 +841,7 @@
 </ol>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/05/敏捷开发/#more" rel="contents">
+            <a class="btn" href="/2019/07/05/其他/敏捷开发/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -892,7 +892,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/06/16/软件开发常用词汇/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/06/16/English/软件开发常用词汇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -911,7 +911,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/16/软件开发常用词汇/" itemprop="url">软件开发常用词汇</a></h1>
+                <a class="post-title-link" href="/2019/06/16/English/软件开发常用词汇/" itemprop="url">软件开发常用词汇</a></h1>
         
 
         <div class="post-meta">
@@ -989,7 +989,7 @@
 <p><a href="https://github.com/justxzm/Note/blob/master/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E8%AF%8D%E6%B1%873.docx" target="_blank" rel="noopener">软件开发常用词汇(三)</a>（点击下载word）</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/16/软件开发常用词汇/#more" rel="contents">
+            <a class="btn" href="/2019/06/16/English/软件开发常用词汇/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1040,7 +1040,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/23/模板模式/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/23/设计模式/模板模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1059,7 +1059,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/23/模板模式/" itemprop="url">模板模式</a></h1>
+                <a class="post-title-link" href="/2019/04/23/设计模式/模板模式/" itemprop="url">模板模式</a></h1>
         
 
         <div class="post-meta">
@@ -1148,7 +1148,7 @@
 <li><p>spring 中对Hibernate的支持，将一些已经定好的方法封装起来，比如开启事务、获取 Session、关闭 Session 等，程序员不重复写那些已经规范好的代码，直接丢一个实体就可以保存。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/23/模板模式/#more" rel="contents">
+            <a class="btn" href="/2019/04/23/设计模式/模板模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1199,7 +1199,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/23/代理模式/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/23/设计模式/代理模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1218,7 +1218,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/23/代理模式/" itemprop="url">代理模式</a></h1>
+                <a class="post-title-link" href="/2019/04/23/设计模式/代理模式/" itemprop="url">代理模式</a></h1>
         
 
         <div class="post-meta">
@@ -1311,7 +1311,7 @@
 <li><p>spring aop。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/23/代理模式/#more" rel="contents">
+            <a class="btn" href="/2019/04/23/设计模式/代理模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1362,7 +1362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/22/委托模式/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/04/22/设计模式/委托模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -1381,7 +1381,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/22/委托模式/" itemprop="url">委托模式</a></h1>
+                <a class="post-title-link" href="/2019/04/22/设计模式/委托模式/" itemprop="url">委托模式</a></h1>
         
 
         <div class="post-meta">
@@ -1461,7 +1461,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RealPrinter</span> </span>&#123; <span class="comment">// the "delegate"</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		System.out.print(<span class="string">"something"</span>); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Printer</span> </span>&#123; <span class="comment">// the "delegator"</span></span><br><span class="line">	RealPrinter p = <span class="keyword">new</span> RealPrinter(); <span class="comment">// create the delegate </span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		p.print(); <span class="comment">// delegation</span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="comment">// to the outside world it looks like Printer actually prints.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Printer printer = <span class="keyword">new</span> Printer();</span><br><span class="line">		printer.print();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/22/委托模式/#more" rel="contents">
+            <a class="btn" href="/2019/04/22/设计模式/委托模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1503,7 +1503,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1551,7 +1551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1562,7 +1562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1573,7 +1573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061006.png">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061007.png">
 <meta property="og:image" content="https://justxzm.github.io/images/数据库/2021061008.png">
-<meta property="og:updated_time" content="2021-06-12T10:10:32.806Z">
+<meta property="og:updated_time" content="2021-09-08T00:45:04.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Oracle查询优化改写》笔记（应用案例）">
 <meta name="twitter:description" content="《Oracle查询优化改写》笔记（基础语句） 《Oracle查询优化改写》笔记（高级查询） 提取不同位置字符串123456SELECT     ltrim(regexp_substr(v.msg,&apos;(\[)([^]]+)&apos;,1,1),&apos;[&apos;) 第一个串,    ltrim(regexp_substr(v.msg,&apos;(\[)([^]]+)&apos;,1,2),&apos;[&apos;) 第二个串,    ltrim(rege">
@@ -398,8 +398,8 @@
       
 
       
-        <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
-<p><a href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
+        <p><a href="https://justxzm.github.io/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
+<p><a href="https://justxzm.github.io/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
 <h3 id="提取不同位置字符串"><a href="#提取不同位置字符串" class="headerlink" title="提取不同位置字符串"></a>提取不同位置字符串</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">1</span>),<span class="string">'['</span>) 第一个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">2</span>),<span class="string">'['</span>) 第二个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">3</span>),<span class="string">'['</span>) 第三个串</span><br><span class="line">    msg</span><br><span class="line"><span class="keyword">FROM</span> v;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="查询字母数字混合字符串"><a href="#查询字母数字混合字符串" class="headerlink" title="查询字母数字混合字符串"></a>查询字母数字混合字符串</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> strings</span><br><span class="line"><span class="keyword">FROM</span> v</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">regexp_like</span>(v.strings,<span class="string">'([a-zA-Z].*[0-9]|[0-9].*[a-zA-Z])'</span>);</span><br></pre></td></tr></table></figure>

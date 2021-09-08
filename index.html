@@ -844,8 +844,8 @@
 
       
         
-          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
-<p><a href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
+          <p><a href="https://justxzm.github.io/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
+<p><a href="https://justxzm.github.io/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
 <h3 id="提取不同位置字符串"><a href="#提取不同位置字符串" class="headerlink" title="提取不同位置字符串"></a>提取不同位置字符串</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">1</span>),<span class="string">'['</span>) 第一个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">2</span>),<span class="string">'['</span>) 第二个串,</span><br><span class="line">    <span class="keyword">ltrim</span>(regexp_substr(v.msg,<span class="string">'(\[)([^]]+)'</span>,<span class="number">1</span>,<span class="number">3</span>),<span class="string">'['</span>) 第三个串</span><br><span class="line">    msg</span><br><span class="line"><span class="keyword">FROM</span> v;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">

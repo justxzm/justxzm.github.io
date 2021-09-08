@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（应用案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-06-10T01:21:29.220Z">
+<meta property="og:updated_time" content="2021-09-08T00:44:43.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Oracle查询优化改写》笔记（基础语句）">
 <meta name="twitter:description" content="《Oracle查询优化改写》笔记（高级查询） 《Oracle查询优化改写》笔记（应用案例） 单表查询空值转换为实际值相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。 1234SELECT coalesce(comm,0) FROM emp;SELECT COALESCE(C1,C2,C3,C4,C5,C6) AS c FROM V;# 若改用nvl，要嵌套很多层SE">
@@ -389,8 +389,8 @@
       
 
       
-        <p><a href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
-<p><a href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
+        <p><a href="https://justxzm.github.io/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
+<p><a href="https://justxzm.github.io/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
 <h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="空值转换为实际值"><a href="#空值转换为实际值" class="headerlink" title="空值转换为实际值"></a>空值转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">coalesce</span>(comm,<span class="number">0</span>) <span class="keyword">FROM</span> emp;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(C1,C2,C3,C4,C5,C6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br><span class="line"># 若改用nvl，要嵌套很多层</span><br><span class="line"><span class="keyword">SELECT</span> nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>

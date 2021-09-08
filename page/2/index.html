@@ -386,8 +386,8 @@
 
       
         
-          <p><a href="https://justxzm.github.io/2021/03/21/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
-<p><a href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
+          <p><a href="https://justxzm.github.io/2021/03/21/数据库/Oracle查询优化改写-笔记-基础语句/">《Oracle查询优化改写》笔记（基础语句）</a></p>
+<p><a href="https://justxzm.github.io/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
 <h2 id="范围处理"><a href="#范围处理" class="headerlink" title="范围处理"></a>范围处理</h2><h3 id="定位连续值的范围"><a href="#定位连续值的范围" class="headerlink" title="定位连续值的范围"></a>定位连续值的范围</h3><p>方法一：自关联</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> v1.proj_id <span class="keyword">AS</span> 工程号,v1.proj_start 开始日期,v1.proj_end 结束日期</span><br><span class="line"><span class="keyword">FROM</span> v v1,v v2</span><br><span class="line"><span class="keyword">WHERE</span> v2.proj_start = v1.proj_end</span><br></pre></td></tr></table></figure>
 <p>方法二：分析函数 lead() over()</p>
@@ -838,8 +838,8 @@
 
       
         
-          <p><a href="https://justxzm.github.io/2021/05/24/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
-<p><a href="https://justxzm.github.io/2021/06/08/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
+          <p><a href="https://justxzm.github.io/2021/05/24/数据库/Oracle查询优化改写-笔记-高级查询/">《Oracle查询优化改写》笔记（高级查询）</a></p>
+<p><a href="https://justxzm.github.io/2021/06/08/数据库/Oracle查询优化改写-笔记-应用案例/">《Oracle查询优化改写》笔记（应用案例）</a></p>
 <h2 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h2><h3 id="空值转换为实际值"><a href="#空值转换为实际值" class="headerlink" title="空值转换为实际值"></a>空值转换为实际值</h3><p>相对于nvl来说，coalesce支持多个参数，能很方便的返回第一个不为空的值。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">coalesce</span>(comm,<span class="number">0</span>) <span class="keyword">FROM</span> emp;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COALESCE</span>(C1,C2,C3,C4,C5,C6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br><span class="line"># 若改用nvl，要嵌套很多层</span><br><span class="line"><span class="keyword">SELECT</span> nvl(nvl(nvl(nvl(nvl(c1,c2),c3),c4),c5),c6) <span class="keyword">AS</span> c <span class="keyword">FROM</span> V;</span><br></pre></td></tr></table></figure>
           <!--noindex-->

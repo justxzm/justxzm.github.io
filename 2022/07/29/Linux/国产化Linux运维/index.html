@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="适配清单   服务器 曙光天阔 h620-g30s1     CPU 海光 c86 7280   操作系统 中科方德 sv1.16.2   Mariadb 10.3.17-MariaDB MariaDB Server   Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.">
+<meta name="description" content="软件清单   Mariadb 10.3.17-MariaDB MariaDB Server     Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.20.1-1.el7.ngx.x86_64.rpm">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="国产化Linux运维">
+<meta property="og:title" content="Linux运维">
 <meta property="og:url" content="https://justxzm.github.io/2022/07/29/Linux/国产化Linux运维/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="适配清单   服务器 曙光天阔 h620-g30s1     CPU 海光 c86 7280   操作系统 中科方德 sv1.16.2   Mariadb 10.3.17-MariaDB MariaDB Server   Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.">
+<meta property="og:description" content="软件清单   Mariadb 10.3.17-MariaDB MariaDB Server     Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.20.1-1.el7.ngx.x86_64.rpm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-07-29T14:40:51.354Z">
+<meta property="og:updated_time" content="2022-07-29T14:45:10.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="国产化Linux运维">
-<meta name="twitter:description" content="适配清单   服务器 曙光天阔 h620-g30s1     CPU 海光 c86 7280   操作系统 中科方德 sv1.16.2   Mariadb 10.3.17-MariaDB MariaDB Server   Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.">
+<meta name="twitter:title" content="Linux运维">
+<meta name="twitter:description" content="软件清单   Mariadb 10.3.17-MariaDB MariaDB Server     Redis redis-3.2.12-2.el7.x86_64.rpm   Nacos nacos-1.4.2-1.el7.x86_64.rpm   Nginx nginx-1.20.1-1.el7.ngx.x86_64.rpm">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>国产化Linux运维 | JUST DO IT</title>
+  <title>Linux运维 | JUST DO IT</title>
   
 
 
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">国产化Linux运维</h1>
+          <h1 class="post-title" itemprop="name headline">Linux运维</h1>
         
 
         <div class="post-meta">
@@ -389,26 +389,14 @@
       
 
       
-        <h2 id="适配清单"><a href="#适配清单" class="headerlink" title="适配清单"></a>适配清单</h2><table>
+        <h2 id="软件清单"><a href="#软件清单" class="headerlink" title="软件清单"></a>软件清单</h2><table>
 <thead>
 <tr>
-<th>服务器</th>
-<th>曙光天阔 h620-g30s1</th>
+<th>Mariadb</th>
+<th>10.3.17-MariaDB MariaDB Server</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>CPU</td>
-<td>海光 c86 7280</td>
-</tr>
-<tr>
-<td>操作系统</td>
-<td>中科方德 sv1.16.2</td>
-</tr>
-<tr>
-<td>Mariadb</td>
-<td>10.3.17-MariaDB MariaDB Server</td>
-</tr>
 <tr>
 <td>Redis</td>
 <td>redis-3.2.12-2.el7.x86_64.rpm</td>
@@ -610,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配清单"><span class="nav-number">1.</span> <span class="nav-text">适配清单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPM打包"><span class="nav-number">2.</span> <span class="nav-text">RPM打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MariaDB运维"><span class="nav-number">3.</span> <span class="nav-text">MariaDB运维</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忘记密码"><span class="nav-number">3.1.</span> <span class="nav-text">忘记密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">3.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source导入很慢"><span class="nav-number">3.3.</span> <span class="nav-text">source导入很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略大小写敏感"><span class="nav-number">3.4.</span> <span class="nav-text">忽略大小写敏感</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">4.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他命令"><span class="nav-number">5.</span> <span class="nav-text">其他命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件清单"><span class="nav-number">1.</span> <span class="nav-text">软件清单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPM打包"><span class="nav-number">2.</span> <span class="nav-text">RPM打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MariaDB运维"><span class="nav-number">3.</span> <span class="nav-text">MariaDB运维</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忘记密码"><span class="nav-number">3.1.</span> <span class="nav-text">忘记密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">3.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source导入很慢"><span class="nav-number">3.3.</span> <span class="nav-text">source导入很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略大小写敏感"><span class="nav-number">3.4.</span> <span class="nav-text">忽略大小写敏感</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">4.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他命令"><span class="nav-number">5.</span> <span class="nav-text">其他命令</span></a></li></ol></div>
             
 
           </div>

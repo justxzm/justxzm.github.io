@@ -294,6 +294,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/23/数据库/DBLINK同步远程数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/数据库/DBLINK同步远程数据/" itemprop="url">DBLINK同步远程数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T19:20:41+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="创建DBLINK"><a href="#创建DBLINK" class="headerlink" title="创建DBLINK"></a>创建DBLINK</h3><pre><code>create database link PMS805LINK connect to PMS805 identified by PMS805 using &apos;
+(DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.43.51)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = orcl)
+    )
+)&apos;;
+
+select * from all_db_links;
+select * from LINKTEST01@PMS805LINK;
+select * from LINKTEST01@PMS805LINK.REGRESS.RDBMS.DEV.US.ORACLE.COM;
+drop database link  PMS805LINK;
+</code></pre><h3 id="创建表-视图-结构"><a href="#创建表-视图-结构" class="headerlink" title="创建表(视图)结构"></a>创建表(视图)结构</h3><pre><code>create table(view) LINKTEST02 as select * from LINKTEST01@PMS805LINK where 1=2;
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/23/数据库/DBLINK同步远程数据/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/10/21/Git/Windows局域网内建立Git远程仓库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1328,158 +1489,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2018/05/27/Java深入/IoC-and-DI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Try.Catch">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JUST DO IT">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/Java深入/IoC-and-DI/" itemprop="url">IoC and DI</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T20:57:24+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java深入/" itemprop="url" rel="index">
-                    <span itemprop="name">Java深入</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>DI是IoC的一种特定形态，是Java开发主流中一个重要的编程范式（思维方式），是指寻找依赖项的过程不在当前执行代码的直接控制之下。简单的说，使用DI技术可以让对象从别处获得依赖项，而不是由它自己来构造。Java中为DI提供的容器有Guice、Spring、PicoContainer等。DI的好处有：松耦合、易测试、强内聚、可重用、更轻盈的代码。Java DI的官方标准是JSR-330。 </p>
-<p>使用IoC范式编程时，程序逻辑的流程通常是由一个功能中心来控制的。而使用IoC，这个“中心控制”的设计原则会被反转过来。调用者的代码处理程序的执行顺序，而程序逻辑则被封装在接受调用的子流程中。通过一个例子来理解IoC：</p>
-<blockquote>
-<p>在GUI应用中，GUI框架负责控制调用事件处理器，而不是应用逻辑。当用户点击了一个动作，比如“向前”，GUI框架会自动调用 对应的事件处理器，而应用逻辑可以把重点放在处理动作上。程序的控制被反转了，将控制权由应用逻辑转移到了GUI框架。</p>
-</blockquote>
-<p>IoC也被称为好莱坞原则：会有另一段代码拥有最初的控制线程，并且由它来调用你的代码，而不是由你的代码调用它。（<code>不要给我们打电话，我们会打给你。——好莱坞原则</code>）</p>
-<p>IoC有多种不同的实现，包括工厂模式、服务器定位模式，当然还有依赖注入。<strong>需要注意的是，DI并不等于IoC，DI只是IoC的一种实现方式，IoC是一种机制。</strong></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/Java深入/IoC-and-DI/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1532,7 +1541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Oracle,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="归档开启情况判断 通用方法： 1SQL&amp;gt; SELECT log_mode from v$database;  sys用户： 1SQL&amp;gt; archive log list;   如何开启日志归档 启用归档日志前要先停止数据库 1SQL&amp;gt; shutdown immediate;  开启数据库至mount状态(打开控制文件，不打开数据文件) 1SQL&amp;gt; startup mount">
+<meta name="keywords" content="Oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle归档日志启用与维护">
+<meta property="og:url" content="https://justxzm.github.io/2019/10/09/数据库/Oracle归档日志启用与维护/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="归档开启情况判断 通用方法： 1SQL&amp;gt; SELECT log_mode from v$database;  sys用户： 1SQL&amp;gt; archive log list;   如何开启日志归档 启用归档日志前要先停止数据库 1SQL&amp;gt; shutdown immediate;  开启数据库至mount状态(打开控制文件，不打开数据文件) 1SQL&amp;gt; startup mount">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-29T08:48:43.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle归档日志启用与维护">
+<meta name="twitter:description" content="归档开启情况判断 通用方法： 1SQL&amp;gt; SELECT log_mode from v$database;  sys用户： 1SQL&amp;gt; archive log list;   如何开启日志归档 启用归档日志前要先停止数据库 1SQL&amp;gt; shutdown immediate;  开启数据库至mount状态(打开控制文件，不打开数据文件) 1SQL&amp;gt; startup mount">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2019/10/09/数据库/Oracle归档日志启用与维护/">
+
+
+
+
+
+  <title>Oracle归档日志启用与维护 | JUST DO IT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2019/10/09/数据库/Oracle归档日志启用与维护/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Oracle归档日志启用与维护</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-09T14:09:26+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="归档开启情况判断"><a href="#归档开启情况判断" class="headerlink" title="归档开启情况判断"></a>归档开启情况判断</h1><ul>
+<li><p>通用方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT log_mode from v$database;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sys用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; archive log list;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="如何开启日志归档"><a href="#如何开启日志归档" class="headerlink" title="如何开启日志归档"></a>如何开启日志归档</h1><ol>
+<li><p>启用归档日志前要先停止数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; shutdown immediate;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启数据库至mount状态(打开控制文件，不打开数据文件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; startup mount;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+<li><p>改变日志模式</p>
+<ul>
+<li><p>启用数据库归档</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter database archivelog;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭归档</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter database noarchivelog;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>打开数据库（将数据文件打开）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter database open;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证当前日志模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; archive log list;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="归档启动后的设置"><a href="#归档启动后的设置" class="headerlink" title="归档启动后的设置"></a>归档启动后的设置</h1><ul>
+<li><p>归档进程设置：</p>
+<ul>
+<li><p>查看</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; show parameter log_archive_max_processes;</span><br><span class="line">NAME                                 TYPE        VALUE</span><br><span class="line">log_archive_max_processes            integer     4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system set log_archive_max_processes=5;</span><br><span class="line">System altered</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="归档占用情况判断"><a href="#归档占用情况判断" class="headerlink" title="归档占用情况判断"></a>归档占用情况判断</h1><ul>
+<li><p>查看闪回空间已经占用情况</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 如果空间使用率99%以上，证明归档空间已经满了，需要清理。</span><br><span class="line">SQL&gt; select * from V$FLASH_RECOVERY_AREA_USAGE;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看归档日志文件数量</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select  * from v$recovery_file_dest;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当出现<strong>ORA-00257: archiver error. Connect internal only, until freed</strong>错误连不上数据库时，如果数据库归档目标为USE_DB_RECOVERY_FILE_DEST且DB_RECOVERY_FILE_DEST目录为默认闪回空间目录时。</p>
+</li>
+</ul>
+<h1 id="归档高占用处理方法"><a href="#归档高占用处理方法" class="headerlink" title="归档高占用处理方法"></a>归档高占用处理方法</h1><h2 id="归档路径设置"><a href="#归档路径设置" class="headerlink" title="归档路径设置"></a>归档路径设置</h2><h3 id="单一归档路径"><a href="#单一归档路径" class="headerlink" title="单一归档路径"></a>单一归档路径</h3><ul>
+<li><p>如果使用<strong>db_recovery_file_dest</strong>参数设置单一的归档目录，默认使用<strong>Fast Recovery Area闪回恢复区</strong>存放归档数据。</p>
+<ul>
+<li><p>需要注意该区域有大小限制，建议将大小调大：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system set db_recovery_file_dest_size=8G scope=both;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改闪回恢复区路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system set db_recovery_file_dest=&apos;location=C:\app\Administrator\oracle_log&apos; scope=both;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看闪回归档存储路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; show parameter db_recovery_file_dest;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>也可<strong>手工配置log_archive_dest初始化参数</strong>，使用本地路径存放归档日志，这里给出的是本地文件系统例子，可自行测试ASM磁盘组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 需要将DB_RECOVERY_FILE_DEST和LOG_ARCHIVE_DEST_n参数置空参数置空</span><br><span class="line">SQL&gt; alter system set db_recovery_file_dest=&apos;&apos;;</span><br><span class="line">SQL&gt; alter system set log_archive_dest_1 =&apos;&apos;;</span><br><span class="line"># 然后设置log_archive_dest参数</span><br><span class="line">SQL&gt; alter system set log_archive_dest =&quot;C:\log&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="两路归档路径"><a href="#两路归档路径" class="headerlink" title="两路归档路径"></a>两路归档路径</h3><p>配置<strong>log_archive_dest</strong>和<strong>log_archive_duplex_dest</strong>参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置log_archive_duplex_dest参数路径</span><br><span class="line">SQL&gt; alter system set log_archive_duplex_dest=&apos;C:\log&apos;;</span><br><span class="line"># 切换日志触发写归档日志</span><br><span class="line">SQL&gt; alter system switch logfile;</span><br></pre></td></tr></table></figure>
+<p>查看新生成的归档日志文件，可以看到新生成的归档大小和文件名一致。两份归档日志互为冗余。</p>
+<h3 id="多路归档路径"><a href="#多路归档路径" class="headerlink" title="多路归档路径"></a>多路归档路径</h3><p>使用<strong>log_archive_dest_n</strong>参数，其中，<strong>n的取值为1到31的整数</strong>，也就是说，可以指定1到31个独立的路径作为归档日志的路径。</p>
+<p> <strong>log_archive_dest_n</strong>参数的取值可以选择<strong>LOCATION</strong>或<strong>SERVIDE</strong>关键字：</p>
+<ul>
+<li>如果使用LOCATION关键字，可以选择本地文件系统、ASM磁盘组或<strong>USE_DB_RECOVERY_FILE_DEST代表的闪回恢复区</strong>；（在使用Fast Recovery Area归档的情况下，LOG_ARCHIVE_DEST_1的默认值为USE_DB_RECOVERY_FILE_DEST。）</li>
+<li>如果使用SERVICE关键字，可以选择备库的网络连接标识符连接备份数据库。</li>
+</ul>
+<ol>
+<li><p>需要将LOG_ARCHIVE_DEST和LOG_ARCHIVE_DUPLEX_DEST参数置空：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system set log_archive_duplex_dest='';</span><br><span class="line">SQL&gt; alter system set log_archive_dest='';</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改多路归档日志路径： </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system set log_archive_dest_1='location=C:\log\arch1' scope=spfile; </span><br><span class="line">SQL&gt; alter system set log_archive_dest_2='location=C:\log\arch2' scope=spfile;</span><br><span class="line">SQL&gt; alter system set log_archive_dest_3='location=C:\log\arch3' scope=spfile;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看归档文件目录：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; show parameter LOG_ARCHIVE_DEST_;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再次查看：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; archive log list;</span><br><span class="line">数据库日志模式		  存档模式</span><br><span class="line">自动存档			启用</span><br><span class="line">存档终点			C:\orclBackUp\archive01</span><br><span class="line">最早的联机日志序列	18</span><br><span class="line">下一个存档日志序列	20</span><br><span class="line">当前日志序列		  20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过切换日志，查看归档路径下是否有归档日志产生来验证归档路径设置是否正确，切换日志命令如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter system switch logfile;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看新生成的归档日志文件，显然新生成的归档大小和文件名一致。两份归档日志互为冗余。</p>
+</li>
+</ol>
+<h3 id="归档路径参数区别"><a href="#归档路径参数区别" class="headerlink" title="归档路径参数区别"></a>归档路径参数区别</h3><ul>
+<li>DB_RECOVERY_FILE_DEST：闪回恢复区路径</li>
+<li>LOG_ARCHIVE_DEST：指定归档文件存放的路径，该路径只能是本地磁盘，默认为’’。</li>
+<li>LOG_ARCHIVE_DEST_n：指定归档文件存放的路径，Oracle最多支持把日志文件归档到31个地方，n从1到31。归档地址可以为本地磁盘，或者网络设备。</li>
+</ul>
+<p><strong>三个参数区别如下：</strong></p>
+<ol>
+<li><p>如果设置了DB_RECOVERY_FILE_DEST，就不能设置LOG_ARCHIVE_DEST，<strong>默认的归档日志存放于DB_RECOVERY_FILE_DEST指定的闪回恢复区中</strong>。</p>
+<p>可以设置LOG_ARCHIVE_DEST_n，如果这样，那么归档日志不再存放于DB_RECOVERY_FILE_DEST中，而是存放于LOG_ARCHIVE_DEST_n设置的目录中。</p>
+<p>如果<strong>想要归档日志继续存放在DB_RECOVERY_FILE_DEST中</strong>，可以通过如下命令：<strong>alter system set log_archive_dest_1=’location=USE_DB_RECOVERY_FILE_DEST’</strong>。</p>
+</li>
+<li><p>如果设置了LOG_ARCHIVE_DEST，就不能设置LOG_ARCHIVE_DEST_n和DB_RECOVERY_FILE_DEST。</p>
+<p>如果设置了LOG_ARCHIVE_DEST_n，就不能设置LOG_ARCHIVE_DEST。</p>
+<p>也就是说，<strong>LOG_ARCHIVE_DEST参数和DB_RECOVERY_FILE_DEST、LOG_ARCHIVE_DEST_n都不共存。而DB_RECOVERY_FILE_DEST和LOG_ARCHIVE_DEST_n可以共存</strong>。</p>
+</li>
+<li><p><strong>LOG_ARCHIVE_DEST只能与LOG_ARCHIVE_DUPLEX_DEST共存</strong>。这样可以设置两个归档路径。LOG_ARCHIVE_DEST设置一个<strong>主归档路径</strong>，LOG_ARCHIVE_DUPLEX_DEST设置一个从归档路径。所有归档路径必须是本地的。</p>
+</li>
+<li><p>如果LOG_ARCHIVE_DEST_n设置的<strong>路径不正确</strong>，那么Oracle<strong>会在设置的上一级目录</strong>归档。比如设置LOG_ARCHIVE_DEST_1=’location=C:\archive1’，而OS中并没有archive1这个目录，那么Oracle会在C盘归档。</p>
+</li>
+</ol>
+<h2 id="归档日志清理"><a href="#归档日志清理" class="headerlink" title="归档日志清理"></a>归档日志清理</h2><ol>
+<li><p>cmd进入oracle的rman模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMAN&gt; rman target  /</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示所有的日志及日志地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMAN&gt; list archivelog all;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以把无效的expired的archivelog标出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMAN&gt; crosscheck archivelog all;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除所有的无效日志</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMAN&gt; delete expired archivelog all;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用删除语句进行删除：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 其中sysdate-7代表保留近七天的归档日志。</span><br><span class="line"># 如需保留近十天的，则需将sysdate-7修改为sysdate-10即可。</span><br><span class="line">RMAN&gt; delete archivelog until time 'sysdate-7';</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示所有的日志及日志地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RMAN&gt; list archivelog all;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看归档日志文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select name from v$archived_log;</span><br><span class="line">或：</span><br><span class="line">SQL&gt; select substr(t.NAME,1) NAME,ROUND(sum(t.BLOCKS*t.BLOCK_SIZE)/1024/1024) TOTAL_MB from v$archived_log t where t.DELETED='NO' group by substr(t.NAME,1);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="归档日志清理脚本"><a href="#归档日志清理脚本" class="headerlink" title="归档日志清理脚本"></a>归档日志清理脚本</h2><p><strong>clear.bat</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rman target / @&quot;D:\PMSALEX\clear.txt&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>clear.txt</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete archivelog until time &apos;sysdate-10&apos;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oracle/" rel="tag"># Oracle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/29/Java并发/Java并发总结-并发容器和框架/" rel="next" title="Java并发总结-并发容器和框架">
+                <i class="fa fa-chevron-left"></i> Java并发总结-并发容器和框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/12/Java并发/Java并发总结-原子操作类/" rel="prev" title="Java并发总结-原子操作类">
+                Java并发总结-原子操作类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#归档开启情况判断"><span class="nav-number">1.</span> <span class="nav-text">归档开启情况判断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何开启日志归档"><span class="nav-number">2.</span> <span class="nav-text">如何开启日志归档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归档启动后的设置"><span class="nav-number">3.</span> <span class="nav-text">归档启动后的设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归档占用情况判断"><span class="nav-number">4.</span> <span class="nav-text">归档占用情况判断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归档高占用处理方法"><span class="nav-number">5.</span> <span class="nav-text">归档高占用处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#归档路径设置"><span class="nav-number">5.1.</span> <span class="nav-text">归档路径设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一归档路径"><span class="nav-number">5.1.1.</span> <span class="nav-text">单一归档路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两路归档路径"><span class="nav-number">5.1.2.</span> <span class="nav-text">两路归档路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多路归档路径"><span class="nav-number">5.1.3.</span> <span class="nav-text">多路归档路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归档路径参数区别"><span class="nav-number">5.1.4.</span> <span class="nav-text">归档路径参数区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归档日志清理"><span class="nav-number">5.2.</span> <span class="nav-text">归档日志清理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归档日志清理脚本"><span class="nav-number">5.3.</span> <span class="nav-text">归档日志清理脚本</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

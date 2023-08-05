@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="事务,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文链接 业务场景 希望将步骤 1 和步骤 2 并行执行，  然后确保步骤 1 和步骤 2 执行成功后，再执行步骤 3，  等到步骤 3 执行完毕后，再提交全部事务   12345678public void removeAuthorityModuleSeq(Integer authorityModuleId, IAuthorityService iAuthorityService, IRoleA">
+<meta name="keywords" content="事务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring多线程事务一致性">
+<meta property="og:url" content="https://justxzm.github.io/2023/08/05/Spring/Spring多线程事务一致性/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="原文链接 业务场景 希望将步骤 1 和步骤 2 并行执行，  然后确保步骤 1 和步骤 2 执行成功后，再执行步骤 3，  等到步骤 3 执行完毕后，再提交全部事务   12345678public void removeAuthorityModuleSeq(Integer authorityModuleId, IAuthorityService iAuthorityService, IRoleA">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080501.png">
+<meta property="og:updated_time" content="2023-08-05T03:53:48.883Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring多线程事务一致性">
+<meta name="twitter:description" content="原文链接 业务场景 希望将步骤 1 和步骤 2 并行执行，  然后确保步骤 1 和步骤 2 执行成功后，再执行步骤 3，  等到步骤 3 执行完毕后，再提交全部事务   12345678public void removeAuthorityModuleSeq(Integer authorityModuleId, IAuthorityService iAuthorityService, IRoleA">
+<meta name="twitter:image" content="https://justxzm.github.io/images/Spring/2023080501.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2023/08/05/Spring/Spring多线程事务一致性/">
+
+
+
+
+
+  <title>Spring多线程事务一致性 | JUST DO IT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2023/08/05/Spring/Spring多线程事务一致性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring多线程事务一致性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-05T11:02:16+08:00">
+                2023-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java并发/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651526388&amp;idx=2&amp;sn=eaa6b49088831afe05608955163b1764&amp;chksm=bd24788b8a53f19d3a413c61c46f99b35c439538d0bf21ea41d7538203fa74c338ed44418f15&amp;mpshare=1&amp;scene=24&amp;srcid=0629udujmc3TkgWGr0WMSkbV&amp;sharer_sharetime=1688013966873&amp;sharer_shareid=ad6f4b8fc359d7cb461d2dc3c182f7f5#rd" target="_blank" rel="noopener">原文链接</a></p>
+<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><ul>
+<li><p>希望将步骤 1 和步骤 2 并行执行，</p>
+</li>
+<li><p>然后确保步骤 1 和步骤 2 执行成功后，再执行步骤 3，</p>
+</li>
+<li><p>等到步骤 3 执行完毕后，再提交全部事务</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAuthorityModuleSeq</span><span class="params">(Integer authorityModuleId, IAuthorityService iAuthorityService, IRoleAuthorityService iRoleAuthorityService)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1.查询出当前资源模块下所有资源,查询出来后进行删除</span></span><br><span class="line">    deleteAuthoritiesOfCurrentAuthorityModule(authorityModuleId, iAuthorityService, iRoleAuthorityService);</span><br><span class="line">    <span class="comment">//2.查询出当前资源模块下所有子模块,递归查询,当删除完所有子模块下的资源后,再删除所有子模块,最终删除当前资源模块</span></span><br><span class="line">    deleteSonAuthorityModuleUnderCurrentAuthorityModule(authorityModuleId, iAuthorityService, iRoleAuthorityService);</span><br><span class="line">    <span class="comment">//3.删除当前资源模块</span></span><br><span class="line">    removeById(authorityModuleId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="解决异步执行"><a href="#解决异步执行" class="headerlink" title="解决异步执行"></a>解决异步执行</h2><h3 id="Async"><a href="#Async" class="headerlink" title="@Async"></a>@Async</h3><p>Spring 提供的异步执行任务能力并不足以解决当前的需求。</p>
+<p>@Async 注解原理简单来说，就是扫描 IOC 中的 bean，给方法上标注有 @Async 注解的 bean 进行代理，代理的核心是添加一个 MethodInterceptor，即AsyncExecutionInterceptor。该方法拦截器负责将方法真正的执行包装为任务，放入线程池中执行。</p>
+<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAuthorityModuleSeq</span><span class="params">(Integer authorityModuleId, IAuthorityService iAuthorityService, IRoleAuthorityService iRoleAuthorityService)</span> </span>&#123;</span><br><span class="line">    CompletableFuture.runAsync(() - &gt; &#123;</span><br><span class="line">        <span class="comment">//两个并行执行的任务</span></span><br><span class="line">        CompletableFuture &lt; Void &gt; future1 = CompletableFuture.runAsync(() - &gt;</span><br><span class="line">            deleteAuthoritiesOfCurrentAuthorityModule(authorityModuleId, iAuthorityService, iRoleAuthorityService), executor);</span><br><span class="line">        CompletableFuture &lt; Void &gt; future2 = CompletableFuture.runAsync(() - &gt;</span><br><span class="line">            deleteSonAuthorityModuleUnderCurrentAuthorityModule(authorityModuleId, iAuthorityService, iRoleAuthorityService), executor);</span><br><span class="line">        <span class="comment">//等待两个并行任务执行完后,再执行最后一个步骤</span></span><br><span class="line">        CompletableFuture.allOf(future1, future2).thenRun(() - &gt; removeById(authorityModuleId));</span><br><span class="line">    &#125;, executor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多线程事务一致性"><a href="#多线程事务一致性" class="headerlink" title="多线程事务一致性"></a>多线程事务一致性</h2><p>事务管理大体分为三个流程： 事务创建、事务执行、事务结束。</p>
+<p>事务创建涉及到一些属性的配置，例如：</p>
+<ul>
+<li><p>事务的隔离级别</p>
+</li>
+<li><p>事务的传播行为</p>
+</li>
+<li><p>事务的超时时间</p>
+</li>
+<li><p>是否为只读事务</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<p>由于涉及属性颇多，并且后期还有可能进行扩展，因此必须通过一个类来封装这些属性，在 Spring 中对应 TransactionDefinition。</p>
+<p>有了事务相关属性定义后，我们就可以利用 TransactionDefinition 来创建一个事务了。</p>
+<p>在 Spring 中局部事务由 PlatformTransactionManager 负责管理，创建事务也是由 PlatformTransactionManager 负责提供。</p>
+<p>如果我们希望追踪事务的状态，例如事务已完成,事务回滚等，那么就需要一个事务状态类贯穿当前事务的执行流程，在 Spring 中由 TransactionStatus 负责完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TransactionStatus <span class="title">getTransaction</span><span class="params">(@Nullable TransactionDefinition definition)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> TransactionException</span>;</span><br></pre></td></tr></table></figure>
+<p>对于常见的数据源而言，通常需要记录的事务状态有如下几点：</p>
+<ul>
+<li><p>当前事务是否是新事务</p>
+</li>
+<li><p>当前事务是否结束</p>
+</li>
+<li><p>当前事务是否需要回滚（通过标记来判断，因此我也可以在业务流程中手动设置标记为 true 来让事务在没有发生异常的情况下进行回滚）</p>
+</li>
+<li><p>当前事务是否设置了回滚点（savePoint）</p>
+</li>
+</ul>
+<p>事务的执行过程就是具体业务代码的执行流程。</p>
+<p>事务的结束分为两种情况：需要进行事务回滚或者事务正常提交，如果是事务回滚，还需要判断 TransactionStatus 中的 savePoint 是否被设置了。</p>
+<h3 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h3><p>声明式事务就是使用我们常见的 @Transactional 注解完成的。声明式事务优点就在于让事务代码与业务代码解耦，通过 Spring 中提供的声明式事务使用，我们也可以发觉我们只需要编写业务代码即可。而事务的管理基本不需要我们操心，Spring 帮我们自动完成了。</p>
+<p>之所以那么神奇，本质还是依靠 Spring 框架提供的 Bean 生命周期相关回调接口和 AOP 结合完成的，简述如下:</p>
+<ul>
+<li><p>通过自动代理创建器依次尝试为每个放入容器中的 bean 尝试进行代理；</p>
+</li>
+<li><p>尝试进行代理的过程对于事务管理来说，就是利用事务管理涉及到的增强器 advisor，即 TransactionAttributeSourceAdvisor；</p>
+</li>
+<li><p>判断当前增强器是否能够应用与当前 bean 上，怎么判断呢？ 当然是 advisor 内部的 pointCut；</p>
+</li>
+<li><p>如果能够应用，那么好，为当前 bean 创建代理对象返回，并且往代理对象内部添加一个 TransactionInterceptor 拦截器。</p>
+</li>
+<li><p>此时我们再从容器中获取，拿到的就是代理对象了，当我们调用代理对象的方法时，首先要经过代理对象内部拦截器链的处理，处理完后，最终才会调用被代理对象的方法（这里其实就是责任链模式的应用）。</p>
+</li>
+</ul>
+<p>对于被事务增强器 TransactionAttributeSourceAdvisor 代理的 bean 而言，代理对象内部会存在一个 TransactionInterceptor，该拦截器内部构造了一个事务执行的模板流程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">invokeWithinTransaction</span><span class="params">(Method method, @Nullable Class &lt;&lt; ? &gt; targetClass,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">final</span> InvocationCallback invocation)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//TransactionAttributeSource内部保存着当前类某个方法对应的TransactionAttribute---事务属性源</span></span><br><span class="line">        <span class="comment">//可以看做是一个存放TransactionAttribute与method方法映射的池子</span></span><br><span class="line">        TransactionAttributeSource tas = getTransactionAttributeSource();</span><br><span class="line">        <span class="comment">//获取当前事务方法对应的TransactionAttribute</span></span><br><span class="line">        <span class="keyword">final</span> TransactionAttribute txAttr = (tas != <span class="keyword">null</span> ? tas.getTransactionAttribute(method, targetClass) : <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">//定位TransactionManager</span></span><br><span class="line">        <span class="keyword">final</span> TransactionManager tm = determineTransactionManager(txAttr);</span><br><span class="line">        .....</span><br><span class="line">        <span class="comment">//类型转换为局部事务管理器</span></span><br><span class="line">        PlatformTransactionManager ptm = asPlatformTransactionManager(tm);</span><br><span class="line">        <span class="keyword">final</span> String joinpointIdentification = methodIdentification(method, targetClass, txAttr);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (txAttr == <span class="keyword">null</span> || !(ptm <span class="keyword">instanceof</span> CallbackPreferringPlatformTransactionManager)) &#123;</span><br><span class="line">            <span class="comment">//TransactionManager根据TransactionAttribute创建事务后返回</span></span><br><span class="line">            <span class="comment">//TransactionInfo封装了当前事务的信息--包括TransactionStatus</span></span><br><span class="line">            TransactionInfo txInfo = createTransactionIfNecessary(ptm, txAttr, joinpointIdentification);</span><br><span class="line"></span><br><span class="line">            Object retVal;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//继续执行过滤器链---过滤链最终会调用目标方法</span></span><br><span class="line">                <span class="comment">//因此可以理解为这里是调用目标方法</span></span><br><span class="line">                retVal = invocation.proceedWithInvocation();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">                <span class="comment">//目标方法抛出异常则进行判断是否需要回滚</span></span><br><span class="line">                completeTransactionAfterThrowing(txInfo, ex);</span><br><span class="line">                <span class="keyword">throw</span> ex;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">//清除当前事务信息</span></span><br><span class="line">                cleanupTransactionInfo(txInfo);</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">            <span class="comment">//正常返回,那么就正常提交事务呗(当然还是需要判断TransactionStatus状态先)</span></span><br><span class="line">            commitTransactionAfterReturning(txInfo);</span><br><span class="line">            <span class="keyword">return</span> retVal;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<h3 id="编程式事务"><a href="#编程式事务" class="headerlink" title="编程式事务"></a>编程式事务</h3><p>在前面，我们已经解决了任务异步并行执行的难题，下面我们要解决如何确保 Spring 在多线程环境下也能保持事务一致性。</p>
+<p>声明式事务并不能解决我们当前的问题，那就只能求助于编程式事务了。</p>
+<p>那么编程式事务是什么样子呢？</p>
+<p>其实上面 TransactionInterceptor 给出的那套模板流程，就是编程式事务使用的模范案例，简化上面的模板流程，使用如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        test();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DataSource dataSource = getDS();</span><br><span class="line">        JdbcTransactionManager jtm = <span class="keyword">new</span> JdbcTransactionManager(dataSource);</span><br><span class="line">        <span class="comment">//JdbcTransactionManager根据TransactionDefinition信息来进行一些连接属性的设置</span></span><br><span class="line">        <span class="comment">//包括隔离级别和传播行为等</span></span><br><span class="line">        DefaultTransactionDefinition transactionDef = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br><span class="line">        <span class="comment">//开启一个新事务---此时autocommit已经被设置为了false,并且当前没有事务,这里创建的是一个新事务</span></span><br><span class="line">        TransactionStatus ts = jtm.getTransaction(transactionDef);</span><br><span class="line">        <span class="comment">//进行业务逻辑操作</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            update(dataSource);</span><br><span class="line">            jtm.commit(ts);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            jtm.rollback(ts);</span><br><span class="line">            System.out.println(<span class="string">"发生异常,我已回滚"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(DataSource dataSource)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        JdbcTemplate jt = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line">        jt.setDataSource(dataSource);</span><br><span class="line">        jt.update(<span class="string">"UPDATE Department SET Dname=\"大忽悠\" WHERE id=6"</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"我是来捣乱的"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编程式事务解决问题"><a href="#编程式事务解决问题" class="headerlink" title="编程式事务解决问题"></a>编程式事务解决问题</h2><p>下面我给出一份看似正确的解决方案：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.datasource.DataSourceTransactionManager;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.TransactionStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.support.DefaultTransactionDefinition;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CompletableFuture;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicBoolean;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiplyThreadTransactionManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果是多数据源的情况下,需要指定具体是哪一个数据源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 执行的是无返回值的任务</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tasks 异步执行的任务列表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> executor 异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runAsyncButWaitUntilAllDown</span><span class="params">(List &lt; Runnable &gt; tasks, Executor executor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"线程池不能为空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        DataSourceTransactionManager transactionManager = getTransactionManager();</span><br><span class="line">        <span class="comment">//是否发生了异常</span></span><br><span class="line">        AtomicBoolean ex = <span class="keyword">new</span> AtomicBoolean();</span><br><span class="line"></span><br><span class="line">        List &lt; CompletableFuture &gt; taskFutureList = <span class="keyword">new</span> ArrayList &lt; &gt; (tasks.size());</span><br><span class="line">        List &lt; TransactionStatus &gt; transactionStatusList = <span class="keyword">new</span> ArrayList &lt; &gt; (tasks.size());</span><br><span class="line"></span><br><span class="line">        tasks.forEach(task - &gt; &#123;</span><br><span class="line">            taskFutureList.add(CompletableFuture.runAsync(</span><br><span class="line">                () - &gt; &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="comment">//1.开启新事务</span></span><br><span class="line">                        transactionStatusList.add(openNewTransaction(transactionManager));</span><br><span class="line">                        <span class="comment">//2.异步任务执行</span></span><br><span class="line">                        task.run();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">                        <span class="comment">//打印异常</span></span><br><span class="line">                        throwable.printStackTrace();</span><br><span class="line">                        <span class="comment">//其中某个异步任务执行出现了异常,进行标记</span></span><br><span class="line">                        ex.set(Boolean.TRUE);</span><br><span class="line">                        <span class="comment">//其他任务还没执行的不需要执行了</span></span><br><span class="line">                        taskFutureList.forEach(completableFuture - &gt; completableFuture.cancel(<span class="keyword">true</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, executor));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//阻塞直到所有任务全部执行结束---如果有任务被取消,这里会抛出异常滴,需要捕获</span></span><br><span class="line">            CompletableFuture.allOf(taskFutureList.toArray(<span class="keyword">new</span> CompletableFuture[] &#123;&#125;)).get();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//发生了异常则进行回滚操作,否则提交</span></span><br><span class="line">        <span class="keyword">if</span> (ex.get()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"发生异常,全部事务回滚"</span>);</span><br><span class="line">            transactionStatusList.forEach(transactionManager::rollback);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"全部事务正常提交"</span>);</span><br><span class="line">            transactionStatusList.forEach(transactionManager::commit);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TransactionStatus <span class="title">openNewTransaction</span><span class="params">(DataSourceTransactionManager transactionManager)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//JdbcTransactionManager根据TransactionDefinition信息来进行一些连接属性的设置</span></span><br><span class="line">        <span class="comment">//包括隔离级别和传播行为等</span></span><br><span class="line">        DefaultTransactionDefinition transactionDef = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br><span class="line">        <span class="comment">//开启一个新事务---此时autocommit已经被设置为了false,并且当前没有事务,这里创建的是一个新事务</span></span><br><span class="line">        <span class="keyword">return</span> transactionManager.getTransaction(transactionDef);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> DataSourceTransactionManager <span class="title">getTransactionManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DataSourceTransactionManager(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List &lt;Runnable&gt; tasks = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    tasks.add(() -&gt; &#123;</span><br><span class="line">        userMapper.deleteById(<span class="number">26</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    tasks.add(() -&gt; &#123;</span><br><span class="line">        signMapper.deleteById(<span class="number">10</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    multiplyThreadTransactionManager.runAsyncButWaitUntilAllDown(tasks, Executors.newCachedThreadPool());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>任务正常都执行完毕，事务进行提交，但是会抛出异常，导致事务回滚：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No value <span class="keyword">for</span> key [HikariDataSource (HikariPool-<span class="number">1</span>)] bound to thread [main]</span><br><span class="line">解释: 无法在当前线程绑定的threadLocal中寻找到HikariDataSource作为key,对应关联的资源对象ConnectionHolder</span><br></pre></td></tr></table></figure>
+<p>一次事务的完成通常都是默认在当前线程内完成的，又因为一次事务的执行过程中，涉及到对当前数据库连接 Connection 的操作，因此为了避免将 Connection 在事务执行过程中来回传递，我们可以将 Connextion 绑定到当前事务执行线程对应的 ThreadLocalMap 内部，顺便还可以将一些其他属性也放入其中进行保存，在 Spring 中，负责保存这些 ThreadLocal 属性的实现类由 TransactionSynchronizationManager 承担。</p>
+<p>TransactionSynchronizationManager 类内部默认提供了下面六个 ThreadLocal 属性，分别保存当前线程对应的不同事务资源：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//保存当前事务关联的资源--默认只会在新建事务的时候保存当前获取到的DataSource和当前事务对应Connection的映射关系--当然这里Connection被包装为了ConnectionHolder</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; Map &lt; Object, Object &gt;&gt; resources =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Transactional resources"</span>);</span><br><span class="line"><span class="comment">//事务监听者--在事务执行到某个阶段的过程中，会去回调监听者对应的回调接口(典型观察者模式的应用)---默认为空集合</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; Set &lt; TransactionSynchronization &gt;&gt; synchronizations =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Transaction synchronizations"</span>);</span><br><span class="line"><span class="comment">//见名知意: 存放当前事务名字</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; String &gt; currentTransactionName =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Current transaction name"</span>);</span><br><span class="line"><span class="comment">//见名知意: 存放当前事务是否是只读事务</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; Boolean &gt; currentTransactionReadOnly =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Current transaction read-only status"</span>);</span><br><span class="line"><span class="comment">//见名知意: 存放当前事务的隔离级别</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; Integer &gt; currentTransactionIsolationLevel =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Current transaction isolation level"</span>);</span><br><span class="line"><span class="comment">//见名知意: 存放当前事务是否处于激活状态</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal &lt; Boolean &gt; actualTransactionActive =</span><br><span class="line">    <span class="keyword">new</span> NamedThreadLocal &lt; &gt; (<span class="string">"Actual transaction active"</span>);</span><br></pre></td></tr></table></figure>
+<p>那么上面抛出的异常的原因也就很清楚了，无法在 main 线程找到当前事务对应的资源，原因如下：</p>
+<p><img src="/images/Spring/2023080501.png" alt></p>
+<p>开启新事务时，事务相关资源都被绑定到了 thread-cache-pool-1 线程对应的 threadLocalMap 内部，而当执行事务提交代码时，commit 内部需要从 TransactionSynchronizationManager 中获取当前事务的资源，显然我们无法从 main 线程对应的 threadLocalMap 中获取到对应的事务资源，这也就是异常抛出的原因。</p>
+<p><mark>解决方法</mark>：用 CopyTransactionResource 将事务资源在两个线程间来回复制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Builder;</span><br><span class="line"><span class="keyword">import</span> lombok.RequiredArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.datasource.DataSourceTransactionManager;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.TransactionStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.support.DefaultTransactionDefinition;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.support.TransactionSynchronization;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.support.TransactionSynchronizationManager;</span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CompletableFuture;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicBoolean;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RequiredArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiplyThreadTransactionManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果是多数据源的情况下,需要指定具体是哪一个数据源</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 执行的是无返回值的任务</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tasks 异步执行的任务列表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> executor 异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runAsyncButWaitUntilAllDown</span><span class="params">(List &lt; Runnable &gt; tasks, Executor executor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"线程池不能为空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        DataSourceTransactionManager transactionManager = getTransactionManager();</span><br><span class="line">        <span class="comment">//是否发生了异常</span></span><br><span class="line">        AtomicBoolean ex = <span class="keyword">new</span> AtomicBoolean();</span><br><span class="line"></span><br><span class="line">        List &lt; CompletableFuture &gt; taskFutureList = <span class="keyword">new</span> ArrayList &lt; &gt; (tasks.size());</span><br><span class="line">        List &lt; TransactionStatus &gt; transactionStatusList = <span class="keyword">new</span> ArrayList &lt; &gt; (tasks.size());</span><br><span class="line">        List &lt; TransactionResource &gt; transactionResources = <span class="keyword">new</span> ArrayList &lt; &gt; (tasks.size());</span><br><span class="line"></span><br><span class="line">        tasks.forEach(task - &gt; &#123;</span><br><span class="line">            taskFutureList.add(CompletableFuture.runAsync(</span><br><span class="line">                () - &gt; &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="comment">//1.开启新事务</span></span><br><span class="line">                        transactionStatusList.add(openNewTransaction(transactionManager));</span><br><span class="line">                        <span class="comment">//2.copy事务资源</span></span><br><span class="line">                        transactionResources.add(TransactionResource.copyTransactionResource());</span><br><span class="line">                        <span class="comment">//3.异步任务执行</span></span><br><span class="line">                        task.run();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">                        <span class="comment">//打印异常</span></span><br><span class="line">                        throwable.printStackTrace();</span><br><span class="line">                        <span class="comment">//其中某个异步任务执行出现了异常,进行标记</span></span><br><span class="line">                        ex.set(Boolean.TRUE);</span><br><span class="line">                        <span class="comment">//其他任务还没执行的不需要执行了</span></span><br><span class="line">                        taskFutureList.forEach(completableFuture - &gt; completableFuture.cancel(<span class="keyword">true</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, executor));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//阻塞直到所有任务全部执行结束---如果有任务被取消,这里会抛出异常滴,需要捕获</span></span><br><span class="line">            CompletableFuture.allOf(taskFutureList.toArray(<span class="keyword">new</span> CompletableFuture[] &#123;&#125;)).get();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//发生了异常则进行回滚操作,否则提交</span></span><br><span class="line">        <span class="keyword">if</span> (ex.get()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"发生异常,全部事务回滚"</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tasks.size(); i++) &#123;</span><br><span class="line">                transactionResources.get(i).autoWiredTransactionResource();</span><br><span class="line">                transactionManager.rollback(transactionStatusList.get(i));</span><br><span class="line">                transactionResources.get(i).removeTransactionResource();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"全部事务正常提交"</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tasks.size(); i++) &#123;</span><br><span class="line">                transactionResources.get(i).autoWiredTransactionResource();</span><br><span class="line">                transactionManager.commit(transactionStatusList.get(i));</span><br><span class="line">                transactionResources.get(i).removeTransactionResource();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TransactionStatus <span class="title">openNewTransaction</span><span class="params">(DataSourceTransactionManager transactionManager)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//JdbcTransactionManager根据TransactionDefinition信息来进行一些连接属性的设置</span></span><br><span class="line">        <span class="comment">//包括隔离级别和传播行为等</span></span><br><span class="line">        DefaultTransactionDefinition transactionDef = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br><span class="line">        <span class="comment">//开启一个新事务---此时autocommit已经被设置为了false,并且当前没有事务,这里创建的是一个新事务</span></span><br><span class="line">        <span class="keyword">return</span> transactionManager.getTransaction(transactionDef);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> DataSourceTransactionManager <span class="title">getTransactionManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DataSourceTransactionManager(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 保存当前事务资源,用于线程间的事务资源COPY操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Builder</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionResource</span> </span>&#123;</span><br><span class="line">        <span class="comment">//事务结束后默认会移除集合中的DataSource作为key关联的资源记录</span></span><br><span class="line">        <span class="keyword">private</span> Map &lt; Object, Object &gt; resources = <span class="keyword">new</span> HashMap &lt; &gt; ();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//下面五个属性会在事务结束后被自动清理,无需我们手动清理</span></span><br><span class="line">        <span class="keyword">private</span> Set &lt; TransactionSynchronization &gt; synchronizations = <span class="keyword">new</span> HashSet &lt; &gt; ();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String currentTransactionName;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Boolean currentTransactionReadOnly;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Integer currentTransactionIsolationLevel;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Boolean actualTransactionActive;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TransactionResource <span class="title">copyTransactionResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> TransactionResource.builder()</span><br><span class="line">                <span class="comment">//返回的是不可变集合</span></span><br><span class="line">                .resources(TransactionSynchronizationManager.getResourceMap())</span><br><span class="line">                <span class="comment">//如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值</span></span><br><span class="line">                .synchronizations(<span class="keyword">new</span> LinkedHashSet &lt; &gt; ())</span><br><span class="line">                .currentTransactionName(TransactionSynchronizationManager.getCurrentTransactionName())</span><br><span class="line">                .currentTransactionReadOnly(TransactionSynchronizationManager.isCurrentTransactionReadOnly())</span><br><span class="line">                .currentTransactionIsolationLevel(TransactionSynchronizationManager.getCurrentTransactionIsolationLevel())</span><br><span class="line">                .actualTransactionActive(TransactionSynchronizationManager.isActualTransactionActive())</span><br><span class="line">                .build();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">autoWiredTransactionResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            resources.forEach(TransactionSynchronizationManager::bindResource);</span><br><span class="line">            <span class="comment">//如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值</span></span><br><span class="line">            TransactionSynchronizationManager.initSynchronization();</span><br><span class="line">            TransactionSynchronizationManager.setActualTransactionActive(actualTransactionActive);</span><br><span class="line">            TransactionSynchronizationManager.setCurrentTransactionName(currentTransactionName);</span><br><span class="line">            TransactionSynchronizationManager.setCurrentTransactionIsolationLevel(currentTransactionIsolationLevel);</span><br><span class="line">            TransactionSynchronizationManager.setCurrentTransactionReadOnly(currentTransactionReadOnly);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeTransactionResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">//事务结束后默认会移除集合中的DataSource作为key关联的资源记录</span></span><br><span class="line">            <span class="comment">//DataSource如果重复移除,unbindResource时会因为不存在此key关联的事务资源而报错</span></span><br><span class="line">            resources.keySet().forEach(key - &gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (!(key <span class="keyword">instanceof</span> DataSource)) &#123;</span><br><span class="line">                    TransactionSynchronizationManager.unbindResource(key);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>增加异常抛出，测试是否能够保证多线程间的事务一致性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span>(classes = UserMain.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> SignMapper signMapper;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> MultiplyThreadTransactionManager multiplyThreadTransactionManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SneakyThrows</span></span><br><span class="line">    <span class="meta">@org</span>.junit.jupiter.api.Test</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List &lt;Runnable&gt; tasks = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        tasks.add(() -&gt; &#123;</span><br><span class="line">            userMapper.deleteById(<span class="number">26</span>);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"我就要抛出异常!"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        tasks.add(() -&gt; &#123;</span><br><span class="line">            signMapper.deleteById(<span class="number">10</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        multiplyThreadTransactionManager.runAsyncButWaitUntilAllDown(tasks, Executors.newCachedThreadPool());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>事务都进行了回滚，数据库数据没变。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事务/" rel="tag"># 事务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/08/05/Java基础/枚举使用/" rel="next" title="枚举使用">
+                <i class="fa fa-chevron-left"></i> 枚举使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/08/05/Spring/如何保证每个循环体是单独事务/" rel="prev" title="如何保证每个循环体是单独事务">
+                如何保证每个循环体是单独事务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#业务场景"><span class="nav-number">1.</span> <span class="nav-text">业务场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决异步执行"><span class="nav-number">2.</span> <span class="nav-text">解决异步执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async"><span class="nav-number">2.1.</span> <span class="nav-text">@Async</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CompletableFuture"><span class="nav-number">2.2.</span> <span class="nav-text">CompletableFuture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程事务一致性"><span class="nav-number">3.</span> <span class="nav-text">多线程事务一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明式事务"><span class="nav-number">3.1.</span> <span class="nav-text">声明式事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编程式事务"><span class="nav-number">3.2.</span> <span class="nav-text">编程式事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编程式事务解决问题"><span class="nav-number">4.</span> <span class="nav-text">编程式事务解决问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

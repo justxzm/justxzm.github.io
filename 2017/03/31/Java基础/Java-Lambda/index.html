@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;	return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之和 或">
+<meta name="description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;    return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之">
 <meta name="keywords" content="Java8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Lambda">
-<meta property="og:url" content="https://justxzm.github.io/2017/03/31/Java深入/Java-Lambda/index.html">
+<meta property="og:url" content="https://justxzm.github.io/2017/03/31/Java基础/Java-Lambda/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;	return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之和 或">
+<meta property="og:description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;    return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-14T08:45:01.996Z">
+<meta property="og:updated_time" content="2023-08-05T08:06:16.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Lambda">
-<meta name="twitter:description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;	return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之和 或">
+<meta name="twitter:description" content="1. 什么是λ表达式λ表达式本质上是一个匿名方法。让我们来看下面这个例子： 123public int add(int x, int y) &amp;#123;    return x + y;&amp;#125; 转成λ表达式后是这个样子： 1(int x, int y) -&amp;gt; x + y; 参数类型也可以省略，Java编译器会根据上下文推断出来： 1(x, y) -&amp;gt; x + y; //返回两数之">
 
 
 
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://justxzm.github.io/2017/03/31/Java深入/Java-Lambda/">
+  <link rel="canonical" href="https://justxzm.github.io/2017/03/31/Java基础/Java-Lambda/">
 
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java深入/Java-Lambda/">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2017/03/31/Java基础/Java-Lambda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Try.Catch">
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java深入/" itemprop="url" rel="index">
-                    <span itemprop="name">Java深入</span>
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
                   </a>
                 </span>
 
@@ -390,7 +390,7 @@
 
       
         <h3 id="1-什么是λ表达式"><a href="#1-什么是λ表达式" class="headerlink" title="1. 什么是λ表达式"></a><strong>1. 什么是λ表达式</strong></h3><p>λ表达式本质上是一个匿名方法。让我们来看下面这个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>转成λ表达式后是这个样子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">int</span> x, <span class="keyword">int</span> y) -&gt; x + y;</span><br></pre></td></tr></table></figure>
 <p>参数类型也可以省略，Java编译器会根据上下文推断出来：</p>
@@ -419,19 +419,19 @@
 <p>必须先转型:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println( (Runnable)() -&gt; &#123;&#125; ); <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
 <p>假设你自己写了一个函数接口，长的跟Runnable一模一样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyRunnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyRunnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>那么</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Runnable r1 =    () -&gt; &#123;System.out.println(<span class="string">"Hello Lambda!"</span>);&#125;;</span><br><span class="line">MyRunnable2 r2 = () -&gt; &#123;System.out.println(<span class="string">"Hello Lambda!"</span>);&#125;;</span><br></pre></td></tr></table></figure>
 <p>JDK预定义了很多函数接口以避免用户重复定义。最典型的是Function：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;  </span><br><span class="line">	<span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Function</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; </span>&#123;  </span><br><span class="line">    <span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个接口代表一个函数，接受一个T类型的参数，并返回一个R类型的返回值。   </p>
 <p>另一个预定义函数接口叫做Consumer，跟Function的唯一不同是它没有返回值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>还有一个Predicate，用来判断某项条件是否满足。经常用来进行筛滤操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>综上所述，一个λ表达式其实就是定义了一个匿名方法，只不过这个方法必须符合至少一个函数接口。</p>
 <h3 id="3-λ表达式的使用"><a href="#3-λ表达式的使用" class="headerlink" title="3. λ表达式的使用"></a><strong>3. λ表达式的使用</strong></h3><h4 id="λ表达式用在何处"><a href="#λ表达式用在何处" class="headerlink" title="λ表达式用在何处"></a><em>λ表达式用在何处</em></h4><p>λ表达式主要用于替换以前广泛使用的内部匿名类，各种回调，比如事件响应器、传入Thread类的Runnable等。看下面的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread oldSchool = <span class="keyword">new</span> Thread( <span class="keyword">new</span> Runnable () &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"This is from an anonymous class."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">Thread gaoDuanDaQiShangDangCi = <span class="keyword">new</span> Thread( () -&gt; &#123;</span><br><span class="line">	System.out.println(<span class="string">"This is from an anonymous method (lambda exp)."</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread oldSchool = <span class="keyword">new</span> Thread( <span class="keyword">new</span> Runnable () &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"This is from an anonymous class."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">Thread gaoDuanDaQiShangDangCi = <span class="keyword">new</span> Thread( () -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"This is from an anonymous method (lambda exp)."</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>注意第二个线程里的λ表达式，你并不需要显式地把它转成一个Runnable，因为Java能根据上下文自动推断出来：一个Thread的构造函数接受一个Runnable参数，而传入的λ表达式正好符合其run()函数，所以Java编译器推断它为Runnable。</p>
 <p>从形式上看，λ表达式只是为你节省了几行代码。但将λ表达式引入Java的动机并不仅仅为此。Java8有一个短期目标和一个长期目标。短期目标是：配合“集合类批处理操作”的内部迭代和并行处理（下面将要讲到）；长期目标是将Java向函数式编程语言这个方向引导（并不是要完全变成一门函数式编程语言，只是让它有更多的函数式编程语言的特性），也正是由于这个原因，Oracle并没有简单地使用内部类去实现λ表达式，而是使用了一种更动态、更灵活、易于将来扩展和改变的策略（invokedynamic）。</p>
 <h4 id="λ表达式与集合类批处理操作（或者叫块操作）"><a href="#λ表达式与集合类批处理操作（或者叫块操作）" class="headerlink" title="λ表达式与集合类批处理操作（或者叫块操作）"></a><em>λ表达式与集合类批处理操作（或者叫块操作）</em></h4><p>上文提到了集合类的批处理操作。这是Java8的另一个重要特性，它与λ表达式的配合使用乃是Java8的最主要特性。集合类的批处理操作API的目的是实现集合类的“内部迭代”，并期望充分利用现代多核CPU进行并行计算。<br>Java8之前集合类的迭代（Iteration）都是外部的，即客户代码。而内部迭代意味着改由Java类库来进行迭代，而不是客户代码。例如：</p>
@@ -468,7 +468,7 @@
 <p>reduce方法用来产生单一的一个最终结果。</p>
 <p>流有很多预定义的reduce操作，如sum()，max()，min()等。</p>
 <p>再举个现实世界里的例子比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统计年龄在25-35岁的男女人数、比例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boysAndGirls</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; result = persons.parallelStream().filter(p -&gt;</span><br><span class="line">	 p.getAge()&gt;=<span class="number">25</span> &amp;&amp; p.getAge()&lt;=<span class="number">35</span>).</span><br><span class="line">        collect(</span><br><span class="line">            Collectors.groupingBy(p-&gt;p.getSex(), Collectors.summingInt(p-&gt;<span class="number">1</span>))</span><br><span class="line">    );</span><br><span class="line">    System.out.print(<span class="string">"boysAndGirls result is "</span> + result);</span><br><span class="line">    System.out.println(<span class="string">", ratio (male : female) is "</span> + (<span class="keyword">float</span>)result.get(Person.MALE)/result.get(Person.FEMALE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统计年龄在25-35岁的男女人数、比例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boysAndGirls</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; result = persons.parallelStream().filter(p -&gt;</span><br><span class="line">     p.getAge()&gt;=<span class="number">25</span> &amp;&amp; p.getAge()&lt;=<span class="number">35</span>).</span><br><span class="line">        collect(</span><br><span class="line">            Collectors.groupingBy(p-&gt;p.getSex(), Collectors.summingInt(p-&gt;<span class="number">1</span>))</span><br><span class="line">    );</span><br><span class="line">    System.out.print(<span class="string">"boysAndGirls result is "</span> + result);</span><br><span class="line">    System.out.println(<span class="string">", ratio (male : female) is "</span> + (<span class="keyword">float</span>)result.get(Person.MALE)/result.get(Person.FEMALE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="λ表达式的更多用法"><a href="#λ表达式的更多用法" class="headerlink" title="λ表达式的更多用法"></a><em>λ表达式的更多用法</em></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 嵌套的λ表达式</span></span><br><span class="line">Callable&lt;Runnable&gt; c1 = () -&gt; () -&gt; &#123; System.out.println(<span class="string">"Nested lambda"</span>); &#125;;</span><br><span class="line">c1.call().run();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用在条件表达式中</span></span><br><span class="line">Callable&lt;Integer&gt; c2 = <span class="keyword">true</span> ? (() -&gt; <span class="number">42</span>) : (() -&gt; <span class="number">24</span>);</span><br><span class="line">System.out.println(c2.call());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个递归函数，注意须用this限定</span></span><br><span class="line"><span class="keyword">protected</span> UnaryOperator&lt;Integer&gt; factorial = i -&gt; i == <span class="number">0</span> ? <span class="number">1</span> : i * <span class="keyword">this</span>.factorial.apply( i - <span class="number">1</span> );</span><br><span class="line">...</span><br><span class="line">System.out.println(factorial.apply(<span class="number">3</span>));</span><br></pre></td></tr></table></figure>
 <p>在Java中，随声明随调用的方式是不行的，比如下面这样，声明了一个λ表达式(x, y) -&gt; x + y，同时企图通过传入实参(2, 3)来调用它：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> five = ( (x, y) -&gt; x + y ) (<span class="number">2</span>, <span class="number">3</span>); <span class="comment">// ERROR! try to call a lambda in-place</span></span><br></pre></td></tr></table></figure>
@@ -478,7 +478,8 @@
 <p>在Java8以前，如果要在内部类访问外部对象的一个本地变量，那么这个变量必须声明为final才行。在Java8中，这种限制被去掉了，代之以一个新的概念，“effectively final”。它的意思是你可以声明为final，也可以不声明final但是按照final来用，也就是一次赋值永不改变。换句话说，保证它加上final前缀后不会出编译错误。</p>
 <p>在Java8中，内部类和λ表达式都可以访问effectively final的本地变量。λ表达式的例子如下：</p>
 <pre><code>...    
-</code></pre><p>​    int tmp1 = 1; //包围类的成员变量<br>​    static int tmp2 = 2; //包围类的静态成员变量<br>​    public void testCapture() {<br>​        int tmp3 = 3; //没有声明为final，但是effectively final的本地变量<br>​        final int tmp4 = 4; //声明为final的本地变量<br>​        int tmp5 = 5; //普通本地变量<br>​<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    Function&lt;Integer, Integer&gt; f1 = i -&gt; i + tmp1;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f2 = i -&gt; i + tmp2;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f3 = i -&gt; i + tmp3;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f4 = i -&gt; i + tmp4;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f5 = i -&gt; &#123;</span><br><span class="line">        tmp5  += i; <span class="comment">// 编译错！对tmp5赋值导致它不是effectively final的</span></span><br><span class="line">        <span class="keyword">return</span> tmp5;</span><br><span class="line">    &#125;;</span><br><span class="line">    ...</span><br><span class="line">    tmp5 = <span class="number">9</span>; <span class="comment">// 编译错！对tmp5赋值导致它不是effectively final的</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+</code></pre><p>​    int tmp1 = 1; //包围类的成员变量<br>​    static int tmp2 = 2; //包围类的静态成员变量<br>​    public void testCapture() {<br>​        int tmp3 = 3; //没有声明为final，但是effectively final的本地变量<br>​        final int tmp4 = 4; //声明为final的本地变量<br>​        int tmp5 = 5; //普通本地变量<br>​        </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    Function&lt;Integer, Integer&gt; f1 = i -&gt; i + tmp1;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f2 = i -&gt; i + tmp2;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f3 = i -&gt; i + tmp3;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f4 = i -&gt; i + tmp4;</span><br><span class="line">    Function&lt;Integer, Integer&gt; f5 = i -&gt; &#123;</span><br><span class="line">        tmp5  += i; <span class="comment">// 编译错！对tmp5赋值导致它不是effectively final的</span></span><br><span class="line">        <span class="keyword">return</span> tmp5;</span><br><span class="line">    &#125;;</span><br><span class="line">    ...</span><br><span class="line">    tmp5 = <span class="number">9</span>; <span class="comment">// 编译错！对tmp5赋值导致它不是effectively final的</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>Java要求本地变量final或者effectively final的原因是多线程并发问题。内部类、λ表达式都有可能在不同的线程中执行，允许多个线程同时修改一个本地变量不符合Java的设计理念。</p>
 <h4 id="方法引用（Method-reference）"><a href="#方法引用（Method-reference）" class="headerlink" title="方法引用（Method reference）"></a><strong><em>方法引用（Method reference）</em></strong></h4><p>任何一个λ表达式都可以代表某个函数接口的唯一方法的匿名描述符。我们也可以使用某个类的某个具体方法来代表这个描述符，叫做方法引用。例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer::parseInt <span class="comment">//静态方法引用</span></span><br><span class="line">System.out::print <span class="comment">//实例方法引用</span></span><br><span class="line">Person::<span class="keyword">new</span>       <span class="comment">//构造器引用</span></span><br></pre></td></tr></table></figure>
@@ -572,11 +573,6 @@
           
 
   
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC81MzU1NS8zMDAyOQ"></div>
-    </div>
-
-  
 
 
 
@@ -626,7 +622,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">102</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +644,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -888,17 +884,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 

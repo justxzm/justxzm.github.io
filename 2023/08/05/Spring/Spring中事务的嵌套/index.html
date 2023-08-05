@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="事务,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文链接 事务传播属性 propagation_requierd：如果当前没有事务，就新建一个事务，如果已存在一个事务中，加入到这个事务中，这是最常见的选择。  propagation_supports：支持当前事务，如果没有当前事务，就以非事务方法执行。  propagation_mandatory：使用当前事务，如果没有当前事务，就抛出异常。  propagation_required_new">
+<meta name="keywords" content="事务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中事务的嵌套">
+<meta property="og:url" content="https://justxzm.github.io/2023/08/05/Spring/Spring中事务的嵌套/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="原文链接 事务传播属性 propagation_requierd：如果当前没有事务，就新建一个事务，如果已存在一个事务中，加入到这个事务中，这是最常见的选择。  propagation_supports：支持当前事务，如果没有当前事务，就以非事务方法执行。  propagation_mandatory：使用当前事务，如果没有当前事务，就抛出异常。  propagation_required_new">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080502.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080503.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080504.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080505.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080506.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080507.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080508.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080509.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080510.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080511.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080512.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080513.png">
+<meta property="og:image" content="https://justxzm.github.io/images/Spring/2023080514.png">
+<meta property="og:updated_time" content="2023-08-05T07:00:35.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring中事务的嵌套">
+<meta name="twitter:description" content="原文链接 事务传播属性 propagation_requierd：如果当前没有事务，就新建一个事务，如果已存在一个事务中，加入到这个事务中，这是最常见的选择。  propagation_supports：支持当前事务，如果没有当前事务，就以非事务方法执行。  propagation_mandatory：使用当前事务，如果没有当前事务，就抛出异常。  propagation_required_new">
+<meta name="twitter:image" content="https://justxzm.github.io/images/Spring/2023080502.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2023/08/05/Spring/Spring中事务的嵌套/">
+
+
+
+
+
+  <title>Spring中事务的嵌套 | JUST DO IT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2023/08/05/Spring/Spring中事务的嵌套/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring中事务的嵌套</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-05T14:02:13+08:00">
+                2023-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://mp.weixin.qq.com/s?__biz=MzIwNjg4MzY4NA==&amp;mid=2247517583&amp;idx=2&amp;sn=99ed0305401f0be9f45edb74023beca5&amp;chksm=97181b84a06f929294de032400025246b0ae5ee0fdaa407dab77927f17049de2be921c3ee198&amp;mpshare=1&amp;scene=24&amp;srcid=0315n8MbgQTWLzps5dFBEeu8&amp;sharer_sharetime=1678892240589&amp;sharer_shareid=ad6f4b8fc359d7cb461d2dc3c182f7f5#rd" target="_blank" rel="noopener">原文链接</a></p>
+<h2 id="事务传播属性"><a href="#事务传播属性" class="headerlink" title="事务传播属性"></a>事务传播属性</h2><ol>
+<li><p><code>propagation_requierd</code>：如果当前没有事务，就新建一个事务，如果已存在一个事务中，加入到这个事务中，这是最常见的选择。</p>
+</li>
+<li><p><code>propagation_supports</code>：支持当前事务，如果没有当前事务，就以非事务方法执行。</p>
+</li>
+<li><p><code>propagation_mandatory</code>：使用当前事务，如果没有当前事务，就抛出异常。</p>
+</li>
+<li><p><code>propagation_required_new</code>：新建事务，如果当前存在事务，把当前事务挂起。</p>
+</li>
+<li><p><code>propagation_not_supported</code>：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</p>
+</li>
+<li><p><code>propagation_never</code>：以非事务方式执行操作，如果当前事务存在则抛出异常。</p>
+</li>
+<li><p><code>propagation_nested</code>：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与propagation_required类似的操作</p>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="Spring事务实现原理"><a href="#Spring事务实现原理" class="headerlink" title="Spring事务实现原理"></a>Spring事务实现原理</h2><p>Spring本身是没有事务的，只有数据库才会回有事务，而Spring的事务是借助AOP，通过动态代理的方式，在我们要操作数据库的是时候，实际是Spring通过动态代理进行功能扩展，在我们的代码操作数据库之前通过数据库客户端打开数据库事务，如果代码执行完毕没有异常信息或者是没有Spring要捕获的异常信息时，再通过数据库客户端程序提交事务，如果有异常信息或者是有Spring要捕获的异常信息，再通过数据库客户端程序回滚事务，从而达到控制数据库事务的目的。</p>
+<p><img src="/images/Spring/2023080502.png" alt></p>
+<p>@Transactional 默认情况下的传播属性：</p>
+<p><img src="/images/Spring/2023080503.png" alt></p>
+<h2 id="嵌套方式一"><a href="#嵌套方式一" class="headerlink" title="嵌套方式一"></a>嵌套方式一</h2><p>同一个类中事务嵌套</p>
+<p><img src="/images/Spring/2023080504.png" alt></p>
+<p>答案是会回滚的，原因是什么呢？接着看下边的示意图</p>
+<p><img src="/images/Spring/2023080505.png" alt></p>
+<p>原因是因为代理的时候，直接把没有事务的方法包在了有事务的代理方法里边了自然就有事务了。</p>
+<h2 id="嵌套方式二"><a href="#嵌套方式二" class="headerlink" title="嵌套方式二"></a>嵌套方式二</h2><p>同一个类中事务嵌套</p>
+<p><img src="/images/Spring/2023080506.png" alt></p>
+<p>答案：这时候调用test02，test01有异常发生时是不会回滚的</p>
+<p><img src="/images/Spring/2023080507.png" alt></p>
+<h2 id="嵌套方式三"><a href="#嵌套方式三" class="headerlink" title="嵌套方式三"></a>嵌套方式三</h2><p>同一个类中事务嵌套</p>
+<p><img src="/images/Spring/2023080508.png" alt></p>
+<p>如果调用test02 的话，当程序发生异常，test01会不会回滚呢？</p>
+<p>答案是会回滚的 原因和嵌套方式一中的情况类似</p>
+<p><mark><strong>综上，同一个类中事务嵌套，最终结果取决于最外层的方法事务的传播特性</strong></mark></p>
+<h2 id="嵌套方式四"><a href="#嵌套方式四" class="headerlink" title="嵌套方式四"></a>嵌套方式四</h2><p>不同类中事务嵌套</p>
+<p><img src="/images/Spring/2023080509.png" alt></p>
+<p>在TestService3中调用TestService4中的没有事务的方法，会发生什么呢？</p>
+<p>TestService4中的test41方法发生异常会回滚吗？</p>
+<p>答案 会的</p>
+<p><img src="/images/Spring/2023080510.png" alt></p>
+<h2 id="嵌套方式五"><a href="#嵌套方式五" class="headerlink" title="嵌套方式五"></a>嵌套方式五</h2><p>不同类中事务嵌套</p>
+<p><img src="/images/Spring/2023080511.png" alt></p>
+<p>TestService3中的方法是有事务的，TestService4中的方法是以非事务的方式运行，如果存在事务就挂起事务，那么自然就没有事物了</p>
+<p>所以上述的情况就是，如果TestService4中的方法报出异常，则TestService3中的数据可以回滚，但是TestService4中操作的数据是不会回滚的</p>
+<p><strong><mark>不同类的事务嵌套，外层的方法按照外层的事务传播属性执行，内层的传播属性按照内层的传播属性执行</mark></strong></p>
+<h2 id="Spring事务失效情况"><a href="#Spring事务失效情况" class="headerlink" title="Spring事务失效情况"></a>Spring事务失效情况</h2><ol>
+<li><p>事务方法访问修饰符不是public，导致事务失效</p>
+<p><img src="/images/Spring/2023080512.png" alt></p>
+<p>其实如果是JDK的动态代理 就不允许这种情况，因为JDK动态代理需要有接口，而接口中是不能有 私有方法的，如果是CGLIB动态代理的话也是不允许的代理private方法的</p>
+</li>
+<li><p>如果事务方法是static、final的，同样无法通过动态代理，事务也是不会生效的。</p>
+<p>Spring的声明式事务是基于动态代理实现的，我们无法重写final修饰的方法；不管是JDK动态代理还是Cglib的动态代理，就是要通过代理的方式获取到代理的具体对象，而static方法修饰的方法是属于类对象的，不属于任何实例对象，所以static方法不能被重写也就是说static方法也不被进行动态代理。</p>
+</li>
+<li><p>操作的数据库表如果本身不支持事务，那么配置的Spring事务也会失效。</p>
+</li>
+<li><p>代码中的异常被 catch 住，而且没有异常再次抛出，也会让Spring事务失效。</p>
+<p><img src="/images/Spring/2023080513.png" alt></p>
+<p>想要避免上述失效的话，可以在 catch 住后再次抛出Spring事务支持的异常。</p>
+</li>
+<li><p>多线程的调用导致事务的失效，例如 下边的案例 会导致 test31的事务失效</p>
+</li>
+</ol>
+<p><img src="/images/Spring/2023080514.png" alt></p>
+<p>原因：test31中操作数据要回滚，需要有异常抛出才可以回滚，但是由于线程异步运行这种写法，test31和test41分别是两个独立的事务，他们的数据库链接都可能是不同的，要想回滚则test31和test41都应该有异常抛出才可以。</p>
+<p>但是test31所在的线程没有捕获到test41所在的子线程的异常所以没有回滚，之所以没有捕获到test41所在的线程的异常是因为test41相对test31是异步运行，可能test31已经运行完了，但是test41还没有运行完，所以在写这种代码的时候大家可以使用<code>thread.setUncaughtExceptionHandler</code>方法来处理线程内部的异常，也就是当thread报出异常的时候可以在这个方法中再次抛出异常这样可以触发外部事务的回滚，或者也可以采用如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)</span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">test31</span><span class="params">()</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">    Map&lt;String,Object&gt; map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">"id"</span>,<span class="number">3</span>);</span><br><span class="line">    map.put(<span class="string">"quantity"</span>,<span class="number">300</span>);</span><br><span class="line">    <span class="keyword">int</span> i = testDao.updateStock(map);</span><br><span class="line"></span><br><span class="line">    FutureTask task=<span class="keyword">new</span> FutureTask(<span class="keyword">new</span> Callable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            testService4.test41();</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ok"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(task);</span><br><span class="line"></span><br><span class="line">    thread.start();</span><br><span class="line">    <span class="comment">//等待执行结果，当有异常的时候在这里就可以获取到异常传递给test31触发他的回滚</span></span><br><span class="line">    Object ok = task.get();</span><br><span class="line">    System.out.println(<span class="string">"=============OK"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事务/" rel="tag"># 事务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/08/05/Spring/如何保证每个循环体是单独事务/" rel="next" title="如何保证每个循环体是单独事务">
+                <i class="fa fa-chevron-left"></i> 如何保证每个循环体是单独事务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/08/05/Java深入/CompletableFuture示例/" rel="prev" title="CompletableFuture示例">
+                CompletableFuture示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务传播属性"><span class="nav-number">1.</span> <span class="nav-text">事务传播属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring事务实现原理"><span class="nav-number">2.</span> <span class="nav-text">Spring事务实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方式一"><span class="nav-number">3.</span> <span class="nav-text">嵌套方式一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方式二"><span class="nav-number">4.</span> <span class="nav-text">嵌套方式二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方式三"><span class="nav-number">5.</span> <span class="nav-text">嵌套方式三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方式四"><span class="nav-number">6.</span> <span class="nav-text">嵌套方式四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套方式五"><span class="nav-number">7.</span> <span class="nav-text">嵌套方式五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring事务失效情况"><span class="nav-number">8.</span> <span class="nav-text">Spring事务失效情况</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

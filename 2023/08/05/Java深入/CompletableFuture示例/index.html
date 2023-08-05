@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java8,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文链接01 原文链接02 CompletableFuture实现了CompletionStage接口和Future接口，前者是对后者的一个扩展，增加了异步回调、流式处理、多个Future组合处理的能力，使Java在处理多任务的协同工作时更加顺畅便利。  创建异步任务 Future.submit、supplyAsync / runAsync  异步回调 thenApply / thenApplyA">
+<meta name="keywords" content="Java8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CompletableFuture示例">
+<meta property="og:url" content="https://justxzm.github.io/2023/08/05/Java深入/CompletableFuture示例/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="原文链接01 原文链接02 CompletableFuture实现了CompletionStage接口和Future接口，前者是对后者的一个扩展，增加了异步回调、流式处理、多个Future组合处理的能力，使Java在处理多任务的协同工作时更加顺畅便利。  创建异步任务 Future.submit、supplyAsync / runAsync  异步回调 thenApply / thenApplyA">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2023-08-05T08:53:28.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CompletableFuture示例">
+<meta name="twitter:description" content="原文链接01 原文链接02 CompletableFuture实现了CompletionStage接口和Future接口，前者是对后者的一个扩展，增加了异步回调、流式处理、多个Future组合处理的能力，使Java在处理多任务的协同工作时更加顺畅便利。  创建异步任务 Future.submit、supplyAsync / runAsync  异步回调 thenApply / thenApplyA">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://justxzm.github.io/2023/08/05/Java深入/CompletableFuture示例/">
+
+
+
+
+
+  <title>CompletableFuture示例 | JUST DO IT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://justxzm.github.io/2023/08/05/Java深入/CompletableFuture示例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Try.Catch">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CompletableFuture示例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-05T15:01:46+08:00">
+                2023-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java深入/" itemprop="url" rel="index">
+                    <span itemprop="name">Java深入</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://mp.weixin.qq.com/s/W3qlMyPc_DZhhy86u18ivw" target="_blank" rel="noopener">原文链接01</a></p>
+<p><a href="https://mp.weixin.qq.com/s/yFd3B6mYEPxStynb5sfIHg" target="_blank" rel="noopener">原文链接02</a></p>
+<p>CompletableFuture实现了CompletionStage接口和Future接口，前者是对后者的一个扩展，增加了异步回调、流式处理、多个Future组合处理的能力，使Java在处理多任务的协同工作时更加顺畅便利。</p>
+<ul>
+<li><p>创建异步任务</p>
+<p>Future.submit、supplyAsync / runAsync</p>
+</li>
+<li><p>异步回调</p>
+<p>thenApply / thenApplyAsync、thenAccept / thenRun、exceptionally、whenComplete、handle</p>
+</li>
+<li><p>组合处理</p>
+<p>thenCombine / thenAcceptBoth / runAfterBoth、applyToEither / acceptEither / runAfterEither、thenCompose、allOf / anyOf</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="创建异步任务"><a href="#创建异步任务" class="headerlink" title="创建异步任务"></a>创建异步任务</h2><h3 id="Future-submit"><a href="#Future-submit" class="headerlink" title="Future.submit"></a>Future.submit</h3><p>通常的线程池接口类ExecutorService，其中execute方法的返回值是void，即无法获取异步任务的执行状态，</p>
+<p>3个重载的submit方法的返回值是Future，可以据此获取任务执行的状态和结果，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    ExecutorService executorService= Executors.newSingleThreadExecutor();</span><br><span class="line">    Future&lt;Double&gt; cf = executorService.submit(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">false</span>)&#123;</span><br><span class="line">            <span class="comment">//子线程执行异常时其异常会被捕获，</span></span><br><span class="line">            <span class="comment">//然后修改任务的状态为异常结束并唤醒等待的主线程，</span></span><br><span class="line">            <span class="comment">//get方法判断任务状态发生变更，就终止等待了，并抛出异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成,如果已完成则直接返回结果</span></span><br><span class="line">    <span class="comment">//如果执行任务异常，则get方法会把之前捕获的异常重新抛出</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="supplyAsync-runAsync"><a href="#supplyAsync-runAsync" class="headerlink" title="supplyAsync / runAsync"></a>supplyAsync / runAsync</h3><p>supplyAsync表示创建带返回值的异步任务的，相当于<code>ExecutorService submit(Callable&lt;T&gt; task)</code> 方法，</p>
+<p>runAsync表示创建无返回值的异步任务，相当于<code>ExecutorService submit(Runnable task)</code>方法，</p>
+<p>这两方法的效果跟submit是一样的，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务，有返回值</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务，无返回值</span></span><br><span class="line">    CompletableFuture cf = CompletableFuture.runAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">false</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两方法各有一个重载版本，可以指定执行异步任务的Executor实现，如果不指定，默认使用<code>ForkJoinPool.commonPool()</code>，如果机器是单核的，则默认使用ThreadPerTaskExecutor，该类是一个内部类，每次执行execute都会创建一个新线程。测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">     ForkJoinPool pool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">     <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">     CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">         System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">         <span class="keyword">try</span> &#123;</span><br><span class="line">             Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">         &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">             <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,pool);</span><br><span class="line">     System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">     <span class="comment">//等待子任务执行完成</span></span><br><span class="line">     System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">     System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">     ExecutorService executorService= Executors.newSingleThreadExecutor();</span><br><span class="line">     <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">     CompletableFuture cf = CompletableFuture.runAsync(()-&gt;&#123;</span><br><span class="line">         System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">         <span class="keyword">try</span> &#123;</span><br><span class="line">             Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">         &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">false</span>)&#123;</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,executorService);</span><br><span class="line">     System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">     <span class="comment">//等待子任务执行完成</span></span><br><span class="line">     System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">     System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h2><h3 id="thenApply-thenApplyAsync"><a href="#thenApply-thenApplyAsync" class="headerlink" title="thenApply / thenApplyAsync"></a>thenApply / thenApplyAsync</h3><p>thenApply 表示某个任务执行完成后执行的动作，即回调方法，会将该任务的执行结果即方法返回值作为入参传递到回调方法中，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ForkJoinPool pool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;,pool);</span><br><span class="line">    <span class="comment">//cf关联的异步任务的返回值作为方法入参，传入到thenApply的方法中</span></span><br><span class="line">    <span class="comment">//thenApply这里实际创建了一个新的CompletableFuture实例</span></span><br><span class="line">    CompletableFuture&lt;String&gt; cf2=cf.thenApply((result)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test:"</span>+result;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf2.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>thenApplyAsync与thenApply的区别在于，前者是将job2提交到线程池中异步执行，实际执行job2的线程可能是另外一个线程，后者是由执行job1的线程立即执行job2，即两个job都是同一个线程执行的。</p>
+<p>thenApplyAsync有一个重载版本，可以指定执行异步任务的Executor实现，如果不指定，默认使用<code>ForkJoinPool.commonPool()</code>。</p>
+<p>下述的多个方法，每个方法都有两个以Async结尾的方法，一个使用默认的Executor实现，一个使用指定的Executor实现，<mark>不带Async的方法是由触发该任务的线程执行该任务，带Async的方法是由触发该任务的线程将任务提交到线程池，执行任务的线程跟触发任务的线程不一定是同一个。</mark></p>
+<h3 id="thenAccept-thenRun"><a href="#thenAccept-thenRun" class="headerlink" title="thenAccept / thenRun"></a>thenAccept / thenRun</h3><p>thenAccept 同 thenApply 接收上一个任务的返回值作为参数，但是无返回值；thenRun 的方法没有入参，也没有返回值，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test6</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ForkJoinPool pool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;,pool);</span><br><span class="line">    <span class="comment">//cf关联的异步任务的返回值作为方法入参，传入到thenApply的方法中</span></span><br><span class="line">    CompletableFuture cf2=cf.thenApply((result)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test:"</span>+result;</span><br><span class="line">    &#125;).thenAccept((result)-&gt; &#123; <span class="comment">//接收上一个任务的执行结果作为入参，但是没有返回值</span></span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(result);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;).thenRun(()-&gt;&#123; <span class="comment">//无入参，也没有返回值</span></span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"thenRun do something"</span>);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf2.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//cf2 等待最后一个thenRun执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="exceptionally"><a href="#exceptionally" class="headerlink" title="exceptionally"></a>exceptionally</h3><p>exceptionally方法指定某个任务执行异常时执行的回调方法，会将抛出异常作为参数传递到回调方法中，如果该任务正常执行则会exceptionally方法返回的CompletionStage的result就是该任务正常执行的结果，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ForkJoinPool pool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job1 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">"job1 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,pool);</span><br><span class="line">    <span class="comment">//cf执行异常时，将抛出的异常作为入参传递给回调方法</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf2= cf.exceptionally((param)-&gt;&#123;</span><br><span class="line">         System.out.println(Thread.currentThread()+<span class="string">" start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"error stack trace-&gt;"</span>);</span><br><span class="line">        param.printStackTrace();</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">         <span class="keyword">return</span> -<span class="number">1.1</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//cf正常执行时执行的逻辑，如果执行异常则不调用此逻辑</span></span><br><span class="line">    CompletableFuture cf3=cf.thenAccept((param)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"param-&gt;"</span>+param);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成,此处无论是job2和job3都可以实现job2退出，主线程才退出，如果是cf，则主线程不会等待job2执行完成自动退出了</span></span><br><span class="line">    <span class="comment">//cf2.get时，没有异常，但是依然有返回值，就是cf的返回值</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="whenComplete"><a href="#whenComplete" class="headerlink" title="whenComplete"></a>whenComplete</h3><p>whenComplete是当某个任务执行完成后执行的回调方法，会将执行结果或者执行期间抛出的异常传递给回调方法，如果是正常执行则异常为null，回调方法对应的CompletableFuture的result和该任务一致，如果该任务正常执行，则get方法返回执行结果，如果是执行异常，则get方法抛出异常。测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test10</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job1 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">false</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">"job1 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//cf执行完成后会将执行结果和执行过程中抛出的异常传入回调方法，如果是正常执行的则传入的异常为null</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf2=cf.whenComplete((a,b)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(b!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"error stack trace-&gt;"</span>);</span><br><span class="line">            b.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"run succ,result-&gt;"</span>+a);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"main thread start wait,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//如果cf是正常执行的，cf2.get的结果就是cf执行的结果</span></span><br><span class="line">    <span class="comment">//如果cf是执行异常，则cf2.get会抛出异常</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="handle"><a href="#handle" class="headerlink" title="handle"></a>handle</h3><p>跟whenComplete基本一致，区别在于handle的回调方法有返回值，且handle方法返回的CompletableFuture的result是回调方法的执行结果或者回调方法执行期间抛出的异常，与原始CompletableFuture的result无关了。测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test10</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job1 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">"job1 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//cf执行完成后会将执行结果和执行过程中抛出的异常传入回调方法，如果是正常执行的则传入的异常为null</span></span><br><span class="line">    CompletableFuture&lt;String&gt; cf2=cf.handle((a,b)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 start,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(b!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"error stack trace-&gt;"</span>);</span><br><span class="line">            b.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"run succ,result-&gt;"</span>+a);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">"job2 exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">if</span>(b!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"run error"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"run succ"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"main thread start wait,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//get的结果是cf2的返回值，跟cf没关系了</span></span><br><span class="line">    System.out.println(<span class="string">"run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组合处理"><a href="#组合处理" class="headerlink" title="组合处理"></a>组合处理</h2><h3 id="thenCombine-thenAcceptBoth-runAfterBoth"><a href="#thenCombine-thenAcceptBoth-runAfterBoth" class="headerlink" title="thenCombine / thenAcceptBoth / runAfterBoth"></a>thenCombine / thenAcceptBoth / runAfterBoth</h3><p>这三个方法都是将两个CompletableFuture组合起来，只有这两个都正常执行完了才会执行某个任务，区别在于，thenCombine会将两个任务的执行结果作为方法入参传递到指定方法中，且该方法有返回值；</p>
+<p>thenAcceptBoth同样将两个任务的执行结果作为方法入参，但是无返回值；runAfterBoth没有入参，也没有返回值。</p>
+<p>注意两个任务中只要有一个执行异常，则将该异常信息作为指定任务的执行结果。测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test7</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ForkJoinPool pool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    CompletableFuture&lt;Double&gt; cf2 = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1500</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,且有返回值</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf3=cf.thenCombine(cf2,(a,b)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        System.out.println(<span class="string">"job3 param a-&gt;"</span>+a+<span class="string">",b-&gt;"</span>+b);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,无返回值</span></span><br><span class="line">    CompletableFuture cf4=cf.thenAcceptBoth(cf2,(a,b)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        System.out.println(<span class="string">"job4 param a-&gt;"</span>+a+<span class="string">",b-&gt;"</span>+b);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1500</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//cf4和cf3都执行完成后，执行cf5，无入参，无返回值</span></span><br><span class="line">    CompletableFuture cf5=cf4.runAfterBoth(cf3,()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job5,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"cf5 do something"</span>);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job5,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"main thread start cf.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"cf run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf5.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    System.out.println(<span class="string">"cf5 run result-&gt;"</span>+cf5.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="applyToEither-acceptEither-runAfterEither"><a href="#applyToEither-acceptEither-runAfterEither" class="headerlink" title="applyToEither / acceptEither / runAfterEither"></a>applyToEither / acceptEither / runAfterEither</h3><p>这三个方法都是将两个CompletableFuture组合起来，只要其中一个执行完了就会执行某个任务，其区别在于applyToEither会将已经执行完成的任务的执行结果作为方法入参，并有返回值；</p>
+<p>acceptEither同样将已经执行完成的任务的执行结果作为方法入参，但是没有返回值；runAfterEither没有方法入参，也没有返回值。</p>
+<p>注意两个任务中只要有一个执行异常，则将该异常信息作为指定任务的执行结果。测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test8</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    CompletableFuture&lt;Double&gt; cf2 = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1500</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,且有返回值</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf3=cf.applyToEither(cf2,(result)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        System.out.println(<span class="string">"job3 param result-&gt;"</span>+result);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,无返回值</span></span><br><span class="line">    CompletableFuture cf4=cf.acceptEither(cf2,(result)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        System.out.println(<span class="string">"job4 param result-&gt;"</span>+result);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1500</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job4,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//cf4和cf3都执行完成后，执行cf5，无入参，无返回值</span></span><br><span class="line">    CompletableFuture cf5=cf4.runAfterEither(cf3,()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job5,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"cf5 do something"</span>);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job5,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"main thread start cf.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"cf run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf5.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    System.out.println(<span class="string">"cf5 run result-&gt;"</span>+cf5.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="thenCompose"><a href="#thenCompose" class="headerlink" title="thenCompose"></a>thenCompose</h3><p>thenCompose方法会在某个任务执行完成后，将该任务的执行结果作为方法入参然后执行指定的方法，该方法会返回一个新的CompletableFuture实例，如果该CompletableFuture实例的result不为null，则返回一个基于该result的新的CompletableFuture实例；如果该CompletableFuture实例为null，则，然后执行这个新任务，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test9</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    CompletableFuture&lt;String&gt; cf2= cf.thenCompose((param)-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">" start job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread()+<span class="string">" exit job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"job3 test"</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"cf run result-&gt;"</span>+cf.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread start cf2.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    System.out.println(<span class="string">"cf2 run result-&gt;"</span>+cf2.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="allOf-anyOf"><a href="#allOf-anyOf" class="headerlink" title="allOf / anyOf"></a>allOf / anyOf</h3><p>allOf返回的CompletableFuture是多个任务都执行完成后才会执行，只有有一个任务执行异常，则返回的CompletableFuture执行get方法时会抛出异常，如果都是正常执行，则get返回null。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test11</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 创建异步执行任务:</span></span><br><span class="line">    CompletableFuture&lt;Double&gt; cf = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job1,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    CompletableFuture&lt;Double&gt; cf2 = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1500</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job2,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    CompletableFuture&lt;Double&gt; cf3 = CompletableFuture.supplyAsync(()-&gt;&#123;</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" start job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1300</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"test"</span>);</span><br><span class="line">        System.out.println(Thread.currentThread()+<span class="string">" exit job3,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2.2</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//allof等待所有任务执行完成才执行cf4，如果有一个任务异常终止，则cf4.get时会抛出异常，都是正常执行，cf4.get返回null</span></span><br><span class="line">    <span class="comment">//anyOf是只有一个任务执行完成，无论是正常执行或者执行异常，都会执行cf4，cf4.get的结果就是已执行完成的任务的执行结果</span></span><br><span class="line">    CompletableFuture cf4=CompletableFuture.allOf(cf,cf2,cf3).whenComplete((a,b)-&gt;&#123;</span><br><span class="line">       <span class="keyword">if</span>(b!=<span class="keyword">null</span>)&#123;</span><br><span class="line">           System.out.println(<span class="string">"error stack trace-&gt;"</span>);</span><br><span class="line">           b.printStackTrace();</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">"run succ,result-&gt;"</span>+a);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"main thread start cf4.get(),time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">    <span class="comment">//等待子任务执行完成</span></span><br><span class="line">    System.out.println(<span class="string">"cf4 run result-&gt;"</span>+cf4.get());</span><br><span class="line">    System.out.println(<span class="string">"main thread exit,time-&gt;"</span>+System.currentTimeMillis());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他示例"><a href="#其他示例" class="headerlink" title="其他示例"></a>其他示例</h2><h3 id="线程池处理任务"><a href="#线程池处理任务" class="headerlink" title="线程池处理任务"></a>线程池处理任务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 1. 创建线程池</span></span><br><span class="line">            ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">            </span><br><span class="line">            List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">            List&lt;Future&lt;String&gt;&gt; futures = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (Integer key : list) &#123;</span><br><span class="line">                <span class="comment">// 2. 提交任务</span></span><br><span class="line">                Future&lt;String&gt; future = executorService.submit(() -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                    Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">"结果"</span> + key;</span><br><span class="line">                &#125;);</span><br><span class="line">                futures.add(future);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">            <span class="comment">// 3. 获取结果</span></span><br><span class="line">            <span class="keyword">for</span> (Future&lt;String&gt; future : futures) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    String result = future.get();</span><br><span class="line">                    System.out.println(result);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            executorService.shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用CompletableFuture重构任务处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">           <span class="comment">// 1. 创建线程池</span></span><br><span class="line">           ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">   </span><br><span class="line">           List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">           <span class="keyword">for</span> (Integer key : list) &#123;</span><br><span class="line">               <span class="comment">// 2. 提交任务</span></span><br><span class="line">               CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">                   <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                   <span class="keyword">try</span> &#123;</span><br><span class="line">                       Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                   &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">return</span> <span class="string">"结果"</span> + key;</span><br><span class="line">               &#125;, executorService).whenCompleteAsync((result, exception) -&gt; &#123;</span><br><span class="line">                   <span class="comment">// 3. 获取结果</span></span><br><span class="line">                   System.out.println(result);</span><br><span class="line">               &#125;);;</span><br><span class="line">           &#125;</span><br><span class="line">   </span><br><span class="line">           executorService.shutdown();</span><br><span class="line">           <span class="comment">// 由于whenCompleteAsync获取结果的方法是异步的，所以要阻塞当前线程才能输出结果</span></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               Thread.sleep(<span class="number">2000L</span>);</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你还想同步获取结果，可以使用whenComplete()方法，或者单独调用join()方法。 </p>
+<p>join()方法配合Stream流是这样用的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 1. 创建线程池</span></span><br><span class="line">            ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">            List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">            <span class="comment">// 2. 提交任务</span></span><br><span class="line">            List&lt;String&gt; results = list.stream().map(key -&gt;</span><br><span class="line">                    CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">                        <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> <span class="string">"结果"</span> + key;</span><br><span class="line">                    &#125;, executorService))</span><br><span class="line">                    .map(CompletableFuture::join).collect(Collectors.toList());</span><br><span class="line">    </span><br><span class="line">            executorService.shutdown();</span><br><span class="line">            <span class="comment">// 3. 获取结果</span></span><br><span class="line">            System.out.println(results);</span><br><span class="line">    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="等待所有任务执行完成"><a href="#等待所有任务执行完成" class="headerlink" title="等待所有任务执行完成"></a>等待所有任务执行完成</h3><p>线程池+CountDownLatch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 1. 创建线程池</span></span><br><span class="line">            ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">            List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">            CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(list.size());</span><br><span class="line">            <span class="keyword">for</span> (Integer key : list) &#123;</span><br><span class="line">                <span class="comment">// 2. 提交任务</span></span><br><span class="line">                executorService.execute(() -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    System.out.println(<span class="string">"结果"</span> + key);</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">            executorService.shutdown();</span><br><span class="line">            <span class="comment">// 3. 阻塞等待所有任务执行完成</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                countDownLatch.await();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用CompletableFuture重构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 1. 创建线程池</span></span><br><span class="line">            ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">            List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">            <span class="comment">// 2. 提交任务，并调用join()阻塞等待所有任务执行完成</span></span><br><span class="line">            CompletableFuture</span><br><span class="line">                    .allOf(</span><br><span class="line">                            list.stream().map(key -&gt;</span><br><span class="line">                                    CompletableFuture.runAsync(() -&gt; &#123;</span><br><span class="line">                                        <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                                        <span class="keyword">try</span> &#123;</span><br><span class="line">                                            Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                                        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                                        &#125;</span><br><span class="line">                                        System.out.println(<span class="string">"结果"</span> + key);</span><br><span class="line">                                    &#125;, executorService))</span><br><span class="line">                                    .toArray(CompletableFuture[]::<span class="keyword">new</span>))</span><br><span class="line">                    .join();</span><br><span class="line">            executorService.shutdown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>遍历list集合，提交CompletableFuture任务，把结果转换成数组</p>
+</li>
+<li><p>再把数组放到CompletableFuture的allOf()方法里面</p>
+</li>
+<li><p>最后调用join()方法阻塞等待所有任务执行完成</p>
+</li>
+</ol>
+<p>CompletableFuture的allOf()方法的作用就是，等待所有任务处理完成。</p>
+<h3 id="任何一个任务处理完成就返回"><a href="#任何一个任务处理完成就返回" class="headerlink" title="任何一个任务处理完成就返回"></a>任何一个任务处理完成就返回</h3><p>如果要实现这样一个需求，往线程池提交一批任务，只要有其中一个任务处理完成就返回。</p>
+<p>如果你手动实现这个逻辑的话，代码肯定复杂且低效，有了CompletableFuture就非常简单了，只需调用anyOf()方法就行了。</p>
+<h3 id="一个线程执行完成，交给另一个线程接着执行"><a href="#一个线程执行完成，交给另一个线程接着执行" class="headerlink" title="一个线程执行完成，交给另一个线程接着执行"></a>一个线程执行完成，交给另一个线程接着执行</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 1. 创建线程池</span></span><br><span class="line">            ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">            <span class="comment">// 2. 提交任务，并调用join()阻塞等待任务执行完成</span></span><br><span class="line">            String result2 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">                <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"结果1"</span>;</span><br><span class="line">            &#125;, executorService).thenApplyAsync(result1 -&gt; &#123;</span><br><span class="line">                <span class="comment">// 睡眠一秒，模仿处理过程</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000L</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> result1 + <span class="string">"结果2"</span>;</span><br><span class="line">            &#125;, executorService).join();</span><br><span class="line">    </span><br><span class="line">            executorService.shutdown();</span><br><span class="line">            <span class="comment">// 3. 获取结果</span></span><br><span class="line">            System.out.println(result2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            CompletableFuture&lt;String&gt; completableFuture = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"饭做好了"</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//try &#123;</span></span><br><span class="line">            <span class="comment">//    Thread.sleep(1L);</span></span><br><span class="line">            <span class="comment">//&#125; catch (InterruptedException e) &#123;</span></span><br><span class="line">            <span class="comment">//&#125;</span></span><br><span class="line">    </span><br><span class="line">            completableFuture.complete(<span class="string">"饭还没做好，我点外卖了"</span>);</span><br><span class="line">            System.out.println(completableFuture.join());</span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">带run的方法，无入参，无返回值。</span><br><span class="line">带accept的方法，有入参，无返回值。</span><br><span class="line">带supply的方法，无入参，有返回值。</span><br><span class="line">带apply的方法，有入参，有返回值。</span><br><span class="line">带handle的方法，有入参，有返回值，并且带异常处理。</span><br><span class="line">以Async结尾的方法，都是异步的，否则是同步的。</span><br><span class="line">以Either结尾的方法，只需完成任意一个。</span><br><span class="line">以Both/Combine结尾的方法，必须所有都完成。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//获取结果  </span><br><span class="line">join 阻塞等待，不会抛异常  </span><br><span class="line">get 阻塞等待，会抛异常  </span><br><span class="line">complete(T value) 不阻塞，如果任务已完成，返回处理结果。如果没完成，则返回传参value。  </span><br><span class="line">completeExceptionally(Throwable ex) 不阻塞，如果任务已完成，返回处理结果。如果没完成，抛异常。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java8/" rel="tag"># Java8</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/08/05/Spring/Spring中事务的嵌套/" rel="next" title="Spring中事务的嵌套">
+                <i class="fa fa-chevron-left"></i> Spring中事务的嵌套
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/08/05/Java基础/Java-Stream常见用法/" rel="prev" title="Java Stream常见用法">
+                Java Stream常见用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Try.Catch">
+            
+              <p class="site-author-name" itemprop="name">Try.Catch</p>
+              <p class="site-description motion-element" itemprop="description">孤单而灿烂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建异步任务"><span class="nav-number">1.</span> <span class="nav-text">创建异步任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Future-submit"><span class="nav-number">1.1.</span> <span class="nav-text">Future.submit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supplyAsync-runAsync"><span class="nav-number">1.2.</span> <span class="nav-text">supplyAsync / runAsync</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步回调"><span class="nav-number">2.</span> <span class="nav-text">异步回调</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thenApply-thenApplyAsync"><span class="nav-number">2.1.</span> <span class="nav-text">thenApply / thenApplyAsync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thenAccept-thenRun"><span class="nav-number">2.2.</span> <span class="nav-text">thenAccept / thenRun</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exceptionally"><span class="nav-number">2.3.</span> <span class="nav-text">exceptionally</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whenComplete"><span class="nav-number">2.4.</span> <span class="nav-text">whenComplete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handle"><span class="nav-number">2.5.</span> <span class="nav-text">handle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合处理"><span class="nav-number">3.</span> <span class="nav-text">组合处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thenCombine-thenAcceptBoth-runAfterBoth"><span class="nav-number">3.1.</span> <span class="nav-text">thenCombine / thenAcceptBoth / runAfterBoth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applyToEither-acceptEither-runAfterEither"><span class="nav-number">3.2.</span> <span class="nav-text">applyToEither / acceptEither / runAfterEither</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thenCompose"><span class="nav-number">3.3.</span> <span class="nav-text">thenCompose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#allOf-anyOf"><span class="nav-number">3.4.</span> <span class="nav-text">allOf / anyOf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他示例"><span class="nav-number">4.</span> <span class="nav-text">其他示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池处理任务"><span class="nav-number">4.1.</span> <span class="nav-text">线程池处理任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待所有任务执行完成"><span class="nav-number">4.2.</span> <span class="nav-text">等待所有任务执行完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何一个任务处理完成就返回"><span class="nav-number">4.3.</span> <span class="nav-text">任何一个任务处理完成就返回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个线程执行完成，交给另一个线程接着执行"><span class="nav-number">4.4.</span> <span class="nav-text">一个线程执行完成，交给另一个线程接着执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Try.Catch</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
